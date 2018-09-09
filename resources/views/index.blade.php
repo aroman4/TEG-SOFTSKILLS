@@ -29,7 +29,7 @@
         </nav>
     </header>
     <div class="fondo">
-		<img src="5.jpeg">
+		hola
 	</div>
 	<div class="banner">
 		<h1>Nos dedicamos al desarrollo de las habilidades blandas</h1>
