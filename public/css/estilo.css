@@ -1,5 +1,5 @@
 .menu-estilo-navegacion{
-    background-color: #2C3E50
+    background-color: #000000   
 
 }
 
@@ -59,7 +59,8 @@
 }
 
 
-/* fin del menu*/
+
+
 body{
 	margin: 0;
 	padding: 0;
@@ -90,21 +91,21 @@ header{
 	position: absolute;
 	content: '';
 	width: 200%;
-	height: 600px;
+	height: 510px;
 	top: -200px;
-	left: 170px;
+	left: 160px;
 	background: white;
-	transform: skewY(-50deg);
+	transform: skewY(-57deg);
 }
 .banner:after {
 	position: absolute;
 	content: '';
 	width: 200%;
-	height: 600px;
+	height: 510px;
 	top: -200px;
-	right: 170px;
+	right: 160px;
 	background: white;
-	transform: skewY(50deg);
+	transform: skewY(57deg);
 }
 
 .banner h1{
@@ -147,5 +148,123 @@ header{
 	top: -90px;
 	right: 0;
 	background: #4477ab;
+	transform: skewY(15deg);
+}
+
+.imagen-fija.fondo{
+	background-image: url(5f.jpg);
+}
+
+.serviciosIndex{
+	height: 400px;
+}
+
+.info{
+	height: 400px;
+}
+
+/*Asesoria*/
+
+.seccion1 {
+	background: #4477ab;
+	color: white;
+	height: 450px;
+	width: 100%;
+	padding-top: 130px;
+	position: relative;
+	text-align: center;
+	min-height: 100%;
+}
+
+.seccion1:before {
+	position: absolute;
+	content: '';
+	width: 50%;
+	height: 200px;
+	top: -107px;
+	left: 0;
+	background: #4477ab;
+	transform: skewY(15deg);
+}
+
+.seccion1:after {
+	position: absolute;
+	content: '';
+	width: 50%;
+	height: 200px;
+	top: -107px;
+	right: 0;
+	background: #4477ab;
+	transform: skewY(-15deg);
+}
+
+.textoSeccion1{
+	position: relative;
+	z-index: 1;
+}
+
+.imagen-fija{
+	min-height: 80vh;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.texto-divImagen{
+	text-align: center;
+}
+
+.imagen-fija.imagen-fija1{
+	background-image: url(1f.jpg);
+}
+
+.imagen-fija.imagen-fija2{
+	background-image: url(4f.jpg);
+}
+
+texto-divImagen1:before{
+	background-image: url(4.jpg);
+	filter: opacity(30%);
+}
+
+.noesperes{
+	height: 600px;
+}
+
+/*footer*/
+footer {
+	background: black;
+	color: white;
+	height: 180px;
+	width: 100%;
+	position: relative;
+	text-align: center;
+}
+
+.inside-footer{
+	position: relative;
+	z-index: 1;
+}
+
+footer:before {
+	position: absolute;
+	content: '';
+	width: 50%;
+	height: 180px;
+	top: -90px;
+	left: 0;
+	background: black;
+	transform: skewY(-15deg);
+}
+
+footer:after {
+	position: absolute;
+	content: '';
+	width: 50%;
+	height: 180px;
+	top: -90px;
+	right: 0;
+	background: black;
 	transform: skewY(15deg);
 }
