@@ -38,6 +38,31 @@
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
 		sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
 		Nullam feugiat luctus tortor nec hendrerit. </p>
+    </div>
+
+    <div class="seccion1">
+		<div class="textoSeccion1">
+		<h1>Importancia</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
+		sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
+		Nullam feugiat luctus tortor nec hendrerit. </p>
+		</div>
 	</div>
+	
+	<div class="noesperes">
+		<h1>Experiencias</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
+			sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
+			Nullam feugiat luctus tortor nec hendrerit
+		</p>
+	</div>
+	</div>
+    
+    <footer>
+		<div class="inside-footer">
+		<p>2018 tesis</p>
+		</div>
+    </footer>
+    
 </body>
 </html>
