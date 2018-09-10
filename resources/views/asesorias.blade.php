@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="{{asset('css/estilo.css')}}"  />
-
-    <script src="main.js"></script>
+<link rel="stylesheet" href="{{asset('css/estilo.css')}}">
 </head>
 <body>
-    <header>
-        <!--<div class="logo">
+     <header>
+        <div class="logo">
         Softskills
-        </div>-->
+        </div>
         <nav class="menu-estilo-navegacion">
             <ul class="menu-estilo-principal">
-                <li class="menu-estilo"><a class="menu" href="#"> Softskills</a></li>
                 <li class="menu-estilo"><a class="menu" href="#"> Quienes Somos</a></li>
                 <li class="menu-estilo"><a class="menu" href="#"> Servicios</a></li>
                 <li class="menu-estilo"><a class="menu" href="#"> Staff</a></li>
@@ -28,19 +18,16 @@
             </ul>
         </nav>
     </header>
-    <div class="fondo">
-		hola
+	<div class="imagen-fija imagen-fija1">
+		<div class="texto-divImagen">
+			<h1>Asesorías</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
+				sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
+				Nullam feugiat luctus tortor nec hendrerit
+			</p>
+		</div>
 	</div>
-	<div class="banner">
-		<h1>Nos dedicamos al desarrollo de las habilidades blandas</h1>
-	</div>
-	<div class="seccion2">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
-		sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
-		Nullam feugiat luctus tortor nec hendrerit. </p>
-    </div>
-
-    <div class="seccion1">
+	<div class="seccion1">
 		<div class="textoSeccion1">
 		<h1>Importancia</h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
@@ -48,8 +35,8 @@
 		Nullam feugiat luctus tortor nec hendrerit. </p>
 		</div>
 	</div>
-	
-	<div class="noesperes">
+	<div class="imagen-fija imagen-fija2">
+	<div class="texto-divImagen">
 		<h1>Experiencias</h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
 			sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
@@ -57,12 +44,18 @@
 		</p>
 	</div>
 	</div>
-    
-    <footer>
+	
+	<div class="noesperes">
+        <img src="{{asset('img/2.jpg')}}">
+		<h1>No esperes</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
+		sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
+		Nullam feugiat luctus tortor nec hendrerit. </p>
+	</div>
+	<footer>
 		<div class="inside-footer">
 		<p>2018 tesis</p>
 		</div>
-    </footer>
-    
+	</footer>
 </body>
 </html>

@@ -7,3 +7,4 @@
 */
 
 Route::get('/', 'FrontController@index');
+Route::get('/asesorias', 'FrontController@asesorias');
