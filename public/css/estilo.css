@@ -1,5 +1,6 @@
 .menu-estilo-navegacion{
-    background-color: #000000;
+    background-color: #000000   
+
 }
 
 .menu-estilo-principal {/*ul*/
@@ -48,19 +49,13 @@
 .menu-estilo-principal .menu-estilo:hover .menu,
 .menu-estilo-principal .menu-estilo:focus .menu,
 .menu-estilo-principal .menu-estilo.active .menu{
-    color: 	#FFFFFF;
+    color: white;
 }
 
 .menu-estilo-principal .menu-estilo:hover .menu:after,
 .menu-estilo-principal .menu-estilo:focus .menu:after,
 .menu-estilo-principal .menu-estilo.active .menu:after{
     opacity: 1;
-}
-
-.modulos{
-	position: relative;
-	background: #000fff;
-	min-height: 80vh;
 }
 
 
@@ -79,15 +74,15 @@ header{
 .fondo{
 	position: relative;
 	width: 100%;
-	height: 700px;
+	height: 600px;
 }
 
 .banner{
 	position: absolute;
-	background: 	#FFFFFF;
+	background: white;
 	top: 30px;
 	text-align: center;
-	height: 560px;
+	height: 600px;
 	width: 50%;
 	margin-left: 25%;
 }
@@ -96,26 +91,20 @@ header{
 	position: absolute;
 	content: '';
 	width: 200%;
-	height: 540px;
-	top: -180px;
-	left: 130px;
 	height: 510px;
 	top: -200px;
 	left: 160px;
-	background: 	#FFFFFF;
+	background: white;
 	transform: skewY(-57deg);
 }
 .banner:after {
 	position: absolute;
 	content: '';
 	width: 200%;
-	height: 540px;
-	top: -180px;
-	right: 130px;
 	height: 510px;
 	top: -200px;
 	right: 160px;
-	background: 	#FFFFFF;
+	background: white;
 	transform: skewY(57deg);
 }
 
@@ -132,7 +121,7 @@ header{
 }
 .seccion2 {
 	background: #4477ab;
-	color: 	#FFFFFF;
+	color: white;
 	height: 450px;
 	width: 100%;
 	padding-top: 130px;
@@ -178,7 +167,7 @@ header{
 
 .seccion1 {
 	background: #4477ab;
-	color: 	#FFFFFF;
+	color: white;
 	height: 450px;
 	width: 100%;
 	padding-top: 130px;
@@ -227,11 +216,6 @@ header{
 }
 
 .imagen-fija.imagen-fija1{
-	background-image: url(../img/1f.jpg);
-}
-
-.imagen-fija.imagen-fija2{
-	background-image: url(../img/4f.jpg);
 	background-image: url(1f.jpg);
 }
 
@@ -250,8 +234,8 @@ texto-divImagen1:before{
 
 /*footer*/
 footer {
-	background: 	#000000;
-	color: 	#FFFFFF;
+	background: black;
+	color: white;
 	height: 180px;
 	width: 100%;
 	position: relative;
@@ -270,7 +254,7 @@ footer:before {
 	height: 180px;
 	top: -90px;
 	left: 0;
-	background: 	#000000;
+	background: black;
 	transform: skewY(-15deg);
 }
 
@@ -281,6 +265,6 @@ footer:after {
 	height: 180px;
 	top: -90px;
 	right: 0;
-	background: 	#000000;
+	background: black;
 	transform: skewY(15deg);
 }
