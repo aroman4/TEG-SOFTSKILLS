@@ -9,5 +9,8 @@ class FrontController extends Controller
     public function index(){
         return view('index');
     }
-    //
+    // 
+    public function asesorias(){
+        return view('asesorias');
+    }
 }
