@@ -221,23 +221,23 @@ header{
 }
 
 .imagen-fija.imagen-fija1{
-	background-image: url(1f.jpg);
+	background-image: url(../img/1f.jpg);
 }
 
 .imagen-fija.imagen-fija2{
-	background-image: url(4f.jpg);
+	background-image: url(../img/4f.jpg);
 }
 
 .imagen-fija.imagen-fija3{
-	background-image: url(3.jpg);
+	background-image: url(../img/3.jpg);
 }
 
 .imagen-fija.imagen-fija4{
-	background-image: url(6.jpg);
+	background-image: url(../img/7f.jpg);
 }
 
 texto-divImagen1:before{
-	background-image: url(4.jpg);
+	background-image: url(../img/4.jpg);
 	filter: opacity(30%);
 }
 .texto-divImagenIn{
