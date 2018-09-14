@@ -232,15 +232,10 @@ header{
 
 .imagen-fija.imagen-fija2{
 	background-image: url(../img/4f.jpg);
-	background-image: url(1f.jpg);
-}
-
-.imagen-fija.imagen-fija2{
-	background-image: url(4f.jpg);
 }
 
 texto-divImagen1:before{
-	background-image: url(4.jpg);
+	background-image: url(../img/4.jpg);
 	filter: opacity(30%);
 }
 
