@@ -14,9 +14,6 @@
 </head>
 <body>
     <header>
-        <!--<div class="logo">
-        Softskills
-        </div>-->
         <nav class="menu-estilo-navegacion">
             <ul class="menu-estilo-principal">
                 <li class="menu-estilo"><a class="menu" href="#"> Softskills</a></li>
