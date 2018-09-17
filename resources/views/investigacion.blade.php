@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="{{asset('css/app.css')}}" />
 <link rel="stylesheet" href="{{asset('css/estilo.css')}}">
 </head>
 <body>

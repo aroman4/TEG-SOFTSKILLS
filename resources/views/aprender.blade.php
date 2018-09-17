@@ -9,7 +9,8 @@
         <header>
               @yield('content')
          </header>
-        {!! Form::open(['action' => 'RequestController@store', 'method' => 'POST'])!!}
+         <br><br>
+         {!! Form::open(['action' => 'RequestController@store', 'method' => 'POST'])!!}
         <div class = "form-group">
                 {!! Form::label('nombre_solicitud', 'Nombre de la Solicitud:*  ')!!}
                 {!! Form::text('nombre_solicitud',null,['class'=>'from-control','placeholder'=>'Nombre de la Solicitud','required'])!!}
@@ -29,7 +30,6 @@
                 {!! Form::submit('Enviar Solicitud',['class'=>'btn btn-primary'])!!}
         </div>
         {!! Form::close()!!}
-
 
 </body>
 </html>

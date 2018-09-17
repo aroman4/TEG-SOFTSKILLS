@@ -20,3 +20,8 @@ route::group(['prefix' => 'admin'], function(){
 Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
 });
+
+
+//ruta de prueba
+Route::get('/prueba', 'FrontController@prueba');
+Route::get('/aprender', 'FrontController@aprender');
