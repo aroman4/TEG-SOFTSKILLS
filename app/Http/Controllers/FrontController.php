@@ -27,7 +27,5 @@ class FrontController extends Controller
         public function aprender(){
             return view('aprender');
         }
-
-
-    
 }
+
