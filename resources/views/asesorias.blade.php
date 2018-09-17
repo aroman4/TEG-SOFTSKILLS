@@ -43,7 +43,7 @@
 	</div>
 	
 	<div class="noesperes">
-        <img src="{{asset('img/2.jpg')}}">
+        <!--<img src="{{asset('img/2.jpg')}}">-->
 		<h1>No esperes</h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
 		sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 

@@ -19,8 +19,8 @@ class CreateSolicitud extends Migration
             $table->string('actividades');
             $table->string('descripcion');
             //clave foranea id de usuario
-            $table->integer('id_usu')->unsigned();
-            $table->foreign('id_usu')->references('id')->on('usuario')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('usuario')->onDelete('cascade');
             $table->timestamps();
         });
     }
