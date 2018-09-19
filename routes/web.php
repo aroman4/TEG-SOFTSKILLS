@@ -25,3 +25,7 @@ Route::group(['prefix' => 'solic'], function(){
 //ruta de prueba
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/aprender', 'FrontController@aprender');
+Route::get('/pruebablade', 'FrontController@Pruebablade');
+Route::get('/prueba', 'FrontController@prueba');
+Route::get('/header', 'FrontController@header');
+Route::get('/footer', 'FrontController@footer');
