@@ -49,9 +49,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'nombre_usu' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:usuario',
+            'clave_usu' => 'required|string|min:6',
         ]);
     }
 
@@ -63,10 +63,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        //dd($data['clave_usu']);
+        $data['clave_usu'] = bcrypt($data['clave_usu']);
+        /* $user = new User($data);
+        $user->clave_usu = bcrypt($user->clave_usu);
+        //dd($user->clave_usu);
+        //$user->save();
+        return $user; */
+        return User::create($data);
+       /*  return User::create([
+            'nombre_usu' => $data['nombre_usu'], 
+            'email'=> $data['email'], 
+            'clave_usu' => Hash::make($data['clave_usu']),
+            'tipo_usu'=> $data['tipo_usu'],
+            'edad','nombre'=> $data['edad'],
+            'apellido'=> $data['apellido'],
+            'telefono'=> $data['telefono'],
+            'direccion'=> $data['direccion'],
+            'pais'=> $data['pais'],
+            'profesion'=> $data['profesion'],
+            'sexo'=> $data['sexo'],
+            'cedula'=> $data['cedula'],
+        ]); */
     }
 }

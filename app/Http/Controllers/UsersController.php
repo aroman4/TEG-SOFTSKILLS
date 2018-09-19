@@ -41,7 +41,6 @@ class UsersController extends Controller
         //dd($user);
         $user->clave_usu = bcrypt($request->clave_usu);
         $user->save(); //guarda en la bd
-        dd('todo fino menol');
     }
 
     /**

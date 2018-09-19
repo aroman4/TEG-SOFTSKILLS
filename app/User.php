@@ -22,6 +22,17 @@ class User extends Authenticatable
     ];
 
     /**
+    * Hash the password whenever it is updated.
+    *
+    * @param $value
+    * @return string
+    */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['clave_usu'] = Hash::make($value);
+    }
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
