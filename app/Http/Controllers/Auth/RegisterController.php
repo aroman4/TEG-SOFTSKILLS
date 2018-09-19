@@ -49,9 +49,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'nombre_usu' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:usuario',
+            'password' => 'required|string|min:6',
+            'edad' => 'integer|nullable',
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'telefono' => 'nullable|integer',
+            'direccion' => 'nullable|string|max:255',
+            'pais' => 'nullable|string|max:255',
+            'sexo' => 'nullable|string|max:255',
+            'cedula' => 'nullable|integer|max:255',
         ]);
     }
 
@@ -63,10 +71,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        //dd($data['password']);
+        $data['password'] = bcrypt($data['password']);
+        /* $user = new User($data);
+        $user->password = bcrypt($user->password);
+        //dd($user->password);
+        //$user->save();
+        return $user; */
+        return User::create($data);
+       /*  return User::create([
+            'nombre_usu' => $data['nombre_usu'], 
+            'email'=> $data['email'], 
             'password' => Hash::make($data['password']),
-        ]);
+            'tipo_usu'=> $data['tipo_usu'],
+            'edad','nombre'=> $data['edad'],
+            'apellido'=> $data['apellido'],
+            'telefono'=> $data['telefono'],
+            'direccion'=> $data['direccion'],
+            'pais'=> $data['pais'],
+            'profesion'=> $data['profesion'],
+            'sexo'=> $data['sexo'],
+            'cedula'=> $data['cedula'],
+        ]); */
     }
 }
