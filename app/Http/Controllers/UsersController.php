@@ -39,7 +39,7 @@ class UsersController extends Controller
         //
         $user = new User($request->all()); //recibe los datos del formulario
         //dd($user);
-        $user->clave_usu = bcrypt($request->clave_usu);
+        $user->password = bcrypt($request->password);
         $user->save(); //guarda en la bd
     }
 

@@ -10,8 +10,8 @@ registro de usuario
         {!! Form::email ('email',null,['class'=>'form-control','placeholder'=>'Email','required'])!!}
     </div>
     <div class="form-group">
-        {!! Form::label ('clave_usu','Contraseña*')!!}
-        {!! Form::password ('clave_usu',['class'=>'form-control','placeholder'=>'****','required'])!!}
+        {!! Form::label ('password','Contraseña*')!!}
+        {!! Form::password ('password',['class'=>'form-control','placeholder'=>'****','required'])!!}
     </div>
     <div class="form-group">
         {!! Form::label ('tipo_usu','Tipo de usuario*')!!}

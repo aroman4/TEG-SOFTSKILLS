@@ -51,7 +51,15 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nombre_usu' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuario',
-            'clave_usu' => 'required|string|min:6',
+            'password' => 'required|string|min:6',
+            'edad' => 'integer|nullable',
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'telefono' => 'nullable|integer',
+            'direccion' => 'nullable|string|max:255',
+            'pais' => 'nullable|string|max:255',
+            'sexo' => 'nullable|string|max:255',
+            'cedula' => 'nullable|integer|max:255',
         ]);
     }
 
@@ -63,18 +71,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //dd($data['clave_usu']);
-        $data['clave_usu'] = bcrypt($data['clave_usu']);
+        //dd($data['password']);
+        $data['password'] = bcrypt($data['password']);
         /* $user = new User($data);
-        $user->clave_usu = bcrypt($user->clave_usu);
-        //dd($user->clave_usu);
+        $user->password = bcrypt($user->password);
+        //dd($user->password);
         //$user->save();
         return $user; */
         return User::create($data);
        /*  return User::create([
             'nombre_usu' => $data['nombre_usu'], 
             'email'=> $data['email'], 
-            'clave_usu' => Hash::make($data['clave_usu']),
+            'password' => Hash::make($data['password']),
             'tipo_usu'=> $data['tipo_usu'],
             'edad','nombre'=> $data['edad'],
             'apellido'=> $data['apellido'],

@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombre_usu', 'email', 'clave_usu','tipo_usu','edad','nombre','apellido','telefono','direccion','pais','profesion','sexo','cedula',
+        'nombre_usu', 'email', 'password','tipo_usu','edad','nombre','apellido','telefono','direccion','pais','profesion','sexo','cedula',
     ];
 
     /**
@@ -27,10 +27,10 @@ class User extends Authenticatable
     * @param $value
     * @return string
     */
-    public function setPasswordAttribute($value)
+    /* public function setPasswordAttribute($value)
     {
-        $this->attributes['clave_usu'] = Hash::make($value);
-    }
+        $this->attributes['password'] = \Hash::make($value);
+    } */
 
     /**
      * The attributes that should be hidden for arrays.
@@ -38,7 +38,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'clave_usu', 'remember_token',
+        'password', 'remember_token',
     ];
 
     public function solicitudes(){
