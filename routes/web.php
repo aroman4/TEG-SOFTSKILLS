@@ -21,7 +21,12 @@ Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
 });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 
 //ruta de prueba
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/aprender', 'FrontController@aprender');
+
