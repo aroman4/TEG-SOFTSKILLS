@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'direccion' => 'nullable|string|max:255',
             'pais' => 'nullable|string|max:255',
             'sexo' => 'nullable|string|max:255',
-            'cedula' => 'nullable|integer|max:255',
+            'cedula' => 'nullable|integer',
         ]);
     }
 

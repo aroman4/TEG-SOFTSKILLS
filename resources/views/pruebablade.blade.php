@@ -1,4 +1,4 @@
-@include('heard')
+@include('header')
 
 <div class="fondo">
 		hola
