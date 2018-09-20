@@ -19,5 +19,13 @@ class FrontController extends Controller
         return view('investigacion');
     }
 
-    
+    //prueba de blade
+    public function prueba(){
+        return view('producto.prueba');
+    }
+        //prueba
+        public function aprender(){
+            return view('aprender');
+        }
 }
+

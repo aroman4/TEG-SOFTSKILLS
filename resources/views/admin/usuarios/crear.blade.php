@@ -1,4 +1,15 @@
-registro de usuario
+<!DOCTYPE html>
+<html lang="softskills">
+<head>
+    
+    <link rel="stylesheet" href="{{asset('css/app.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/estilo.css')}}">
+</head>
+    <body>
+        <header>
+              @yield('content')
+         </header>
+         <br><br>
 
 {!! Form::open(['action' => 'UsersController@store', 'method' => 'POST']) !!}
     <div class="form-group">
@@ -57,3 +68,7 @@ registro de usuario
         {!! Form::submit ('Registrar',['class'=>'btn btn-primary'])!!}
     </div>
 {!! Form::close() !!}
+
+   
+    </body>
+ </html>

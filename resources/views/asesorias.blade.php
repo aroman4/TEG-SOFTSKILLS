@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="{{asset('css/app.css')}}" />
 <link rel="stylesheet" href="{{asset('css/estilo.css')}}">
 </head>
 <body>
@@ -22,6 +23,7 @@
 				sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
 				Nullam feugiat luctus tortor nec hendrerit
 			</p>
+			<!--<button class="btn btn-primary">boton</button>-->
 		</div>
 	</div>
 	<div class="seccion1">
