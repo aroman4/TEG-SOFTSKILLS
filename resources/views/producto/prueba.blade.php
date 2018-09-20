@@ -10,5 +10,4 @@
                 <li class="menu-estilo"><a class="menu" href="#"> Contactos</a></li>
             </ul>
         </nav>
-    
 @endsection
