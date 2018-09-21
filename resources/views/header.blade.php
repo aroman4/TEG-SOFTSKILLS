@@ -42,8 +42,8 @@
                             <a class="menu nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
                         </li>
                     @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <li class="nav-item dropdown menu-estilo">
+                            <a id="navbarDropdown" class="menu nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->nombre }} <span class="caret"></span>
                             </a>
 
@@ -64,6 +64,6 @@
             </div>
         </nav>
     </header>
-    <main role= "main" class="container">
+   <!-- <main role= "main" class="container">-->
  
         
