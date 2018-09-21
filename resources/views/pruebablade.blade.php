@@ -1,4 +1,4 @@
-@include('heard')
+@include('header')
 
 <div class="fondo">
 		hola
@@ -12,7 +12,7 @@
 		Nullam feugiat luctus tortor nec hendrerit. </p>
     </div>
 
-    
+
     <div class="seccion1">
 		<div class="textoSeccion1">
 		<h1>Importancia</h1>
