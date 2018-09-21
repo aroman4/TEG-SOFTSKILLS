@@ -8,7 +8,7 @@ class Solicitud extends Model
 {
     //
     protected $table = 'solicitud';
-    protected $fillable = ['nombre_solicitud', 'actividades','descripcion', 'user_id'];
+    protected $fillable = ['nombre_solicitud', 'actividades','descripcion', 'titulo', 'caracteristica', 'asunto', 'mensaje', 'user_id'];
 
     public function usuario(){
         return $this->belongsTo('App\User','user_id');
