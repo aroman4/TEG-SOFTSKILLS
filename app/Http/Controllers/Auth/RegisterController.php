@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'edad' => 'integer|nullable',
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'telefono' => 'nullable|integer',
+            'telefono' => 'nullable|numeric',
             'direccion' => 'nullable|string|max:255',
             'pais' => 'nullable|string|max:255',
             'sexo' => 'nullable|string|max:255',

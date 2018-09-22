@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="softskills">
-<head>
-    
-    <link rel="stylesheet" href="{{asset('css/app.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/estilo.css')}}">
-</head>
-<body>
-       <header>
-         <nav class="menu-estilo-navegacion">
-            <ul class="menu-estilo-principal">
-                <li class="menu-estilo"><a class="menu" href="#"> Quienes Somos</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Servicios</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Staff</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Bibliografía</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Contactos</a></li>
-            </ul>
-         </nav>
-      </header>
+@extends('layouts.plantilla')
+@section('content')
         {!! Form::open(['action' => 'RequestController@store', 'method' => 'POST'])!!}
         <div class = "form-group">
                 {!! Form::label('nombre_solicitud', 'Nombre de la Solicitud:*  ')!!}
@@ -38,6 +21,4 @@
         </div>
         {!! Form::close()!!}
 
-
-</body>
-</html>
+@endsection
