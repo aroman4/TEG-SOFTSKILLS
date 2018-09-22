@@ -11,7 +11,7 @@
         </div>
         <div class = "form-group">
                 {!! Form::label('descripcion', 'Descripción:*' )!!}
-                {!! Form::text('descripcion',null,['class'=>'from-control','placeholder'=>'Escriba aquí','required'])!!}
+                {!! Form::textarea('descripcion',null,['class'=>'from-control','placeholder'=>'Escriba aquí','required'])!!}
         </div>
         <div class = "form-group">
                 {!! Form::submit('Ajustar Archivo',['class'=>'btn btn-primary'])!!}

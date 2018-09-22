@@ -15,6 +15,16 @@
                     @endif
 
                     ¡Has iniciado sesión!
+
+                    <!--{{Auth::user()->nombre_usu}}-->
+                    @if(Auth::user()->tipo_usu == "investigador")
+                        <p>Eres un investigador!</p>
+                    @elseif(Auth::user()->tipo_usu == "asesor")
+                        <p>Eres un asesor!</p>
+                    @else
+                        <p>Eres un cliente!</p>
+                    @endif
+
                 </div>
             </div>
         </div>
