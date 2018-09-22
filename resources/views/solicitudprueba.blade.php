@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('actividades','Actividades*')!!}
-                            {!! Form::email ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'actividades','required'])!!}
+                            {!! Form::test ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'actividades','required'])!!}
                             @if ($errors->has('actividades'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('actividades') }}</strong>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group row">
                                 {!! Form::label ('descripcion','Descrición*')!!}
-                                {!! Form::email ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'descripcion','required'])!!}
+                                {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'descripcion','required'])!!}
                                 @if ($errors->has('descripcion'))
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('descripcion') }}</strong>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('titulo','Titulo*')!!}
-                            {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}",'placeholder'=>'titulo'])!!}
+                            {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}",'placeholder'=>'titulo','required'])!!}
                             @if ($errors->has('titulo'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('titulo') }}</strong>
