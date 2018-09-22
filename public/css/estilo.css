@@ -20,7 +20,7 @@
 
 .menu-estilo-principal .menu-estilo .menu{/*a*/
     text-decoration: none;
-    font-size: 16px;
+    font-size: 11px;
     display: block;
     line-height: 60px;
     padding: 0 35px;
@@ -64,6 +64,11 @@
 	min-height: 80vh;
 }
 
+.navbar, .navbar-expand-lg{
+	padding: 0;
+	padding-left: 20px;
+}
+
 
 /* fin del menu*/
 body{
@@ -77,9 +82,12 @@ header{
 }
 
 .fondo{
-	position: relative;
-	width: 100%;
 	height: 700px;
+	position: relative;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 .banner{
@@ -156,8 +164,8 @@ header{
 	transform: skewY(15deg);
 }
 
-.imagen-fija.fondo{
-	background-image: url(5f.jpg);
+.fondo.imagen-fija5{
+	background-image: url(../img/5f.jpg);
 }
 
 .serviciosIndex{
@@ -278,6 +286,7 @@ texto-divImagen1:before{
 
 /*footer*/
 footer {
+	margin-top:250px;
 	background: #000000;
 	color: #FFFFFF;
 	height: 180px;
