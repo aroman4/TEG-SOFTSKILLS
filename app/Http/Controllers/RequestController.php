@@ -28,6 +28,16 @@ class RequestController extends Controller
         return view('solic.solicitud.create');
         //
     }
+    public function SolicInvestigacion()
+    {
+        return view('solic.solicitud.SolicInvestigacion');
+        //
+    }
+    public function SolicAsesoria()
+    {
+        return view('solic.solicitud.SolicAsesoria');
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
