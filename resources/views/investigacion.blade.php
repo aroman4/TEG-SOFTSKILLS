@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="{{asset('css/app.css')}}" />
-<link rel="stylesheet" href="{{asset('css/estilo.css')}}">
-</head>
-<body>
-     <header>
-        <nav class="menu-estilo-navegacion">
-            <ul class="menu-estilo-principal">
-                <li class="menu-estilo"><a class="menu" href="#"> Quienes Somos</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Servicios</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Staff</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Bibliografía</a></li>
-                <li class="menu-estilo"><a class="menu" href="#"> Contactos</a></li>
-            </ul>
-        </nav>
-    </header>
+@extends('layouts.plantilla')
+@section('content')
     <div class="imagen-fija imagen-fija3">
 		<div class="parte1">
 				<h1 class="parte12">Investigación</h1>
@@ -52,11 +36,5 @@
             <h1>No esperes mas ser parte de nosotros y demuestra tus conocimientos</h1>
 		</div>
 	</div>
-
-	<footer>
-		<div class="inside-footer">
-		<p>2018 tesis  *-*</p>
-		</div>
-	</footer>
-</body>
-</html>
+    
+@endsection
