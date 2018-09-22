@@ -18,6 +18,11 @@ class CreateSolicitud extends Migration
             $table->string('nombre_solicitud');
             $table->string('actividades');
             $table->string('descripcion');
+            $table->string('titulo');
+            $table->string('caracteristica');
+            $table->string('asunto');
+            $table->string('mensaje');
+
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('usuario')->onDelete('cascade');
