@@ -39,7 +39,8 @@ class RequestController extends Controller
     {
         $solicitud = new Solicitud($request->all());
         //dd($solicitud);
-        $solicitud->user_id = 1;
+        //$solicitud->user_id = 1;
+        $solicitud->user_id = auth()->user()->id;
         $solicitud->save();
         dd( $request->all());//guarda en la base de datos 
         dd('Bien...');
