@@ -25,6 +25,10 @@ class CreateSolicitud extends Migration
             $table->string('opinion')->nullable();
             $table->string('otros_proyectos')->nullable();
             $table->string('aporte')->nullable();
+<<<<<<< HEAD
+=======
+            $table->string('archivo')->nullable();
+>>>>>>> 387b1d3387a430efa46fc90c0fca44b5122c0555
 
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned();

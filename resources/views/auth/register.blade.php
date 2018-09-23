@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        <p>Los campos señalados con * son requeridos</p>
                         <div class="form-group row">
                             {!! Form::label ('nombre_usu','Nombre de usuario*')!!}
                             {!! Form::text ('nombre_usu',null,['class'=>"form-control {{ $errors->has('nombre_usu') ? ' is-invalid' : '' }}",'placeholder'=>'Nombre de usuario','required'])!!}
@@ -46,20 +46,18 @@
                             @endif
                         </div>
                         <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirma la Contraseña*') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             {!! Form::label ('tipo_usu','Tipo de usuario*')!!}
                             {!! Form::select ('tipo_usu',['investigador'=>'Investigador','asesor'=>'Asesor','cliente'=>'Cliente'],null,['class'=>"form-control {{ $errors->has('tipo_usu') ? ' is-invalid' : '' }}",'required'])!!}
                             @if ($errors->has('tipo_usu'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('tipo_usu') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group row">
-                            {!! Form::label ('edad','Edad')!!}
-                            {!! Form::text ('edad',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' }}",'placeholder'=>'Edad','integer'])!!}
-                            @if ($errors->has('edad'))
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $errors->first('edad') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -78,6 +76,37 @@
                             @if ($errors->has('apellido'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('apellido') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group row">
+                            {!! Form::label ('sexo','Sexo*')!!}
+                            <!--{!! Form::text ('sexo',null,['class'=>"form-control {{ $errors->has('sexo') ? ' is-invalid' }}",'placeholder'=>'Sexo'])!!}-->
+                            {!! Form::select ('sexo',['Femenino'=>'Femenino','Masculino'=>'Masculino'],null,['class'=>"form-control {{ $errors->has('sexo') ? ' is-invalid' : '' }}",'required'])!!}
+                            @if ($errors->has('sexo'))
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('sexo') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group row">
+                            <p>Los siguientes campos son opcionales:</p>
+                        </div>
+                        <div class="form-group row">
+                            {!! Form::label ('edad','Edad')!!}
+                            {!! Form::text ('edad',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' }}",'placeholder'=>'Edad','integer'])!!}
+                            @if ($errors->has('edad'))
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('edad') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group row">
+                            {!! Form::label ('profesion','Profesion')!!}
+                            {!! Form::text ('profesion',null,['class'=>"form-control {{ $errors->has('profesion') ? ' is-invalid' }}",'placeholder'=>'Profesion'])!!}
+                            @if ($errors->has('profesion'))
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('profesion') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -109,24 +138,6 @@
                             @endif
                         </div>
                         <div class="form-group row">
-                            {!! Form::label ('profesion','Profesion')!!}
-                            {!! Form::text ('profesion',null,['class'=>"form-control {{ $errors->has('profesion') ? ' is-invalid' }}",'placeholder'=>'Profesion'])!!}
-                            @if ($errors->has('profesion'))
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $errors->first('profesion') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group row">
-                            {!! Form::label ('sexo','Sexo')!!}
-                            {!! Form::text ('sexo',null,['class'=>"form-control {{ $errors->has('sexo') ? ' is-invalid' }}",'placeholder'=>'Sexo'])!!}
-                            @if ($errors->has('sexo'))
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $errors->first('sexo') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group row">
                             {!! Form::label ('cedula','Cedula')!!}
                             {!! Form::text ('cedula',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' }}",'placeholder'=>'Cedula','integer'])!!}
                             @if ($errors->has('cedula'))
@@ -135,8 +146,8 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row">
+                            <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrar') }}
                                 </button>

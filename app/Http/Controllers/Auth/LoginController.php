@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use App\Solicitud;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,28 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
+    public function redirectTo(){
+        //esta función toma el tipo de usuario y redirecciona a la ruta adecuada
+        //luego de iniciar sesión
+        $tipoUser = Auth::user()->tipo_usu;
+
+        //consigo las solicitudes
+        $solicitudes = Solicitud::all();
+
+        switch($tipoUser){
+            case 'investigador':            
+                return '/investigacion';
+            break;
+            case 'asesor':
+                return '/asesorias';
+            break;
+            case 'cliente':
+                return '/escritoriocliente';
+                //return view('asesoria.escritoriocliente')->with('solicitudes',$solicitudes);
+            break;
+        }
+    }
 
     /**
      * Create a new controller instance.
