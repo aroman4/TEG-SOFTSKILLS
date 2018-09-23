@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,24 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
+    public function redirectTo(){
+        //esta función toma el tipo de usuario y redirecciona a la ruta adecuada
+        //luego de iniciar sesión
+        $tipoUser = Auth::user()->tipo_usu;
+
+        switch($tipoUser){
+            case 'investigador':            
+                return '/escritorioinvestigador';
+            break;
+            case 'asesor':
+                return '/escritorioasesor';
+            break;
+            case 'cliente':
+                return '/escritoriocliente';
+            break;
+        }
+    }
 
     /**
      * Create a new controller instance.

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use App\Solicitud;
 
 class LoginController extends Controller
 {
@@ -33,19 +32,15 @@ class LoginController extends Controller
         //luego de iniciar sesión
         $tipoUser = Auth::user()->tipo_usu;
 
-        //consigo las solicitudes
-        $solicitudes = Solicitud::all();
-
         switch($tipoUser){
             case 'investigador':            
-                return '/investigacion';
+                return '/escritorioinvestigador';
             break;
             case 'asesor':
-                return '/asesorias';
+                return '/escritorioasesor';
             break;
             case 'cliente':
                 return '/escritoriocliente';
-                //return view('asesoria.escritoriocliente')->with('solicitudes',$solicitudes);
             break;
         }
     }

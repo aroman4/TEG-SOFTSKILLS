@@ -6,7 +6,7 @@
     @else
         <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
     @endif
-    <a href="{{route('solicasesoria')}}" class="btn btn-primary">Crear Solicitud</a>
+    <a href="{{route('solicinvestigacion')}}" class="btn btn-primary">Crear Solicitud</a>
     <p>Solicitudes creadas:</p>
     {{-- {{\App\Solicitud::all()}} --}}
     @if(count(\App\Solicitud::all())>1)

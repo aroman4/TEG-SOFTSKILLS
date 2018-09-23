@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Solicitud;
+use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
@@ -57,17 +58,29 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
+        $solicitud = new Solicitud($request->all());
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $nombreArch = time().$archivo->getClientOriginalName();
             $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
+            $solicitud->archivo = $nombreArch;
         }
-        $solicitud = new Solicitud($request->all());
-        //dd($solicitud);
-        //$solicitud->user_id = 1;
         $solicitud->user_id = auth()->user()->id;
-        $solicitud->archivo = $nombreArch;
         $solicitud->save();
+
+        $tipoUser = Auth::user()->tipo_usu;
+        switch($tipoUser){
+            case 'investigador':
+                return redirect('/escritorioinvestigador')->with('success','Solicitud Creada');
+            break;
+            case 'asesor':
+                return redirect('/escritorioasesor')->with('success','Solicitud Creada');
+            break;
+            case 'cliente':
+                return redirect('/escritoriocliente')->with('success','Solicitud Creada');
+            break;
+        }
+        
         dd( $request->all());//guarda en la base de datos 
         dd('Bien...');
         //
