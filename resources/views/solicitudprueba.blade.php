@@ -15,7 +15,7 @@
                 <div class="card-header">{{ __('Solicitud - Postulación') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    {!! Form::open(['action' => 'RequestController@store', 'method' => 'POST'])!!}
                         @csrf
                         <div class="form-group row">
                             {!! Form::label ('nombre_solicitud','Nombre de la Solicitud*')!!}
@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('actividades','Actividades*')!!}
-                            {!! Form::email ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'actividades','required'])!!}
+                            {!! Form::text ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'actividades','required'])!!}
                             @if ($errors->has('actividades'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('actividades') }}</strong>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group row">
                                 {!! Form::label ('descripcion','Descrición*')!!}
-                                {!! Form::email ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'descripcion','required'])!!}
+                                {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'descripcion','required'])!!}
                                 @if ($errors->has('descripcion'))
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('descripcion') }}</strong>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
 
-                    </form>
+                    {!! Form::close()!!}
                 </div>
             </div>
         </div>

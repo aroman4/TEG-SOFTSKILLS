@@ -23,11 +23,11 @@
         </div>
         <div class = "form-group">
                 {!! Form::label('asunto', 'Asunto:*'  )!!}
-                {!! Form::text('titulo',null,['class'=>'from-control','placeholder'=>'Asunto','required'])!!}
+                {!! Form::text('asunto',null,['class'=>'from-control','placeholder'=>'Asunto','required'])!!}
                 </div>
         <div class = "form-group">
-                {!! Form::label('Mensaje', 'Mesaje:*'  )!!}
-                {!! Form::textarea('titulo',null,['class'=>'from-control','placeholder'=>'Mensaje','required'])!!}
+                {!! Form::label('mensaje', 'Mensaje:*'  )!!}
+                {!! Form::textarea('mensaje',null,['class'=>'from-control','placeholder'=>'Mensaje','required'])!!}
          </div>
         <div class = "form-group">
                 {!! Form::submit('Ajustar Archivo',['class'=>'btn btn-primary'])!!}
