@@ -13,17 +13,20 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    ¡Has iniciado sesión!
-
-                    <!--{{Auth::user()->nombre_usu}}-->
+                    @if(Auth::user()->sexo == "Femenino")
+                        <p>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
+                    @else
+                        <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
+                    @endif
+                    
+                    
                     @if(Auth::user()->tipo_usu == "investigador")
                         <p>Eres un investigador!</p>
                     @elseif(Auth::user()->tipo_usu == "asesor")
                         <p>Eres un asesor!</p>
                     @else
                         <p>Eres un cliente!</p>
-                    @endif
+                    @endif  
 
                 </div>
             </div>

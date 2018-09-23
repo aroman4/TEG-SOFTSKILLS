@@ -28,11 +28,7 @@
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('actividades','Actividades*')!!}
-<<<<<<< HEAD
-                            {!! Form::text ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'actividades','required'])!!}
-=======
                             {!! Form::test ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'actividades','required'])!!}
->>>>>>> fde26dcd4487f788f35015aa5926385f4366dde6
                             @if ($errors->has('actividades'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('actividades') }}</strong>
