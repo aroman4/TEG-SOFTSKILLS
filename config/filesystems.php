@@ -45,7 +45,9 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => Public_path('archivoproyecto'),//se agrego
+            
+            //'root' => storage_path('app'),
         ],
 
         'public' => [
