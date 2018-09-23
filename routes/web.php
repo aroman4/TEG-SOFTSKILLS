@@ -18,6 +18,7 @@ route::group(['prefix' => 'admin'], function(){
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
+    Route::get('solicasesoria','RequestController@SolicAsesoria');
 });
 
 Auth::routes();
