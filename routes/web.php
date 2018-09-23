@@ -25,9 +25,6 @@ Route::group(['prefix' => 'solic'], function(){
 
 });
 
-//route de adjustar archivos
-Route::get('solicpostulacion', 'StorageController@SolicPostulacion');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
