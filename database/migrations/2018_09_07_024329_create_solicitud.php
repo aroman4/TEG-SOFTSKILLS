@@ -22,6 +22,9 @@ class CreateSolicitud extends Migration
             $table->string('caracteristica');
             $table->string('asunto');
             $table->string('mensaje');
+            $table->string('opinion');
+            $table->string('otros_proyectos');
+            $table->string('aporte');
 
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned();
