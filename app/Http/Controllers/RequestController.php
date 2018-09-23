@@ -38,6 +38,16 @@ class RequestController extends Controller
         return view('solic.solicitud.SolicAsesoria');
         //
     }
+    public function SolicPostulacion()
+    {
+        return view('solic.solicitud.SolicPostulacion');
+        //
+    }
+    public function prueba()
+    {
+        return view('solic.solicitud.prueba');
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,6 +65,15 @@ class RequestController extends Controller
         dd( $request->all());//guarda en la base de datos 
         dd('Bien...');
         //
+        Movie::SolicPostulacion($request->all());
+        //dd("Listo se Cargo");
+        return ("listo"); 
+
+        //if($request-->hasFile('Archivo')){
+        // $file = $request->file('Archivo');
+        //$name = time().$file->getClienteOriginalName();
+        //$file->move(public_path().'/archivoproyecto/', $name);
+        //return $name;
     }
 
     /**

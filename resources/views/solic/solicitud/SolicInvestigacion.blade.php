@@ -19,8 +19,8 @@
 
                              @csrf
                                 <div class="form-group row">
-                                    {!! Form::label ('titulo','Titulo*')!!}
-                                    {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}",'placeholder'=>'titulo','required'])!!}
+                                    {!! Form::label ('titulo','Titulo:*')!!}
+                                    {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}",'placeholder'=>'Titulo','required'])!!}
                                     @if ($errors->has('titulo'))
                                             <span class="text-danger" role="alert">
                                             <strong>{{ $errors->first('titulo') }}</strong>
@@ -28,8 +28,8 @@
                                     @endif
                                  </div>
                                 <div class="form-group row">
-                                    {!! Form::label ('caracteristica','Caracteristica')!!}
-                                    {!! Form::text ('caracteristica',null,['class'=>"form-control {{ $errors->has('caracteristica') ? ' is-invalid'}}",'placeholder'=>'caracteristica'])!!}
+                                    {!! Form::label ('caracteristica','Caracteristica:*')!!}
+                                    {!! Form::text ('caracteristica',null,['class'=>"form-control {{ $errors->has('caracteristica') ? ' is-invalid'}}",'placeholder'=>'Caracteristica'])!!}
                                     @if ($errors->has('caracteristica'))
                                             <span class="text-danger" role="alert">
                                             <strong>{{ $errors->first('caracteristica') }}</strong>
@@ -37,8 +37,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group row">
-                                        {!! Form::label ('descripcion','Descrición*')!!}
-                                        {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'descripcion','required'])!!}
+                                        {!! Form::label ('descripcion','Descrición:*')!!}
+                                        {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Descripcion','required'])!!}
                                         @if ($errors->has('descripcion'))
                                         <span class="text-danger" role="alert">
                                                 <strong>{{ $errors->first('descripcion') }}</strong>
@@ -48,7 +48,7 @@
                                 <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                                {{ __('Ajustar Archivo') }}
+                                                {{ __('Adjustar Archivo') }}
                                         </button>
                                         </div>
                                 </div>
