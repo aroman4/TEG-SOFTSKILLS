@@ -18,15 +18,12 @@ route::group(['prefix' => 'admin'], function(){
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
-    Route::get('solicinvestigacion', 'RequestController@SolicInvestigacion');
-    Route::get('solicasesoria', 'RequestController@SolicAsesoria');
-    Route::get('solicpostulacion', 'RequestController@SolicPostulacion');
+    Route::get('solicinvestigacion', 'RequestController@SolicInvestigacion')->name('solicinvestigacion');
+    Route::get('solicasesoria', 'RequestController@SolicAsesoria')->name('solicasesoria');
+    Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
     Route::get('x', 'RequestController@prueba');
 
 });
-
-//route de adjustar archivos
-Route::get('solicpostulacion', 'StorageController@SolicPostulacion');
 
 Auth::routes();
 
