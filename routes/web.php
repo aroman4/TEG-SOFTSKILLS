@@ -33,6 +33,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/escritoriocliente', function () {
     return view('asesoria.escritoriocliente');
 });
+Route::get('/escritorioasesor', function () {
+    return view('asesoria.escritorioasesor');
+});
+Route::get('/escritorioinvestigador', function () {
+    return view('investigaciones.escritorioinvestigador');
+});
 
 //ruta de prueba
 Route::get('/prueba', 'FrontController@prueba');

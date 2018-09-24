@@ -12,7 +12,7 @@
     @if(count(\App\Solicitud::all())>1)
         @foreach(\App\Solicitud::all() as $sol)
             @if($sol->user_id == Auth::user()->id)
-                <div class="card">
+                <div class="solicitud">
                     <h3>{{$sol->titulo}}</h3>
                 </div>
             @endif
