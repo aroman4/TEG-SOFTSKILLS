@@ -15,16 +15,17 @@ class CreateSolicitud extends Migration
     {
         Schema::create('solicitud', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_solicitud');
-            $table->string('actividades');
-            $table->string('descripcion');
-            $table->string('titulo');
-            $table->string('caracteristica');
-            $table->string('asunto');
-            $table->string('mensaje');
-            $table->string('opinion');
-            $table->string('otros_proyectos');
-            $table->string('aporte');
+            $table->string('nombre_solicitud')->nullable();
+            $table->string('actividades')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('titulo')->nullable();
+            $table->string('caracteristica')->nullable();
+            $table->string('asunto')->nullable();
+            $table->string('mensaje')->nullable();
+            $table->string('opinion')->nullable();
+            $table->string('otros_proyectos')->nullable();
+            $table->string('aporte')->nullable();
+            $table->string('archivo')->nullable();
 
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned();

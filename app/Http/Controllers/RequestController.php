@@ -57,10 +57,16 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('archivo')){
+            $archivo = $request->file('archivo');
+            $nombreArch = time().$archivo->getClientOriginalName();
+            $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
+        }
         $solicitud = new Solicitud($request->all());
         //dd($solicitud);
         //$solicitud->user_id = 1;
         $solicitud->user_id = auth()->user()->id;
+        $solicitud->archivo = $nombreArch;
         $solicitud->save();
         dd( $request->all());//guarda en la base de datos 
         dd('Bien...');
