@@ -37,7 +37,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group row">
-                                        {!! Form::label ('descripcion','Descrición:*')!!}
+                                        {!! Form::label ('descripcion','Descripción:*')!!}
                                         {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Descripcion','required'])!!}
                                         @if ($errors->has('descripcion'))
                                         <span class="text-danger" role="alert">

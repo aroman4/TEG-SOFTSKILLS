@@ -13,7 +13,7 @@
         @foreach(\App\Solicitud::all() as $sol)
             @if($sol->user_id == Auth::user()->id)
                 <div class="solicitud">
-                    <h3>{{$sol->titulo}}</h3>
+                    <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
                 </div>
             @endif
         @endforeach

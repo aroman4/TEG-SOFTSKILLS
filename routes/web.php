@@ -32,13 +32,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 //ruta escritorios
 Route::get('/escritoriocliente', function () {
     return view('asesoria.escritoriocliente');
-});
+})->name('escritoriocliente');
 Route::get('/escritorioasesor', function () {
     return view('asesoria.escritorioasesor');
-});
+})->name('escritorioasesor');
 Route::get('/escritorioinvestigador', function () {
     return view('investigaciones.escritorioinvestigador');
-});
+})->name('escritorioinvestigador');
 
 //ruta de prueba
 Route::get('/prueba', 'FrontController@prueba');

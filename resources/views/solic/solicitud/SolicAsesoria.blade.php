@@ -19,17 +19,17 @@
 
                              @csrf
                                 <div class="form-group row">
-                                {!! Form::label ('asunto','Asunto:*)!!}
-                                {!! Form::text ('asunto',null,['class'=>"form-control {{ $errors->has('asunto') ? ' is-invalid' }}",'placeholder'=>'asunto'])!!}
-                                @if ($errors->has('asunto'))
+                                {!! Form::label ('Titulo','Titulo:*')!!}
+                                {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo'])!!}
+                                @if ($errors->has('titulo'))
                                         <span class="text-danger" role="alert">
-                                        <strong>{{ $errors->first('asunto') }}</strong>
+                                        <strong>{{ $errors->first('titulo') }}</strong>
                                         </span>
                                 @endif
                                 </div>
                                 <div class="form-group row">
-                                {!! Form::label ('mensaje','Mensajes:*')!!}
-                                {!! Form::text ('mensaje',null,['class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'mensaje'])!!}
+                                {!! Form::label ('mensaje','Mensaje:*')!!}
+                                {!! Form::textarea ('mensaje',null,['class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'mensaje'])!!}
                                 @if ($errors->has('mensaje'))
                                         <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('mensaje') }}</strong>

@@ -15,7 +15,6 @@ class CreateAsesoriaTable extends Migration
     {
         Schema::create('asesoria', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('codigo_ase');
             $table->timestamps();
         });
     }
