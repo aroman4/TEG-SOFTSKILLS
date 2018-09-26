@@ -111,7 +111,20 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+        //buscar solicitud por id y mostrarla
+        $solic = Solicitud::find($id);
+        $tipoUser = Auth::user()->tipo_usu;
+        switch($tipoUser){
+            case 'investigador':
+                return view('investigaciones.solicitud')->with('solicitud',$solic);
+            break;
+            case 'asesor':
+                return view('asesoria.solicitud')->with('solicitud',$solic);
+            break;
+            case 'cliente':
+                return view('asesoria.solicitud')->with('solicitud',$solic);
+            break;
+        }
     }
 
     /**
