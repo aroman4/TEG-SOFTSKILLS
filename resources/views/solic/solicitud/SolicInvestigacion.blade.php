@@ -15,7 +15,7 @@
                 <div class="card-header">{{ __('Solicitud de Investigación') }}</div>
 
                     <div class="card-body">
-                        {!!Form::open(['action' => 'RequestController@store', 'method' => 'POST'])!!}
+                        {!!Form::open(['action' => 'RequestController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
 
                              @csrf
                                 <div class="form-group row">
@@ -44,24 +44,20 @@
                                                 <strong>{{ $errors->first('descripcion') }}</strong>
                                         </span>
                                         @endif
-                                </div>
-                                <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                                {{ __('Adjustar Archivo') }}
-                                        </button>
+                                    </div>                                        
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Subir Archivo</label>
+                                        <div class="col-md-6">
+                                            <input type="file" class="form-control" name="archivo" >
                                         </div>
-                                </div>
-                                <br><br>
-                                <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                                <button type="submit" class="btn btn-primary">
-                                                {{ __('Aceptar') }}
-                                                </button>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-4">
+                                            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
                                         </div>
-                                </div>
-
-                        </div>
+                                    </div>
+                        {!!Form::close()!!}              
+                    </div>
                 </div>
             </div>
         </div>
