@@ -9,7 +9,7 @@
     <a href="{{route('solicasesoria')}}" class="btn btn-primary">Crear Solicitud</a>
     <p>Solicitudes creadas:</p>
     {{-- {{\App\Solicitud::all()}} --}}
-    @if(count(\App\Solicitud::all())>1)
+    @if(count(\App\Solicitud::all())>0)
         @foreach(\App\Solicitud::all() as $sol)
             @if($sol->user_id == Auth::user()->id)
                 <div class="solicitud">

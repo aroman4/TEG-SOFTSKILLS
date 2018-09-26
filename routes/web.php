@@ -48,4 +48,11 @@ Route::get('/prueba', 'FrontController@prueba');
 Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
 
+//ruta aceptar asesoria
+Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
+    return redirect()->action(
+        'AsesoriaController@AceptarAsesoria', ['id' => $id]
+    );
+});
+
 
