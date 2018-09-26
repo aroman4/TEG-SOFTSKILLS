@@ -173,12 +173,13 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
+        //dd($id);
         //$solic::destroy($id);
         //session::flash('Solicitud eliminada correctamente');
         //return redirect::to('/solicitud');
-        $solic = solicitud::find($id);
-        $solic ->delate();
-        Flash::error('Su solicitud' . $solic->name . 'ha sido Eliminada de manera Exitosa');
+        $solic = Solicitud::find($id);
+        $solic->delete();
+        //Flash::error('Su solicitud' . $solic->name . 'ha sido Eliminada de manera Exitosa');
         return redirect()->route('solicitud.index');//duda
         //
     }

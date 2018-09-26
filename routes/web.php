@@ -21,7 +21,7 @@ Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
     //Eliminar
     Route::get('solicitud/{id}/destroy',[
-        'solicitud' => 'RequestController@destroy',
+        'uses' => 'RequestController@destroy',
         'as' => 'solicitud.destroy'
     ]);
     Route::get('solicinvestigacion', 'RequestController@SolicInvestigacion')->name('solicinvestigacion');
