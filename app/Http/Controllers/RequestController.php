@@ -16,7 +16,20 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return view('index');
+        //return view('index');
+        $tipoUser = Auth::user()->tipo_usu;
+
+        switch($tipoUser){
+            case 'investigador':            
+                return '/escritorioinvestigador';
+            break;
+            case 'asesor':
+                return '/escritorioasesor';
+            break;
+            case 'cliente':
+                return '/escritoriocliente';
+            break;
+        }
     }
 
     /**
