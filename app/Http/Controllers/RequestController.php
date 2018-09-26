@@ -84,15 +84,10 @@ class RequestController extends Controller
         dd( $request->all());//guarda en la base de datos 
         dd('Bien...');
         //
-        Movie::SolicPostulacion($request->all());
+        //Movie::SolicPostulacion($request->all());
         //dd("Listo se Cargo");
-        return ("listo"); 
+        //return ("listo"); 
 
-        //if($request-->hasFile('Archivo')){
-        // $file = $request->file('Archivo');
-        //$name = time().$file->getClienteOriginalName();
-        //$file->move(public_path().'/archivoproyecto/', $name);
-        //return $name;
     }
 
     /**

@@ -44,23 +44,19 @@
                                                 <strong>{{ $errors->first('aporte') }}</strong>
                                         </span>
                                         @endif
-                                </div>
-                                <div class="panel-heading">Agregar archivos </div>
-                                    
+                                </div>                                    
                                 <div class="form-group">
-                                <label class="col-md-4 control-label">Subir Curriculum</label>
-                                <div class="col-md-6">
-                                    <input type="file" class="form-control" name="archivo" >
-                                </div>
+                                    <label class="col-md-4 control-label">Subir Curriculum</label>
+                                    <div class="col-md-6">
+                                        <input type="file" class="form-control" name="archivo" >
+                                    </div>
                                 </div>
                     
                                 <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">Enviar Postulación</button>
-                                </div>
-                                </div>
-                            </div>
-                                            
+                                    <div class="col-md-6 col-md-offset-4">
+                                        <button type="submit" class="btn btn-primary">Enviar Postulación</button>
+                                    </div>
+                                </div>                    
                         {!!Form::close()!!}              
                     </div>
                 </div>
