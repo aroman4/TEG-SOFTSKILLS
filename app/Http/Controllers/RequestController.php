@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Solicitud;
 use Illuminate\Support\Facades\Auth;
+//use Laracasts\Flash\Flash;
 
 class RequestController extends Controller
 {
@@ -97,9 +98,6 @@ class RequestController extends Controller
         dd( $request->all());//guarda en la base de datos 
         dd('Bien...');
         //
-        //Movie::SolicPostulacion($request->all());
-        //dd("Listo se Cargo");
-        //return ("listo"); 
 
     }
 
@@ -135,6 +133,8 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
+        $solic = solicitud::find($id);
+        return view('solicitud.edit' ->with('solicitud', $solic));
         //
     }
 
@@ -148,6 +148,21 @@ class RequestController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $solic = solicitud::find($id);
+        $tipoUser = Auth::user()->tipo_usu;
+        switch($tipoUser){
+            case 'investigador':
+                //si el usuario es de tipo investigador tengo que actualizar
+                //los datos de la solicitud, pero eso aplica para cada uno.
+            break;
+            case 'asesor':
+              
+            break;
+            case 'cliente':
+                
+            break;
+        }
+
     }
 
     /**
@@ -158,6 +173,13 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
+        //$solic::destroy($id);
+        //session::flash('Solicitud eliminada correctamente');
+        //return redirect::to('/solicitud');
+        $solic = solicitud::find($id);
+        $solic ->delate();
+        Flash::error('Su solicitud' . $solic->name . 'ha sido Eliminada de manera Exitosa');
+        return redirect()->route('solicitud.index');//duda
         //
     }
 }

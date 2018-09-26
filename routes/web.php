@@ -15,14 +15,19 @@ Route::get('/solicitud', 'RequestController@solicitud');
 route::group(['prefix' => 'admin'], function(){
     Route::resource('usuarios','UsersController');
 });
+
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
+    //Eliminar
+    Route::get('solicitud/{id}/destroy',[
+        'solicitud' => 'RequestController@destroy',
+        'as' => 'solicitud.destroy'
+    ]);
     Route::get('solicinvestigacion', 'RequestController@SolicInvestigacion')->name('solicinvestigacion');
     Route::get('solicasesoria', 'RequestController@SolicAsesoria')->name('solicasesoria');
     Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
     Route::get('x', 'RequestController@prueba');
-
 });
 
 Auth::routes();
