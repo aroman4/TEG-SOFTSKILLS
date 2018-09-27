@@ -1,10 +1,8 @@
 <?php
+/**********************************************************************/
+/* Route del proyecto TEG realizado por Alvaro Roman y Felicia Jardim */
+/**********************************************************************/
 
-/*
-|Route::get('/', function () {
-    return view('welcome');
-});
-*/
 Route::get('/', 'FrontController@index')->name('index');
 Route::get('/asesorias', 'FrontController@asesorias')->name('asesorias');
 Route::get('/solicitud/{id}', 'SolicitudController@mostrar');
@@ -29,10 +27,10 @@ Route::group(['prefix' => 'solic'], function(){
     Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
     Route::get('x', 'RequestController@prueba'); 
 });
-//editar solicitud
-Route::get( '/editarinves' ,   function () {
-    return view('investigaciones.editarinvestigacion');
-    });
+//Editar solicitud
+Route::get( '/editarinves/{id}' , 'RequestController@editarInvestigacion')->name('editarinves');
+Route::get( '/editarasesor/{id}' , 'RequestController@editarAsesor')->name('editarasesor');
+//Route::get( '/editarclit/{id}' , 'RequestController@editarCliente')->name('editarclit');
 
 Auth::routes();
 
@@ -49,7 +47,7 @@ Route::get('/escritorioinvestigador', function () {
     return view('investigaciones.escritorioinvestigador');
 })->name('escritorioinvestigador');
 
-//ruta de prueba
+//ruta de prueba BORRAR LUEGO
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/aprender', 'FrontController@aprender');
 Route::get('/pruebablade', 'FrontController@Pruebablade');

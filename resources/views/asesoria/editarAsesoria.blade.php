@@ -15,12 +15,12 @@
                 <div class="card-header">{{ __('Editar Solicitud de Asesoría') }}</div>
 
                     <div class="card-body">
-                        {!!Form::open(['route' => 'solicitud.update', $solicitud, 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
+                        {!!Form::open(['route' => ['solicitud.update', $Solicitud], 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
 
                              @csrf
                                 <div class="form-group row">
                                 {!! Form::label ('Titulo','Titulo:*')!!}
-                                {!! Form::text ('titulo', $solicitud=>titulo, ['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo'])!!}
+                                {!! Form::text ('titulo', $solicitud->titulo, ['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo'])!!}
                                 @if ($errors->has('titulo'))
                                         <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('titulo') }}</strong>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group row">
                                 {!! Form::label ('mensaje','Mensaje:*')!!}
-                                {!! Form::textarea ('mensaje', $solicitud=>mensaje, ['class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'mensaje'])!!}
+                                {!! Form::textarea ('mensaje', $solicitud->mensaje, ['class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'mensaje'])!!}
                                 @if ($errors->has('mensaje'))
                                         <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('mensaje') }}</strong>

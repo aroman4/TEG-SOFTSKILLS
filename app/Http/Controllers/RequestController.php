@@ -63,7 +63,16 @@ class RequestController extends Controller
         return view('solic.solicitud.prueba');
         //
     }
-
+//-----------------------------Boton de Editar -------------------------------------------
+    public function editarInvestigacion($id){
+        $sol = Solicitud::find($id);
+        return view('investigaciones.editarInvestigacion')->with('Solicitud', $sol);
+    }
+    public function editarAsesoria($id){
+        $sol = Solicitud::find($id);
+        return view('asesoria.editarAsesoria')->with('Solicitud', $sol);
+    }
+//----------------------------------------------------------------------------------------
     /**
      * Store a newly created resource in storage.
      *
