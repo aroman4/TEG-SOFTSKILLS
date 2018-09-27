@@ -60,4 +60,6 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
     );
 });
 
+Route::resource('moduloasesoria','AsesoriaController');
+
 

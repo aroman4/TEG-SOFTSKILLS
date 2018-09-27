@@ -22,13 +22,13 @@ class RequestController extends Controller
 
         switch($tipoUser){
             case 'investigador':            
-                return '/escritorioinvestigador';
+                return redirect('/escritorioinvestigador');
             break;
             case 'asesor':
-                return '/escritorioasesor';
+                return redirect('/escritorioasesor');
             break;
             case 'cliente':
-                return '/escritoriocliente';
+                return redirect('/escritoriocliente');
             break;
         }
     }
