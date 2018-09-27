@@ -15,7 +15,7 @@
                 <div class="card-header">{{ __('Editar Solicitud de Asesoría') }}</div>
 
                     <div class="card-body">
-                        {!!Form::open(['route' => 'solicitud.update', $solicitud, 'action' => 'RequestController@store', 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
+                        {!!Form::open(['route' => 'solicitud.update', $solicitud, 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
 
                              @csrf
                                 <div class="form-group row">

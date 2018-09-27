@@ -133,9 +133,11 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
+        
         $solic = solicitud::find($id);
-        return view('solicitud.edit' ->with('solicitud', $solic));
-        //
+        //dd($solic);
+        return view('solicitud.edit')->with('solicitud', $solic);
+        
     }
 
     /**
@@ -148,20 +150,9 @@ class RequestController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $solic = solicitud::find($id);
-        $tipoUser = Auth::user()->tipo_usu;
-        switch($tipoUser){
-            case 'investigador':
-                //si el usuario es de tipo investigador tengo que actualizar
-                //los datos de la solicitud, pero eso aplica para cada uno.
-            break;
-            case 'asesor':
-              
-            break;
-            case 'cliente':
-                
-            break;
-        }
+        $soluc = Solicitud::find($id);
+        $soluc = $request->all();
+        $soluc->save();
 
     }
 
@@ -173,6 +164,7 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
         //dd($id);
         //$solic::destroy($id);
         //session::flash('Solicitud eliminada correctamente');
@@ -180,7 +172,12 @@ class RequestController extends Controller
         $solic = Solicitud::find($id);
         $solic->delete();
         //Flash::error('Su solicitud' . $solic->name . 'ha sido Eliminada de manera Exitosa');
+=======
+        //eliminar solicitud ya creada.
+        $solic = solicitud::find($id);
+        $solic ->delete();
+>>>>>>> d96b4986f806e7413d441c754535241aea17782d
         return redirect()->route('solicitud.index');//duda
-        //
+    
     }
 }
