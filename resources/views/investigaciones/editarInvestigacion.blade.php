@@ -16,10 +16,6 @@
 
                     <div class="card-body">
                         {!!Form::open(['route' => ['solicitud.update', $Solicitud], 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
-<<<<<<< HEAD
-=======
-
->>>>>>> a3905e4a1d9ee58a9a63edc09dbc1f1db65d7b96
                              @csrf
                                 <div class="form-group row">
                                     {!! Form::label ('titulo','Titulo:*')!!}
