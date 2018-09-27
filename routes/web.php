@@ -30,9 +30,10 @@ Route::group(['prefix' => 'solic'], function(){
     Route::get('x', 'RequestController@prueba'); 
 });
 //editar solicitud
-Route::get( '/editarinves' ,   function () {
+/* Route::get( '/editarinves' ,   function () {
     return view('investigaciones.editarinvestigacion');
-    });
+    }); */
+    Route::get('/editarinves/{id}', 'RequestController@editarInvestigacion')->name('editarinves');
 
 Auth::routes();
 

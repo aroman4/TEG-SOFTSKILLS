@@ -64,6 +64,11 @@ class RequestController extends Controller
         //
     }
 
+    public function editarInvestigacion($id){
+        $sol = Solicitud::find($id);
+        return view('investigaciones.editarinvestigacion')->with('Solicitud',$sol);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -164,19 +169,9 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
-        //dd($id);
-        //$solic::destroy($id);
-        //session::flash('Solicitud eliminada correctamente');
-        //return redirect::to('/solicitud');
-        $solic = Solicitud::find($id);
-        $solic->delete();
-        //Flash::error('Su solicitud' . $solic->name . 'ha sido Eliminada de manera Exitosa');
-=======
         //eliminar solicitud ya creada.
         $solic = solicitud::find($id);
         $solic ->delete();
->>>>>>> d96b4986f806e7413d441c754535241aea17782d
         return redirect()->route('solicitud.index');//duda
     
     }
