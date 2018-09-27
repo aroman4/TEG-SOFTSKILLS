@@ -6,18 +6,29 @@
     @else
         <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
     @endif
-    <a href="{{route('solicasesoria')}}" class="btn btn-primary">Crear Solicitud</a>
-    <p>Solicitudes recibidas:</p>
-    {{-- {{\App\Solicitud::all()}} --}}
-    {{-- @if(count(\App\Solicitud::all())>1)
+    <p>Solicitudes creadas (pendientes por aprobación):</p>
+    @if(count(\App\Solicitud::all())>0)
         @foreach(\App\Solicitud::all() as $sol)
-            @if($sol->user_id == Auth::user()->id)
-                <div class="card">
-                    <h3>{{$sol->titulo}}</h3>
+            @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"  && ($sol->estado=="pendiente"))
+                <div>
+                    <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
                 </div>
             @endif
         @endforeach
     @else
-        <p>No hay solicitudes creadas</p>
-    @endif --}}
+        <p>No hay solicitudes pendientes</p>
+    @endif
+    <p>Asesorías Activas:</p>
+    
+    @if(count(\App\Asesoria::all())>0)
+        @foreach(\App\Asesoria::all() as $ase)
+            @if(($ase->user_id == Auth::user()->id) && ($ase->estado == "activa"))
+                <div class="asesoria">
+                    <h3><a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">{{$ase->titulo}}</a></h3>
+                </div>
+            @endif
+        @endforeach
+    @else
+        <p>No hay asesorías activas</p>
+    @endif
 @endsection
