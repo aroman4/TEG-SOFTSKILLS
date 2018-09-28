@@ -15,4 +15,8 @@
     <h1>{{$solicitud->titulo}}</h1>
     <p>{{$solicitud->mensaje}}</p>
     <small>Creada el {{$solicitud->created_at}}</small>
+    @if(Auth::user()->tipo_usu == "asesor")
+        <a href="{{action('AsesoriaController@AceptarAsesoria',['id'=> $solicitud->id])}}" class="btn btn-success">Aceptar Solicitud</a>
+        <!--Cuando se acepte la solicitud se deberia dejar de mostrar la solicitud, cambiar el estado?-->
+    @endif
 @endsection

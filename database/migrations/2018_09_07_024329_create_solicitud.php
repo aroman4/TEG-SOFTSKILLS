@@ -26,6 +26,7 @@ class CreateSolicitud extends Migration
             $table->string('otros_proyectos')->nullable();
             $table->string('aporte')->nullable();
             $table->string('archivo')->nullable();
+            $table->enum('estado', ['pendiente', 'aceptada','rechazada'])->default('pendiente');
 
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned();

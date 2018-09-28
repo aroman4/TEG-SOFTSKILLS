@@ -30,9 +30,10 @@ Route::group(['prefix' => 'solic'], function(){
     Route::get('x', 'RequestController@prueba'); 
 });
 //editar solicitud
-Route::get( '/editarinves' ,   function () {
+/* Route::get( '/editarinves' ,   function () {
     return view('investigaciones.editarinvestigacion');
-    });
+    }); */
+    Route::get('/editarinves/{id}', 'RequestController@editarInvestigacion')->name('editarinves');
 
 Auth::routes();
 
@@ -56,5 +57,14 @@ Route::get('/pruebablade', 'FrontController@Pruebablade');
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
+
+//ruta aceptar asesoria
+Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
+    return redirect()->action(
+        'AsesoriaController@AceptarAsesoria', ['id' => $id]
+    );
+});
+
+Route::resource('moduloasesoria','AsesoriaController');
 
 

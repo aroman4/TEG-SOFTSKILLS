@@ -26,7 +26,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto menu-estilo-principal">
-                    <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Softskills</a></li>
+                    <li class="nav-item menu-estilo"><a class="menu nav-link" href="{{route('index')}}"> Softskills</a></li>
                     <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Quienes Somos</a></li>
                     <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Servicios</a></li>
                     <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Staff</a></li>
@@ -53,6 +53,13 @@
                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+                                @if(Auth::user()->tipo_usu == "asesor")
+                                    <a class="dropdown-item" href="{{ route('escritorioasesor') }}">Ir al escritorio</a>
+                                @elseif(Auth::user()->tipo_usu == "investigador")
+                                    <a class="dropdown-item" href="{{ route('escritorioinvestigador') }}">Ir al escritorio</a>
+                                @elseif(Auth::user()->tipo_usu == "cliente")
+                                    <a class="dropdown-item" href="{{ route('escritoriocliente') }}">Ir al escritorio</a>
+                                @endif
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
