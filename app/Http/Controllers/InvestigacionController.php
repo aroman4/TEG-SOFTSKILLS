@@ -28,7 +28,18 @@ class InvestigacionController extends Controller
     {
         //
     }
-
+    public function AceptarInvestigacion($id){
+        $solicitud = Solicitud::find($id);
+        //cambiar el estado de la solicitud
+        $Investigacion = new Investigaciones();
+        $Investigacion->titulo = $solicitud->titulo;
+        $Investigacion->caracteristica = $solicitud->caracteristica;
+        $Investigacion->descripcion = $solicitud->descripcion;
+        $Investigacion->tipo_inv = $usuario->tipo_inv;
+        $solicitud->estado = "aceptada";
+        $solicitud->save();
+        return redirect('/escritorioinvestigador')->with('success','Investigación aceptada');
+    }
     /**
      * Store a newly created resource in storage.
      *

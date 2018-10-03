@@ -15,6 +15,9 @@ class CreateInvestigacionTable extends Migration
     {
         Schema::create('investigacion', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('titulo');
+            $table->string('caracteristica');
+            $table->string('descripcion');
             $table->string('tipo_inv');//nombre del investigador 
             $table->string('nombre_inv');
             $table->integer('codigo_inv');
