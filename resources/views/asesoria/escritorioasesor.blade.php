@@ -31,4 +31,6 @@
     @else
         <p>No hay asesorías activas</p>
     @endif
+
+        <a href="{{route('cuestionario.home')}}" class="btn btn-info">Instrumento cuestionario</a>
 @endsection

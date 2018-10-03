@@ -9,4 +9,7 @@
     <p>{{$solicitud->caracteristica}}</p>
     <p>{{$solicitud->descripcion}}</p>
     <small>Creada el {{$solicitud->created_at}}</small>
+    @if(Auth::user()->tipo_ivn == "comite")
+        <a href=""></a>
+    @endif
 @endsection

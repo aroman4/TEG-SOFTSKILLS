@@ -96,6 +96,17 @@ class RegisterController extends Controller
         //dd($user->password);
         //$user->save();
         return $user; */
+        $user = new User($data);
+        //$user::create($data);
+        
+        //if(($user->tipo_usu == "investigador") && (User::where('tipo_usu','=','investigador')->count()==0)){
+        if(($data['tipo_usu'] == "investigador") && (User::where('tipo_usu','=','investigador')->count()==0)){
+            //$data['tipo_usu'] = 'admininvestigacion';
+            $user->tipo_usu  = 'admininvestigacion';
+            return User::create($user);
+            //$user->save();
+        }
+        
         return User::create($data);
        /*  return User::create([
             'nombre_usu' => $data['nombre_usu'], 

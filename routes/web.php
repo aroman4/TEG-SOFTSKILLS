@@ -49,6 +49,9 @@ Route::get('/escritorioasesor', function () {
 Route::get('/escritorioinvestigador', function () {
     return view('investigaciones.escritorioinvestigador');
 })->name('escritorioinvestigador');
+Route::get('/escritorioadmininvestigador', function () {
+    return view('investigaciones.escritorioadmin');
+})->name('escritorioadmininvestigador');
 
 //ruta de prueba
 Route::get('/prueba', 'FrontController@prueba');
@@ -66,5 +69,26 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
 });
 
 Route::resource('moduloasesoria','AsesoriaController');
+Route::resource('moduloinvestigaciones','InvestigacionController');
 
+//cuestionario
+Route::get('/cuestionario', 'CuestionarioController@home')->name('cuestionario.home');
+ 
+Route::get('/cuestionario/new', 'CuestionarioController@nuevoCuest')->name('cuestionario.nuevo');
+Route::get('/cuestionario/{cuestionario}', 'CuestionarioController@detalle')->name('cuestionario.detalle');
+Route::get('/cuestionario/ver/{cuestionario}', 'CuestionarioController@ver_cuestionario')->name('cuestionario.ver');
+Route::get('/cuestionario/respuesta/{cuestionario}', 'CuestionarioController@ver_respuestas_cuestionario')->name('cuestionario.respuestas');
+Route::get('/cuestionario/{cuestionario}/borrar', 'CuestionarioController@delete_cuestionario')->name('cuestionario.delete');
+ 
+Route::get('/cuestionario/{cuestionario}/editar', 'CuestionarioController@edit')->name('cuestionario.editar');
+Route::patch('/cuestionario/{cuestionario}/update', 'CuestionarioController@update')->name('cuestionario.update');
+ 
+Route::post('/cuestionario/ver/{cuestionario}/completado', 'RespuestaController@store')->name('cuestionario.completado');
+Route::post('/cuestionario/crear', 'CuestionarioController@crear')->name('cuestionario.crear');
+ 
+// preguntas
+Route::post('/cuestionario/{cuestionario}/preguntas', 'PreguntaController@store')->name('pregunta.guardar');
+ 
+Route::get('/pregunta/{pregunta}/editar', 'preguntaController@edit')->name('pregunta.editar');
+Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('pregunta.update');
 

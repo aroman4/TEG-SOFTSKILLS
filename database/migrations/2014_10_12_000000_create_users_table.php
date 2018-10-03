@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('tipo_usu', ['investigador', 'asesor','admin','cliente'])->default('investigador');
+            $table->enum('tipo_inv', ['normal', 'lider','comite'])->default('normal');
             $table->integer('edad')->nullable();
             $table->string('nombre');
             $table->string('apellido');
