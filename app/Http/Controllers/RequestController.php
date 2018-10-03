@@ -66,11 +66,15 @@ class RequestController extends Controller
 //-----------------------------Boton de Editar -------------------------------------------
     public function editarInvestigacion($id){
         $sol = Solicitud::find($id);
-        return view('investigaciones.editarInvestigacion')->with('Solicitud', $sol);
+        return view('investigaciones.editarInvestigacion')->with('solicitud', $sol);
     }
     public function editarAsesoria($id){
         $sol = Solicitud::find($id);
-        return view('asesoria.editarAsesoria')->with('Solicitud', $sol);
+        return view('asesoria.editarAsesoria')->with('solicitud', $sol);
+    }
+    public function editarCliente($id){
+        $sol = Solicitud::find($id);
+        return view('asesoria.editarCliente')->with('solicitud', $sol);
     }
 //----------------------------------------------------------------------------------------
     /**

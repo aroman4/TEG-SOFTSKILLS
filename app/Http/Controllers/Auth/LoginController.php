@@ -42,6 +42,9 @@ class LoginController extends Controller
             case 'cliente':
                 return '/escritoriocliente';
             break;
+            case 'comite':
+            return '/escritoriocomite';
+        break;
         }
     }
 

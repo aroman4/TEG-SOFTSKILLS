@@ -14,6 +14,7 @@ route::group(['prefix' => 'admin'], function(){
     Route::resource('usuarios','UsersController');
 });
 
+
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
@@ -29,8 +30,10 @@ Route::group(['prefix' => 'solic'], function(){
 });
 //Editar solicitud
 Route::get( '/editarinves/{id}' , 'RequestController@editarInvestigacion')->name('editarinves');
-Route::get( '/editarasesor/{id}' , 'RequestController@editarAsesor')->name('editarasesor');
+//Route::get( '/editarasesor/{id}' , 'RequestController@editarAsesor')->name('editarasesor');
 //Route::get( '/editarclit/{id}' , 'RequestController@editarCliente')->name('editarclit');
+
+   
 
 Auth::routes();
 
@@ -46,6 +49,25 @@ Route::get('/escritorioasesor', function () {
 Route::get('/escritorioinvestigador', function () {
     return view('investigaciones.escritorioinvestigador');
 })->name('escritorioinvestigador');
+Route::get('/escritoriocomite', function () {
+    return view('investigaciones.escritoriocomite');
+})->name('escritoriocomite');//duda
+
+//ruta aceptar asesoria
+Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
+    return redirect()->action(
+        'AsesoriaController@AceptarAsesoria', ['id' => $id]
+    );
+});
+Route::resource('moduloasesoria','AsesoriaController');
+
+//ruta aceptar investigacion
+Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestigacion', function($id){
+    return redirect()->action(
+        'InvestigacionController@AceptarInvestigacion', ['id' => $id]
+    );
+});
+Route::resource('moduloinvestigacion','InvestigacionController');
 
 //ruta de prueba BORRAR LUEGO
 Route::get('/prueba', 'FrontController@prueba');
@@ -54,14 +76,3 @@ Route::get('/pruebablade', 'FrontController@Pruebablade');
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
-
-//ruta aceptar asesoria
-Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
-    return redirect()->action(
-        'AsesoriaController@AceptarAsesoria', ['id' => $id]
-    );
-});
-
-Route::resource('moduloasesoria','AsesoriaController');
-
-
