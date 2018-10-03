@@ -45,6 +45,9 @@ class RegisterController extends Controller
             case 'cliente':
                 return '/escritoriocliente';
             break;
+            case 'comite':
+            return '/escritoriocomite';
+        break;
         }
     }
 
