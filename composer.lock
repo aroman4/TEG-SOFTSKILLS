@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1eedbd3af330a60357e6a606dc397521",
+    "content-hash": "6bd5ee47b5597d004c12fa4d3bd99349",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1526,6 +1526,50 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "skydiver/laravel-materialize-css",
+            "version": "v0.100.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/skydiver/laravel-materialize-css.git",
+                "reference": "7d36cabadb7dc394b1cba8d8e4396a1d49d4a8f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/skydiver/laravel-materialize-css/zipball/7d36cabadb7dc394b1cba8d8e4396a1d49d4a8f8",
+                "reference": "7d36cabadb7dc394b1cba8d8e4396a1d49d4a8f8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Skydiver\\LaravelMaterializeCSS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin",
+                    "email": "labs@flydev.com"
+                }
+            ],
+            "description": "Add Materialize CSS Framework to Laravel",
+            "keywords": [
+                "css",
+                "css framework",
+                "laravel",
+                "material design",
+                "materialize"
+            ],
+            "time": "2017-12-03T05:10:00+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

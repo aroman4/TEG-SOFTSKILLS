@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaQ')
 
 @section('content')
     <div class="card">

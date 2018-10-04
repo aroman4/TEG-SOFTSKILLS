@@ -1,9 +1,11 @@
 $(document).ready(function() {
-    $('.collapsible').collapsible({
+   /*  $('.collapsible').collapsible({
       accordion: false
     });
+    
+    $('select').material_select();
   
-    $('.modal-trigger').leanModal();
+    $('.modal-trigger').leanModal(); */
   
     $(document).on('click', '.delete-option', function() {
       $(this).parent(".input-field").remove();
@@ -11,9 +13,9 @@ $(document).ready(function() {
   
     // will replace .form-g class when referenced
     var material = '<div class="input-field col input-g s12">' +
-      '<input name="option_name[]" id="option_name[]" type="text">' +
+      '<input name="opcion[]" id="opcion[]" type="text">' +
       '<span style="float:right; cursor:pointer;"class="delete-option">Delete</span>' +
-      '<label for="option_name">Options</label>' +
+      '<label for="opcion">Options</label>' +
       '<span class="add-option" style="cursor:pointer;">Add Another</span>' +
       '</div>';
   
@@ -22,8 +24,8 @@ $(document).ready(function() {
       $(".form-g").append(material);
     });
     // allow for more options if radio or checkbox is enabled
-    $(document).on('change', '#question_type', function() {
-      var selected_option = $('#question_type :selected').val();
+    $(document).on('change', '#tipo_pregunta', function() {
+      var selected_option = $('#tipo_pregunta :selected').val();
       if (selected_option === "radio" || selected_option === "checkbox") {
         $(".form-g").html(material);
       } else {

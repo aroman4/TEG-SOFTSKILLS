@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pregunta extends Model
 {
-    protected $fillable = ['titulo','tipo_pregunta','opcion','user_id'];
     protected $casts = ['opcion' => 'array',];
+    protected $fillable = ['titulo','tipo_pregunta','opcion','user_id'];
     protected $table = 'pregunta';
     //
     public function cuestionario(){

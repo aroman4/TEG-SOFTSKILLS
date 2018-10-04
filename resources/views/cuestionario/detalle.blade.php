@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaQ')
 
 @section('content')
   <div class="card">
@@ -8,7 +8,7 @@
         {{ $cuestionario->description }}
       </p>
       <br/>
-      <a href='ver/{{$cuestionario->id}}'>Take cuestionario</a> | <a href="{{$cuestionario->id}}/editar">Editar cuestionario</a> | <a href="/cuestionario/respuesta/{{$cuestionario->id}}">View Answers</a> <a href="#doDelete" style="float:right;" class="modal-trigger red-text">Delete cuestionario</a>
+      <a href='ver/{{$cuestionario->id}}'>Take cuestionario</a> | <a href="{{$cuestionario->id}}/editar">Editar cuestionario</a> | <a href="{{route('cuestionario.respuestas',$cuestionario->id)}}">View Answers</a> <a href="#doDelete" style="float:right;" class="modal-trigger red-text">Delete cuestionario</a>
       <!-- Modal Structure -->
       <!-- TODO Fix the Delete aspect -->
       <div id="doDelete" class="modal bottom-sheet">
@@ -30,7 +30,7 @@
       <ul class="collapsible" data-collapsible="expandable">
           @forelse ($cuestionario->pregunta as $pregunta)
           <li style="box-shadow:none;">
-            <div class="collapsible-header">{{ $pregunta->titulo }} <a href="/pregunta/{{ $pregunta->id }}/editar" style="float:right;">Edit</a></div>
+          <div class="collapsible-header">{{ $pregunta->titulo }} <a href="{{route('pregunta.editar',$pregunta->id)}}" style="float:right;">Edit</a></div>
             <div class="collapsible-body">
               <div style="margin:5px; padding:10px;">
                   {!! Form::open() !!}
@@ -71,7 +71,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="row">
           <div class="input-field col s12">
-            <select class="browser-default" name="tipo_pregunta" id="tipo_pregunta">
+            <select name="tipo_pregunta" id="tipo_pregunta">
               <option value="" disabled selected>Choose your option</option>
               <option value="text">Text</option>
               <option value="textarea">Textarea</option>
@@ -92,5 +92,5 @@
         </div>
         </form>
     </div>
-  </div>
+  </div>    
 @endsection

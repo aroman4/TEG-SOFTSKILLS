@@ -26,7 +26,7 @@ class RespuestaController extends Controller
             $newRespuesta->user_id = Auth::id();
             $newRespuesta->cuestionario_id = $cuestionario->id;
 
-            $newrespuesta->save();
+            $newRespuesta->save();
 
             $respuestaArray[] = $newRespuesta;
         };
