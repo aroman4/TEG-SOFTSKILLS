@@ -9,7 +9,11 @@
     <p>{{$solicitud->caracteristica}}</p>
     <p>{{$solicitud->descripcion}}</p>
     <small>Creada el {{$solicitud->created_at}}</small>
-    @if(Auth::user()->tipo_ivn == "comite")
-        <a href=""></a>
+    @if(Auth::user()->tipo_inv == "comite")
+        <a href="{{action('InvestigacionController@AceptarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-success">Aceptar Solicitud</a>
+        <!--Cuando se acepte la solicitud se deberia dejar de mostrar la solicitud, cambiar el estado?-->
+        
     @endif
+
+
 @endsection

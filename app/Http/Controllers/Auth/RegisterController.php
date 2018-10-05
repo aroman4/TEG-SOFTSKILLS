@@ -48,6 +48,9 @@ class RegisterController extends Controller
             case 'admin':
                 return '/administracion';
             break;
+            case 'comite':
+            return '/escritoriocomite';
+        break;
         }
     }
 

@@ -21,7 +21,7 @@ class RequestController extends Controller
         $tipoUser = Auth::user()->tipo_usu;
 
         switch($tipoUser){
-            case 'investigador':            
+            case 'investigador':           
                 return redirect('/escritorioinvestigador');
             break;
             case 'asesor':
@@ -63,12 +63,20 @@ class RequestController extends Controller
         return view('solic.solicitud.prueba');
         //
     }
-
+//-----------------------------Boton de Editar -------------------------------------------
     public function editarInvestigacion($id){
         $sol = Solicitud::find($id);
-        return view('investigaciones.editarinvestigacion')->with('Solicitud',$sol);
+        return view('investigaciones.editarInvestigacion')->with('solicitud', $sol);
     }
-
+    public function editarAsesoria($id){
+        $sol = Solicitud::find($id);
+        return view('asesoria.editarAsesoria')->with('solicitud', $sol);
+    }
+    public function editarCliente($id){
+        $sol = Solicitud::find($id);
+        return view('asesoria.editarCliente')->with('solicitud', $sol);
+    }
+//----------------------------------------------------------------------------------------
     /**
      * Store a newly created resource in storage.
      *

@@ -6,34 +6,20 @@
     @else
         <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
     @endif
-    <a href="{{route('solicinvestigacion')}}" class="btn btn-primary">Crear Solicitud</a>
-    <p>Solicitudes creadas:</p>
+    <p>Solicitudes (pendientes por aprobación):</p>
     @if(count(\App\Solicitud::all())>0)
         @foreach(\App\Solicitud::all() as $sol)
-            @if($sol->user_id == Auth::user()->id)
-                <div class="solicitud">
+            @if(\App\User::find($sol->user_id)->tipo_usu == "investigador"  && ($sol->estado=="pendiente"))
+                <div>
                     <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
                 </div>
             @endif
         @endforeach
     @else
-        <p>No hay Solicitudes Creadas</p>
+        <p>No hay solicitudes pendientes</p>
     @endif
-    <p>Solicitudes Creadas (Pendientes por Aprobación):</p>
-    @if(count(\App\Solicitud::all())>0)
-        @foreach(\App\Solicitud::all() as $sol)
-            @if(($sol->user_id == Auth::user()->id) && ($sol->estado=="pendiente"))
-                <div class="solicitud">
-                    <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
-                </div>
-            @endif
-        @endforeach
-    @else
-        <p>No hay Solicitudes Pendientes</p>
-    @endif
-    <br>
-
     <p>Investigaciones Activas:</p>
+    
     @if(count(\App\Investigacion::all())>0)
         @foreach(\App\Investigacion::all() as $inv)
             @if(($inv->user_id == Auth::user()->id) && ($inv->estado == "activa"))
