@@ -45,6 +45,9 @@ class RegisterController extends Controller
             case 'cliente':
                 return '/escritoriocliente';
             break;
+            case 'admin':
+                return '/administracion';
+            break;
         }
     }
 
@@ -100,12 +103,7 @@ class RegisterController extends Controller
         //$user::create($data);
         
         //if(($user->tipo_usu == "investigador") && (User::where('tipo_usu','=','investigador')->count()==0)){
-        if(($data['tipo_usu'] == "investigador") && (User::where('tipo_usu','=','investigador')->count()==0)){
-            //$data['tipo_usu'] = 'admininvestigacion';
-            $user->tipo_usu  = 'admininvestigacion';
-            return User::create($user);
-            //$user->save();
-        }
+        
         
         return User::create($data);
        /*  return User::create([

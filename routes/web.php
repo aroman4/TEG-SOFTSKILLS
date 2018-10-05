@@ -52,6 +52,9 @@ Route::get('/escritorioinvestigador', function () {
 Route::get('/escritorioadmininvestigador', function () {
     return view('investigaciones.escritorioadmin');
 })->name('escritorioadmininvestigador');
+Route::get('/administracion', function () {
+    return view('admin.administracion');
+})->name('administracion');
 
 //ruta de prueba
 Route::get('/prueba', 'FrontController@prueba');
@@ -92,3 +95,5 @@ Route::post('/cuestionario/{cuestionario}/preguntas', 'PreguntaController@store'
 Route::get('/pregunta/{pregunta}/editar', 'preguntaController@edit')->name('pregunta.editar');
 Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('pregunta.update');
 
+//admin
+Route::get('/admin/{id}', 'User@tipoInvestigador')->name('admin.tipoinv');

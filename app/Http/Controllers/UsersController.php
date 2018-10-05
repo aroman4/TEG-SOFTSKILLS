@@ -43,6 +43,10 @@ class UsersController extends Controller
         $user->save(); //guarda en la bd
     }
 
+    public function tipoInvestigador(Request $request, $id){
+        dd($request->tipo_inv ." ". $id);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -74,7 +78,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->tipo_inv = $request->tipo_inv;
+        $user->save();
+        return back()->with('success','tipo cambiado');
     }
 
     /**
