@@ -15,14 +15,14 @@ class CreateInvestigacionTable extends Migration
     {
         Schema::create('investigacion', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo');
-            $table->string('caracteristica');
-            $table->string('descripcion');
-            $table->string('tipo_inv');//nombre del investigador 
-            $table->string('nombre_inv');
-            $table->integer('codigo_inv');
+            $table->string('titulo')->nullable();
+            $table->string('caracteristica')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('tipo_inv')->nullable();//nombre del investigador 
+            $table->string('nombre_inv')->nullable();
+            $table->integer('codigo_inv')->nullable();
             $table->enum('estado', ['activa', 'finalizada'])->default('activa');
-            $table->integer('cantidad');
+            $table->integer('cantidad')->nullable();
             $table->timestamps();
 
             //clave foranea id de usuario

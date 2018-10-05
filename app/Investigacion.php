@@ -8,5 +8,7 @@ class Investigacion extends Model
 {
     //
     protected $table = 'investigacion';
-    protected $fillable = ['nombre_inv','codigo_inv'];
+    protected $fillable = ['nombre_inv','codigo_inv','actividades','descripcion','caracteristica', 'titulo'];
+    
+
 }

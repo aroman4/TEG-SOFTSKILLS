@@ -21,7 +21,7 @@ class RequestController extends Controller
         $tipoUser = Auth::user()->tipo_usu;
 
         switch($tipoUser){
-            case 'investigador':            
+            case 'investigador':           
                 return redirect('/escritorioinvestigador');
             break;
             case 'asesor':

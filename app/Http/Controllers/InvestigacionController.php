@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Solicitud;
-use App\Investigaciones;
+use App\Investigacion;
 
 class InvestigacionController extends Controller
 {
@@ -31,11 +32,13 @@ class InvestigacionController extends Controller
     public function AceptarInvestigacion($id){
         $solicitud = Solicitud::find($id);
         //cambiar el estado de la solicitud
-        $Investigacion = new Investigaciones();
+        $Investigacion = new Investigacion();
         $Investigacion->titulo = $solicitud->titulo;
         $Investigacion->caracteristica = $solicitud->caracteristica;
         $Investigacion->descripcion = $solicitud->descripcion;
-        $Investigacion->tipo_inv = $usuario->tipo_inv;
+        $Investigacion->tipo_inv = Auth::user()->tipo_inv;
+        $Investigacion->user_id = Auth::user()->id; 
+        $Investigacion->save();       
         $solicitud->estado = "aceptada";
         $solicitud->save();
         return redirect('/escritorioinvestigador')->with('success','Investigación aceptada');
