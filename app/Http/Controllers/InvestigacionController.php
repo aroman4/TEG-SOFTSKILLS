@@ -63,6 +63,8 @@ class InvestigacionController extends Controller
     public function show($id)
     {
         //
+        $inv = Investigacion::find($id);
+        return view('investigaciones.investigadorshow')->with('investigaciones',$inv);
     }
 
     /**
