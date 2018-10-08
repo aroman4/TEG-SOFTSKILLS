@@ -8,6 +8,7 @@ Route::get('/asesorias', 'FrontController@asesorias')->name('asesorias');
 Route::get('/solicitud/{id}', 'SolicitudController@mostrar');
 Route::get('/investigacion', 'FrontController@investigacion')->name('investigacion');
 Route::get('/solicitud', 'RequestController@solicitud');
+Route::get('/publicacioninve', 'RequestController@publicacioninvestigacion')->name('publicacioninve');
 
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
@@ -30,10 +31,6 @@ Route::group(['prefix' => 'solic'], function(){
 });
 //Editar solicitud
 Route::get( '/editarinves/{id}' , 'RequestController@editarInvestigacion')->name('editarinves');
-//Route::get( '/editarasesor/{id}' , 'RequestController@editarAsesor')->name('editarasesor');
-//Route::get( '/editarclit/{id}' , 'RequestController@editarCliente')->name('editarclit');
-
-   
 
 Auth::routes();
 
