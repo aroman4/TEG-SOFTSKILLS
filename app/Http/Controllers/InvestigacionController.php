@@ -37,7 +37,7 @@ class InvestigacionController extends Controller
         $Investigacion->caracteristica = $solicitud->caracteristica;
         $Investigacion->descripcion = $solicitud->descripcion;
         $Investigacion->tipo_inv = Auth::user()->tipo_inv;
-        $Investigacion->user_id = Auth::user()->id; 
+        $Investigacion->user_id = $solicitud->user_id; 
         $Investigacion->save();       
         $solicitud->estado = "aceptada";
         $solicitud->save();
@@ -64,7 +64,7 @@ class InvestigacionController extends Controller
     {
         //
         $inv = Investigacion::find($id);
-        return view('investigaciones.investigadorshow')->with('investigaciones',$inv);
+        return view('investigaciones.investigacionshow')->with('investigaciones',$inv);
     }
 
     /**

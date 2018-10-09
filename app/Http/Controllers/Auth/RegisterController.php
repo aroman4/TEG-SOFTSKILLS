@@ -36,8 +36,12 @@ class RegisterController extends Controller
         $tipoUser = Auth::user()->tipo_usu;
 
         switch($tipoUser){
-            case 'investigador':            
-                return '/escritorioinvestigador';
+            case 'investigador':      
+                if(Auth::user()->tipo_inv == "comite"){
+                    return '/escritoriocomite';
+                }else{
+                    return '/escritorioinvestigador';
+                }
             break;
             case 'asesor':
                 return '/escritorioasesor';

@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/app.css')}}" />
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/estilo.css')}}"  />
@@ -28,7 +28,7 @@
                     <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Servicios</a></li>
                     <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Staff</a></li>
                     <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Bibliografía</a></li>
-                    <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Contactos</a></li>
+                    <li class="nav-item menu-estilo"><a class="menu nav-link" href="#"> Contacto</a></li>
                 
                     <!-- Authentication Links -->
                     @guest

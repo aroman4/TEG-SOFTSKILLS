@@ -19,7 +19,7 @@
 
                              @csrf
                                 <div class="form-group row">
-                                {!! Form::label ('Titulo','Titulo:*')!!}
+                                {!! Form::label ('Asunto','Asunto:*')!!}
                                 {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo'])!!}
                                 @if ($errors->has('titulo'))
                                         <span class="text-danger" role="alert">
@@ -28,7 +28,7 @@
                                 @endif
                                 </div>
                                 <div class="form-group row">
-                                {!! Form::label ('mensaje','Mensaje:*')!!}
+                                {!! Form::label ('Descripción','Descripción:*')!!}
                                 {!! Form::textarea ('mensaje',null,['class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'mensaje'])!!}
                                 @if ($errors->has('mensaje'))
                                         <span class="text-danger" role="alert">

@@ -284,6 +284,16 @@ texto-divImagen1:before{
 }
 
 
+/*Escritorios Alvaro*/
+.barraLateralEscritorio{
+	background-color: #2B3033;
+	height: 100%;
+	position: fixed;
+}
+/* .filaEscritorio{
+	min-height: 100%;
+} */
+
 /*footer*/
 footer {
 	margin-top:250px;

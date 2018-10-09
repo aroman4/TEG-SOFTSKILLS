@@ -12,6 +12,8 @@ Route::get('/solicitud', 'RequestController@solicitud');
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
     Route::resource('usuarios','UsersController');
+    Route::get('/usuarios/borrar/{id}','UsersController@borrar')->name('usuarios.borrar');
+    Route::get('/export','UsersController@export')->name('usuarios.export');
 });
 
 
@@ -52,6 +54,9 @@ Route::get('/escritorioinvestigador', function () {
 Route::get('/escritoriocomite', function () {
     return view('investigaciones.escritoriocomite');
 })->name('escritoriocomite');//duda
+Route::get('/administracion', function () {
+    return view('admin.administracion');
+})->name('administracion');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
@@ -84,7 +89,6 @@ Route::get('/pregunta/{pregunta}/editar', 'preguntaController@edit')->name('preg
 Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('pregunta.update');
 
 //admin
-Route::get('/admin/{id}', 'User@tipoInvestigador')->name('admin.tipoinv');
 //ruta aceptar investigacion
 Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestigacion', function($id){
     return redirect()->action(

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -56,6 +58,8 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        $usu = User::find($id);
+        return view('admin.usuarios.detalle')->with('usuario',$usu);
     }
 
     /**
@@ -93,5 +97,15 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function borrar($id)
+    {
+        $usu = User::find($id);
+        $usu->delete();
+        return back()->with('success','usuario borrado');
+    }
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'usuarios.xlsx');
     }
 }

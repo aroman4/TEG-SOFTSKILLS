@@ -25,7 +25,8 @@ class RequestController extends Controller
                 return redirect('/escritorioinvestigador');
             break;
             case 'asesor':
-                return redirect('/escritorioasesor');
+                //return redirect('/escritorioasesor');
+                return view('asesoria.solicitudesescritorio');
             break;
             case 'cliente':
                 return redirect('/escritoriocliente');
