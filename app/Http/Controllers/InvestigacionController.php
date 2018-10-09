@@ -43,7 +43,7 @@ class InvestigacionController extends Controller
         $Investigacion->save();       
         $solicitud->estado = "aceptada";
         $solicitud->save();
-        return redirect('/escritorioinvestigador')->with('success','Investigación aceptada');
+        return redirect('/escritoriocomite')->with('success','Investigación aceptada');
     }
     /**
      * Store a newly created resource in storage.
