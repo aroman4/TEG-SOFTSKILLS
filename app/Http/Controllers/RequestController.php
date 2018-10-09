@@ -78,6 +78,14 @@ class RequestController extends Controller
         return view('asesoria.editarCliente')->with('solicitud', $sol);
     }
 //----------------------------------------------------------------------------------------
+//-------------------------publicaciones de investigaciones-------------------------------
+public function publicacioninvestigacion()
+{
+    return view('investigaciones.publicacioninvestigacion');
+    //
+}
+//----------------------------------------------------------------------------------------
+
     /**
      * Store a newly created resource in storage.
      *

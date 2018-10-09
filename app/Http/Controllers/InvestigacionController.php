@@ -18,7 +18,9 @@ class InvestigacionController extends Controller
     public function index()
     {
         //
+        
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,8 +38,8 @@ class InvestigacionController extends Controller
         $Investigacion->titulo = $solicitud->titulo;
         $Investigacion->caracteristica = $solicitud->caracteristica;
         $Investigacion->descripcion = $solicitud->descripcion;
-        $Investigacion->tipo_inv = Auth::user()->tipo_inv;
-        $Investigacion->user_id = $solicitud->user_id; 
+        //$Investigacion->tipo_inv = Auth::user()->tipo_inv;
+        $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
         $Investigacion->save();       
         $solicitud->estado = "aceptada";
         $solicitud->save();
@@ -76,6 +78,10 @@ class InvestigacionController extends Controller
     public function edit($id)
     {
         //
+        $inv = Investigacion::find($id);
+        //dd($inv);
+        return view('investigaciones.edit')->with('investigaciones', $inv);
+        
     }
 
     /**
@@ -88,6 +94,9 @@ class InvestigacionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $inv = Investigacion::find($id);
+        $inv = $request->all();
+        $inv->save();
     }
 
     /**
@@ -99,7 +108,7 @@ class InvestigacionController extends Controller
     public function destroy($id)
     {
         //
-        $inv = Investigaciones::find($id);
+        $inv = Investigacion::find($id);
         $inv->delete();
         return redirect('/escritorioinvestigador')->with('success','Investigación eliminada');
     }
