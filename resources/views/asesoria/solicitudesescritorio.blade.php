@@ -1,24 +1,6 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaQ')
 
 @section('content')
-
-    <div class="row">
-    {{-- @if(Auth::user()->sexo == "Femenino")
-        <p>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
-    @else
-        <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
-    @endif --}}
-    <div class="col-md-2">
-        <ul class="list-group">
-            <li class="list-group-item">{{Auth::user()->nombre ." ". Auth::user()->apellido}}</li>
-            <li class="list-group-item"><a href=""></a>Escritorio</li>
-            <li class="list-group-item"><a href=""></a>Asesorías</li>
-            <li class="list-group-item"><a href=""></a>Solicitudes</li>
-            <li class="list-group-item"><a href=""></a>Reportes</li>
-            <li class="list-group-item"><a href=""></a>Instrumentos</li>
-            <li class="list-group-item"><a href="#"></a>Calendario</li>
-        </ul>
-    </div>
     <div class="col-md-4">
         <h2>Asesorías Activas:</h2>
         <ul class="list-group">
@@ -41,6 +23,5 @@
     </div>
     <div class="col-md-3">
         <p>Otra cosa</p>
-    </div>
     </div>
 @endsection

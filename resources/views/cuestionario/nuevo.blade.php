@@ -1,25 +1,23 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-    <div class="card">
-        <div class="card-content">
-        <span class="card-title"> Add Survey</span>
-        <form method="POST" action="crear" id="boolean">
+    <div class="col-md-9 listaQuest">
+        <h2 class=""> Añadir nuevo cuestionario</h2>
+        <form method="POST" action="crear" id="boolean" class="form-group">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="row">    
-            <div class="input-field col s12">
-            <input name="titulo" id="titulo" type="text">
-            <label for="titulo">Titulo del cuestionario</label>
+        <div class="">    
+            <div class="">
+                <label for="titulo">Titulo del cuestionario</label>
+                <input name="titulo" id="titulo" type="text" class="form-control">
             </div>          
-            <div class="input-field col s12">
-            <textarea name="descripcion" id="descripcion" class="materialize-textarea"></textarea>
-            <label for="descripcion">Descripcion</label>
+            <div class="">
+                <label for="descripcion">Descripcion</label>
+                <textarea name="descripcion" id="descripcion" class="form-control"></textarea>                
             </div>
-            <div class="input-field col s12">
-            <button class="btn waves-effect waves-light">Submit</button>
+            <div class="">
+                <button class="btn btn-primary">Submit</button>
             </div>
         </div>
         </form>
-    </div>
     </div>
 @endsection

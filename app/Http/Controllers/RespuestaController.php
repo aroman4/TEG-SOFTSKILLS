@@ -18,7 +18,7 @@ class RespuestaController extends Controller
             $newRespuesta = new Respuesta();
             if (! is_array( $value )) {
                 $newValue = $value['respuesta'];
-            } else {
+            } else {                
                 $newValue = json_encode($value['respuesta']);
             }
             $newRespuesta->respuesta = $newValue;

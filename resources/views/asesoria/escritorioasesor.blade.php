@@ -1,26 +1,14 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaQ')
 
 @section('content')
-
-    <div class="row filaEscritorio">
     {{-- @if(Auth::user()->sexo == "Femenino")
         <p>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
     @else
         <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
     @endif --}}
-    <div class="col-md-2 barraLateralEscritorio">
-        <ul class="list-group">
-            <li class="list-group-item">{{Auth::user()->nombre ." ". Auth::user()->apellido}}</li>
-            <li class="list-group-item"><a href="#"></a>Escritorio</li>
-            <li class="list-group-item"><a href="#"></a>Asesorías</li>
-            <li class="list-group-item"><a href="#"></a>Solicitudes</li>
-            <li class="list-group-item"><a href="#"></a>Reportes</li>
-            <li class="list-group-item"><a href="#"></a>Instrumentos</li>
-            <li class="list-group-item"><a href="#"></a>Calendario</li>
-        </ul>
-    </div>
+    
     <div class="col-md-4">
-        <h2>Asesorías Activas:</h2>
+        <h2 class="escritorioH2 text-center">Asesorías Activas:</h2>
         <ul class="list-group">
             @forelse(\App\Asesoria::all() as $ase)
                 @if(($ase->user_id == Auth::user()->id) && ($ase->estado == "activa"))
@@ -47,11 +35,12 @@
         </ul>
     </div>
     <div class="col-md-3">
-        <div class="row"><a href="{{route('solicitud.index')}}" class="ElementoEsc">Solicitudes</a></div>
-        <div class="row"><a href="{{route('cuestionario.home')}}" class="ElementoEsc">Instrumento cuestionario</a></div>
+        <div class="row"><a class="escritorioElem imgSol" href="{{route('solicitud.index')}}" class="ElementoEsc">Solicitudes</a></div>
+        <div class="row"><a class="escritorioElem imgInst" href="{{route('cuestionario.home')}}" class="ElementoEsc">Instrumento cuestionario</a></div>
     </div>
     <div class="col-md-3">
-        <p>Otra cosa</p>
+        <div class="row"><a class="escritorioElem imgCal" href="{{route('solicitud.index')}}" class="ElementoEsc">Calendario</a></div>
+        <div class="row"><a class="escritorioElem imgRep" href="{{route('cuestionario.home')}}" class="ElementoEsc">Reportes</a></div>
     </div>
     </div>
 @endsection

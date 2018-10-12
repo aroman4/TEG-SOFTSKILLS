@@ -1,6 +1,7 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaQ')
 
 @section('content')
+<div class="col-md-9">
     @if(Auth::user()->tipo_usu == "asesor")
         <a href="{{route('escritorioasesor')}}" class="btn btn-secondary">Regresar</a>
         <a href="{{route('moduloasesoria.destroy', $asesoria->id)}}" class="btn btn-secondary">Eliminar Asesoría</a>
@@ -10,7 +11,9 @@
     @endif
     
     <h1>{{$asesoria->titulo}}</h1>
-    <p>{{$asesoria->mensaje}}</p>
+    <h3>{{$asesoria->mensaje}}</h3>
+    <p>Cliente: <span>{{\App\User::find($asesoria->id_cliente)->nombre}} {{\App\User::find($asesoria->id_cliente)->apellido}}</span></p>
     <p>Estado de la asesoria: <span>{{$asesoria->estado}}</span></p>
     <small>Creada el {{$asesoria->created_at}}</small>
+</div>
 @endsection

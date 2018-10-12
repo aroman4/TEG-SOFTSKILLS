@@ -285,14 +285,79 @@ texto-divImagen1:before{
 
 
 /*Escritorios Alvaro*/
+textarea{
+	resize: none;
+}
+.filaEscritorio{
+	position: fixed;
+	float: right;
+	width: 85%;
+	right:0;
+}
 .barraLateralEscritorio{
 	background-color: #2B3033;
 	height: 100%;
-	position: fixed;
+	width: 15%;
+	min-width: 15%;
+	position:fixed;
+	float: left;
+	display: block;
+	padding-right: 0;
 }
-/* .filaEscritorio{
-	min-height: 100%;
-} */
+.barraLateralEscritorio .list-group-item{
+	color: white;
+	width: 100%;
+	background-color: #2B3033;
+}
+.barraLateralEscritorio .list-group-item.active{
+	border-color: rgba(0,0,0,.125);
+	border-left: 5px solid #3d8fd3;
+}
+.barraLateralEscritorio .list-group-item:hover{
+	border-left: 5px solid #32c21f;
+}
+.list-group-item:last-child{
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.list-group-item:first-child{
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.escritorioElem{
+	/* background: #4477ab; */
+	width: 400px;
+	height: 200px;
+	margin: 20px;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.escritorioElem.imgSol{
+	background-image: url(../img/solic.jpg);
+}
+.escritorioElem.imgInst{
+	background-image: url(../img/instr.jpg);
+}
+.escritorioElem.imgCal{
+	background-image: url(../img/calendar.jpg);
+}
+.escritorioElem.imgRep{
+	background-image: url(../img/report.jpg);
+}
+
+.aMenuLateral, .aMenuLateral:hover{
+	color: white;
+	text-decoration: none;
+}
+
+/*Cuestionarios*/
+.listaQuest{
+	margin-left: auto;
+	margin-right: auto;
+}
 
 /*footer*/
 footer {
