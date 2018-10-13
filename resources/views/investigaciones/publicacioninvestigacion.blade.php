@@ -15,7 +15,6 @@
             <h2 class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
             <br>
             <p>Hay {{ $pub->lastPage()}} Pagina</p>
-        
         <div class="row justify-content-center">  
             @foreach ($pub as $inv)
                 <div class="col-md-12">
