@@ -289,7 +289,6 @@ textarea{
 	resize: none;
 }
 .filaEscritorio{
-	position: fixed;
 	float: right;
 	width: 85%;
 	right:0;
@@ -357,6 +356,25 @@ textarea{
 .listaQuest{
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.aseElem{
+	display: block;
+	position: relative;
+	width: 70%;
+	height: 100px;
+	margin: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	background: black;
+}
+
+.aseElemMsj{
+	margin-top: 50px;
+}
+
+.alert{
+	margin: 0;
 }
 
 /*footer*/

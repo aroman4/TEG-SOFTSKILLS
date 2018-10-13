@@ -66,12 +66,13 @@ Route::resource('moduloinvestigaciones','InvestigacionController');
 
 //cuestionario
 Route::get('/cuestionario', 'CuestionarioController@home')->name('cuestionario.home');
- 
+Route::get('/cuestionario/nuevo/{id}','CuestionarioController@nuevoNuevo')->name('cuestionario.nuevoq');
 Route::get('/cuestionario/new', 'CuestionarioController@nuevoCuest')->name('cuestionario.nuevo');
 Route::get('/cuestionario/{cuestionario}', 'CuestionarioController@detalle')->name('cuestionario.detalle');
+Route::get('/cuestionario/creacion/{cuestionario}', 'CuestionarioController@crearnext')->name('cuestionario.crearnext');
 Route::get('/cuestionario/ver/{cuestionario}', 'CuestionarioController@ver_cuestionario')->name('cuestionario.ver');
 Route::get('/cuestionario/respuesta/{cuestionario}', 'CuestionarioController@ver_respuestas_cuestionario')->name('cuestionario.respuestas');
-Route::get('/cuestionario/{cuestionario}/borrar', 'CuestionarioController@delete_cuestionario')->name('cuestionario.delete');
+Route::get('/cuestionario/{id}/borrar', 'CuestionarioController@delete_cuestionario')->name('cuestionario.delete');
  
 Route::get('/cuestionario/{cuestionario}/editar', 'CuestionarioController@edit')->name('cuestionario.editar');
 Route::patch('/cuestionario/{cuestionario}/update', 'CuestionarioController@update')->name('cuestionario.update');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cuestionario;
 use App\Respuesta;
+use App\Asesoria;
 use Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -26,9 +27,16 @@ class CuestionarioController extends Controller
         return view('cuestionario.nuevo');
     }
 
+    public function nuevoNuevo($id){
+        $ase = Asesoria::find($id);
+        return view('cuestionario.nuevo')->with('asesoria',$ase);
+    }
+
     public function crear(Request $request, Cuestionario $cuest){
         $arr = $request->all();
         $arr['user_id'] = Auth::id();
+        $qItem = new Cuestionario($arr);
+        //dd($qItem);
         $qItem = $cuest->create($arr);
         return Redirect::to("/cuestionario/{$qItem->id}");
     }
@@ -78,9 +86,10 @@ class CuestionarioController extends Controller
         $cuestionario->load('user.pregunta.respuesta');
         return view('respuesta.ver', compact('cuestionario'));
     }
-    public function delete_cuestionario(Cuestionario $cuestionario)
+    public function delete_cuestionario($id)
     {
+        $cuestionario = Cuestionario::find($id);
         $cuestionario->delete();
-        return redirect('');
+        return redirect()->route('escritorioasesor');
     }
 }
