@@ -52,8 +52,8 @@ class PublicacionController extends Controller
     public function show($id)
     {
         //Show
-        $pub = Investigacion::find($id);
-        return view('investigaciones.publicacionshow')->with('publicacion',$pub);
+        //$pub = Investigacion::find($id);
+        //return view('investigaciones.publicacionshow')->with('publicacion',$pub);
     }
 
     /**
