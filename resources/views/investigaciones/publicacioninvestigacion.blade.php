@@ -37,9 +37,10 @@
                             <div class="col-12">
                                 <hr style="color: #0056b2;" />
                                 <a href="{{route('solicpostulacion')}}" class="btn btn-primary">Postulate</a>
-                               <button type="button" class="btn btn-outline-primary">
-                                   <i class="thumbs-o-up"></i>Like
+                                <button type="button" class="btn btn-outline-info">
+                                    <a href="#" class="far fa-thumbs-up">Like</a>
                                </button>
+
                                 <div class="ec-stars-wrapper">   
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
                                     <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
