@@ -36,14 +36,21 @@ class RegisterController extends Controller
         $tipoUser = Auth::user()->tipo_usu;
 
         switch($tipoUser){
-            case 'investigador':            
-                return '/escritorioinvestigador';
+            case 'investigador':      
+                if(Auth::user()->tipo_inv == "comite"){
+                    return '/escritoriocomite';
+                }else{
+                    return '/escritorioinvestigador';
+                }
             break;
             case 'asesor':
                 return '/escritorioasesor';
             break;
             case 'cliente':
                 return '/escritoriocliente';
+            break;
+            case 'admin':
+                return '/administracion';
             break;
             case 'comite':
             return '/escritoriocomite';
@@ -99,6 +106,12 @@ class RegisterController extends Controller
         //dd($user->password);
         //$user->save();
         return $user; */
+        $user = new User($data);
+        //$user::create($data);
+        
+        //if(($user->tipo_usu == "investigador") && (User::where('tipo_usu','=','investigador')->count()==0)){
+        
+        
         return User::create($data);
        /*  return User::create([
             'nombre_usu' => $data['nombre_usu'], 

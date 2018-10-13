@@ -34,16 +34,20 @@ class LoginController extends Controller
 
         switch($tipoUser){
             case 'investigador': 
-                if (Auth::user()->tipo_inv == "comite"){
+                if(Auth::user()->tipo_inv == "comite"){
                     return '/escritoriocomite';
-                }           
-                return '/escritorioinvestigador';
+                }else{
+                    return '/escritorioinvestigador';
+                }
             break;
             case 'asesor':
                 return '/escritorioasesor';
             break;
             case 'cliente':
                 return '/escritoriocliente';
+            break;
+            case 'admin':
+                return '/administracion';
             break;
             case 'comite':
             return '/escritoriocomite';

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -43,6 +45,10 @@ class UsersController extends Controller
         $user->save(); //guarda en la bd
     }
 
+    public function tipoInvestigador(Request $request, $id){
+        dd($request->tipo_inv ." ". $id);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -52,6 +58,8 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        $usu = User::find($id);
+        return view('admin.usuarios.detalle')->with('usuario',$usu);
     }
 
     /**
@@ -74,7 +82,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->tipo_inv = $request->tipo_inv;
+        $user->save();
+        return back()->with('success','tipo cambiado');
     }
 
     /**
@@ -86,5 +97,15 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function borrar($id)
+    {
+        $usu = User::find($id);
+        $usu->delete();
+        return back()->with('success','usuario borrado');
+    }
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'usuarios.xlsx');
     }
 }
