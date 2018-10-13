@@ -1,12 +1,19 @@
 @extends('layouts.plantilla')
 
 @section('content')
-    @if(Auth::user()->tipo_usu == $investigaciones->user_id)
-        <a href="{{route('moduloinvestigacion.destroy', $investigaciones->id)}}" class="btn btn-secondary">Eliminar Solicitud</a>
+    @if(Auth::user()->id == $investigaciones->user_id)
+        <a href="{{route('moduloinv.destroy', $investigaciones->id)}}" class="btn btn-secondary">Eliminar Solicitud</a>
         <a href="{{route('editarinves', $investigaciones->id)}}" class="btn btn-secondary">Editar Solicitud</a>
+        <a href="{{route('escritorioinvestigador')}}" class="btn btn-secondary">Regresar</a>
+
+        <p>LIDER</p>
+    @elseif(Auth::user()->tipo_inv == "normal")
+        <a href="{{route('escritorioinvestigador')}}" class="btn btn-secondary">Regresar</a>
+    @else
+        <a href="{{route('escritoriocomite')}}" class="btn btn-secondary">Regresar</a>
+
     @endif
-    <a href="{{route('escritoriocomite')}}" class="btn btn-secondary">Regresar</a>
-    
+
     <h1>{{$investigaciones->titulo}}</h1>
     <p>{{$investigaciones->caracteristica}}</p>
     <p>{{$investigaciones->descripcion}}</p>

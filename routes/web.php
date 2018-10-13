@@ -8,7 +8,7 @@ Route::get('/asesorias', 'FrontController@asesorias')->name('asesorias');
 Route::get('/solicitud/{id}', 'SolicitudController@mostrar');
 Route::get('/investigacion', 'FrontController@investigacion')->name('investigacion');
 Route::get('/solicitud', 'RequestController@solicitud');
-Route::get('/publicacioninve', 'RequestController@publicacioninvestigacion')->name('publicacioninve');
+Route::get('/publicacioninve', 'PublicacionController@index')->name('index');
 
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
@@ -29,11 +29,19 @@ Route::group(['prefix' => 'solic'], function(){
     Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
     Route::get('x', 'RequestController@prueba'); 
 });
+Route::resource('moduloinvestigacion','InvestigacionController');
+
 //Editar solicitud
 Route::get( '/editarinves/{id}' , 'RequestController@editarInvestigacion')->name('editarinves');
 
-Auth::routes();
+//otro eliminar 
+Route::resource('moduloinv','InvestigacionController');
+Route::get('moduloinv/{id}/destroy',[
+    'uses' => 'InvestigacionController@destroy',
+    'as' => 'moduloinv.destroy'
+]);
 
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //ruta escritorios
@@ -64,7 +72,6 @@ Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestig
         'InvestigacionController@AceptarInvestigacion', ['id' => $id]
     );
 });
-Route::resource('moduloinvestigacion','InvestigacionController');
 
 //ruta de prueba BORRAR LUEGO
 Route::get('/prueba', 'FrontController@prueba');

@@ -18,6 +18,15 @@
                         {!!Form::open(['action' => 'RequestController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
 
                              @csrf
+                             <div class="form-group row">
+                                    {!! Form::label ('otros_proyectos','Cuales proyectos has creado:*')!!}
+                                    {!! Form::text ('otros_proyectos',null,['class'=>"form-control {{ $errors->has('otros_proyectos') ? ' is-invalid'}}",'placeholder'=>'Escribe que otros proyectos has participado y creado','required'])!!}
+                                    @if ($errors->has('otros_proyectos'))
+                                            <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('otros_proyectos') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
                                 <div class="form-group row">
                                     {!! Form::label ('opinion','Opinión:*')!!}
                                     {!! Form::text ('opinion',null,['class'=>"form-control {{ $errors->has('opcion') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe tu Opinión','required'])!!}
@@ -27,15 +36,6 @@
                                             </span>
                                     @endif
                                  </div>
-                                <div class="form-group row">
-                                    {!! Form::label ('otros_proyectos','Cuales proyectos has creado:*')!!}
-                                    {!! Form::text ('otros_proyectos',null,['class'=>"form-control {{ $errors->has('otros_proyectos') ? ' is-invalid'}}",'placeholder'=>'Escribe que otros proyectos has participado y creado','required'])!!}
-                                    @if ($errors->has('otros_proyectos'))
-                                            <span class="text-danger" role="alert">
-                                            <strong>{{ $errors->first('otros_proyectos') }}</strong>
-                                            </span>
-                                    @endif
-                                </div>
                                 <div class="form-group row">
                                         {!! Form::label ('aporte','Apostes:*')!!}
                                         {!! Form::text ('aporte',null,['class'=>"form-control {{ $errors->has('aporte') ? ' is-invalid' : '' }}",'placeholder'=>'Cual seria tu aporte','required'])!!}

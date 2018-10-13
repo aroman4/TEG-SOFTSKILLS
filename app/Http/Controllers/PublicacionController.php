@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 use App\Solicitud;
 use App\Investigacion;
 
-class InvestigacionController extends Controller
+class PublicacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,10 @@ class InvestigacionController extends Controller
      */
     public function index()
     {
-        //
-       
+        //metodo de Paginacion
+        $pub = Investigacion::paginate(2);
+        return view('investigaciones.publicacioninvestigacion', compact('pub'));
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -31,21 +31,7 @@ class InvestigacionController extends Controller
     {
         //
     }
-    //Aceptar Investigacion COMITE
-    public function AceptarInvestigacion($id){
-        $solicitud = Solicitud::find($id);
-        //cambiar el estado de la solicitud
-        $Investigacion = new Investigacion();
-        $Investigacion->id_solic = $solicitud->id;
-        $Investigacion->titulo = $solicitud->titulo;
-        $Investigacion->caracteristica = $solicitud->caracteristica;
-        $Investigacion->descripcion = $solicitud->descripcion;
-        $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
-        $Investigacion->save();       
-        $solicitud->estado = "aceptada";
-        $solicitud->save();
-        return redirect('/escritoriocomite')->with('success','Investigación aceptada');
-    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +40,7 @@ class InvestigacionController extends Controller
      */
     public function store(Request $request)
     {
-        //store
+        //
     }
 
     /**
@@ -66,8 +52,8 @@ class InvestigacionController extends Controller
     public function show($id)
     {
         //Show
-        $inv = Investigacion::find($id);
-        return view('investigaciones.investigacionshow')->with('investigaciones',$inv);
+        $pub = Investigacion::find($id);
+        return view('investigaciones.publicacionshow')->with('publicacion',$pub);
     }
 
     /**
@@ -78,10 +64,7 @@ class InvestigacionController extends Controller
      */
     public function edit($id)
     {
-        //Editar
-        $inv = Investigacion::find($id);
-        return view('investigaciones.edit')->with('investigaciones', $inv);
-        
+        //
     }
 
     /**
@@ -93,10 +76,7 @@ class InvestigacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Update
-        $inv = Investigacion::find($id);
-        $inv = $request->all();
-        $inv->save();
+        //
     }
 
     /**
@@ -107,13 +87,6 @@ class InvestigacionController extends Controller
      */
     public function destroy($id)
     {
-        //Eliminar
-        $inv = Investigacion::find($id);
-        $solicitud = Solicitud::find($inv->id_solic);
-        $inv->delete();
-        $solicitud->delete();
-        return redirect('/escritorioinvestigador')->with('success','Investigación eliminada');
- 
-        
+        //
     }
 }
