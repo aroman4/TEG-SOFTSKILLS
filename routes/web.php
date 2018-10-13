@@ -13,6 +13,8 @@ Route::get('/publicacioninve', 'PublicacionController@index')->name('index');
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
     Route::resource('usuarios','UsersController');
+    Route::get('/usuarios/borrar/{id}','UsersController@borrar')->name('usuarios.borrar');
+    Route::get('/export','UsersController@export')->name('usuarios.export');
 });
 
 
@@ -57,6 +59,9 @@ Route::get('/escritorioinvestigador', function () {
 Route::get('/escritoriocomite', function () {
     return view('investigaciones.escritoriocomite');
 })->name('escritoriocomite');//duda
+Route::get('/administracion', function () {
+    return view('admin.administracion');
+})->name('administracion');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
@@ -65,7 +70,30 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
     );
 });
 Route::resource('moduloasesoria','AsesoriaController');
+Route::resource('moduloinvestigaciones','InvestigacionController');
 
+//cuestionario
+Route::get('/cuestionario', 'CuestionarioController@home')->name('cuestionario.home');
+ 
+Route::get('/cuestionario/new', 'CuestionarioController@nuevoCuest')->name('cuestionario.nuevo');
+Route::get('/cuestionario/{cuestionario}', 'CuestionarioController@detalle')->name('cuestionario.detalle');
+Route::get('/cuestionario/ver/{cuestionario}', 'CuestionarioController@ver_cuestionario')->name('cuestionario.ver');
+Route::get('/cuestionario/respuesta/{cuestionario}', 'CuestionarioController@ver_respuestas_cuestionario')->name('cuestionario.respuestas');
+Route::get('/cuestionario/{cuestionario}/borrar', 'CuestionarioController@delete_cuestionario')->name('cuestionario.delete');
+ 
+Route::get('/cuestionario/{cuestionario}/editar', 'CuestionarioController@edit')->name('cuestionario.editar');
+Route::patch('/cuestionario/{cuestionario}/update', 'CuestionarioController@update')->name('cuestionario.update');
+ 
+Route::post('/cuestionario/ver/{cuestionario}/completado', 'RespuestaController@store')->name('cuestionario.completado');
+Route::post('/cuestionario/crear', 'CuestionarioController@crear')->name('cuestionario.crear');
+ 
+// preguntas
+Route::post('/cuestionario/{cuestionario}/preguntas', 'PreguntaController@store')->name('pregunta.guardar');
+ 
+Route::get('/pregunta/{pregunta}/editar', 'preguntaController@edit')->name('pregunta.editar');
+Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('pregunta.update');
+
+//admin
 //ruta aceptar investigacion
 Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestigacion', function($id){
     return redirect()->action(

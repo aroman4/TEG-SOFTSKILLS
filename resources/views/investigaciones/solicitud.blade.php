@@ -1,7 +1,11 @@
 @extends('layouts.plantilla')
 
 @section('content')
+<<<<<<< HEAD
     @if(Auth::user()->tipo_inv == "investigador")
+=======
+    @if(Auth::user()->tipo_inv == "normal")
+>>>>>>> fbc0dac79677c4e9e1196d1f76f111c7c71304e1
         <a href="{{route('escritorioinvestigador')}}" class="btn btn-secondary">Regresar</a>
         <a href="{{route('solicitud.destroy', $solicitud->id)}}" class="btn btn-secondary">Eliminar Solicitud</a>
         <a href="{{route('editarinves', $solicitud->id)}}" class="btn btn-secondary">Editar Solicitud</a>

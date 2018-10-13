@@ -37,9 +37,17 @@
                 <p><b>Investigaciones Activas:</b></p>
                     @if(count(\App\Investigacion::all())>0)
                         @foreach(\App\Investigacion::all() as $inv)
+<<<<<<< HEAD
                                 <div class="investigaciones">
                                     <h3><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}">{{$inv->titulo}}</a></h3>
                                 </div>
+=======
+                            {{-- @if(($inv->user_id == Auth::user()->id) && ($inv->estado == "activa")) --}}
+                                <div class="investigaciones">
+                                    <h3><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}">{{$inv->titulo}}</a></h3>
+                                </div>
+                            {{-- @endif --}}
+>>>>>>> fbc0dac79677c4e9e1196d1f76f111c7c71304e1
                         @endforeach
                     @else
                         <p><b>No hay asesorías activas</b></p>
