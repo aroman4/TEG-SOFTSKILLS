@@ -3,11 +3,23 @@
 @section('content')
 <div class="col-md-9 listaQuest">
     <div class="list-group">
-        <div class="list-group-item text-center"><a href="{{route('cuestionario.home')}}" class="btn btn-secondary" style="float:left;">Regresar</a> <span class="titulosQ">Responder cuestionario</span></div>
+        <div class="row">
+            <div class="col-md-3 list-group-item">
+                @if(Auth::user()->tipo_usu == "asesor")
+                    <a href="{{route('escritorioasesor')}}" class="btn btn-secondary">Regresar</a>
+                @elseif(Auth::user()->tipo_usu == "cliente")
+                    <a href="{{route('escritoriocliente')}}" class="btn btn-secondary">Regresar</a>    
+                @endif
+            </div>
+            <div class="col-md-6 list-group-item">
+                <h2 class="text-center">{{$cuestionario->titulo}}</h2>
+            </div>
+            <div class="col-md-3 list-group-item">
+            </div>
+        </div>
         <div class="list-group-item">
-            <span class=""><span>Titulo: </span>{{ $cuestionario->titulo }}</span> <br/>
             {{ $cuestionario->descripcion }}
-            <br/>Creado por: <a href="">{{ $cuestionario->user->nombre }}</a>
+            <br/>Creado por: <a href="">{{ $cuestionario->user->nombre ." ". $cuestionario->user->apellido}}</a>
         </div>
         {!! Form::open(array('action'=>array('RespuestaController@store', $cuestionario->id))) !!}
         <div class="card">

@@ -329,22 +329,26 @@ textarea{
 	width: 400px;
 	height: 200px;
 	margin: 20px;
-	background-size: cover;
+	background-size: auto;/* 
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-position: center center;
+	background-position: center center; */
+	color: white;
+	font-size: 20pt;
+	font-weight: bolder;
+	text-shadow: 2px 2px black;
 }
 .escritorioElem.imgSol{
-	background-image: url(../img/solic.jpg);
+	background-image: url(../img/solicicon.jpg);
 }
 .escritorioElem.imgInst{
-	background-image: url(../img/instr.jpg);
+	background-image: url(../img/questicon.jpg);
 }
 .escritorioElem.imgCal{
-	background-image: url(../img/calendar.jpg);
+	background-image: url(../img/agendasmall.jpg);
 }
 .escritorioElem.imgRep{
-	background-image: url(../img/report.jpg);
+	background-image: url(../img/reportessmall.jpg);
 }
 
 .aMenuLateral, .aMenuLateral:hover{
@@ -361,7 +365,7 @@ textarea{
 .aseElem{
 	display: block;
 	position: relative;
-	width: 70%;
+	width: 300px;
 	height: 100px;
 	margin: 20px;
 	margin-left: auto;
@@ -371,6 +375,13 @@ textarea{
 
 .aseElemMsj{
 	margin-top: 50px;
+	background-image: url(../img/msjsml.jpg);
+}
+.aseElemAg{
+	background-image: url(../img/agendasml.jpg);
+}
+.aseElemRep{
+	background-image: url(../img/reportsml.jpg);
 }
 
 .alert{

@@ -21,7 +21,7 @@ class PreguntaController extends Controller
       $arr['user_id'] = Auth::id();
 
       $cuestionario->pregunta()->create($arr);
-      return back();
+      return back()->with('success','Pregunta guardada');
     }
 
     public function edit(Pregunta $pregunta) 
