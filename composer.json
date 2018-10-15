@@ -12,7 +12,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.7",
         "laraveles/spanish": "^1.1",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "pusher/pusher-php-server": "~3.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

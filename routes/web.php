@@ -1,4 +1,5 @@
 <?php
+use App\Events\MessagePosted;
 /**********************************************************************/
 /* Route del proyecto TEG realizado por Alvaro Roman y Felicia Jardim */
 /**********************************************************************/
@@ -102,3 +103,25 @@ Route::get('/pruebablade', 'FrontController@Pruebablade');
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
+
+/*Mensajes chat*/
+Route::get('/chat', function () {
+    return view('chat');
+})->name('chat')->middleware('auth');
+
+Route::get('/mensajes', function(){
+    return App\Message::with('user')->get();
+})->name('mensajeschat')->middleware('auth');
+
+Route::post('/mensajes', function(){
+    //guardar mensaje nuevo
+    $user = Auth::user();
+    $user->messages()->create([
+        'message' => request()->get('message')
+    ]);
+    
+    //se coloco un nuevo mensaje
+    event(new MessagePosted($message, $user));
+    
+    return ['status' => 'OK'];
+})->name('mensajeschat')->middleware('auth');

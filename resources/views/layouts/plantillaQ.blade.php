@@ -12,7 +12,7 @@
     </ul>
 </div>
     <div class="row filaEscritorio">
-        @yield('content');
+        @yield('content')
     </div>
 {{-- @include('footer') --}}
 
