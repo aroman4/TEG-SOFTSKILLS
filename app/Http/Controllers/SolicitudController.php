@@ -15,7 +15,6 @@ class SolicitudController extends Controller
         return view('solicitudes',['solicitud' => $solic]);
     }
 
-    public function crear(){
-        
+    public function crear(){    
     }
 }

@@ -39,7 +39,7 @@ class InvestigacionController extends Controller
         $Investigacion->id_solic = $solicitud->id;
         $Investigacion->titulo = $solicitud->titulo;
         $Investigacion->caracteristica = $solicitud->caracteristica;
-        $Investigacion->descripcion = $solicitud->descripcion;
+        $Investigacion->actividades = $solicitud->actividades;
         $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
         $Investigacion->save();       
         $solicitud->estado = "aceptada";

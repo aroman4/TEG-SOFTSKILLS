@@ -15,6 +15,6 @@
 
     <h1>{{$investigaciones->titulo}}</h1>
     <p>{{$investigaciones->caracteristica}}</p>
-    <p>{{$investigaciones->descripcion}}</p>
+    <p>{{$investigaciones->actividades}}</p>
     <small>Creada el {{$investigaciones->created_at}}</small>
 @endsection

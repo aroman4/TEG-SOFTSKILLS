@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Controllers;
-use Illuminate\Support\Facades\Auth;
-use Redirect;
-use App\Solicitud;
-use App\Investigacion;
-//use Cache;
+use App\Postulacion;
 
-class PublicacionController extends Controller
+class PostulacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +14,9 @@ class PublicacionController extends Controller
      */
     public function index()
     {
-        //metodo de Paginacion
-        $pub = Investigacion::paginate(2);
-        return view('investigaciones.publicacioninvestigacion', compact('pub'));
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -33,22 +26,11 @@ class PublicacionController extends Controller
     {
         //
     }
-    //Aceptar las solocitud de postulacion al investigador lo acepta el "lider"
-   /* public function AceptarPostulacion($id){
-        $solicitud = Solicitud::find($id);
-        //cambiar el estado de la solicitud
-        $Postulacion = new Investigacion();
-        $Postulacion->id_post = $solicitud->id;
-        $Postulacion->titulo = $solicitud->titulo;
-        $Postulacion->caracteristica = $solicitud->caracteristica;
-        $Postulacion->actividades = $solicitud->actividades;
-        $Postulacion->user_id = $solicitud->user_id; //guardando id de usuario activo
-        $Investigacion->save();       
-        $solicitud->estado = "aceptada";
-        $solicitud->save();
-        return redirect('/escritoriocomite')->with('success','Investigación aceptada');
-    }*/
-
+    public function SolicPostulacion()
+    {
+        return view('solic.solicitud.SolicPostulacion');
+        //
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -57,7 +39,18 @@ class PublicacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //     
+        $postulacion = new Postulacion($request->all());
+        if($request->hasFile('archivo')){
+            $archivo = $request->file('archivo');
+            $nombreArch = time().$archivo->getClientOriginalName();
+            $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
+            $postulacion->archivo = $nombreArch;
+        }
+        $postulacion->id_invest = auth()->user()->id;
+        $postulacion->save();
+        return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
+
     }
 
     /**
@@ -68,9 +61,8 @@ class PublicacionController extends Controller
      */
     public function show($id)
     {
-        //Show
-        //$pub = Investigacion::find($id);
-        //return view('investigaciones.publicacionshow')->with('publicacion',$pub);
+        //
+     
     }
 
     /**
@@ -82,6 +74,10 @@ class PublicacionController extends Controller
     public function edit($id)
     {
         //
+        $postulacion = Postulacion::find($id);
+        //dd($postulacion);
+        return view('postulacion.edit')->with('postulacion', $postulacion);
+       
     }
 
     /**
@@ -94,6 +90,9 @@ class PublicacionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $postulacion =  Postulacion::find($id);
+        $postulacion = $request->all();
+        $postulacion->save();
     }
 
     /**
@@ -104,6 +103,9 @@ class PublicacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //eliminar postulacion ya creada.
+        $postulacion = Postulacion::find($id);
+        $postulacion ->delete();
+        return redirect()->route('postulacion.index');//duda
     }
 }

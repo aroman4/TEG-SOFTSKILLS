@@ -37,11 +37,11 @@
                                     @endif
                                 </div>
                                 <div class="form-group row">
-                                        {!! Form::label ('descripcion','Descripción:*')!!}
-                                        {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Descripcion','required'])!!}
-                                        @if ($errors->has('descripcion'))
+                                        {!! Form::label ('actividades','Actividades:*')!!}
+                                        {!! Form::textarea ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca las Actividades necesaria para desarrollar la investigación','required'])!!}
+                                        @if ($errors->has('actividades'))
                                         <span class="text-danger" role="alert">
-                                                <strong>{{ $errors->first('descripcion') }}</strong>
+                                                <strong>{{ $errors->first('actividades') }}</strong>
                                         </span>
                                         @endif
                                     </div>                                        

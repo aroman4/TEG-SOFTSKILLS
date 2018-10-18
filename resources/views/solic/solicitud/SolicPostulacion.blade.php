@@ -13,10 +13,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Solicitud de Postulación') }}</div>
-
                     <div class="card-body">
-                        {!!Form::open(['action' => 'RequestController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
-
+                        {!!Form::open(['action' => 'PostulacionController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                              @csrf
                              <div class="form-group row">
                                     {!! Form::label ('otros_proyectos','Cuales proyectos has creado:*')!!}
@@ -28,11 +26,11 @@
                                     @endif
                                 </div>
                                 <div class="form-group row">
-                                    {!! Form::label ('opinion','Opinión:*')!!}
-                                    {!! Form::text ('opinion',null,['class'=>"form-control {{ $errors->has('opcion') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe tu Opinión','required'])!!}
-                                    @if ($errors->has('opinion'))
+                                    {!! Form::label ('actividad','Actividad:*')!!}
+                                    {!! Form::textarea ('actividad',null,['class'=>"form-control {{ $errors->has('actividad') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe la actividad a desarrollar','required'])!!}
+                                    @if ($errors->has('actividad'))
                                             <span class="text-danger" role="alert">
-                                            <strong>{{ $errors->first('titulo') }}</strong>
+                                            <strong>{{ $errors->first('actividad') }}</strong>
                                             </span>
                                     @endif
                                  </div>
@@ -55,8 +53,7 @@
                                     <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-primary">Enviar Postulación</button>
                                     </div>
-                                </div>
-                                
+                               </div>
                         {!!Form::close()!!}              
                     </div>
                 </div>

@@ -30,9 +30,22 @@ Route::group(['prefix' => 'solic'], function(){
     ]);
     Route::get('solicinvestigacion', 'RequestController@SolicInvestigacion')->name('solicinvestigacion');
     Route::get('solicasesoria', 'RequestController@SolicAsesoria')->name('solicasesoria');
-    Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
+    //Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
     Route::get('x', 'RequestController@prueba'); 
 });
+
+//route de postulacion
+Route::group(['prefix' => 'postulacion'], function(){
+    Route::resource('postulacion','PostulacionController');
+    //Eliminar
+    Route::get('postulacion/{id}/destroy',[
+        'uses' => 'PostulacionController@destroy',
+        'as' => 'postulacion.destroy'
+    ]);
+    Route::get('solicpostulacion', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
+});
+
+
 Route::resource('moduloinvestigacion','InvestigacionController');
 
 //Editar solicitud
@@ -64,6 +77,9 @@ Route::get('/escritoriocomite', function () {
 Route::get('/administracion', function () {
     return view('admin.administracion');
 })->name('administracion');
+Route::get('/postulaciones', function () {
+    return view('investigaciones.postulaciones');
+})->name('postulaciones');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
