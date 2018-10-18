@@ -48,12 +48,16 @@ const app = new Vue({
                 //
             })
             .joining((user) => {
-                console.log(user.name);
+                console.log(user.nombre + " conectado");
             })
             .leaving((user) => {
-                console.log(user.name);
+                console.log(user.nombre + " desconectado");
             })
             .listen('MessagePosted',(e) => {
+                this.messages.push({
+                    message: e.message.message,
+                    user: e.user
+                });
                 console.log(e);
             });
     }

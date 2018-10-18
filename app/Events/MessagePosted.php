@@ -24,9 +24,14 @@ class MessagePosted implements ShouldBroadcast
      */
     public function __construct(Message $message, User $user)
     {
+        //dd('sup dude '.$message . " ". $user);
         $this->message = $message;
         $this->user = $user;
     }
+    /* public function __construct($message)
+    {
+        $this->message = $message;
+    } */
 
     /**
      * Get the channels the event should broadcast on.
@@ -35,6 +40,7 @@ class MessagePosted implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        //return ['chatroom'];
         //return new PrivateChannel('channel-name');
         return new PresenceChannel('chatroom');
     }

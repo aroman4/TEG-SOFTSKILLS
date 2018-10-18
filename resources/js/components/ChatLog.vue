@@ -1,6 +1,6 @@
 <template>
     <div class="chat-log">
-        <chat-message v-for="message in messages" :key="message" :message="message"></chat-message>
+        <chat-message v-for="(message, i) in messages" :key="i" :message="message"></chat-message>
         <div class="empty" v-show="messages.lenght === 0">
             No hay mensajes. ¡Escribe uno!
         </div>

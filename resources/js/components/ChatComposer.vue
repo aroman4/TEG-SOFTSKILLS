@@ -18,7 +18,7 @@ export default {
             this.$emit('messagesent',{
                 message: this.messageText,
                 user: {
-                    nombre: $('.menu .nav-link .dropdown-toggle').text()
+                    nombre: $('.dropdown-toggle').text()
                 }
             });
             this.messageText = '';

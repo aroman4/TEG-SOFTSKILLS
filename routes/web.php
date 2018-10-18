@@ -116,12 +116,12 @@ Route::get('/mensajes', function(){
 Route::post('/mensajes', function(){
     //guardar mensaje nuevo
     $user = Auth::user();
-    $user->messages()->create([
+    $message = $user->messages()->create([
         'message' => request()->get('message')
     ]);
     
     //se coloco un nuevo mensaje
-    event(new MessagePosted($message, $user));
+    broadcast(new MessagePosted($message, $user))->toOthers();
     
     return ['status' => 'OK'];
 })->name('mensajeschat')->middleware('auth');
