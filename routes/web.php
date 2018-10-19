@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 /**********************************************************************/
 /* Route del proyecto TEG realizado por Alvaro Roman y Felicia Jardim */
 /**********************************************************************/
@@ -102,3 +103,62 @@ Route::get('/pruebablade', 'FrontController@Pruebablade');
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
+
+
+//mensajes
+Route::get('/messages',function(){
+    return view('messages');
+})->middleware('auth');
+
+Route::get('/getMessages',function(){
+    //toma los usuarios con los que el usuario actual ha tenido conversaciones
+    $allUsers1 = DB::table('usuario')
+    ->join('conversation','usuario.id','conversation.user_one')
+    ->where('conversation.user_two',Auth::user()->id)->get();
+
+    $allUsers2 = DB::table('usuario')
+    ->join('conversation','usuario.id','conversation.user_two')
+    ->where('conversation.user_one',Auth::user()->id)->get();
+
+    return array_merge($allUsers1->toArray(),$allUsers2->toArray());
+});
+
+Route::get('/getMessages/{id}',function($id){
+    //ver si existe la conversacion
+    /* $checkCon = DB::table('conversation')->where('user_one', Auth::user()->id)->where('user_two',$id)->get();
+    if(count($checkCon)!=0){
+        //get mensajes de la conversacion
+        $userMsg = DB::table('messages')->where('messages.conversation_id',$checkCon[0]->id)->get();
+        return $userMsg;
+    }else{
+        echo "no hay mensajes";
+    } */
+    $userMsg = DB::table('messages')
+    ->join('usuario','usuario.id','messages.user_from')
+    ->where('messages.conversation_id',$id)->get();
+    return $userMsg;
+});
+
+Route::post('/sendMessage', function(Request $request){
+    //echo $request->msg;
+    //en esa funcion tomo lo que se envia
+    $conID = $request->conID;
+    $msg = $request->msg;
+
+    //aqui busco cual es el usuario al cual se le envia el mensaje
+    $fetch_userTo = DB::table('messages')->where('conversation_id',$conID)
+    ->where('user_to','!=',Auth::user()->id)->get();
+    $userTo = $fetch_userTo[0]->user_to;
+
+    //guardar
+    $sendM = DB::table('messages')->insert([
+        'user_to' => $userTo,
+        'user_from' => Auth::user()->id,
+        'msg' => $msg,
+        'status' => 1,
+        'conversation_id' => $conID
+    ]);
+    if($sendM){
+        echo "mensaje enviado";
+    }
+});

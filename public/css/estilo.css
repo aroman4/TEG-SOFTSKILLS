@@ -388,6 +388,25 @@ textarea{
 	margin: 0;
 }
 
+/*mensajes*/
+.msjEnviado{
+	float: right;
+	background-color: #3498DB;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 10px;
+	width: 50%;
+}
+.msjRecibido{
+	text-align: left;
+	float: left;
+	background-color: lightyellow;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 10px;
+	width: 50%;
+}
+
 /*footer*/
 footer {
 	margin-top:250px;

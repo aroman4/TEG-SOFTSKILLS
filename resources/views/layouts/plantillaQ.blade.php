@@ -11,8 +11,8 @@
         <li class="list-group-item {{ request()->is('') ? 'active' : '' }}"><a class="aMenuLateral" href="#">Calendario</a></li>
     </ul>
 </div>
-    <div class="row filaEscritorio">
-        @yield('content');
+    <div class="row filaEscritorio" id="app">
+        @yield('content')
     </div>
 {{-- @include('footer') --}}
 
