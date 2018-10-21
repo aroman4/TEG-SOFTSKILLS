@@ -36,7 +36,11 @@
 
                 </div>
                 <div class="col-md-3">                
-                    <span>{{$postulacion->archivo}}</span>
+                <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-upload">  Download </i>
+                        </button>
+                    </a>
                 </div>
                 <div class="col-md-3">
                     <a href="{{route('verPostulacion.show',['id'=> $postulacion->id_invest])}}" class="btn btn-secondary">Revisar Postulación</a></h3>

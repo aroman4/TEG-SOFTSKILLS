@@ -44,7 +44,6 @@ Route::group(['prefix' => 'postulacion'], function(){
     Route::get('solicpostulacion', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
 });
 
-
 Route::resource('moduloinvestigacion','InvestigacionController');
 
 //Editar solicitud

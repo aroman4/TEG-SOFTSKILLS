@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Postulacion;
+use DB;
 
 class PostulacionController extends Controller
 {
+    //funcion de descarga de archivos 
+    public function descargafuc(){
+        $postulacion = DB::table('postulacion')->get();
+        return view('investigaciones.postulaciones',compact('postulaciones'));
+    }
     /**
      * Display a listing of the resource.
      *
