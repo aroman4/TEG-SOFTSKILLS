@@ -30,7 +30,6 @@ Route::group(['prefix' => 'solic'], function(){
     ]);
     Route::get('solicinvestigacion', 'RequestController@SolicInvestigacion')->name('solicinvestigacion');
     Route::get('solicasesoria', 'RequestController@SolicAsesoria')->name('solicasesoria');
-    //Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
     Route::get('x', 'RequestController@prueba'); 
 });
 
@@ -89,6 +88,7 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
 });
 Route::resource('moduloasesoria','AsesoriaController');
 Route::resource('moduloinvestigaciones','InvestigacionController');
+Route::resource('verPostulacion','PostulacionController');
 
 //cuestionario
 Route::get('/cuestionario', 'CuestionarioController@home')->name('cuestionario.home');

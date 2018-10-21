@@ -61,7 +61,9 @@ class PostulacionController extends Controller
      */
     public function show($id)
     {
-        //
+        //Show
+        $postulacion = Postulacion::find($id);
+        return view('investigaciones.verPostulacion')->with('postulacion',$postulacion);
      
     }
 

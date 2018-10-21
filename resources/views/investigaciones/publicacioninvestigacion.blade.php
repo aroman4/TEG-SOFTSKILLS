@@ -25,7 +25,8 @@
                             </div>
                             <div class="form-group row">
                                 <p><b>Creado por el Investigador</b> 
-                                    {{\App\User::find($inv->user_id)->nombre}}</p>
+                                    {{\App\User::find($inv->user_id)->nombre}}
+                                </p>
                             </div>
                             <div class="form-group row">
                                 <p><b>Fecha:</b> {{$inv->created_at}} </p>
