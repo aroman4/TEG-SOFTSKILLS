@@ -27,6 +27,7 @@
 
     @forelse(\App\Postulacion::all() as $postulacion)
         @if(Auth::user()->id != $postulacion->id_invest)
+           
 
             <div class="row">            
                 <div class="col-md-3">
@@ -34,7 +35,6 @@
                     <span>{{\App\User::find($postulacion->id_invest)->apellido}}</span>
                     <br>
                     <span>{{\App\User::find($postulacion->id_invest)->email}}</span>
-
                 </div>
                 <div class="col-md-3">                
                 <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">

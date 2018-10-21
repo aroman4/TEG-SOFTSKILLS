@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Postulacion;
 use App\Solicitud;
 use App\Investigacion;
@@ -24,7 +26,6 @@ class PostulacionController extends Controller
     {
         //
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +49,6 @@ class PostulacionController extends Controller
     public function store(Request $request)
     {
         //    
-        $Investigacion = Investigacion::find($id); 
         $postulacion = new Postulacion($request->all());
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
@@ -56,8 +56,7 @@ class PostulacionController extends Controller
             $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
             $postulacion->archivo = $nombreArch;
         }
-        $postulacion->id_invest = auth()->user()->id;
-        $postulacion->id_post = $Investigacion->id;
+        $postulacion->id_invest = auth()->user()->id;    
         $postulacion->save();
         return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
 
