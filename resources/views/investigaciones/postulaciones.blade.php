@@ -9,8 +9,6 @@
     <h1 class="text-center">Lista de Postulado </h1>
     <hr>
     <br><br>
-    @forelse(\App\Postulacion::all() as $postulacion)
-        @if(Auth::user()->id != $postulacion->id_invest)
             <div class="row">   
                 <div class="col-md-3">
                     <h3>Nombre del Investigador</h3>
@@ -26,6 +24,9 @@
                 </div>
             </div>
             <hr>
+
+    @forelse(\App\Postulacion::all() as $postulacion)
+        @if(Auth::user()->id != $postulacion->id_invest)
 
             <div class="row">            
                 <div class="col-md-3">

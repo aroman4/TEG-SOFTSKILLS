@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Postulacion;
+use App\Solicitud;
+use App\Investigacion;
 use DB;
 
 class PostulacionController extends Controller
@@ -45,7 +47,8 @@ class PostulacionController extends Controller
      */
     public function store(Request $request)
     {
-        //     
+        //    
+        $Investigacion = Investigacion::find($id); 
         $postulacion = new Postulacion($request->all());
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
@@ -54,6 +57,7 @@ class PostulacionController extends Controller
             $postulacion->archivo = $nombreArch;
         }
         $postulacion->id_invest = auth()->user()->id;
+        $postulacion->id_post = $Investigacion->id;
         $postulacion->save();
         return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
 
