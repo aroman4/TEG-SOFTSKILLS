@@ -3,47 +3,26 @@
 // MIT License       - www.WebRTC-Experiment.com/licence
 // Experiments       - github.com/muaz-khan/WebRTC-Experiment
 */
-
+/* 
 @font-face {
     font-family: 'Myriad';
     src: url('//cdn.webrtc-experiment.com/fonts/MyriadPro-Light.otf') format("opentype");
     font-weight: 400;
-}
-
-body, body * {
-    padding: 0;
-    margin: 0;
-    outline: none;
-    -webkit-user-drag: none;
-    font-family: Myriad, Arial, Verdana;
-    word-wrap: break-word;
-}
-
-html {
-    background: rgb(247, 253, 244);
-}
-
-body {
-    border-right: 2px solid rgb(23, 228, 56);
-    border-left: 2px solid rgb(80, 238, 29);
-    margin: 0 2%;
-    background: white;
-    font-size: 1.2em;
-    line-height: 1.5em;
-}
-
-body {
-    padding: 30px 30px;
-}
+} */
 
 .main {
-    border: 1px solid black;
-    border-radius: 6px;
+    overflow: auto;
+    height: 600px;
 }
 
 .new-message {
     min-height: 7em;
-    border-top: 1px solid black;
+    border-top: 1px solid rgba(0, 0, 0, 0);
+    width: 50%;
+    clear: both;
+    background: #d9d9d9;
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
 
 .new-message:first-child {
@@ -54,7 +33,6 @@ body {
     width: 10em;
     min-height: 7em;
     float: left;
-    border-right: 1px solid black;
     text-align: center;
 }
 
@@ -72,9 +50,6 @@ body {
     padding: .4em .8em;
 }
 
-.header {
-}
-
 .message {
     padding: .6em .8em;
     word-wrap: break-word;
@@ -88,12 +63,9 @@ body {
 
 .main-input-box {
     border: 1px solid black;
-    border-bottom: 0;
     padding-bottom: 1px;
     text-align: right;
-    margin-left: 193px;
-    margin-right: 125px;
-    padding-right: 21px;
+    clear: both;
 }
 
 .main-input-box textarea {

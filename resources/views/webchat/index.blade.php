@@ -6,34 +6,13 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-<div class="col-md-9">
-    
-</div>
-@endsection
-<html lang="en">
-    <head>
-        <title>MultiRTC! / RTCMultiConnection Demo ® Muaz Khan</title>
-        <meta name="description" content="MultiRTC is a WebRTC skype-like application that allows all features as skype provides E.g. text conversation, file sharing, enable/disable screen, enable/disable webcam or microphone etc. It provides additional features like auto-text translation in about 41 languages. It also provides customization of each feature so that you can set each value yourself e.g. chunk-size, intervals, etc." />
-        <meta name="keywords" content="MultiRTC,RTCMultiConnection,WebRTC,Demos,Experiments,Muaz Khan,WebRTC and Skype,Skype like Demo" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <link rel="author" type="text/html" href="https://plus.google.com/+MuazKhan">
-        <meta name="author" content="Muaz Khan">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        
-        <!-- ui-stylesheet -->
-        <link href="{{ asset('webrtc/style.css') }}" rel="stylesheet">
-        
-        <!-- www.RTCMultiConnection.org/changes-log/ -->
-        <script src="{{ asset('webrtc/RTCMultiConnection.js') }}"> </script>
-        <script src="{{ asset('webrtc/FileBufferReader.js') }}"> </script>
-		<script src="{{ asset('webrtc/firebase.js') }}"> </script>
-        
-        <script src="{{ asset('webrtc/linkify.js') }}"> </script>
-    </head>
-    <body>
-        <div class="settings">
+<div class="col-md-10 listaQuest">
+    <script src="{{ asset('webrtc/RTCMultiConnection.js') }}"> </script>
+    <script src="{{ asset('webrtc/FileBufferReader.js') }}"> </script>
+    <script src="{{ asset('webrtc/firebase.js') }}"> </script>    
+    <script src="{{ asset('webrtc/linkify.js') }}"> </script>
+    <link href="{{ asset('webrtc/style.css') }}" rel="stylesheet">
+    <div class="settings">
             <button id="settings" title="Customize many options according to your own needs!">Settings</button>
         </div>
 		
@@ -182,7 +161,7 @@
         <div class="users-container"></div>
 		
         <div class="main">
-            <div class="new-message" style="overflow: hidden;height: 250px;">
+            <div style="overflow: hidden;height: 250px;">
                 <div class="user-info" style="height: 100%">
                     <img src="{{ asset('webrtc/images/user.png') }}">
                 </div>
@@ -219,5 +198,5 @@
         <script src="{{ asset('webrtc/ui.share-files.js') }}"> </script>
         <script src="{{ asset('webrtc/ui.users-list.js') }}"> </script>
         <script src="{{ asset('webrtc/ui.settings.js') }}"> </script>
-    </body>
-</html>
+</div>
+@endsection

@@ -18,26 +18,21 @@ function getRandomColor() {
 }
 
 function addNewMessage(args) {
-    if(args.tipo == "propio"){
-        console.log('mensaje propio');
-    }else if(args.tipo == "peer"){
-        console.log('mensaje de otro usuario');
-    }
     var newMessageDIV = document.createElement('div');
     newMessageDIV.className = 'new-message';
 
     var userinfoDIV = document.createElement('div');
     userinfoDIV.className = 'user-info';
-    //userinfoDIV.innerHTML = args.userinfo || '<img src="/images/user.png">';
+    userinfoDIV.innerHTML = args.userinfo || '<img src="/images/user.png">';
 
-    userinfoDIV.style.background = args.color || rtcMultiConnection.extra.color || getRandomColor();
+    //userinfoDIV.style.background = args.color || rtcMultiConnection.extra.color || getRandomColor();
 
     newMessageDIV.appendChild(userinfoDIV);
 
     var userActivityDIV = document.createElement('div');
     userActivityDIV.className = 'user-activity';
 
-    userActivityDIV.innerHTML = '<h2 class="header">' + args.header + '</h2>';
+    userActivityDIV.innerHTML = '<h4 class="header">' + args.header + '</h4>';
 
     var p = document.createElement('p');
     p.className = 'message';
@@ -49,6 +44,13 @@ function addNewMessage(args) {
     main.insertBefore(newMessageDIV, main.lastChild);
 
     userinfoDIV.style.height = newMessageDIV.clientHeight + 'px';
+    if(args.tipo == "propio"){
+        console.log('mensaje propio');
+        newMessageDIV.style.float = 'right';
+    }else if(args.tipo == "peer"){
+        console.log('mensaje de otro usuario');
+        newMessageDIV.style.background = 'lightblue';
+    }
 
     if (args.callback) {
         args.callback(newMessageDIV);
@@ -93,7 +95,7 @@ main.querySelector('#continue').onclick = function() {
 
     addNewMessage({
         header: username,
-        message: 'Searching for existing rooms...',
+        message: 'Iniciando sesión...',
         userinfo: '<img src="/images/action-needed.png">',
         tipo: 'propio'
     });
@@ -110,7 +112,7 @@ main.querySelector('#continue').onclick = function() {
 		if (sessionDescription == null) {
 			addNewMessage({
                 header: username,
-                message: 'No room found. Creating new room...<br /><br />You can share following room-id with your friends: <input type=text value="' + roomid + '">',
+                message: 'Sesión iniciada.<br /><br />You can share following room-id with your friends: <input type=text value="' + roomid + '">',
                 userinfo: '<img src="/images/action-needed.png">',
                 tipo: 'propio'
             });
@@ -128,7 +130,7 @@ main.querySelector('#continue').onclick = function() {
 		} else {
 			addNewMessage({
                 header: username,
-                message: 'Room found. Joining the room...',
+                message: 'Sesión iniciada.',
                 userinfo: '<img src="/images/action-needed.png">',
                 tipo: 'propio'
             });
@@ -180,7 +182,7 @@ getElement('.main-input-box textarea').onkeyup = function(e) {
 
     addNewMessage({
         header: rtcMultiConnection.extra.username,
-        message: 'Your Message:<br /><br />' + linkify(this.value),
+        message: linkify(this.value),
         userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], 'images/chat-message.png'),
         color: rtcMultiConnection.extra.color,
         tipo: 'propio'

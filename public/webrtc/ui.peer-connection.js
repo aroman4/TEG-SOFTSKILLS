@@ -68,7 +68,7 @@ rtcMultiConnection.onopen = function(e) {
 
     addNewMessage({
         header: e.extra.username,
-        message: 'Data connection is opened between you and ' + e.extra.username + '.',
+        message: 'Conexión creada entre ' + e.extra.username + ' tu.',
         userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], 'images/info.png'),
         color: e.extra.color,
         tipo: 'peer'
@@ -81,7 +81,7 @@ rtcMultiConnection.onopen = function(e) {
 var whoIsTyping = document.querySelector('#who-is-typing');
 rtcMultiConnection.onmessage = function(e) {
     if (e.data.typing) {
-        whoIsTyping.innerHTML = e.extra.username + ' is typing ...';
+        whoIsTyping.innerHTML = e.extra.username + ' está escribiendo ...';
         return;
     }
 
@@ -94,7 +94,7 @@ rtcMultiConnection.onmessage = function(e) {
 
     addNewMessage({
         header: e.extra.username,
-        message: 'Text message from ' + e.extra.username + ':<br /><br />' + (rtcMultiConnection.autoTranslateText ? linkify(e.data) + ' ( ' + linkify(e.original) + ' )' : linkify(e.data)),
+        message: e.extra.username + ':<br /><br />' + (rtcMultiConnection.autoTranslateText ? linkify(e.data) + ' ( ' + linkify(e.original) + ' )' : linkify(e.data)),
         userinfo: getUserinfo(rtcMultiConnection.blobURLs[e.userid], 'images/chat-message.png'),
         color: e.extra.color,
         tipo: 'peer'
@@ -111,7 +111,7 @@ rtcMultiConnection.onNewSession = function(session) {
 
     addNewMessage({
         header: session.extra.username,
-        message: 'Making handshake with room owner....!',
+        message: 'Conectando....',
         userinfo: '<img src="images/action-needed.png">',
         color: session.extra.color,
         tipo: 'peer'
@@ -121,8 +121,8 @@ rtcMultiConnection.onNewSession = function(session) {
 rtcMultiConnection.onRequest = function(request) {
     rtcMultiConnection.accept(request);
     addNewMessage({
-        header: 'New Participant',
-        message: 'A participant found. Accepting request of ' + request.extra.username + ' ( ' + request.userid + ' )...',
+        header: 'Se han unido al chat',
+        message: 'Aceptando petición de: ' + request.extra.username + ' ( ' + request.userid + ' )...',
         userinfo: '<img src="images/action-needed.png">',
         color: request.extra.color,
         tipo: 'peer'
@@ -131,10 +131,10 @@ rtcMultiConnection.onRequest = function(request) {
 
 rtcMultiConnection.onCustomMessage = function(message) {
     if (message.hasCamera || message.hasScreen) {
-        var msg = message.extra.username + ' enabled webcam. <button id="preview">Preview</button> ---- <button id="share-your-cam">Share Your Webcam</button>';
+        var msg = message.extra.username + ' activó la cámara. <button id="preview">Visualizar</button> ---- <button id="share-your-cam">Compartir cámara</button>';
 
         if (message.hasScreen) {
-            msg = message.extra.username + ' is ready to share screen. <button id="preview">View His Screen</button> ---- <button id="share-your-cam">Share Your Screen</button>';
+            msg = message.extra.username + ' está preparado para mostrar su escritorio. <button id="preview">Ver su pantalla</button> ---- <button id="share-your-cam">Compartir pantalla</button>';
         }
 
         addNewMessage({
@@ -193,7 +193,7 @@ rtcMultiConnection.onCustomMessage = function(message) {
     if (message.hasMic) {
         addNewMessage({
             header: message.extra.username,
-            message: message.extra.username + ' enabled microphone. <button id="listen">Listen</button> ---- <button id="share-your-mic">Share Your Mic</button>',
+            message: message.extra.username + ' activó el micrófono. <button id="listen">Listen</button> ---- <button id="share-your-mic">Compartir micrófono</button>',
             userinfo: '<img src="images/action-needed.png">',
             tipo: 'peer',
             color: message.extra.color,
@@ -247,7 +247,7 @@ rtcMultiConnection.onstream = function(e) {
         */
         addNewMessage({
             header: e.extra.username,
-            message: e.extra.username + ' enabled webcam.',
+            message: e.extra.username + ' activó la cámara.',
             userinfo: '<video id="' + e.userid + '" src="' + URL.createObjectURL(e.stream) + '" autoplay muted=true volume=0></vide>',
             color: e.extra.color,
             tipo: 'peer'
@@ -255,7 +255,7 @@ rtcMultiConnection.onstream = function(e) {
     } else {
         addNewMessage({
             header: e.extra.username,
-            message: e.extra.username + ' enabled microphone.',
+            message: e.extra.username + ' activó el micrófono.',
             userinfo: '<audio src="' + URL.createObjectURL(e.stream) + '" controls muted=true volume=0></vide>',
             color: e.extra.color,
             tipo: 'peer'
@@ -273,7 +273,7 @@ rtcMultiConnection.sendMessage = function(message) {
 rtcMultiConnection.onclose = rtcMultiConnection.onleave = function(event) {
     addNewMessage({
         header: event.extra.username,
-        message: event.extra.username + ' left the room.',
+        message: event.extra.username + ' se ha desconectado.',
         userinfo: getUserinfo(rtcMultiConnection.blobURLs[event.userid], 'images/info.png'),
         color: event.extra.color,
         tipo: 'peer'

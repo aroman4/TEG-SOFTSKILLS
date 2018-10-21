@@ -104,6 +104,7 @@ Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
 
 //webchat
-Route::get('/chat',function(){
+/* Route::get('/chat',function(){
     return view('webchat.index');
-});
+})->middleware('auth'); */
+Route::get('/chat/{id}','AsesoriaController@getChat')->middleware('auth')->name('getChat');

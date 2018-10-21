@@ -111,4 +111,9 @@ class AsesoriaController extends Controller
         $ases->delete();
         return redirect('/escritorioasesor')->with('success','Asesoría eliminada');
     }
+    public function getChat($id){
+        //aqui lo que quiero es que al pasar un id de asesoria, se conecte al chat directamente
+        //tambien aqui se puede verificar si el usuario que intenta acceder no tiene permiso
+        return view('webchat.index')->with('asesoria',$id);
+    }
 }
