@@ -102,3 +102,8 @@ Route::get('/pruebablade', 'FrontController@Pruebablade');
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
+
+//webchat
+Route::get('/chat',function(){
+    return view('webchat.index');
+});
