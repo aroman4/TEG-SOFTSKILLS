@@ -72,8 +72,7 @@ class PostulacionController extends Controller
     {
         //Show
         $postulacion = Postulacion::find($id);
-        return view('investigaciones.verPostulacion')->with('postulacion',$postulacion);
-     
+        return view('investigaciones.verPostulacion')->with('postulacion', $postulacion);
     }
 
     /**
@@ -87,8 +86,7 @@ class PostulacionController extends Controller
         //
         $postulacion = Postulacion::find($id);
         //dd($postulacion);
-        return view('postulacion.edit')->with('postulacion', $postulacion);
-       
+        return view('postulacion.edit')->with('postulacion', $postulacion);   
     }
 
     /**

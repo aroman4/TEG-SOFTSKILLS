@@ -21,9 +21,9 @@ class CreatePostulacionTable extends Migration
                 $table->string('archivo')->nullable();
                 $table->string('nombre_inv')->nullable();
                 $table->integer('id_post')->nullable();
-                //clave foranea id de usuario
-                $table->integer('id_invest')->unsigned(); //id del la investigacion 
-                $table->foreign('id_invest')->references('id')->on('investigacion')->onDelete('cascade');
+                //clave foranea id de usuario y investigacion
+                $table->integer('id_invest')->unsigned(); //id del usuario 
+                $table->foreign('id_invest')->references('id')->on('usuario')->onDelete('cascade');
                 $table->timestamps();
         });
     }

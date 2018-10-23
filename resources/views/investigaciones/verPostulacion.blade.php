@@ -1,7 +1,5 @@
 @extends('layouts.plantilla')
-
 @section('content')
-
     <p>{{$postulacion->otros_proyectos}}</p>
     <p>{{$postulacion->aporte}}</p>
     <p>{{$postulacion->actividad}}</p>

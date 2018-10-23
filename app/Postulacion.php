@@ -10,8 +10,8 @@ class Postulacion extends Model
     protected $table = 'postulacion';
     protected $fillable = ['otros_proyectos', 'aporte','actividad','archivo', 'nombre_inv', 'id_post'];
 
-    public function investigacion(){
-        return $this->belongsTo('App\investigacion','id_invest');
+    public function usuario(){
+        return $this->belongsTo('App\User','user_id');
     }
     
 }
