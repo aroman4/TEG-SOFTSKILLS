@@ -6,9 +6,11 @@
 var progressHelper = { };
 rtcMultiConnection.onFileStart = function(file) {
     addNewMessage({
-        header: rtcMultiConnection.extra.username,
+        //header: rtcMultiConnection.extra.username,
+        header: 'Archivo adjunto',
         message: '<strong>' + file.name + '</strong> ( ' + bytesToSize(file.size) + ' )',
         userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], 'images/share-files.png'),
+        tipo: 'archivo',
         callback: function(div) {
             var innerDiv = document.createElement('div');
             innerDiv.title = file.name;
@@ -38,9 +40,9 @@ rtcMultiConnection.onFileEnd = function(file) {
     }
     var div = progressHelper[file.uuid].div;
     if (file.type.indexOf('image') != -1) {
-        div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Download <strong style="color:red;">' + file.name + '</strong> </a><br /><img src="' + file.url + '" title="' + file.name + '" style="max-width: 80%;">';
+        div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Descarga <strong style="color:red;">' + file.name + '</strong> </a><br /><img src="' + file.url + '" title="' + file.name + '" style="max-width: 80%;">';
     } else {
-        div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Download <strong style="color:red;">' + file.name + '</strong> </a><br /><iframe src="' + file.url + '" title="' + file.name + '" style="width: 80%;border: 0;height: inherit;margin-top:1em;"></iframe>';
+        div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Descarga <strong style="color:red;">' + file.name + '</strong> </a><br /><iframe src="' + file.url + '" title="' + file.name + '" style="width: 80%;border: 0;height: inherit;margin-top:1em;"></iframe>';
     }
 
     setTimeout(function() {

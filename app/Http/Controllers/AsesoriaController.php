@@ -112,8 +112,13 @@ class AsesoriaController extends Controller
         return redirect('/escritorioasesor')->with('success','Asesoría eliminada');
     }
     public function getChat($id){
-        //aqui lo que quiero es que al pasar un id de asesoria, se conecte al chat directamente
-        //tambien aqui se puede verificar si el usuario que intenta acceder no tiene permiso
-        return view('webchat.index')->with('asesoria',$id);
+        //al pasar un id de asesoria se conecte al chat
+        //verificar si el usuario que intenta acceder no tiene permiso
+        $asesoria = Asesoria::find($id);
+        if(((auth()->user()->tipo_usu == "asesor") && ($asesoria->user_id == auth()->user()->id)) || ((auth()->user()->tipo_usu == "cliente") && ($asesoria->id_cliente == auth()->user()->id))){ //si es asesor o cliente autorizado
+            return view('webchat.index')->with('asesoria',$id);
+        }else{
+            return back()->with('error','No tienes permiso para acceder a este chat');
+        }
     }
 }

@@ -61,7 +61,7 @@
                 <p>Estado de la asesoria: <span>{{$asesoria->estado}}</span></p>
                 <p>Creada el {{$asesoria->created_at}}</p>
             </div>
-            <a href="#" class="aseElem aseElemMsj">Mensajes</a>
+            <a href="{{action('AsesoriaController@getChat',$asesoria)}}" class="aseElem aseElemMsj">Chat</a>
             <a href="#" class="aseElem aseElemAg">Agenda</a>
             <a href="#" class="aseElem aseElemRep">Reportes</a>
         </div>

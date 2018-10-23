@@ -43,13 +43,19 @@ function addNewMessage(args) {
 
     main.insertBefore(newMessageDIV, main.lastChild);
 
+    //hacer que el ultimo mensaje se coloque visible
+    newMessageDIV.scrollIntoView();
+
     userinfoDIV.style.height = newMessageDIV.clientHeight + 'px';
     if(args.tipo == "propio"){
         console.log('mensaje propio');
         newMessageDIV.style.float = 'right';
+        newMessageDIV.style.background = 'white';
     }else if(args.tipo == "peer"){
         console.log('mensaje de otro usuario');
         newMessageDIV.style.background = 'lightblue';
+    }else if(args.tipo == "archivo"){
+        newMessageDIV.style.width = '100%';
     }
 
     if (args.callback) {
@@ -57,6 +63,7 @@ function addNewMessage(args) {
     }
 }
 
+var topbar = getElement('.chat-top-bar');
 main.querySelector('#your-name').onkeyup = function(e) {
     if (e.keyCode != 13) return;
     main.querySelector('#continue').onclick();
@@ -67,14 +74,16 @@ main.querySelector('#room-name').onkeyup = function(e) {
     main.querySelector('#continue').onclick();
 };
 
-main.querySelector('#room-name').value = localStorage.getItem('room-name') || (Math.random() * 1000).toString().replace('.', '');
-if(localStorage.getItem('user-name')) {
+//main.querySelector('#room-name').value = localStorage.getItem('room-name') || (Math.random() * 1000).toString().replace('.', '');
+/* if(localStorage.getItem('user-name')) {
     main.querySelector('#your-name').value = localStorage.getItem('user-name');
-}
+} */
 
-main.querySelector('#continue').onclick = function() {
-    var yourName = this.parentNode.querySelector('#your-name');
-    var roomName = this.parentNode.querySelector('#room-name');
+topbar.querySelector('#continue').onclick = function() {
+//main.addEventListener("load", function(event) {
+//main.onload = function(){
+    var yourName = main.querySelector('#your-name');
+    var roomName = main.querySelector('#room-name');
     
     if(!roomName.value || !roomName.value.length) {
         roomName.focus();
@@ -112,7 +121,7 @@ main.querySelector('#continue').onclick = function() {
 		if (sessionDescription == null) {
 			addNewMessage({
                 header: username,
-                message: 'Sesión iniciada.<br /><br />You can share following room-id with your friends: <input type=text value="' + roomid + '">',
+                message: 'Sesión iniciada.',
                 userinfo: '<img src="/images/action-needed.png">',
                 tipo: 'propio'
             });
@@ -226,7 +235,7 @@ getElement('#allow-mic').onclick = function() {
     }, session);
 };
 
-getElement('#allow-screen').onclick = function() {
+/* getElement('#allow-screen').onclick = function() {
     this.disabled = true;
     var session = { screen: true };
 
@@ -240,7 +249,7 @@ getElement('#allow-screen').onclick = function() {
             session: session
         });
     }, session);
-};
+}; */
 
 getElement('#share-files').onclick = function() {
     var file = document.createElement('input');

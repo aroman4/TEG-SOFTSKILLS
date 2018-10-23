@@ -64,11 +64,11 @@ rtcMultiConnection.onopen = function(e) {
     getElement('#allow-webcam').disabled = false;
     getElement('#allow-mic').disabled = false;
     getElement('#share-files').disabled = false;
-    getElement('#allow-screen').disabled = false;
+    //getElement('#allow-screen').disabled = false;
 
     addNewMessage({
         header: e.extra.username,
-        message: 'Conexión creada entre ' + e.extra.username + ' tu.',
+        message: 'Conexión creada entre ' + e.extra.username + ' y tu.',
         userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], 'images/info.png'),
         color: e.extra.color,
         tipo: 'peer'
@@ -81,7 +81,7 @@ rtcMultiConnection.onopen = function(e) {
 var whoIsTyping = document.querySelector('#who-is-typing');
 rtcMultiConnection.onmessage = function(e) {
     if (e.data.typing) {
-        whoIsTyping.innerHTML = e.extra.username + ' está escribiendo ...';
+        whoIsTyping.innerHTML = e.extra.username + ' está escribiendo ... <i class="fas fa-pencil-alt"></i>';
         return;
     }
 
@@ -94,7 +94,7 @@ rtcMultiConnection.onmessage = function(e) {
 
     addNewMessage({
         header: e.extra.username,
-        message: e.extra.username + ':<br /><br />' + (rtcMultiConnection.autoTranslateText ? linkify(e.data) + ' ( ' + linkify(e.original) + ' )' : linkify(e.data)),
+        message: (rtcMultiConnection.autoTranslateText ? linkify(e.data) + ' ( ' + linkify(e.original) + ' )' : linkify(e.data)),
         userinfo: getUserinfo(rtcMultiConnection.blobURLs[e.userid], 'images/chat-message.png'),
         color: e.extra.color,
         tipo: 'peer'
@@ -246,11 +246,12 @@ rtcMultiConnection.onstream = function(e) {
         }
         */
         addNewMessage({
-            header: e.extra.username,
-            message: e.extra.username + ' activó la cámara.',
-            userinfo: '<video id="' + e.userid + '" src="' + URL.createObjectURL(e.stream) + '" autoplay muted=true volume=0></vide>',
+            //header: e.extra.username,
+            header: 'Video stream',
+            message: '<video id="' + e.userid + '" src="' + URL.createObjectURL(e.stream) + '" autoplay muted=true volume=0></vide>',
+            //userinfo: '<video id="' + e.userid + '" src="' + URL.createObjectURL(e.stream) + '" autoplay muted=true volume=0></vide>',
             color: e.extra.color,
-            tipo: 'peer'
+            tipo: 'archivo'
         });
     } else {
         addNewMessage({
