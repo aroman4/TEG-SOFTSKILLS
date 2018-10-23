@@ -8,7 +8,9 @@ class Investigacion extends Model
 {
     //
     protected $table = 'investigacion';
-    protected $fillable = ['nombre_inv','codigo_inv','actividades','descripcion','caracteristica', 'titulo'];
+    protected $fillable = ['id_solic','actividades','caracteristica','titulo','archivo'];
     
-
+    public function usuario(){
+        return $this->belongsTo('App\User','user_id');
+    }
 }

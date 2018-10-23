@@ -17,10 +17,9 @@ class CreateInvestigacionTable extends Migration
             $table->increments('id');
             $table->string('titulo')->nullable();
             $table->string('caracteristica')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->string('actividades')->nullable();
             $table->string('tipo_inv')->nullable();//nombre del investigador 
-            $table->string('nombre_inv')->nullable();
-            $table->integer('codigo_inv')->nullable();
+            $table->integer('id_solic')->nullable();
             $table->enum('estado', ['activa', 'finalizada'])->default('activa');
             $table->integer('cantidad')->nullable();
             $table->timestamps();

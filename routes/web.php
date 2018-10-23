@@ -8,7 +8,9 @@ Route::get('/asesorias', 'FrontController@asesorias')->name('asesorias');
 Route::get('/solicitud/{id}', 'SolicitudController@mostrar');
 Route::get('/investigacion', 'FrontController@investigacion')->name('investigacion');
 Route::get('/solicitud', 'RequestController@solicitud');
-Route::get('/publicacioninve', 'RequestController@publicacioninvestigacion')->name('publicacioninve');
+
+//publicacion
+Route::get('/publicacioninve', 'PublicacionController@index')->name('index');
 
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
@@ -28,14 +30,33 @@ Route::group(['prefix' => 'solic'], function(){
     ]);
     Route::get('solicinvestigacion', 'RequestController@SolicInvestigacion')->name('solicinvestigacion');
     Route::get('solicasesoria', 'RequestController@SolicAsesoria')->name('solicasesoria');
-    Route::get('solicpostulacion', 'RequestController@SolicPostulacion')->name('solicpostulacion');
     Route::get('x', 'RequestController@prueba'); 
 });
+
+//route de postulacion
+Route::group(['prefix' => 'postulacion'], function(){
+    Route::resource('postulacion','PostulacionController');
+    //Eliminar
+    Route::get('postulacion/{id}/destroy',[
+        'uses' => 'PostulacionController@destroy',
+        'as' => 'postulacion.destroy'
+    ]);
+    Route::get('solicpostulacion', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
+});
+
+Route::resource('moduloinvestigacion','InvestigacionController');
+
 //Editar solicitud
 Route::get( '/editarinves/{id}' , 'RequestController@editarInvestigacion')->name('editarinves');
 
-Auth::routes();
+//otro eliminar 
+Route::resource('moduloinv','InvestigacionController');
+Route::get('moduloinv/{id}/destroy',[
+    'uses' => 'InvestigacionController@destroy',
+    'as' => 'moduloinv.destroy'
+]);
 
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //ruta escritorios
@@ -54,6 +75,9 @@ Route::get('/escritoriocomite', function () {
 Route::get('/administracion', function () {
     return view('admin.administracion');
 })->name('administracion');
+Route::get('/postulaciones', function () {
+    return view('investigaciones.postulaciones');
+})->name('postulaciones');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
@@ -63,6 +87,7 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
 });
 Route::resource('moduloasesoria','AsesoriaController');
 Route::resource('moduloinvestigaciones','InvestigacionController');
+Route::resource('verPostulacion','PostulacionController');
 
 //cuestionario
 Route::get('/cuestionario', 'CuestionarioController@home')->name('cuestionario.home');
@@ -93,7 +118,6 @@ Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestig
         'InvestigacionController@AceptarInvestigacion', ['id' => $id]
     );
 });
-Route::resource('moduloinvestigacion','InvestigacionController');
 
 //ruta de prueba BORRAR LUEGO
 Route::get('/prueba', 'FrontController@prueba');

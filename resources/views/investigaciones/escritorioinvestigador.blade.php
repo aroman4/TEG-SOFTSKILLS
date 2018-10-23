@@ -65,7 +65,6 @@
                         <p><b>No hay asesorías activas</b></p>
                      @endif
                      <a href="{{route('solicinvestigacion')}}" class="btn btn-primary">Crear Solicitud</a>
-
             </div>
         </div>
     </div>

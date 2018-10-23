@@ -22,7 +22,7 @@ class CreateSolicitud extends Migration
             $table->string('caracteristica')->nullable();
             $table->string('asunto')->nullable();
             $table->string('mensaje')->nullable();
-            $table->string('opinion')->nullable();
+            $table->string('actividad')->nullable();
             $table->string('otros_proyectos')->nullable();
             $table->string('aporte')->nullable();
             $table->string('archivo')->nullable();
