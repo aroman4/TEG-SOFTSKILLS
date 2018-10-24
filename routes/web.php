@@ -132,3 +132,6 @@ Route::get('/footer', 'FrontController@footer');
     return view('webchat.index');
 })->middleware('auth'); */
 Route::get('/chat/{id}','AsesoriaController@getChat')->middleware('auth')->name('getChat');
+
+//agenda
+Route::get('agenda', 'EventController@index')->middleware('auth');
