@@ -41,10 +41,13 @@
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{route('verPostulacion.show',['id'=> $postulacion->id_invest])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
+                    <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
                 </div>
                 <div class="col-md-3">
-                    <a href="" class="btn btn-success"><i class="fa fa-check"></i> Aceptar</a>
+                        <a href="{{action('PostulacionController@AceptarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-success"><i class="fa fa-check"></i>Aceptar</a>
+                        <!--Cuando se acepte la solicitud se deberia dejar de mostrar la solicitud, cambiar el estado?
+                        
+                    <a href="" class="btn btn-success"><i class="fa fa-check"></i> Aceptar</a>-->
                     <a href="" class="btn btn-danger" ><i class="fa fa-times"></i> Rechazar</a>
                 </div>
             </div>

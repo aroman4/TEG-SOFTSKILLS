@@ -41,7 +41,7 @@ Route::group(['prefix' => 'postulacion'], function(){
         'uses' => 'PostulacionController@destroy',
         'as' => 'postulacion.destroy'
     ]);
-    Route::get('solicpostulacion', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
+    Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
 });
 
 Route::resource('moduloinvestigacion','InvestigacionController');
@@ -71,7 +71,10 @@ Route::get('/escritorioinvestigador', function () {
 })->name('escritorioinvestigador');
 Route::get('/escritoriocomite', function () {
     return view('investigaciones.escritoriocomite');
-})->name('escritoriocomite');//duda
+})->name('escritoriocomite');
+Route::get('/escritoriopostulaciones', function () {
+    return view('investigaciones.escritoriopostulaciones');
+})->name('escritoriocomite');
 Route::get('/administracion', function () {
     return view('admin.administracion');
 })->name('administracion');
@@ -115,6 +118,13 @@ Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('
 Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestigacion', function($id){
     return redirect()->action(
         'InvestigacionController@AceptarInvestigacion', ['id' => $id]
+    );
+});
+
+//ruta aceptar postulacion
+Route::get('/aceptarpostulacion/{id}','PostulacionController@AceptarPostulacion', function($id){
+    return redirect()->action(
+        'PostulacionController@AceptarPostulacion', ['id' => $id]
     );
 });
 

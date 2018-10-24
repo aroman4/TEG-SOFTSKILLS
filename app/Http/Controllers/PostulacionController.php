@@ -35,9 +35,9 @@ class PostulacionController extends Controller
     {
         //
     }
-    public function SolicPostulacion()
+    public function SolicPostulacion($idinv)
     {
-        return view('solic.solicitud.SolicPostulacion');
+        return view('solic.solicitud.SolicPostulacion')->with('inv', $idinv);
         //
     }
     /**
@@ -60,6 +60,14 @@ class PostulacionController extends Controller
         $postulacion->save();
         return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
 
+    }
+
+    //aceptar postulacion
+    //Aceptar Investigacion COMITE
+    public function AceptarPostulacion($id){
+        $postulacion->nombre_inv = "aceptada";
+        $postulacion->save();
+        return redirect('/escritorioinvestigador')->with('success','Postulación aceptada');
     }
 
     /**
