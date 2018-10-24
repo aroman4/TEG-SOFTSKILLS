@@ -19,15 +19,15 @@
             <div class="card-body">
                 <p><b>Postulaciones Creadas (Pendientes por Aprobación):</b></p>
                     @if(count(\App\Postulacion::all())>0)
-                        @foreach(\App\Postulacion::all() as $pos)
-                            @if($post->nombre_inv=="pendiente")
-                                <div class="solicitud">
-                                    <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
+                        @foreach(\App\Postulacion::all() as $sol)
+                            @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente"))
+                                <div class="postulacion">
+                                    <h3><a href="{{route('modulopostulacion.showPost',['id'=> $post->id])}}">{{Investigacion::find($post->id_post)->titulo}}</a></h3><!--duda-->
                                 </div>
                              @endif
                         @endforeach
                     @else
-                        <p><b>No hay Solicitudes Pendientes</b></p>
+                        <p><b>No hay Postulacion creadas Pendientes por aprobar</b></p>
                     @endif
             </div>
         </div>
@@ -35,19 +35,18 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <p><b>Investigaciones Activas:</b></p>
-                    @if(count(\App\Investigacion::all())>0)
-                        @foreach(\App\Investigacion::all() as $inv)
-                            @if(($inv->user_id == Auth::user()->id) && ($inv->estado == "activa"))
-                                <div class="investigaciones">
-                                    <h3><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}">{{$inv->titulo}}</a></h3>
+                <p><b>Postulaciones Aceptadas - Activas:</b></p>
+                    @if(count(\App\Postulacion::all())>0)
+                        @foreach(\App\Postulacion::all() as $inv)
+                            @if(($post->id_invest == Auth::user()->id) && ($post->estado == "activa"))
+                                <div class="postulacion">
+                                    <h3><a href="{{route('modulopostulacion.showPost',['id'=> $post->id])}}">{{Investigacion::find($post->id_post)->titulo}}</a></h3>
                                 </div>
                             @endif
                         @endforeach
                     @else
-                        <p><b>No hay asesorías activas</b></p>
+                        <p><b>No hay postulaciones activas</b></p>
                      @endif
-                     <a href="{{route('solicinvestigacion')}}" class="btn btn-primary">Crear Solicitud</a>
             </div>
         </div>
     </div>

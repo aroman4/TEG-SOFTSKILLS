@@ -63,9 +63,8 @@ class PostulacionController extends Controller
     }
 
     //aceptar postulacion
-    //Aceptar Investigacion COMITE
     public function AceptarPostulacion($id){
-        $postulacion->nombre_inv = "aceptada";
+        $postulacion->estado = "aceptada";
         $postulacion->save();
         return redirect('/escritorioinvestigador')->with('success','Postulación aceptada');
     }
@@ -81,8 +80,15 @@ class PostulacionController extends Controller
         //Show
         $postulacion = Postulacion::find($id);
         return view('investigaciones.verPostulacion')->with('postulacion', $postulacion);
+    
     }
-
+    public function showPost($id)
+    {
+        //Show
+        $postulacion = Postulacion::find($id);
+        return view('investigaciones.escritoriopostulaciones')->with('postulacion', $postulacion);
+    
+    }
     /**
      * Show the form for editing the specified resource.
      *

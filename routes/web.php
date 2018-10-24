@@ -72,15 +72,15 @@ Route::get('/escritorioinvestigador', function () {
 Route::get('/escritoriocomite', function () {
     return view('investigaciones.escritoriocomite');
 })->name('escritoriocomite');
-Route::get('/escritoriopostulaciones', function () {
-    return view('investigaciones.escritoriopostulaciones');
-})->name('escritoriocomite');
 Route::get('/administracion', function () {
     return view('admin.administracion');
 })->name('administracion');
 Route::get('/postulaciones', function () {
     return view('investigaciones.postulaciones');
 })->name('postulaciones');
+Route::get('/escritoriopostulaciones', function () {
+    return view('investigaciones.escritoriopostulaciones');
+})->name('escritoriopostulaciones');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
