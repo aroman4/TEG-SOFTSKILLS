@@ -35,9 +35,9 @@ class PostulacionController extends Controller
     {
         //
     }
-    public function SolicPostulacion()
+    public function SolicPostulacion($idinv)
     {
-        return view('solic.solicitud.SolicPostulacion');
+        return view('solic.solicitud.SolicPostulacion')->with('inv',$idinv);
         //
     }
     /**

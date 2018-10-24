@@ -41,7 +41,7 @@
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{route('verPostulacion.show',['id'=> $postulacion->id_invest])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
+                    <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
                 </div>
                 <div class="col-md-3">
                     <a href="" class="btn btn-success"><i class="fa fa-check"></i> Aceptar</a>

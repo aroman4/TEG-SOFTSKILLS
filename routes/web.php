@@ -41,7 +41,7 @@ Route::group(['prefix' => 'postulacion'], function(){
         'uses' => 'PostulacionController@destroy',
         'as' => 'postulacion.destroy'
     ]);
-    Route::get('solicpostulacion', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
+    Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
 });
 
 Route::resource('moduloinvestigacion','InvestigacionController');
