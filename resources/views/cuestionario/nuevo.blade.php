@@ -6,6 +6,7 @@
         <form method="POST" action="{{route('cuestionario.crear')}}" id="boolean" class="form-group">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="id_asesoria" value="{{ $asesoria->id }}">
+        <input type="hidden" name="cliente_id" value="{{ $asesoria->id_cliente }}">
         <div class="">    
             <div class="">
                 <label for="titulo">Titulo del cuestionario</label>

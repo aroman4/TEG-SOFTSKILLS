@@ -1,5 +1,6 @@
-@include('header')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"/>
+@include('header')
+
 @include('inc.mensajes')
 <div class="barraLateralEscritorio">
     <ul class="list-group list-group-flush">

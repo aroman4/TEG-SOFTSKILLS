@@ -28,8 +28,8 @@ class RespuestaController extends Controller
 
             $newRespuesta->save();
             //guardar el cuestionario como respondido
-            /* $cuestionario->respondido = true;
-            $cuestionario->save(); */
+            $cuestionario->respondido = true;
+            $cuestionario->save();
 
             $respuestaArray[] = $newRespuesta;
         };

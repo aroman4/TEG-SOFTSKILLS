@@ -11,7 +11,7 @@
       </div>
       <div class="list-group-item text-center">
           {{-- <a href='ver/{{$cuestionario->id}}'>Responder cuestionario</a> | <a href="{{$cuestionario->id}}/editar">Editar nombre y descripción</a> | <a href="{{route('cuestionario.respuestas',$cuestionario->id)}}">Ver respuestas</a> <a href="#doDelete" data-toggle="modal" data-target="#doDelete" style="float:right;">Borrar cuestionario</a> --}}
-          <a href="{{route('escritorioasesor')}}" class="btn btn-secondary">Regresar</a> | <a href="{{$cuestionario->id}}/editar" class="btn btn-warning">Editar nombre y descripción</a> | <a href="#doDelete" data-toggle="modal" data-target="#doDelete" class="btn btn-danger">Borrar cuestionario</a>
+          <button onclick="goBack()" class="btn btn-secondary">Regresar</button> | <a href="{{$cuestionario->id}}/editar" class="btn btn-warning">Editar nombre y descripción</a> | <a href="#doDelete" data-toggle="modal" data-target="#doDelete" class="btn btn-danger">Borrar cuestionario</a>
       </div>
       <div class="divider" style="margin:20px 0px;"></div>
       <h2 class="list-group-item text-center">Añadir pregunta</h2>

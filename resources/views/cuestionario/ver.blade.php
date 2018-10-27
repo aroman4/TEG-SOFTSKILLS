@@ -5,11 +5,7 @@
     <div class="list-group">
         <div class="row">
             <div class="col-md-3 list-group-item">
-                @if(Auth::user()->tipo_usu == "asesor")
-                    <a href="{{route('escritorioasesor')}}" class="btn btn-secondary">Regresar</a>
-                @elseif(Auth::user()->tipo_usu == "cliente")
-                    <a href="{{route('escritoriocliente')}}" class="btn btn-secondary">Regresar</a>    
-                @endif
+                <button onclick="goBack()" class="btn btn-secondary">Regresar</button>
             </div>
             <div class="col-md-6 list-group-item">
                 <h2 class="text-center">{{$cuestionario->titulo}}</h2>

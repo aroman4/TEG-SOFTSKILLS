@@ -19,13 +19,18 @@ class EventController extends Controller
                     null,
                     // Add color and link on event
                     [
-                        'color' => '#ff0000',
-                        'url' => 'pass here url and any route',
+                        'color' => '#ff0000'
                     ]
                 );
             }
         }
         $calendar = Calendar::addEvents($events);
-        return view('agenda', compact('calendar'));
+        return view('agenda.agenda', compact('calendar'));
+    }
+
+    public function crear(Request $request){
+        $evento = new Event($request->all());
+        $evento->save();
+        return redirect('agenda')->with('success','Evento creado exitosamente');
     }
 }

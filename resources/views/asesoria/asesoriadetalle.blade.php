@@ -42,9 +42,14 @@
                                 
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     {{ link_to_route('cuestionario.detalle', $cuestionario->titulo, ['id'=>$cuestionario->id])}}
-                                    <a href="cuestionario/{{ $cuestionario->id }}" title="Editar cuestionario" class="secondary-content"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="cuestionario/respuesta/{{ $cuestionario->id }}" title="Ver respuestas del cuestionario" class="secondary-content"><i class="fab fa-wpforms"></i></a>
-                                @elseif(Auth::user()->tipo_usu == "cliente")
+                                    <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" class="secondary-content"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario" class="secondary-content"><i class="fab fa-wpforms"></i></a>
+                                    @if($cuestionario->respondido == false)
+                                        <span>No respondido</span>
+                                    @else
+                                        <span>Respondido</span>
+                                    @endif
+                                @elseif(Auth::user()->tipo_usu == "cliente" && $cuestionario->respondido == false)
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="secondary-content">{{$cuestionario->titulo}}</a>    
                                 @endif
                             </div>

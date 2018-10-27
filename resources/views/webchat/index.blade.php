@@ -9,11 +9,7 @@
 <div class="col-md-10 listaQuest">
     <div class="row chat-top-bar">
         <div class="col-md-12 list-group-item text-center">
-            @if(Auth::user()->tipo_usu == "asesor")
-                <a style="float:left" href="{{route('escritorioasesor')}}" class="btn btn-secondary">Regresar</a>
-            @elseif(Auth::user()->tipo_usu == "cliente")
-                <a style="float:left" href="{{route('escritoriocliente')}}" class="btn btn-secondary">Regresar</a>    
-            @endif
+            <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
             <span class="users-list" title="Ver detalles del chat">
                 <span class="numbers-of-users">0</span> Usuarios en linea
             </span>

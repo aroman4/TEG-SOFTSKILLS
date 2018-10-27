@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="{{asset('css/estilo.css')}}"  />
 </head>
 <body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <header>
         <nav class="navbar navbar-expand-lg menu-estilo-navegacion">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

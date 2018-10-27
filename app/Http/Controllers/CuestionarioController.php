@@ -39,6 +39,7 @@ class CuestionarioController extends Controller
     public function crear(Request $request, Cuestionario $cuest){
         $arr = $request->all();
         $arr['user_id'] = Auth::id();
+        //$arr['cliente_id'] = Asesoria::find($arr['id_asesoria'])->id_cliente;
         $qItem = new Cuestionario($arr);
         //dd($qItem);
         $qItem = $cuest->create($arr);

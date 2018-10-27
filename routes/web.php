@@ -134,4 +134,13 @@ Route::get('/footer', 'FrontController@footer');
 Route::get('/chat/{id}','AsesoriaController@getChat')->middleware('auth')->name('getChat');
 
 //agenda
-Route::get('agenda', 'EventController@index')->middleware('auth');
+Route::get('agenda', 'EventController@index')->middleware('auth')->name('agenda');
+Route::post('eventonuevo', 'EventController@crear')->middleware('auth')->name('eventonuevo');
+Route::get('/crearevento', function () {
+    return view('agenda.crearevento');
+})->name('crearevento');
+
+//reporte
+Route::get('/reporte', function () {
+    return view('reportes.reportedetalle');
+})->name('reportedetalle');

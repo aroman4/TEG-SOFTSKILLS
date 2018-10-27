@@ -292,16 +292,17 @@ textarea{
 	float: right;
 	width: 85%;
 	right:0;
+	margin: 0;
 }
 .barraLateralEscritorio{
 	background-color: #2B3033;
 	height: 100%;
 	width: 15%;
 	min-width: 15%;
-	position:fixed;
+	position: absolute;
 	float: left;
-	display: block;
 	padding-right: 0;
+	z-index: -1;
 }
 .barraLateralEscritorio .list-group-item{
 	color: white;
@@ -326,29 +327,60 @@ textarea{
 
 .escritorioElem{
 	/* background: #4477ab; */
-	width: 400px;
+	display: block;
+	width: 100%;
 	height: 200px;
 	margin: 20px;
 	background-size: auto;/* 
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-position: center center; */
+	background-size: cover;
+	background-position: center;	
+}
+.elemEsc:hover :not(.texElem){
+	filter: blur(1px) brightness(60%);
+	transition: .3s;
+}
+.elemEsc:hover :not(a){
+	opacity: 1;
+}
+#imgAse{
+	background-image: url(../img/asesoriaescritorio.jpg);
+}
+#imgSol{
+	background-image: url(../img/solicitudesescritorio.jpg);
+}
+#imgInst{
+	background-image: url(../img/cuestionariosescritorio.jpg);
+}
+#imgCal{
+	background-image: url(../img/agendaescritorio.jpg);
+}
+#imgRep{
+	background-image: url(../img/reportesescritorio.jpg);
+}
+#imgCont{
+	background-image: url(../img/clientesescritorio.jpg);
+}
+.escritorioA{
+	padding-right: 0;
+	padding-left: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.texElem{
+	position: absolute;
+	top:40%;
+	text-align: center;
+	width: 100%;
 	color: white;
 	font-size: 20pt;
 	font-weight: bolder;
 	text-shadow: 2px 2px black;
-}
-.escritorioElem.imgSol{
-	background-image: url(../img/solicicon.jpg);
-}
-.escritorioElem.imgInst{
-	background-image: url(../img/questicon.jpg);
-}
-.escritorioElem.imgCal{
-	background-image: url(../img/agendasmall.jpg);
-}
-.escritorioElem.imgRep{
-	background-image: url(../img/reportessmall.jpg);
+	opacity: 0;
 }
 
 .aMenuLateral, .aMenuLateral:hover{
