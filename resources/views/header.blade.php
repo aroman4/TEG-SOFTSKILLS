@@ -47,12 +47,7 @@
                                 {{ Auth::user()->nombre . " " . Auth::user()->apellido }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">                                
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a class="dropdown-item" href="{{ route('escritorioasesor') }}">Ir al escritorio</a>
                                 @elseif(Auth::user()->tipo_usu == "investigador")
@@ -60,6 +55,11 @@
                                 @elseif(Auth::user()->tipo_usu == "cliente")
                                     <a class="dropdown-item" href="{{ route('escritoriocliente') }}">Ir al escritorio</a>
                                 @endif
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf

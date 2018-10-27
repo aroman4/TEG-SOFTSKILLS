@@ -26,10 +26,12 @@ class RequestController extends Controller
             break;
             case 'asesor':
                 //return redirect('/escritorioasesor');
-                return view('asesoria.solicitudesescritorio');
+                $solicitudesA = Solicitud::paginate(6);
+                return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA);
             break;
             case 'cliente':
-                return redirect('/escritoriocliente');
+                $solicitudesA = Solicitud::paginate(6);
+                return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA);
             break;
         }
     }

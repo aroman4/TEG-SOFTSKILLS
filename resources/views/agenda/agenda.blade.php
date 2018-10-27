@@ -2,9 +2,13 @@
 
 @section('content')
 <div class="col-md-9 listaQuest">
-    <div class="card text-center">
-        <div class="card-header"><a href="{{route('escritorioasesor')}}" class="btn btn-secondary" style="float:left;">Regresar</a> Agenda <a class="btn btn-primary" style="float:right;" href="{{route('crearevento')}}">Crear Evento</a></div>
-        <div class="card-body">
+    <div class="list-group">
+        <div class="list-group-item top-bar">
+            <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button> 
+            <a class="btn btn-primary" href="{{route('crearevento')}}">Crear Evento</a> 
+            <h3 style="float:right;">Agenda</h3>
+        </div>
+        <div class="list-group-item">
             {!! $calendar->calendar() !!}
         </div>
     </div>

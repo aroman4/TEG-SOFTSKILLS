@@ -2,18 +2,8 @@
 @include('header')
 
 @include('inc.mensajes')
-<div class="barraLateralEscritorio">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{Auth::user()->nombre ." ". Auth::user()->apellido}}</li>
-        <li class="list-group-item {{ request()->is('escritorioasesor') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('escritorioasesor')}}">Escritorio</a></li>
-        <li class="list-group-item {{ request()->is('') ? 'active' : '' }}"><a class="aMenuLateral" href="#">Asesorías</a></li>
-        <li class="list-group-item {{ request()->is('solicitud.index') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('solicitud.index')}}">Solicitudes</a></li>
-        <li class="list-group-item {{ request()->is('') ? 'active' : '' }}"><a class="aMenuLateral" href="#">Reportes</a></li>
-        <li class="list-group-item {{ request()->is('cuestionario.home') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('cuestionario.home')}}">Instrumentos</a></li>
-        <li class="list-group-item {{ request()->is('') ? 'active' : '' }}"><a class="aMenuLateral" href="#">Calendario</a></li>
-    </ul>
-</div>
-    <div class="row filaEscritorio">
+@include('layouts.barralateralasesoria')
+    <div class="row filaEscritorio" style="height:800px">
         @yield('content')
     </div>
 {{-- @include('footer') --}}
@@ -27,3 +17,7 @@
 {{-- <script src="{{ asset('js/fullcalendar/es.js') }}"></script> --}}
 {!! $calendar->script() !!}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/es.js"></script>
+{{-- <script>
+    var height=$('body').height(); // Calculate primary wrapper height
+    $('.barraLateralEscritorio').height(height); // Set the height it to sidebar
+    </script> --}}

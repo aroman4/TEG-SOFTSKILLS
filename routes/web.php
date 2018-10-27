@@ -78,6 +78,10 @@ Route::get('/administracion', function () {
 Route::get('/postulaciones', function () {
     return view('investigaciones.postulaciones');
 })->name('postulaciones');
+Route::get('/asesoriasescritorio', function () {
+    $asesorias = \App\Asesoria::paginate(6);
+    return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
+})->name('asesescritorio');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){

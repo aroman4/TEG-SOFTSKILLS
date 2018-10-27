@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaQ')
 
 @section('content')
 <div class="container">
@@ -11,8 +11,11 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Solicitud de Asesoría') }}</div>
+            <div class="card" style="border: none">
+                <div class="card-header text-center top-bar">
+                    <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
+                    <h3 style="float:right">{{ __('Solicitud de Asesoría') }}</h3>
+                </div>
 
                     <div class="card-body">
                         {!!Form::open(['action' => 'RequestController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}

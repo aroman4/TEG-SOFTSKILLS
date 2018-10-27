@@ -35,9 +35,18 @@
             </div>
         </div> --}}
         <div class="row">
+            <div class="col-md-12 text-right" style="color:white">
+            @if(Auth::user()->sexo == "femenino")
+                <h1>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
+            @else
+                <h1>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
+            @endif
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-4">
                 <div class="elemEsc">
-                    <a class="escritorioElem" id="imgAse" href="#"></a>
+                    <a class="escritorioElem" id="imgAse" href="{{route('asesescritorio')}}"></a>
                     <h2 class="texElem">Asesorías</h2>
                 </div>
             </div>
