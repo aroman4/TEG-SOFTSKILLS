@@ -33,17 +33,6 @@ Route::group(['prefix' => 'solic'], function(){
     Route::get('x', 'RequestController@prueba'); 
 });
 
-//route de postulacion
-Route::group(['prefix' => 'postulacion'], function(){
-    Route::resource('postulacion','PostulacionController');
-    //Eliminar
-    Route::get('postulacion/{id}/destroy',[
-        'uses' => 'PostulacionController@destroy',
-        'as' => 'postulacion.destroy'
-    ]);
-    Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
-});
-
 Route::resource('moduloinvestigacion','InvestigacionController');
 
 //Editar solicitud
@@ -75,12 +64,6 @@ Route::get('/escritoriocomite', function () {
 Route::get('/administracion', function () {
     return view('admin.administracion');
 })->name('administracion');
-Route::get('/postulaciones', function () {
-    return view('investigaciones.postulaciones');
-})->name('postulaciones');
-Route::get('/escritoriopostulaciones', function () {
-    return view('investigaciones.escritoriopostulaciones');
-})->name('escritoriopostulaciones');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
@@ -88,9 +71,62 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
         'AsesoriaController@AceptarAsesoria', ['id' => $id]
     );
 });
+
 Route::resource('moduloasesoria','AsesoriaController');
 Route::resource('moduloinvestigaciones','InvestigacionController');
+
+//-------------postulacion
+
+//route de postulacion
+Route::group(['prefix' => 'postulacion'], function(){
+    Route::resource('postulacion','PostulacionController');
+    //Eliminar
+    Route::get('postulacion/{id}/destroy',[
+        'uses' => 'PostulacionController@destroy',
+        'as' => 'postulacion.destroy'
+    ]);
+    Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
+});
+//////vista de las postulaciones
+Route::get('/postulaciones', function () {
+    return view('postulacion.postulaciones');
+})->name('postulaciones');
+//--vista de lista de postulaciones
+Route::get('/listapostulaciones', function () {//postulacion
+    return view('postulacion.listapostulaciones');
+})->name('listapostulaciones');
+//ver postulacion
 Route::resource('verPostulacion','PostulacionController');
+
+//ruta aceptar postulacion
+Route::get('/aceptarpostulacion/{id}','PostulacionController@AceptarPostulacion', function($id){
+    return redirect()->action(
+        'PostulacionController@AceptarPostulacion', ['id' => $id]
+    );
+});
+//rechachar postulacion
+Route::get('/rechazarpostulacion/{id}','PostulacionController@RechazarPostulacion', function($id){
+    return redirect()->action(
+        'PostulacionController@RechazarPostulacion', ['id' => $id]
+    );
+});
+//Eliminar postulacion rechazada
+Route::resource('modulopost','PostulacionController');
+Route::get('modulopost/{id}/destroy',[
+    'uses' => 'PostulacionController@destroy',
+    'as' => 'modulopost.destroy'
+]);
+//showsPost
+Route::get('/listapostulaciones/{id}','PostulacionController@showPost', function($id){
+    return redirect()->action(
+        'PostulacionController@showPost', ['id' => $id]
+    );
+});
+Route::resource('modulopostulacion','PostulacionController');
+//boton de ver investigacion
+Route::get( '/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
+
+//-----------------------------------------------------------
 
 //cuestionario
 Route::get('/cuestionario', 'CuestionarioController@home')->name('cuestionario.home');
@@ -118,13 +154,6 @@ Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('
 Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestigacion', function($id){
     return redirect()->action(
         'InvestigacionController@AceptarInvestigacion', ['id' => $id]
-    );
-});
-
-//ruta aceptar postulacion
-Route::get('/aceptarpostulacion/{id}','PostulacionController@AceptarPostulacion', function($id){
-    return redirect()->action(
-        'PostulacionController@AceptarPostulacion', ['id' => $id]
     );
 });
 

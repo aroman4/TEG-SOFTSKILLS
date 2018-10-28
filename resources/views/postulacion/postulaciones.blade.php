@@ -45,8 +45,10 @@
                 </div>
                 <div class="col-md-3">
                     <a href="{{action('PostulacionController@AceptarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-success"><i class="fa fa-check"></i>Aceptar</a>
-                    <!-- <a href="" class="btn btn-success"><i class="fa fa-check"></i> Aceptar</a>-->
-                    <a href="" class="btn btn-danger" ><i class="fa fa-times"></i> Rechazar</a>
+                    <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger"><i class="fa fa-times"></i>Rechazar</a>
+                    <br>
+                    <span>El estado es: </span>
+                    <span>{{$postulacion->estado}}</span>
                 </div>
             </div>
             <hr>

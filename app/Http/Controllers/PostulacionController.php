@@ -15,7 +15,7 @@ class PostulacionController extends Controller
     //funcion de descarga de archivos 
     public function descargafuc(){
         $postulacion = DB::table('postulacion')->get();
-        return view('investigaciones.postulaciones',compact('postulaciones'));
+        return view('postulacion.postulaciones',compact('postulaciones'));
     }
     /**
      * Display a listing of the resource.
@@ -64,9 +64,17 @@ class PostulacionController extends Controller
 
     //aceptar postulacion
     public function AceptarPostulacion($id){
+        $postulacion = Postulacion::find($id);
         $postulacion->estado = "aceptada";
         $postulacion->save();
-        return redirect('/escritorioinvestigador')->with('success','Postulación aceptada');
+        return redirect('/postulaciones')->with('success','Postulación Aceptada');
+    }
+    //rechazar postulacion
+    public function RechazarPostulacion($id){
+        $postulacion = Postulacion::find($id);
+        $postulacion->estado = "rechazada";
+        $postulacion->save();
+        return redirect('/postulaciones')->with('success','Postulación Rechazada');
     }
 
     /**
@@ -79,15 +87,14 @@ class PostulacionController extends Controller
     {
         //Show
         $postulacion = Postulacion::find($id);
-        return view('investigaciones.verPostulacion')->with('postulacion', $postulacion);
-    
+        return view('postulacion.verPostulacion')->with('postulacion', $postulacion);
     }
-    public function showPost($id)
+    
+    public function invtg($id)
     {
         //Show
-        $postulacion = Postulacion::find($id);
-        return view('investigaciones.escritoriopostulaciones')->with('postulacion', $postulacion);
-    
+        $postulacion = Investigacion::find($id);
+        return view('postulacion.vistaverinv')->with('postulacion',$postulacion);
     }
     /**
      * Show the form for editing the specified resource.
@@ -129,6 +136,7 @@ class PostulacionController extends Controller
         //eliminar postulacion ya creada.
         $postulacion = Postulacion::find($id);
         $postulacion ->delete();
-        return redirect()->route('postulacion.index');//duda
+        return redirect('/escritoriopostulacion')->with('success','Postulación Rechazada');
+
     }
 }
