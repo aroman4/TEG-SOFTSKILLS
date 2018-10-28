@@ -10,7 +10,7 @@ Route::get('/investigacion', 'FrontController@investigacion')->name('investigaci
 Route::get('/solicitud', 'RequestController@solicitud');
 
 //publicacion
-Route::get('/publicacioninve', 'PublicacionController@index')->name('index');
+Route::get('/publicacioninve', 'PublicacionController@index')->name('publicacioninve');
 
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
@@ -18,7 +18,6 @@ route::group(['prefix' => 'admin'], function(){
     Route::get('/usuarios/borrar/{id}','UsersController@borrar')->name('usuarios.borrar');
     Route::get('/export','UsersController@export')->name('usuarios.export');
 });
-
 
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
@@ -87,7 +86,7 @@ Route::group(['prefix' => 'postulacion'], function(){
     ]);
     Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
 });
-//////vista de las postulaciones
+//---------vista de las postulaciones
 Route::get('/postulaciones', function () {
     return view('postulacion.postulaciones');
 })->name('postulaciones');

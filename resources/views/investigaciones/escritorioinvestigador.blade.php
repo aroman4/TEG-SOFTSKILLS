@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
 <div class="row justify-content-center">
