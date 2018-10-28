@@ -1,20 +1,20 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-<div class="col-md-9 listaQuest">
+<div class="col-md-10 listaQuest">
   <div class="list-group">
-      <div class="list-group-item text-center">
-        <h2 class="">Cuestionario: {{ $cuestionario->titulo }}</h2>
+      <div class="list-group-item text-center top-bar">
+        <h2 class=""><span style="color:darkgray">Cuestionario:</span> {{ $cuestionario->titulo }}</h2>
         <p>
           {{ $cuestionario->descripcion }}
         </p>
       </div>
-      <div class="list-group-item text-center">
+      <div class="list-group-item text-center top-bar">
           {{-- <a href='ver/{{$cuestionario->id}}'>Responder cuestionario</a> | <a href="{{$cuestionario->id}}/editar">Editar nombre y descripción</a> | <a href="{{route('cuestionario.respuestas',$cuestionario->id)}}">Ver respuestas</a> <a href="#doDelete" data-toggle="modal" data-target="#doDelete" style="float:right;">Borrar cuestionario</a> --}}
-          <button onclick="goBack()" class="btn btn-secondary">Regresar</button> | <a href="{{$cuestionario->id}}/editar" class="btn btn-warning">Editar nombre y descripción</a> | <a href="#doDelete" data-toggle="modal" data-target="#doDelete" class="btn btn-danger">Borrar cuestionario</a>
+          <button onclick="goBack()" class="btn btn-secondary">Regresar</button>  <a href="{{$cuestionario->id}}/editar" class="btn btn-warning">Editar titulo y descripción</a>  <a href="#doDelete" data-toggle="modal" data-target="#doDelete" class="btn btn-danger">Borrar cuestionario</a>
       </div>
       <div class="divider" style="margin:20px 0px;"></div>
-      <h2 class="list-group-item text-center">Añadir pregunta</h2>
+      <h2 class="list-group-item text-center top-bar">Añadir pregunta</h2>
       <form method="POST" action="{{ $cuestionario->id }}/preguntas" id="boolean" class="form-group">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">                       
           <div class="list-group-item">
@@ -24,9 +24,9 @@
           <div class="list-group-item">
             <select name="tipo_pregunta" id="tipo_pregunta" class="form-control">
               <option value="" disabled selected>Elija tipo de respuesta</option>
-              <option value="text">Respuesta corta</option>
-              <option value="textarea">Respuesta larga</option>
-              <option value="checkbox">Selección Multiple</option>
+              <option value="text">Respuesta escrita</option>
+              {{-- <option value="textarea">Respuesta larga</option> --}}
+              <option value="checkbox">Selección múltiple</option>
               <option value="radio">Selección única</option>
             </select>
           </div>   
@@ -37,8 +37,8 @@
             <button class="btn btn-primary">Guardar</button>
           </div>
       </form>
-      <h2 class="list-group-item text-center">Preguntas</h2>
-      <ul class="card" data-collapsible="expandable">
+      <h2 class="list-group-item text-center top-bar">Preguntas</h2>
+      <ul class="card" data-collapsible="expandable" style="list-style: none; padding: 0;">
           @forelse ($cuestionario->pregunta as $pregunta)
           <li style="box-shadow:none;">
           <div class="card-header">{{ $pregunta->titulo }} <a href="{{route('pregunta.editar',$pregunta->id)}}" style="float:right;">Editar</a></div>

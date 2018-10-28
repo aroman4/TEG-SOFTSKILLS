@@ -2,38 +2,6 @@
 
 @section('content')
     <div class="col-md-10 escritorioA">
-        {{-- <div class="row">
-            <div class="col-md-6">
-                <h2 class="escritorioH2 text-center">Asesorías Activas:</h2>
-                <ul class="list-group">
-                    @forelse(\App\Asesoria::all() as $ase)
-                        @if(($ase->user_id == Auth::user()->id) && ($ase->estado == "activa"))
-                            <div class="asesoria">
-                                <li class="list-group-item"><a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">{{$ase->titulo}}</a></li>
-                            </div>
-                        @endif            
-                    @empty
-                        <p>No hay asesorías activas</p>
-                        <a class="btn btn-warning">Ver solicitudes</a>
-                        
-                    @endforelse
-                </ul>
-            </div>
-            <div class="col-md-6">                
-                <h2 class="escritorioH2 text-center">Solicitudes creadas (pendientes por aprobación):</h2>
-                <ul class="list-group">             
-                    @forelse(\App\Solicitud::all() as $sol)
-                        @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"  && ($sol->estado=="pendiente"))
-                            <div>
-                                <li class="list-group-item"><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></li>
-                            </div>
-                        @endif
-                    @empty
-                        <p>No hay solicitudes pendientes</p>
-                    @endforelse
-                </ul>
-            </div>
-        </div> --}}
         <div class="row">
             <div class="col-md-12 text-right" style="color:white">
             @if(Auth::user()->sexo == "femenino")

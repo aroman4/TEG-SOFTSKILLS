@@ -1,22 +1,16 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-<div class="col-md-9 listaQuest">
+<div class="col-md-10 listaQuest">
     <div class="list-group">
-        <div class="row">
-            <div class="col-md-3 list-group-item">
+            <div class="list-group-item top-bar">
                 <button onclick="goBack()" class="btn btn-secondary">Regresar</button>
+                <h2 class="float-right"><span style="color:darkgray">Cuestionario:</span> {{$cuestionario->titulo}}</h2>
+            </div>           
+            <div class="list-group-item">
+                {{ $cuestionario->descripcion }}
+                <p>Creado por: {{ $cuestionario->user->nombre ." ". $cuestionario->user->apellido}}</p>
             </div>
-            <div class="col-md-6 list-group-item">
-                <h2 class="text-center">{{$cuestionario->titulo}}</h2>
-            </div>
-            <div class="col-md-3 list-group-item">
-            </div>
-        </div>
-        <div class="list-group-item">
-            {{ $cuestionario->descripcion }}
-            <br/>Creado por: <a href="">{{ $cuestionario->user->nombre ." ". $cuestionario->user->apellido}}</a>
-        </div>
         {!! Form::open(array('action'=>array('RespuestaController@store', $cuestionario->id))) !!}
         <div class="card">
         @forelse ($cuestionario->pregunta as $key=>$pregunta)
