@@ -143,6 +143,10 @@ Route::post('eventonuevo', 'EventController@crear')->middleware('auth')->name('e
 Route::get('/crearevento', function () {
     return view('agenda.crearevento');
 })->name('crearevento');
+Route::get('agenda/{idase}', 'EventController@mostrarEvAsesoria')->middleware('auth')->name('mostrarAgAs');
+Route::get('crearevento/{idase}',  function ($idase) {
+    return view('agenda.creareventoase')->with('idase',$idase);
+})->middleware('auth')->name('creareventoAse');
 
 //reporte
 Route::get('/reporte', function () {

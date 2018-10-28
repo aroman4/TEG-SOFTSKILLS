@@ -20,6 +20,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{action('EventController@crear')}}" class="form-group">
                             
+                                <input type="hidden" name="id_asesoria" value="{{ $idase }}">
                              @csrf
                                 <div class="form-group row">    
                                     <label for="title">Descripción:</label>

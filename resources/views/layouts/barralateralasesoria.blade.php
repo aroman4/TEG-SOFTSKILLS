@@ -1,5 +1,5 @@
 <div class="barraLateralEscritorio">
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush  column">
             <li class="list-group-item">{{Auth::user()->nombre ." ". Auth::user()->apellido}}</li>
             @if(auth()->user()->tipo_usu == "asesor")
                 <li class="list-group-item {{ request()->is('escritorioasesor') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('escritorioasesor')}}">Escritorio</a></li>

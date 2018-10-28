@@ -2,7 +2,7 @@
 @include('inc.mensajes')
 @include('layouts.barralateralasesoria')
 
-    <div class="row filaEscritorio">
+    <div class="row filaEscritorio column">
         @yield('content')
     </div>
 {{-- @include('footer') --}}
