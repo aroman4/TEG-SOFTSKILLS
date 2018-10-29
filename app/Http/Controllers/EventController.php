@@ -14,15 +14,14 @@ class EventController extends Controller
     public function index()
     {
         $events = [];
-        /* $query1 = DB::table('events')->where('user_id',auth()->user()->id)->get(); //busca los eventos creados por el usuario actual
-        $query2 = DB::table(); */
         $data = DB::table('events')->where('user_id',auth()->user()->id)->get(); //busca los eventos creados por el usuario actual
 
         if(auth()->user()->tipo_usu == "cliente"){ //si es un cliente debo mostrar todos los eventos de asesorias donde participa
             $asesorias = DB::table('asesoria')->where('id_cliente',auth()->user()->id)->get()->pluck('id');
             //dd($asesorias);
             foreach($asesorias as $key => $id){
-                $data = DB::table('events')->where('id_asesoria',$id)->get()->union($data);
+                $query = DB::table('events')->where('id_asesoria',$id)->get();
+                $data = $data->merge($query); //combina los eventos propios con los de la asesoria donde participa
             }
         }        
         if($data->count()) {
@@ -54,7 +53,7 @@ class EventController extends Controller
         $evento->user_id = auth()->user()->id;
         $evento->save();
         if($evento->id_asesoria != null){ //es un evento de asesoria
-            return redirect('agendaasesoria')->with('success','Evento creado exitosamente')->with('idase',$evento->id_asesoria);
+            return redirect()->route('mostrarAgAs',$evento->id_asesoria)->with('success','Evento creado exitosamente')->with('idase',$evento->id_asesoria);
         }else{
             return redirect('agenda')->with('success','Evento creado exitosamente');
         }

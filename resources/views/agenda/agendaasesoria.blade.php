@@ -4,7 +4,9 @@
 <div class="col-md-9 listaQuest">
     <div class="list-group">
         <div class="list-group-item top-bar">
-            <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button> 
+            {{-- <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>  --}}
+            <a href="{{route('moduloasesoria.show',['id'=> $idase])}}" class="btn btn-secondary">Regresar</a>
+            
             @if(auth()->user()->tipo_usu == "asesor")
                 <a class="btn btn-success" href="{{route('creareventoAse',$idase)}}">Crear Evento Asesoría</a> 
             @endif
