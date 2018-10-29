@@ -19,7 +19,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">                       
           <div class="list-group-item">
             <label for="titulo">Pregunta</label>
-            <input name="titulo" id="titulo" type="text" class="form-control">            
+            <input name="titulo" id="titulo" type="text" class="form-control" placeholder="Formule la pregunta">            
           </div>  
           <div class="list-group-item">
             <select name="tipo_pregunta" id="tipo_pregunta" class="form-control">

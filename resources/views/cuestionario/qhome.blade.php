@@ -14,13 +14,15 @@
                     {{-- <a href="{{route('cuestionario.nuevo') }}">Crear</a> --}}
                 </div>
             </div>
-            @forelse ($cuestionarios as $cuestionario)
-                @if(auth()->user()->id == $cuestionario->user_id)
-                    <div class="row">
-                        <div class="col-md-12 list-group-item" style="background:black; color: darkgray">
-                            <small style="font-style: italic; float:right">Para crear un nuevo cuestionario, debe hacerlo desde una asesoría activa   <a href="{{route('asesescritorio')}}" class="btn btn-dark" >Ir a asesorías</a></small>                            
-                        </div>
+            @if(auth()->user()->tipo_usu == "asesor")
+                <div class="row">
+                    <div class="col-md-12 list-group-item" style="background:black; color: darkgray">
+                        <small style="font-style: italic; float:right">Para crear un nuevo cuestionario, debe hacerlo desde una asesoría activa   <a href="{{route('asesescritorio')}}" class="btn btn-dark" >Ir a asesorías</a></small>                            
                     </div>
+                </div>
+            @endif
+            @forelse ($cuestionarios as $cuestionario)
+                @if(auth()->user()->id == $cuestionario->user_id)                    
                     <div class="row" style="min-height: 50vh">
                         <div class="col-md-6 list-group-item contentAlv">
                             <h2>Cuestionarios respondidos:</h2>
