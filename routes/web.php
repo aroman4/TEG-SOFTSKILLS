@@ -154,11 +154,9 @@ Route::get('/reporte', function () {
 })->name('reportedetalle');
 //pdf del reporte
 Route::post('reportePdf','CuestionarioController@reportePdf');
-/* Route::get('/reportepdf/{cuestionario}/{asesoria}', function ($cuestionario,$asesoria) {
-    //$pdf = PDF::loadview('reportes.reportedetalle');
-    $cuestionario = \App\Cuestionario::find($cuestionario);
-    $cuestionario->load('user.pregunta.respuesta');
-    $asesoria = \App\Asesoria::find($asesoria);
-    $pdf = PDF::loadView('reportes.reportepdf', compact('cuestionario','asesoria'));
-    return $pdf->stream();
-})->name('reportepdf'); */
+
+//banco clientes
+Route::get('bancoclientes',function(){
+    return view('asesoria.bancoclientes');
+})->middleware('auth')->name('bancoclientes');
+Route::get('/exportclientes','UsersController@exportBanco')->name('exportclientes');

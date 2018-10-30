@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-4">
                 <div class="elemEsc">
-                    <a class="escritorioElem" id="imgCont" href="#"></a>
+                    <a class="escritorioElem" id="imgCont" href="{{route('bancoclientes')}}"></a>
                     <h2 class="texElem">Banco de Clientes</h2>
                 </div>
             </div>
