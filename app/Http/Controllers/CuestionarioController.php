@@ -9,6 +9,8 @@ use App\Asesoria;
 use Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+/* use Barryvdh\DomPDF\Facade as PDF; */
+use Dompdf\Dompdf;
 
 class CuestionarioController extends Controller
 {
@@ -89,7 +91,18 @@ class CuestionarioController extends Controller
     public function ver_respuestas_cuestionario(Cuestionario $cuestionario) 
     {
         $cuestionario->load('user.pregunta.respuesta');
-        return view('respuesta.ver', compact('cuestionario'));
+        $asesoria = Asesoria::find($cuestionario->id_asesoria);
+        //return view('respuesta.ver', compact('cuestionario'));
+        return view('reportes.reportedetalle', compact('cuestionario','asesoria'));
+    }
+    public function reportePdf(Request $request){
+        //dd($request['hidden_html']);
+        $file_name = 'Reporte.pdf';
+        $html = $request['hidden_html'];
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->render();
+        return $pdf->stream($file_name, array("Attachment" => false));
     }
     public function delete_cuestionario($id)
     {

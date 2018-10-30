@@ -152,3 +152,13 @@ Route::get('crearevento/{idase}',  function ($idase) {
 Route::get('/reporte', function () {
     return view('reportes.reportedetalle');
 })->name('reportedetalle');
+//pdf del reporte
+Route::post('reportePdf','CuestionarioController@reportePdf');
+/* Route::get('/reportepdf/{cuestionario}/{asesoria}', function ($cuestionario,$asesoria) {
+    //$pdf = PDF::loadview('reportes.reportedetalle');
+    $cuestionario = \App\Cuestionario::find($cuestionario);
+    $cuestionario->load('user.pregunta.respuesta');
+    $asesoria = \App\Asesoria::find($asesoria);
+    $pdf = PDF::loadView('reportes.reportepdf', compact('cuestionario','asesoria'));
+    return $pdf->stream();
+})->name('reportepdf'); */
