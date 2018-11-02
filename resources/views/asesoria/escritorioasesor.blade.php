@@ -42,5 +42,5 @@
         <div class="row"><a class="escritorioElem imgCal" href="{{route('solicitud.index')}}" class="ElementoEsc">Calendario</a></div>
         <div class="row"><a class="escritorioElem imgRep" href="{{route('cuestionario.home')}}" class="ElementoEsc">Reportes</a></div>
     </div>
-    </div>
+
 @endsection

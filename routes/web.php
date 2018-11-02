@@ -86,6 +86,10 @@ Route::group(['prefix' => 'postulacion'], function(){
     ]);
     Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
 });
+//---------vista de investigaciones
+Route::get('/proyectogrupal', function () {
+    return view('invproyecto.proyectogrupal');
+})->name('proyectogrupal');
 //---------vista de las postulaciones
 Route::get('/postulaciones', function () {
     return view('postulacion.postulaciones');
@@ -156,6 +160,15 @@ Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestig
     );
 });
 
+//---------------------Encuesta de Ivestigadores---------------------------------
+//route de encuesta
+Route::get('encuesta',[
+    'uses' => 'EncuestaController@encuesta',
+    'as' =>'encuesta.encuesta'
+]);
+Route::post('/encuesta', 'EncuestaController@store')->name('encuesta');
+
+//-------------------------------------------------------------------------------
 //ruta de prueba BORRAR LUEGO
 Route::get('/prueba', 'FrontController@prueba');
 Route::get('/aprender', 'FrontController@aprender');
