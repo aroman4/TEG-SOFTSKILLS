@@ -115,6 +115,12 @@ Route::post('/cuestionario/{cuestionario}/preguntas', 'PreguntaController@store'
 Route::get('/pregunta/{pregunta}/editar', 'preguntaController@edit')->name('pregunta.editar');
 Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('pregunta.update');
 
+//Rubricas
+Route::get('/rubrica/nuevo/{id}','RubricaController@nuevaRubrica')->name('rubrica.nuevo');
+Route::post('/rubrica/crear', 'RubricaController@crear')->name('rubrica.crear');
+Route::get('/rubrica/{cuestionario}', 'RubricaController@detalle')->name('rubrica.detalle');
+Route::post('/rubrica/formar/{id}', 'RubricaController@formar')->name('rubrica.formar');
+
 //admin
 //ruta aceptar investigacion
 Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestigacion', function($id){

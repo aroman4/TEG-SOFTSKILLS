@@ -35,7 +35,7 @@
             <div class="col-md-4">
                 <div class="elemEsc">
                     <a class="escritorioElem" id="imgInst" href="{{route('cuestionario.home')}}"></a>
-                    <h2 class="texElem">Cuestionarios</h2>
+                    <h2 class="texElem">Cuestionarios / Rúbricas</h2>
                 </div>
             </div>
             <div class="col-md-4">

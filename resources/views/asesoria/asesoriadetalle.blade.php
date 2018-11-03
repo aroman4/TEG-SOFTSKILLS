@@ -22,9 +22,10 @@
             @endif
             <p>Descripción: {{$asesoria->mensaje}}</p>        
             <div class="text-center">  
-                <h1>Cuestionarios Activos</h1>      
+                <h1>Cuestionarios y Rúbricas</h1>      
                 @if(Auth::user()->tipo_usu == "asesor")
                     <a href="{{route('cuestionario.nuevoq',$asesoria->id)}}" class="btn btn-primary">Crear nuevo custionario</a>
+                    <a href="{{route('rubrica.nuevo',$asesoria->id)}}" class="btn btn-primary">Crear nueva rúbrica</a>
                 @endif
                 <br><br>
                 <div class="list-group">

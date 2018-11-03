@@ -13,13 +13,13 @@ class CreateReporteTable extends Migration
      */
     public function up()
     {
-        Schema::create('reporte', function (Blueprint $table) {
+        /* Schema::create('reporte', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_asesoria');
             $table->string('nombre');
             $table->string('');
             $table->timestamps();
-        });
+        }); */
     }
 
     /**

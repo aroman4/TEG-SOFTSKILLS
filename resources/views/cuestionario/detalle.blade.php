@@ -1,3 +1,4 @@
+
 @extends('layouts.plantillaQ')
 
 @section('content')
