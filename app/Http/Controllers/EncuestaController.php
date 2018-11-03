@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Encuesta;
 
@@ -28,9 +27,10 @@ class EncuestaController extends Controller
     }
  //pagina encuesta
     public function encuesta(){
-    
         return view('encuesta.EncuestaInvInicial');
-
+    }
+    public function encuestados(){
+        return view('encuesta.EncuestaInvFinal');
     }
     /**
      * Store a newly created resource in storage.
@@ -39,6 +39,14 @@ class EncuestaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {  
+        //dd($request);
+        $encuesta = new Encuesta($request->all());
+        $encuesta->id_usuario = auth()->user()->id;
+        $encuesta->save();
+        return redirect('/escritorioinvestigador');
+    }
+    public function storeencuestados(Request $request)
     {  
         //dd($request);
         $encuesta = new Encuesta($request->all());

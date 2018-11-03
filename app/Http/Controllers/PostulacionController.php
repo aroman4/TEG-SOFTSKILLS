@@ -25,6 +25,8 @@ class PostulacionController extends Controller
     public function index()
     {
         //
+        return view('postulacion.SolicPostulacion')->with('inv', $idinv);
+
     }
     /**
      * Show the form for creating a new resource.

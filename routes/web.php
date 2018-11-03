@@ -1,8 +1,8 @@
 <?php
+
 /**********************************************************************/
 /* Route del proyecto TEG realizado por Alvaro Roman y Felicia Jardim */
 /**********************************************************************/
-
 Route::get('/', 'FrontController@index')->name('index');
 Route::get('/asesorias', 'FrontController@asesorias')->name('asesorias');
 Route::get('/solicitud/{id}', 'SolicitudController@mostrar');
@@ -63,6 +63,9 @@ Route::get('/escritoriocomite', function () {
 Route::get('/administracion', function () {
     return view('admin.administracion');
 })->name('administracion');
+Route::get('/nombreinvpostulacion', function () {
+    return view('postulacion.nombreinvpostulacion');
+})->name('nombreinvpostulacion');
 
 //ruta aceptar asesoria
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
@@ -90,9 +93,10 @@ Route::group(['prefix' => 'postulacion'], function(){
 Route::get('/proyectogrupal', function () {
     return view('invproyecto.proyectogrupal');
 })->name('proyectogrupal');
-//---------vista de las postulaciones
-Route::get('/postulaciones', function () {
-    return view('postulacion.postulaciones');
+//---------vista de las postulaciones por el boton
+Route::get('/postulaciones/{id}', function ($id) {
+    $inv = \ App\ Investigacion::find($id);
+    return view('postulacion.postulaciones')->with('inv',$inv);
 })->name('postulaciones');
 //--vista de lista de postulaciones
 Route::get('/listapostulaciones', function () {//postulacion
@@ -100,7 +104,6 @@ Route::get('/listapostulaciones', function () {//postulacion
 })->name('listapostulaciones');
 //ver postulacion
 Route::resource('verPostulacion','PostulacionController');
-
 //ruta aceptar postulacion
 Route::get('/aceptarpostulacion/{id}','PostulacionController@AceptarPostulacion', function($id){
     return redirect()->action(
@@ -161,12 +164,20 @@ Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestig
 });
 
 //---------------------Encuesta de Ivestigadores---------------------------------
-//route de encuesta
+//route de encuesta 1
 Route::get('encuesta',[
     'uses' => 'EncuestaController@encuesta',
     'as' =>'encuesta.encuesta'
 ]);
 Route::post('/encuesta', 'EncuestaController@store')->name('encuesta');
+
+//route de encuesta 2
+Route::get('encuestados',[
+    'uses' => 'EncuestaController@encuestados',
+    'as' =>'encuesta.encuestados'
+]);
+Route::post('/encuestados', 'EncuestaController@storeencuestados')->name('encuestados');
+
 
 //-------------------------------------------------------------------------------
 //ruta de prueba BORRAR LUEGO
