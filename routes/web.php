@@ -93,6 +93,8 @@ Route::group(['prefix' => 'postulacion'], function(){
 Route::get('/proyectogrupal', function () {
     return view('invproyecto.proyectogrupal');
 })->name('proyectogrupal');
+
+
 //---------vista de las postulaciones por el boton
 Route::get('/postulaciones/{id}', function ($id) {
     $inv = \ App\ Investigacion::find($id);

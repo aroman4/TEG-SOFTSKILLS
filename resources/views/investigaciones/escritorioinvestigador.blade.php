@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    {{--<div class="col-md-8">
         <div class="card">
             <div class="card-header">
                 @if(Auth::user()->sexo == "Femenino")
@@ -12,7 +12,7 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div>--}}
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">

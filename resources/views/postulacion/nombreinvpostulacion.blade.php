@@ -21,8 +21,8 @@
             </div>
             <hr>
     @forelse(\App\Investigacion::all() as $inv)
+        @if($inv->user_id == Auth::user()->id)
         <span>{{$inv->titulo}}</span>
-
         @forelse(\App\Postulacion::all() as $postulacion)
             @if($postulacion->id_post == $inv->id)
                 <div class="row">            
@@ -53,6 +53,7 @@
                 <hr>
             @endif
         @endforeach 
+        @endif
     @endforeach 
 </div>
 @endsection
