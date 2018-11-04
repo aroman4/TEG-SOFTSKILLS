@@ -7,13 +7,13 @@
         <div class="row">
             <div class="col-md-12 list-group-item text-center top-bar">
                 <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
-                <h2 style="float:right"><span style="color:darkgray">Crear/Editar rúbrica:</span> {{$rubrica->titulo}}</h2>
+                <h2 style="float:right"><span style="color:darkgray">Responder rúbrica:</span> {{$rubrica->titulo}}</h2>
             </div>     
         </div>
         <div class="row">
             <div class="col-md-12 list-group-item">   
-                <h4>Ingrese los datos de la rúbrica y presione guardar</h4>
-                <form method="POST" action="{{route('rubrica.formar',$rubrica->id)}}" id="crearR" class="form-group">
+                <h4>Seleccione una opción por cada fila y presione Responder</h4>
+                <form method="POST" action="{{route('rubrica.guardarResp',$rubrica->id)}}" id="crearR" class="form-group">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     
                     <table class="table table-bordered">
@@ -22,9 +22,7 @@
                             <tr>
                                 <th scope="col"></th>
                                 @for($j=0; $j < $rubrica->columnas; $j++)
-                                    <th scope="col">                                        
-                                        <textarea name="{{"evaluacion".$j}}" id="{{"evaluacion".$j}}" class="form-control" placeholder="{{"Valoración ".$j}}"></textarea>
-                                    </th>
+                                    <th scope="col">{!!$rubrica->{'evaluacion'.$j}!!}</th>
                                 @endfor
                                 <th scope="col">Valor %</th>
                             </tr>
@@ -34,16 +32,17 @@
                             @for($i=0; $i < $rubrica->filas; $i++)
                                 <tr>
                                     <th scope="row">{{-- indicador/criterio --}}
-                                        <textarea name="{{"criterio".$i}}" id="{{"criterio".$i}}" class="form-control" placeholder="{{"Indicador/criterio ".$i}}"></textarea>
+                                        {!! $rubrica->{"criterio".$i} !!}                                        
                                     </th>
                                     @for($j=0; $j < $rubrica->columnas; $j++)
                                         <td> {{-- celdas internas --}}
-                                            <textarea name="{{"celda".$i.$j}}" id="{{"celda".$i.$j}}" class="form-control" placeholder="{{"Descripción "}}"></textarea>                                                                        
+                                            {!! $rubrica->{"celda".$i.$j} !!}
+                                            <input type="radio" name="{{'respuesta'.$i}}" value="{{$j}}">
                                         </td>
                                     @endfor
                                     {{-- valor /porcentaje --}}
                                     <td>
-                                        <textarea name="{{"porcentaje".$i}}" id="{{"porcentaje".$i}}" class="form-control" placeholder="{{"%"}}"></textarea>                                        
+                                        {!! $rubrica->{"porcentaje".$i} !!}                                        
                                     </td>
                                 </tr>
                             @endfor
@@ -52,7 +51,7 @@
                     </table>
                     <div class="form-group">
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary">Guardar</button>
+                            <button class="btn btn-primary">Responder</button>
                         </div>
                     </div>
                 </form>

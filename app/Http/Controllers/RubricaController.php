@@ -38,4 +38,19 @@ class RubricaController extends Controller
         $rubrica->save(); //guardo en la bd
         return redirect()->route('moduloasesoria.show',$rubrica->id_asesoria)->with('success','Rúbrica creada exitosamente');
     }
+    public function responderRubrica($id){
+        $rubrica = Rubrica::find($id);
+        return view('rubricas.responder')->with('rubrica',$rubrica);
+    }
+    public function respuestasRubrica($id){
+        
+    }
+    public function guardarRespuesta(Request $request, $id){
+        //tomo los valores de la respuesta de la rubrica
+        $rubrica = Rubrica::find($id); //busco la rubrica en la tabla
+        $rubrica->fill($request->all()); //asigno a rubrica las respuestas
+        $rubrica->respondido = true; //coloco la rubrica como respondida
+        $rubrica->save(); //guardo en la bd
+        return redirect()->route('moduloasesoria.show',$rubrica->id_asesoria)->with('success','Rúbrica respondida exitosamente');
+    }
 }

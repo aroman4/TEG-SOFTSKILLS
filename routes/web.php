@@ -118,8 +118,11 @@ Route::patch('/pregunta/{pregunta}/update', 'preguntaController@update')->name('
 //Rubricas
 Route::get('/rubrica/nuevo/{id}','RubricaController@nuevaRubrica')->name('rubrica.nuevo');
 Route::post('/rubrica/crear', 'RubricaController@crear')->name('rubrica.crear');
-Route::get('/rubrica/{cuestionario}', 'RubricaController@detalle')->name('rubrica.detalle');
+Route::get('/rubrica/{rubrica}', 'RubricaController@detalle')->name('rubrica.detalle');
 Route::post('/rubrica/formar/{id}', 'RubricaController@formar')->name('rubrica.formar');
+Route::get('/rubrica/responder/{rubrica}', 'RubricaController@responderRubrica')->name('rubrica.responder');
+Route::get('/rubrica/respuesta/{rubrica}', 'RubricaController@respuestasRubrica')->name('rubrica.respuesta');
+Route::post('/rubrica/guardarrespuesta{id}','RubricaController@guardarRespuesta')->name('rubrica.guardarResp');
 
 //admin
 //ruta aceptar investigacion

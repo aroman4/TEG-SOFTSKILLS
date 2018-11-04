@@ -29,6 +29,7 @@
                 @endif
                 <br><br>
                 <div class="list-group">
+                    {{-- Cuestionarios --}}
                     @forelse (\App\Cuestionario::all() as $cuestionario)
                         @if($cuestionario->id_asesoria == $asesoria->id)
                             <li class="list-group-item listaAsesSolic">
@@ -36,8 +37,8 @@
                                 
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id)}}" style="float:left">{{$cuestionario->titulo}}</a>
-                                    <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" class="float-right"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario" class="float-right"><i class="fab fa-wpforms"></i></a>
+                                    <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" ><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fab fa-wpforms"></i></a>                                    
                                     @if($cuestionario->respondido == false)
                                         <span>No respondido</span>
                                     @else
@@ -45,8 +46,36 @@
                                     @endif
                                 @elseif(Auth::user()->tipo_usu == "cliente" && $cuestionario->respondido == false)
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="">{{$cuestionario->titulo}}</a>    
+                                    <span style="color:black">Cuestionario</span>
                                 @endif
                             </div>
+                            
+                            </li>
+                        @endif
+                    @empty
+                        <p class="flow-text center-align">No hay cuestionarios creados</p>
+                    @endforelse
+                    {{-- Rúbricas --}}
+                    @forelse (\App\Rubrica::all() as $rub)
+                        @if($rub->id_asesoria == $asesoria->id)
+                            <li class="list-group-item listaAsesSolic">
+                            <div>
+                                
+                                @if(Auth::user()->tipo_usu == "asesor")
+                                    <a href="{{route('rubrica.detalle', $rub->id)}}" style="float:left">{{$rub->titulo}}</a>
+                                    <a href="{{route('rubrica.detalle', $rub->id) }}" title="Editar rúbrica"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{route('rubrica.respuesta', $rub->id) }}" title="Ver respuesta de rúbrica"><i class="fab fa-wpforms"></i></a>                                    
+                                    @if($rub->respondido == false)
+                                        <span>No respondido</span>
+                                    @else
+                                        <span>Respondido</span>
+                                    @endif
+                                @elseif(Auth::user()->tipo_usu == "cliente" && $rub->respondido == false)
+                                    <a href="{{route('rubrica.responder', $rub->id) }}" title="Responder rúbrica" class="">{{$rub->titulo}}</a>    
+                                    <span style="color:black">Rúbrica</span>
+                                @endif
+                            </div>
+                            
                             </li>
                         @endif
                     @empty
