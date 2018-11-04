@@ -26,7 +26,7 @@
                             @endif
                         @endforeach
                     @else
-                        <p><b>No hay Solicitudes Creada</b>s</p>
+                        <p><b>No hay Solicitudes Creadas</b></p>
                     @endif
             </div>
         </div>

@@ -7,6 +7,6 @@
     <small>Creada el {{$postulacion->created_at}}</small>
 
     <br><br>
-    <a href="{{route('nombreinvpostulacion')}}" class="btn btn-secondary">Regresar</a>
+    <a href="{{route('listapostulaciones')}}" class="btn btn-secondary">Regresar</a>
     </div>
 @endsection

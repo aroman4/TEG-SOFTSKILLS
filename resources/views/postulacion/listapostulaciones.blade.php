@@ -20,12 +20,12 @@
                 <p><b>Postulaciones Creadas (Pendientes por Aprobación):</b></p>
                     @if(count(\App\Postulacion::all())>0)
                         @foreach(\App\Postulacion::all() as $post)
-                            @if($post->estado == "pendiente")
+                            @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente"))
                                 <div class="postulacion">
                                     <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                    <a href="{{route('verPostulacion.show',['id'=> $post->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
+                                    <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
                                 </div>
-                             @endif
+                            @endif
                         @endforeach
                     @else
                         <p><b>No hay Postulacion creadas Pendientes por aprobar</b></p>
@@ -39,11 +39,11 @@
                 <p><b>Postulaciones Aceptadas - Activas:</b></p>
                     @if(count(\App\Postulacion::all())>0)
                         @foreach(\App\Postulacion::all() as $post)
-                            @if($post->estado == "aceptada")
+                            @if(($post->id_invest == Auth::user()->id) && ($post->estado=="aceptada"))
                                 <div class="postulacion">
                                     <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                    <a href="{{route('verPostulacion.show',['id'=> $post->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
-                                   
+                                    <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
+                                    
                                     <a href="{{route('modpost',['id'=> $post->id_post])}}" class="btn btn-primary">Ver Investigación</a></h3>
                                 </div>
                             @endif
@@ -60,7 +60,7 @@
                     <p><b>Postulaciones Rechazadas:</b></p>
                         @if(count(\App\Postulacion::all())>0)
                             @foreach(\App\Postulacion::all() as $post)
-                                @if($post->estado == "rechazada")
+                                @if(($post->id_invest == Auth::user()->id) && ($post->estado=="rechazada"))
                                     <div class="postulacion">
                                         <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
                                         <a href="{{route('modulopost.destroy', $post->id)}}" class="btn btn-danger" > <i class="fa fa-times"></i> Eliminar</a>
@@ -69,7 +69,7 @@
                             @endforeach
                         @else
                             <p><b>No hay postulaciones Rechazadas</b></p>
-                         @endif
+                        @endif
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ class PostulacionController extends Controller
     //funcion de descarga de archivos 
     public function descargafuc(){
         $postulacion = DB::table('postulacion')->get();
-        return view('postulacion.postulaciones',compact('postulaciones'));
+        return view('postulacion.nombreinvpostulacion',compact('nombreinvpostulacion'));
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +26,6 @@ class PostulacionController extends Controller
     {
         //
         return view('postulacion.SolicPostulacion')->with('inv', $idinv);
-
     }
     /**
      * Show the form for creating a new resource.
@@ -61,7 +60,6 @@ class PostulacionController extends Controller
         $postulacion->id_invest = auth()->user()->id;    
         $postulacion->save();
         return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
-
     }
 
     //aceptar postulacion
@@ -69,14 +67,14 @@ class PostulacionController extends Controller
         $postulacion = Postulacion::find($id);
         $postulacion->estado = "aceptada";
         $postulacion->save();
-        return redirect('/postulaciones')->with('success','Postulación Aceptada');
+        return redirect('/nombreinvpostulacion')->with('success','Postulación Aceptada');
     }
     //rechazar postulacion
     public function RechazarPostulacion($id){
         $postulacion = Postulacion::find($id);
         $postulacion->estado = "rechazada";
         $postulacion->save();
-        return redirect('/postulaciones')->with('success','Postulación Rechazada');
+        return redirect('/nombreinvpostulacion')->with('success','Postulación Rechazada');
     }
 
     /**
@@ -91,12 +89,18 @@ class PostulacionController extends Controller
         $postulacion = Postulacion::find($id);
         return view('postulacion.verPostulacion')->with('postulacion', $postulacion);
     }
+    public function showverpost($id)
+    {
+        //Show
+        $postulacion = Postulacion::find($id);
+        return view('postulacion.verSolPostulaciones')->with('postulacion', $postulacion);
+    }
     
     public function invtg($id)
     {
         //Show
         $postulacion = Investigacion::find($id);
-        return view('postulacion.vistaverinv')->with('postulacion',$postulacion);
+        return view('postulacion.vistaverinv')->with('investigaciones',$postulacion);
     }
     /**
      * Show the form for editing the specified resource.

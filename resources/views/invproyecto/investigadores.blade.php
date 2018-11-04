@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row text-center">
-        <div class="col-md-8">
+    <div class="container">
                 <br><br>  
         <h2 style='margin-right:20px'>Investigaciones con sus investigadores</h2>
         <br>
@@ -48,9 +48,9 @@
       
     <div class="col-md-3"> 
             <br>
-        <a href="#" class="btn btn-warning" style='width:180px; height:130px'><i class="fa fa-book fa-8x"></i></a>
+        <a href="#" class="btn btn-warning" style='width:200px; height:200px'><i class="fa fa-check" style='width:200px; height:200px'></i></a>
             <br><br>
-        <a href="#" class="btn btn-success" style='width:180px; height:130px'><i class="fa fa-newspaper fa-8x"></i></a>
+        <a href="#" class="btn btn-success" style='width:200px; height:200px'><i class="fa fa-check" style='width:200px; height:200px'></i></a>
     </div>
 </div>
 @endsection

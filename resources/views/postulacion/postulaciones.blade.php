@@ -9,22 +9,21 @@
     <h1 class="text-center">Lista de Postulado </h1>
     <hr>
     <br><br>
-            <div class="row">   
-                <div class="col-md-3">
-                    <h3>Nombre del Investigador</h3>
-                </div>
-                <div class="col-md-3">
-                    <h3>Curriculum</h3>
-                </div>
-                <div class="col-md-3">
-                    <h3>Ver Postulación</h3>
-                </div>
-                <div class="col-md-3">
-                    <h3></h3>
-                </div>
-            </div>
-            <hr>
-     
+    <div class="row">   
+        <div class="col-md-3">
+            <h3>Nombre del Investigador</h3>
+        </div>
+        <div class="col-md-3">
+            <h3>Curriculum</h3>
+        </div>
+        <div class="col-md-3">
+            <h3>Ver Postulación</h3>
+        </div>
+        <div class="col-md-3">
+            <h3></h3>
+        </div>
+    </div>
+    <hr>   
     @forelse(\App\Postulacion::all() as $postulacion)
         @if($postulacion->id_post == $inv->id)
             <div class="row">            

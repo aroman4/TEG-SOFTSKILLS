@@ -11,14 +11,12 @@ Route::get('/solicitud', 'RequestController@solicitud');
 
 //publicacion
 Route::get('/publicacioninve', 'PublicacionController@index')->name('publicacioninve');
-
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
     Route::resource('usuarios','UsersController');
     Route::get('/usuarios/borrar/{id}','UsersController@borrar')->name('usuarios.borrar');
     Route::get('/export','UsersController@export')->name('usuarios.export');
 });
-
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController');
@@ -31,7 +29,6 @@ Route::group(['prefix' => 'solic'], function(){
     Route::get('solicasesoria', 'RequestController@SolicAsesoria')->name('solicasesoria');
     Route::get('x', 'RequestController@prueba'); 
 });
-
 Route::resource('moduloinvestigacion','InvestigacionController');
 
 //Editar solicitud
@@ -54,6 +51,9 @@ Route::get('/escritoriocliente', function () {
 Route::get('/escritorioasesor', function () {
     return view('asesoria.escritorioasesor');
 })->name('escritorioasesor');
+Route::get('/escritorioinv', function () {
+    return view('investigaciones.escritorioinv');
+})->name('escritorioinv');
 Route::get('/escritorioinvestigador', function () {
     return view('investigaciones.escritorioinvestigador');
 })->name('escritorioinvestigador');
@@ -76,8 +76,9 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
 
 Route::resource('moduloasesoria','AsesoriaController');
 Route::resource('moduloinvestigaciones','InvestigacionController');
-
+//''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 //-------------postulacion
+//''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 //route de postulacion
 Route::group(['prefix' => 'postulacion'], function(){
@@ -89,11 +90,14 @@ Route::group(['prefix' => 'postulacion'], function(){
     ]);
     Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
 });
-//---------vista de investigaciones
+//---------vista de investigacion gru
 Route::get('/proyectogrupal', function () {
     return view('invproyecto.proyectogrupal');
 })->name('proyectogrupal');
-
+//---------vista de investigaciones
+Route::get('/investigacionprincipal', function () {
+    return view('invproyecto.investigacionprincipal');
+})->name('investigacionprincipal');
 
 //---------vista de las postulaciones por el boton
 Route::get('/postulaciones/{id}', function ($id) {
@@ -104,8 +108,6 @@ Route::get('/postulaciones/{id}', function ($id) {
 Route::get('/listapostulaciones', function () {//postulacion
     return view('postulacion.listapostulaciones');
 })->name('listapostulaciones');
-//ver postulacion
-Route::resource('verPostulacion','PostulacionController');
 //ruta aceptar postulacion
 Route::get('/aceptarpostulacion/{id}','PostulacionController@AceptarPostulacion', function($id){
     return redirect()->action(
@@ -118,6 +120,7 @@ Route::get('/rechazarpostulacion/{id}','PostulacionController@RechazarPostulacio
         'PostulacionController@RechazarPostulacion', ['id' => $id]
     );
 });
+
 //Eliminar postulacion rechazada
 Route::resource('modulopost','PostulacionController');
 Route::get('modulopost/{id}/destroy',[
@@ -131,8 +134,12 @@ Route::get('/listapostulaciones/{id}','PostulacionController@showPost', function
     );
 });
 Route::resource('modulopostulacion','PostulacionController');
+//ver postulacion
+Route::resource('verPostulacion','PostulacionController');
+//ver postulacion de solicitud de postulacion
+Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->name('verSolPostulaciones');;
 //boton de ver investigacion
-Route::get( '/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
+Route::get('/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
 
 //-----------------------------------------------------------
 
