@@ -24,6 +24,7 @@
                         <div class="form-group row">
                             <label for="filas">Ingrese la cantidad de filas</label>                  
                             <select name="filas" form="crearR" class="form-control">
+                                <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>

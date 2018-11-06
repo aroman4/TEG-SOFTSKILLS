@@ -32,7 +32,7 @@
                                             <div>
                                                 {{ link_to_route('cuestionario.detalle', $cuestionario->titulo, ['id'=>$cuestionario->id])}}
                                                 <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" class="secondary-content"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario" class="secondary-content"><i class="fab fa-wpforms"></i></a>
+                                                <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario" class="secondary-content"><i class="fas fa-chart-pie"></i></a>
                                             </div>
                                             @if($cuestionario->respondido == false)
                                                 <span style="color:black">No respondido</span>
@@ -69,7 +69,9 @@
                         </div>
                     @endif
                 @empty
+                <div class="col-md-6 list-group-item contentAlv">
                     <p class="flow-text center-align">No hay cuestionarios creados</p>
+                </div>
                 @endforelse       
                 {{-- rubricas --}}
                 @forelse (\App\Rubrica::all() as $rubrica)
@@ -81,7 +83,8 @@
                                     <div>
                                         {{ link_to_route('rubrica.detalle', $rubrica->titulo, ['id'=>$rubrica->id])}}
                                         <a href="{{route('rubrica.detalle', $rubrica->id) }}" title="Editar rubrica" class="secondary-content"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="{{route('rubrica.respuesta', $rubrica->id) }}" title="Ver respuestas del rubrica" class="secondary-content"><i class="fab fa-wpforms"></i></a>
+                                        <a href="{{route('rubrica.respuesta', $rubrica->id) }}" title="Ver respuestas de la rubrica" class="secondary-content"><i class="fas fa-chart-pie"></i></a>
+                                        <a href="{{route('rubrica.responder', $rubrica->id) }}" title="Responder rúbrica" class=""><i class="fab fa-wpforms"></i></a>    
                                     </div>
                                     @if($rubrica->respondido == false)
                                         <span style="color:black">No respondido</span>
@@ -91,7 +94,7 @@
                                 </li>
                             </ul>
                         </div>                
-                    @elseif(auth()->user()->id == $rubrica->cliente_id && $rubrica->respondido == false)
+                    @elseif(auth()->user()->id == $rubrica->cliente_id && $rubrica->respondidoc == false)
                         <div class="col-md-12" style="padding:0">    
                             <li class="list-group-item listaAsesSolic">
                                 <a href="{{route('rubrica.responder', $rubrica->id) }}" title="Responder rubrica" class="secondary-content">{{$rubrica->titulo}}</a>  
@@ -99,7 +102,9 @@
                         </div>
                     @endif
                 @empty
+                <div class="col-md-6 list-group-item contentAlv1">
                     <p class="flow-text center-align">No hay rúbricas creadas</p>
+                </div>
                 @endforelse      
             </div>
         </ul>

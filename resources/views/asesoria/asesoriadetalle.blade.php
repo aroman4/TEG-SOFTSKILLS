@@ -24,8 +24,8 @@
             <div class="text-center">  
                 <h1>Cuestionarios y Rúbricas</h1>      
                 @if(Auth::user()->tipo_usu == "asesor")
-                    <a href="{{route('cuestionario.nuevoq',$asesoria->id)}}" class="btn btn-primary">Crear nuevo custionario</a>
-                    <a href="{{route('rubrica.nuevo',$asesoria->id)}}" class="btn btn-primary">Crear nueva rúbrica</a>
+                    <a href="{{route('cuestionario.nuevoq',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Cuestionario</a>
+                    <a href="{{route('rubrica.nuevo',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Rúbrica</a>
                 @endif
                 <br><br>
                 <div class="list-group">
@@ -38,11 +38,11 @@
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id)}}" style="float:left">{{$cuestionario->titulo}}</a>
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" ><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fab fa-wpforms"></i></a>                                    
+                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fas fa-chart-pie"></a>                                    
                                     @if($cuestionario->respondido == false)
-                                        <span>No respondido</span>
+                                        <span style="color:black">No respondido</span>
                                     @else
-                                        <span>Respondido</span>
+                                        <span style="color:black">Respondido</span>
                                     @endif
                                 @elseif(Auth::user()->tipo_usu == "cliente" && $cuestionario->respondido == false)
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="">{{$cuestionario->titulo}}</a>    
@@ -64,13 +64,14 @@
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a href="{{route('rubrica.detalle', $rub->id)}}" style="float:left">{{$rub->titulo}}</a>
                                     <a href="{{route('rubrica.detalle', $rub->id) }}" title="Editar rúbrica"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{route('rubrica.respuesta', $rub->id) }}" title="Ver respuesta de rúbrica"><i class="fab fa-wpforms"></i></a>                                    
-                                    @if($rub->respondido == false)
-                                        <span>No respondido</span>
+                                    <a href="{{route('rubrica.respuesta', $rub->id) }}" title="Ver respuesta de rúbrica"><i class="fas fa-chart-pie"></i></a>                                    
+                                    <a href="{{route('rubrica.responder', $rub->id) }}" title="Responder rúbrica"><i class="fab fa-wpforms"></i></a>
+                                    @if($rub->respondidoc == false)
+                                        <span style="color:black">No respondido</span>
                                     @else
-                                        <span>Respondido</span>
+                                        <span style="color:black">Respondido</span>
                                     @endif
-                                @elseif(Auth::user()->tipo_usu == "cliente" && $rub->respondido == false)
+                                @elseif(Auth::user()->tipo_usu == "cliente" && $rub->respondidoc == false)
                                     <a href="{{route('rubrica.responder', $rub->id) }}" title="Responder rúbrica" class="">{{$rub->titulo}}</a>    
                                     <span style="color:black">Rúbrica</span>
                                 @endif

@@ -24,7 +24,6 @@
                                 @for($j=0; $j < $rubrica->columnas; $j++)
                                     <th scope="col">{!!$rubrica->{'evaluacion'.$j}!!}</th>
                                 @endfor
-                                <th scope="col">Valor %</th>
                             </tr>
                         </thead>
                         {{-- resto de la tabla --}}                    
@@ -37,13 +36,9 @@
                                     @for($j=0; $j < $rubrica->columnas; $j++)
                                         <td> {{-- celdas internas --}}
                                             {!! $rubrica->{"celda".$i.$j} !!}
-                                            <input type="radio" name="{{'respuesta'.$i}}" value="{{$j}}">
+                                            <input type="radio" name="{{'respuestac'.$i}}" value="{{$j}}">
                                         </td>
                                     @endfor
-                                    {{-- valor /porcentaje --}}
-                                    <td>
-                                        {!! $rubrica->{"porcentaje".$i} !!}                                        
-                                    </td>
                                 </tr>
                             @endfor
                         </tbody>

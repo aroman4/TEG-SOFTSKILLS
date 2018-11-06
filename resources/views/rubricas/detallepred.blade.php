@@ -1,3 +1,4 @@
+
 @extends('layouts.plantillaQ')
 
 @section('content')
@@ -32,7 +33,7 @@
                             @for($i=0; $i < $rubrica->filas; $i++)
                                 <tr>
                                     <th scope="row">{{-- indicador/criterio --}}
-                                        <textarea name="{{"criterio".$i}}" id="{{"criterio".$i}}" class="form-control" placeholder="{{"Indicador/criterio ".$i}}">{!! $rubrica->{"criterio".$i} !!}</textarea>
+                                        <textarea name="{{"criterio".$i}}" id="{{"criterio".$i}}" class="form-control" placeholder="{{"Indicador/criterio ".$i}}">{!! $rubrica->{"criterio".$i} !!}  </textarea>
                                     </th>
                                     @for($j=0; $j < $rubrica->columnas; $j++)
                                         <td> {{-- celdas internas --}}
