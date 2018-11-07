@@ -1,20 +1,18 @@
 @extends('layouts.plantilla')
 
 @section('content')
-<div class="row text-center">
-        <div class="col-md-8">
-                <br><br>  
+<div class="container">
+    <div class="text-center">
+        <br><br>  
         <h2 style='margin-right:20px'>Investigaciones con sus investigadores</h2>
         <br>
-        <div class="text-center">
-            <b>Investigadores:</b>
-        </div>  
+        <b>Investigadores:</b>
         <hr>
         @forelse(\App\Investigacion::all() as $inv)
             @if($inv->user_id == Auth::user()->id)
-           <strong> <span>{{$inv->titulo}}</span></strong>
-            <hr>
-            <div class="row"> 
+                <strong> <span>{{$inv->titulo}}</span></strong>
+                <hr>
+                <div class="row"> 
                     <div class="col-md-3">
                         <b>Nombre</b>
                     </div>
@@ -27,7 +25,6 @@
                 </div>
                 @forelse(\App\Postulacion::all() as $postulacion)
                     @if($postulacion->id_post == $inv->id)
-                        
                         <div class="row">
                             <div class="col-md-3">
                                 <span>{{\App\User::find($postulacion->id_invest)->nombre}}</span>
@@ -42,15 +39,12 @@
                         <hr>
                     @endif
                 @endforeach 
-            @endif
+             @endif
         @endforeach
-</div>
-      
-    <div class="col-md-3"> 
-            <br>
-        <a href="#" class="btn btn-warning" style='width:180px; height:130px'><i class="fa fa-book fa-8x"></i></a>
-            <br><br>
-        <a href="#" class="btn btn-success" style='width:180px; height:130px'><i class="fa fa-newspaper fa-8x"></i></a>
+        <br><br><br>
+        <div class="text-center">
+            <a href="{{route('escritorioinv')}}" class="btn btn-secondary">Regresar</a>
+        </div>
     </div>
 </div>
 @endsection

@@ -2,12 +2,12 @@
 @include('inc.mensajes')
 <div class="menu-inv">
     <ul>
-        <li {{ request()->is('listapostulaciones') ? 'active' : '' }}><a href="{{route('listapostulaciones')}}"><i class="fa fa-desktop" style="color:blue"></i>   Escritorio</a></li>
+        <li {{ request()->is('escritorioinv') ? 'active' : '' }}><a href="{{route('escritorioinv')}}"><i class="fa fa-desktop" style="color:blue"></i>   Escritorio</a></li>
         <li {{ request()->is('escritorioinvestigador') ? 'active' : '' }}><a href="{{route('escritorioinvestigador')}}"><i class="fa fa-list-alt" style="color:blue"></i>   Solicitudes</a></li>
-        <li {{ request()->is('nombreinvpostulacion') ? 'active' : '' }}><a href="{{route('nombreinvpostulacion')}}"><i class="fa fa-address-card" style="color:blue"></i>   Postulaciones</a></li>
+        <li {{ request()->is('listapostulaciones') ? 'active' : '' }}><a href="{{route('listapostulaciones')}}"><i class="fa fa-address-card" style="color:blue"></i>   Postulaciones</a></li>
         <li {{ request()->is('proyectogrupal') ? 'active' : '' }}><a href="{{route('proyectogrupal')}}"><i class="fa fa-file-code" style="color:blue"></i>   Investigación</a></li>
         <li {{ request()->is('publicacioninve') ? 'active' : '' }}><a href="{{route('publicacioninve')}}"><i class="fa fa-newspaper" style="color:blue"></i>   Publicaciones</a></li>
-        <li {{ request()->is('') ? 'active' : '' }}><a href="#"><i class="fa fa-folder" style="color:blue"></i>   Resultados</a></li>
+        <li {{ request()->is('vistaencuesta') ? 'active' : '' }}><a href="{{route('vistaencuesta')}}"><i class="fa fa-folder" style="color:blue"></i>   Resultados</a></li>
         <li {{ request()->is('') ? 'active' : '' }}><a href="#"><i class="fa fa-envelope" style="color:blue"></i>   Mensajes</a></a></li>
     </ul>
 </div>

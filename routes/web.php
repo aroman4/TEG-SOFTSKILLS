@@ -94,6 +94,12 @@ Route::group(['prefix' => 'postulacion'], function(){
 Route::get('/proyectogrupal', function () {
     return view('invproyecto.proyectogrupal');
 })->name('proyectogrupal');
+Route::get('/proyectogrupalpost', function () {
+    return view('invproyecto.proyectogrupalpost');
+})->name('proyectogrupalpost');
+Route::get('/proyectodescarga', function () {
+    return view('invproyecto.proyectodescarga');
+})->name('proyectodescarga');
 //---------vista de investigaciones
 Route::get('/investigacionprincipal', function () {
     return view('invproyecto.investigacionprincipal');
@@ -140,7 +146,10 @@ Route::resource('verPostulacion','PostulacionController');
 Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->name('verSolPostulaciones');;
 //boton de ver investigacion
 Route::get('/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
-
+//--vista de encuesta 1 y dos
+Route::get('/vistaencuenta', function () {
+    return view('invproyecto.vistaencuesta');
+})->name('vistaencuesta');
 //-----------------------------------------------------------
 
 //cuestionario

@@ -1,15 +1,14 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                @if(Auth::user()->sexo == "Femenino")
-                    <p>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
-                @else
-                    <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
-                @endif
+                <div class="text-center">
+                    <p>Ver la Lista de los Investigadores Postulado a mi Investigación</p>
+                    <a href="{{route('nombreinvpostulacion')}}" class="btn btn-secondary">Postulados</a></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -24,6 +23,7 @@
                                 <div class="postulacion">
                                     <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
                                     <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
+                               
                                 </div>
                             @endif
                         @endforeach
