@@ -143,9 +143,6 @@ Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
 
 //webchat
-/* Route::get('/chat',function(){
-    return view('webchat.index');
-})->middleware('auth'); */
 Route::get('/chat/{id}','AsesoriaController@getChat')->middleware('auth')->name('getChat');
 
 //agenda
@@ -160,9 +157,11 @@ Route::get('crearevento/{idase}',  function ($idase) {
 })->middleware('auth')->name('creareventoAse');
 
 //reporte
-Route::get('/reporte', function () {
+/* Route::get('/reporte', function () {
     return view('reportes.reportedetalle');
-})->name('reportedetalle');
+})->name('reportedetalle'); */
+Route::get('/reporte', 'AsesoriaController@reporteshome')->name('reporteshome');
+Route::get('/reportease/{id}', 'AsesoriaController@reporteasesoria')->name('reporteasesoria');
 //pdf del reporte
 Route::post('reportePdf','CuestionarioController@reportePdf');
 

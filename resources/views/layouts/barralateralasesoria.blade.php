@@ -8,7 +8,7 @@
             @endif
             <li class="list-group-item {{ request()->is('asesescritorio') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('asesescritorio')}}">Asesorías</a></li>
             <li class="list-group-item {{ request()->is('solicitud.index') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('solicitud.index')}}">Solicitudes</a></li>
-            <li class="list-group-item {{ request()->is('reportedetalle') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('reportedetalle')}}">Reportes</a></li>
+            <li class="list-group-item {{ request()->is('reportedetalle') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('reporteshome')}}">Reportes</a></li>
             <li class="list-group-item {{ request()->is('cuestionario.home') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('cuestionario.home')}}">Instrumentos</a></li>
             <li class="list-group-item {{ request()->is('agenda') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('agenda')}}">Agenda</a></li>
         </ul>

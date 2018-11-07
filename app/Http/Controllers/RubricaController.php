@@ -29,6 +29,7 @@ class RubricaController extends Controller
         $rubricaNueva = $rubrica->replicate();
         $asesoria = Asesoria::find($idase);
         $rubricaNueva->user_id = auth()->user()->id;
+        $rubricaNueva->predefinido = false;
         $rubricaNueva->id_asesoria = $idase;
         $rubricaNueva->cliente_id = $asesoria->id_cliente;
         $rubricaNueva->save();

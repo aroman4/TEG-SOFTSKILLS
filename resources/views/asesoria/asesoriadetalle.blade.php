@@ -97,7 +97,7 @@
                 <a href="{{route('mostrarAgAs',$asesoria->id)}}" class="aseElem aseElemAg"><h2 class="texDet">Ver Eventos<br>de la Asesoría</h2></a>
             </div>
             <div class="aseElemW">
-                <a href="#" class="aseElem aseElemRep"><h2 class="texDet">Reportes</h2></a>                
+                <a href="{{route('reporteasesoria',$asesoria->id)}}" class="aseElem aseElemRep"><h2 class="texDet">Reportes</h2></a>                
             </div>
         </div>
     </div>

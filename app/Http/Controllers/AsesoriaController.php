@@ -121,4 +121,12 @@ class AsesoriaController extends Controller
             return back()->with('error','No tienes permiso para acceder a este chat');
         }
     }
+
+    public function reporteshome(){
+        return view('reportes.reporteshome');
+    }
+    public function reporteasesoria($id){
+        $asesoria = Asesoria::find($id);
+        return view('reportes.reporteasesoria')->with('asesoria',$asesoria);
+    }
 }

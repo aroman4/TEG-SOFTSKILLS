@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-4">
                 <div class="elemEsc">
-                    <a class="escritorioElem" id="imgRep" href="{{route('reportedetalle')}}"></a>
+                    <a class="escritorioElem" id="imgRep" href="{{route('reporteshome')}}"></a>
                     <h2 class="texElem">Reportes</h2>
                 </div>
             </div>
