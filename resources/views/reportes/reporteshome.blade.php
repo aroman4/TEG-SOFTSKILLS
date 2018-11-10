@@ -1,7 +1,7 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-    <div class="col-md-10 listaQuest">
+    <div class="col-md-9 listaQuest">
         <ul class="list-group">
             <div class="row">
                 <div class="col-md-12 list-group-item top-bar">
@@ -18,7 +18,7 @@
                 </div>
             @endif --}}
             <div class="row">
-                <div class="col-md-12 list-group-item">
+                <div class="col-md-12 list-group-item contentAlv">
                     <h2>Lista de Asesorías y sus reportes</h2>
                     <div id="accordion">
                         @forelse(\App\Asesoria::all() as $index => $ase)
@@ -35,7 +35,7 @@
                                 <div id="collapse{{$index}}" class="collapse" aria-labelledby="heading{{$index}}" data-parent="#accordion">
                                 <div class="card-body">
                                         <div class="row">
-                                                <div class="col-md-6 list-group-item">
+                                                <div class="col-md-6 list-group-item" style="color:black">
                                                     <h2>Cuestionarios:</h2>
                                                     <ul class="list-group">
                                                         @forelse (\App\Cuestionario::all() as $cuestionario)
@@ -57,7 +57,7 @@
                                                         @endforelse
                                                     </ul> 
                                                 </div>
-                                                <div class="col-md-6 list-group-item">
+                                                <div class="col-md-6 list-group-item" style="color:black">
                                                     <h2>Rúbricas:</h2>
                                                     <ul class="list-group">
                                                         @forelse (\App\Rubrica::all() as $rubrica)

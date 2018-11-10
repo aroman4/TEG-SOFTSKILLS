@@ -1,7 +1,7 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-<div class="col-md-10 listaQuest">
+<div class="col-md-9 listaQuest">
     <div class="list-group">
             <div class="list-group-item top-bar">
                 <button onclick="goBack()" class="btn btn-secondary">Regresar</button>

@@ -2,7 +2,7 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-<div class="col-md-10 listaQuest">
+<div class="col-md-9 listaQuest">
   <div class="list-group">
       <div class="list-group-item text-center top-bar">
         <h2 class=""><span style="color:darkgray">Cuestionario:</span> {{ $cuestionario->titulo }}</h2>

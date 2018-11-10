@@ -1,7 +1,7 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-    <div class="col-md-10 listaQuest">
+    <div class="col-md-9 listaQuest">
         <ul class="list-group">
             <div class="row">
                 <div class="col-md-12 list-group-item top-bar">

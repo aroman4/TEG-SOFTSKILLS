@@ -1,7 +1,7 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-<div class="col-md-10 listaQuest" style="background:white">
+<div class="col-md-9 listaQuest" style="background:white">
     <div class="list-group">
         <div class="row">
             <div class="col-md-12 list-group-item top-bar">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-3">
                     <a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}" class="btn btn-success"><i class="fas fa-handshake"></i> Ver Asesoría</a>
-                    <a href="#" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a>
+                    {{-- <a href="#" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a> --}}
                 </div>
             </div>
         @endif

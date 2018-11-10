@@ -1,6 +1,6 @@
 body{
 	position: relative;
-	height: 100vh;
+	min-height: 100vh;
 }
 .btn{
 	border-radius: 0%;
@@ -299,21 +299,22 @@ textarea{
 	resize: none;
 }
 .filaEscritorio{
-	float: right;
-	width: 85%;
-	height: 100vh;
+	/* float: right;
+	width: 85%; */
+	min-height: 100vh;
 	right:0;
 	margin: 0;
 	background-image: linear-gradient(rgb(0, 0, 0), rgb(49, 55, 85));
 }
 .barraLateralEscritorio{
 	background-color:  #2B3033;
-	height: 100%;
-	width: 15%;
+	min-height: 100vh;
+	/* width: 15%;
 	min-width: 15%;
-	position: absolute;
+	position: absolute; */
 	float: left;
 	padding-right: 0;
+	padding-left: 0;
 }
 .barraLateralEscritorio .list-group-item{
 	color: white;
