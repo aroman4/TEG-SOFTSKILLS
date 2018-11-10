@@ -13,7 +13,7 @@
             <div class="col-md-6 list-group-item contentAlv">
                 <h2>Solicitudes pendientes por aprobación:</h2>
                 <ul class="list-group">
-                    @forelse($solicitudes as $sol)
+                    @forelse($solicitudespen as $sol)
                         @if(\App\User::find($sol->user_id)->tipo_usu == "cliente" && ($sol->estado=="pendiente"))
                             @if((auth()->user()->tipo_usu == "asesor") || ((auth()->user()->tipo_usu == "cliente") && (auth()->user()->id == $sol->user_id)))
                                 <div>
@@ -28,12 +28,12 @@
                         <p>No hay solicitudes pendientes</p>                
                     @endforelse
                 </ul>
-                {{$solicitudes->links()}}
+                {{$solicitudespen->links()}}
             </div>
             <div class="col-md-6 list-group-item contentAlv1">
                 <h2>Solicitudes aprobadas:</h2>
                 <ul class="list-group">
-                    @forelse($solicitudes as $sol)
+                    @forelse($solicitudesace as $sol)
                         @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"  && ($sol->estado=="aceptada"))
                             @if((auth()->user()->tipo_usu == "asesor") || ((auth()->user()->tipo_usu == "cliente") && (auth()->user()->id == $sol->user_id)))
                                 <div>
@@ -48,7 +48,7 @@
                         <p>No hay solicitudes pendientes</p>                
                     @endforelse
                 </ul>
-                {{$solicitudes->links()}}
+                {{$solicitudesace->links()}}
             </div>
         </div>
         </div>

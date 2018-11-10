@@ -13,13 +13,16 @@
     </div>
     
     <div class="row">   
-        <div class="col-md-4">
-            <h3>Nombre</h3>
+        <div class="col-md-3">
+            <h3>Asesoria</h3>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
+            <h3>Nombre cliente</h3>
+        </div>
+        <div class="col-md-3">
             <h3>Email</h3>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h3>Acciones</h3>
         </div>
     </div>
@@ -27,13 +30,16 @@
     @forelse(\App\Asesoria::all() as $ase)   
         @if($ase->user_id == auth()->user()->id)
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    {{$ase->titulo}}
+                </div>
+                <div class="col-md-3">
                     <span>{{\App\User::find($ase->id_cliente)->nombre ." ". \App\User::find($ase->id_cliente)->apellido ." @". \App\User::find($ase->id_cliente)->nombre_usu}}</span>
                 </div>
-                <div class="col-md-4">                
+                <div class="col-md-3">                
                     <span>{{\App\User::find($ase->id_cliente)->email}}</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}" class="btn btn-success"><i class="fas fa-handshake"></i> Ver Asesoría</a>
                     <a href="#" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a>
                 </div>

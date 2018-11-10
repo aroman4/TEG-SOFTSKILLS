@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Solicitud;
@@ -48,6 +50,12 @@ class AsesoriaController extends Controller
         $solicitud->estado = "aceptada";
         $solicitud->save();
         //dd('asesoria creada '.$id);
+        //enviar email al cliente
+        Mail::send('email.asesoriaaceptada',$asesoria->toArray(),function($mensaje) use ($asesoria){
+            $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
+            ->subject('Solicitud de asesoría Aceptada - SoftSkills');
+            $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+        });
         return redirect('/escritorioasesor')->with('success','Asesoría aceptada');
     }
 

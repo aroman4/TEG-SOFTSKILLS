@@ -79,8 +79,11 @@ Route::get('/postulaciones', function () {
     return view('investigaciones.postulaciones');
 })->name('postulaciones');
 Route::get('/asesoriasescritorio', function () {
-    $asesorias = \App\Asesoria::paginate(6);
-    return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
+    //$asesorias = \App\Asesoria::paginate(6);
+    $asesoriasact = DB::table('asesoria')->where('estado','activa')->paginate(6);
+    $asesoriasfin = DB::table('asesoria')->where('estado','finalizada')->paginate(6);
+    //return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
+    return view('asesoria.asesoriasescritorio',compact('asesoriasact','asesoriasfin'));
 })->name('asesescritorio');
 
 //ruta aceptar asesoria

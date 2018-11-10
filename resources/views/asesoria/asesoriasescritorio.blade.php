@@ -13,8 +13,7 @@
         <div class="col-md-6 list-group-item contentAlv">
             <h2 class="escritorioH2 text-center">Asesorías Activas:</h2>
             <ul class="list-group">
-                @forelse($asesorias as $ase)
-                @if($ase->estado == "activa")
+                @forelse($asesoriasact as $ase)
                     @if(((Auth::user()->tipo_usu == "asesor") && ($ase->user_id == Auth::user()->id)) || ((Auth::user()->tipo_usu == "cliente")&&($ase->id_cliente == Auth::user()->id)))
                         <div class="asesoria">
                             <li class="list-group-item listaAsesSolic">
@@ -23,32 +22,29 @@
                             </li>
                         </div>
                     @endif
-                @endif
                 @empty
                     <p>No hay asesorías activas</p>                    
                 @endforelse                
             </ul>
-            {{$asesorias->links()}}
+            {{$asesoriasact->links()}}
         </div>
         <div class="col-md-6 list-group-item contentAlv1">
             <h2 class="escritorioH2 text-center">Asesorías Finalizadas:</h2>
             <ul class="list-group">
-                @forelse($asesorias as $ase)
-                    @if($ase->estado == "finalizada")
-                        @if(((Auth::user()->tipo_usu == "asesor") && ($ase->user_id == Auth::user()->id)) || ((Auth::user()->tipo_usu == "cliente")&&($ase->id_cliente == Auth::user()->id)))
-                            <div class="asesoria">
-                                <li class="list-group-item listaAsesSolic">
-                                    <a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">{{$ase->titulo}}</a>
-                                    <small>{{\App\User::find($ase->id_cliente)->nombre .' '. \App\User::find($ase->id_cliente)->apellido}}</small>
-                                </li>
-                            </div>
-                        @endif
-                    @endif           
+                @forelse($asesoriasfin as $ase)
+                    @if(((Auth::user()->tipo_usu == "asesor") && ($ase->user_id == Auth::user()->id)) || ((Auth::user()->tipo_usu == "cliente")&&($ase->id_cliente == Auth::user()->id)))
+                        <div class="asesoria">
+                            <li class="list-group-item listaAsesSolic">
+                                <a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">{{$ase->titulo}}</a>
+                                <small>{{\App\User::find($ase->id_cliente)->nombre .' '. \App\User::find($ase->id_cliente)->apellido}}</small>
+                            </li>
+                        </div>
+                    @endif    
                 @empty
                     <li class="list-group-item">No hay asesorías finalizadas</li>
                 @endforelse            
             </ul>
-            {{$asesorias->links()}}
+            {{$asesoriasfin->links()}}
         </div>
     </div>
     </div>
