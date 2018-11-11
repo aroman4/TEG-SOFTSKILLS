@@ -11,7 +11,7 @@
         <a href="{{route('escritorioinvestigador')}}" class="btn btn-secondary">Regresar</a>
         <a href="{{route('solicitud.destroy', $solicitud->id)}}" class="btn btn-danger">Eliminar Solicitud</a>
         <a href="{{route('editarinves', $solicitud->id)}}" class="btn btn-success">Editar Solicitud</a>
-        <a href="{{route('postulaciones')}}" class="btn btn-primary">Revisar Postulaciones</a>
+        <a href="{{route('postulaciones', $solicitud->id)}}" class="btn btn-primary">Revisar Postulaciones</a>
         @elseif(Auth::user()->tipo_inv == "comite")
         <a href="{{route('escritoriocomite')}}" class="btn btn-secondary">Regresar</a>
     @endif

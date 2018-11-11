@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-12">
                                 <hr style="color: #0056b2;" />
-                                <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulate</a>
+                                <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>
                                 <button type="button" class="btn btn-outline-info">
                                     <a href="#" class="far fa-thumbs-up">Like</a>
                                </button>

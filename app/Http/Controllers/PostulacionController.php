@@ -15,7 +15,7 @@ class PostulacionController extends Controller
     //funcion de descarga de archivos 
     public function descargafuc(){
         $postulacion = DB::table('postulacion')->get();
-        return view('investigaciones.postulaciones',compact('postulaciones'));
+        return view('postulacion.nombreinvpostulacion',compact('nombreinvpostulacion'));
     }
     /**
      * Display a listing of the resource.
@@ -25,6 +25,7 @@ class PostulacionController extends Controller
     public function index()
     {
         //
+        return view('postulacion.SolicPostulacion')->with('inv', $idinv);
     }
     /**
      * Show the form for creating a new resource.
@@ -59,7 +60,40 @@ class PostulacionController extends Controller
         $postulacion->id_invest = auth()->user()->id;    
         $postulacion->save();
         return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
+    }
 
+    public function enviar(Request $request)
+    {
+        //dd($request);  
+         
+        $postulacion =  Postulacion::find($request->idpostulacion);
+        if($request->hasFile('archivo_inv')){
+            $archivo_inv = $request->file('archivo_inv');
+            $nombreArch = time().$archivo_inv->getClientOriginalName();
+            $archivo_inv->move(public_path().'/proyecto/',$nombreArch);
+            $postulacion->archivo_inv = $nombreArch;
+        }
+        $postulacion->id_invest = auth()->user()->id;  
+        $postulacion->estado_inv = "finalizado";  
+        $postulacion->save();
+        
+        return redirect('/proyectogrupalpost')->with('success','investigacion finalizada');
+
+    }
+
+    //aceptar postulacion
+    public function AceptarPostulacion($id){
+        $postulacion = Postulacion::find($id);
+        $postulacion->estado = "aceptada";
+        $postulacion->save();
+        return redirect('/nombreinvpostulacion')->with('success','Postulación Aceptada');
+    }
+    //rechazar postulacion
+    public function RechazarPostulacion($id){
+        $postulacion = Postulacion::find($id);
+        $postulacion->estado = "rechazada";
+        $postulacion->save();
+        return redirect('/nombreinvpostulacion')->with('success','Postulación Rechazada');
     }
 
     /**
@@ -72,9 +106,29 @@ class PostulacionController extends Controller
     {
         //Show
         $postulacion = Postulacion::find($id);
-        return view('investigaciones.verPostulacion')->with('postulacion', $postulacion);
+        return view('postulacion.verPostulacion')->with('postulacion', $postulacion);
+    }
+ 
+    public function showverpost($id)
+    {
+        //Showverpost
+        $postulacion = Postulacion::find($id);
+        return view('postulacion.verSolPostulaciones')->with('postulacion', $postulacion);
+    }
+    
+    public function invtg($id)
+    {
+        //invtg
+        $postulacion = Investigacion::find($id);
+        return view('postulacion.vistaverinv')->with('investigaciones',$postulacion);
     }
 
+    public function showproyectoverpost($id)
+    {
+        //Showverpost
+        $postulacion = Postulacion::find($id);
+        return view('invproyecto.proyectoverpost')->with('postulacion', $postulacion);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -115,6 +169,7 @@ class PostulacionController extends Controller
         //eliminar postulacion ya creada.
         $postulacion = Postulacion::find($id);
         $postulacion ->delete();
-        return redirect()->route('postulacion.index');//duda
+        return redirect('/escritoriopostulacion')->with('success','Postulación Rechazada');
+
     }
 }

@@ -20,7 +20,10 @@ class CreatePostulacionTable extends Migration
                 $table->string('aporte')->nullable();
                 $table->string('archivo')->nullable();
                 $table->string('nombre_inv')->nullable();
+                $table->enum('estado', ['pendiente', 'aceptada','rechazada'])->default('pendiente');
                 $table->integer('id_post')->nullable();
+                $table->enum('estado_inv', ['inicio', 'finalizado'])->default('inicio');
+                $table->string('archivo_inv')->nullable();
                 //clave foranea id de usuario y investigacion
                 $table->integer('id_invest')->unsigned(); //id del usuario 
                 $table->foreign('id_invest')->references('id')->on('usuario')->onDelete('cascade');

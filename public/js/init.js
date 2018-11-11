@@ -32,3 +32,7 @@ $(document).ready(function() {
       }
     });
   });
+//menu de los investigadores
+$('.menu-bar').on('click', function(){
+  $('.contenido').toggleClass('abrir');
+})
