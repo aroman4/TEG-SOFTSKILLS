@@ -157,6 +157,10 @@ Route::get('/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//e
 Route::get('/vistaencuenta', function () {
     return view('invproyecto.vistaencuesta');
 })->name('vistaencuesta');
+//''vista de las investigaciones
+Route::get('/vistainvestigaciones', function () {
+    return view('invproyecto.vistainvestigaciones');
+})->name('vistainvestigaciones');
 //-----------------------------------------------------------
 
 //cuestionario
@@ -195,18 +199,19 @@ Route::get('encuesta',[
     'as' =>'encuesta.encuesta'
 ]);
 Route::post('/encuesta', 'EncuestaController@store')->name('encuesta');
-
-//respuesta encuesta 1
-//Route::get('/encuestauno', 'encuesta.RespuestaInvInicial');
-//Route::post('/encuestauno', 'PostulacionController@storerespuestauno')->name('encuestauno');
-
 //route de encuesta 2
 Route::get('encuestados',[
     'uses' => 'EncuestaController@encuestados',
     'as' =>'encuesta.encuestados'
 ]);
 Route::post('/encuestados', 'EncuestaController@storeencuestados')->name('encuestados');
--
+
+//respuesta encuesta 1
+Route::get('/encuestauno', function () {
+    return view('encuesta.RespuestaInvInicial');
+})->name('encuestauno');
+Route::post('/encuestauno', 'EncuestaController@storerespuestauno')->name('encuestauno');
+
 
 //-------------------------------------------------------------------------------
 //ruta de prueba BORRAR LUEGO

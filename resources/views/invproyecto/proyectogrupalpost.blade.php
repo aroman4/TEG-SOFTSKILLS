@@ -66,7 +66,7 @@
 
         <br><br><br>
             <div class="text-center">
-                <a href="{{route('escritorioinv')}}" class="btn btn-secondary">Regresar</a>
+                <a href="{{route('vistainvestigaciones')}}" class="btn btn-secondary">Regresar</a>
             </div>
     </div> 
 </div>

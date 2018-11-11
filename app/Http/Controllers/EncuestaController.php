@@ -59,12 +59,15 @@ class EncuestaController extends Controller
         $encuesta->save();
         return redirect('/escritorioinvestigador');
     }
-    public function storerespuestauno(Request $request)
+
+    public function storerespuestauno($id)
     {  
         //dd($request);
+        //falta el id del lider
+        auth()->user()->id;
+        //falta el id de la id a que le estoy realizando la encuesta
         $encuesta = Encuesta::find($request->all());
         $encuesta->save();
-        return redirect('/escritorioinvestigador');
     }
 
     /**
