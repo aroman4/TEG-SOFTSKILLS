@@ -25,13 +25,18 @@ class EncuestaController extends Controller
     {
         //
     }
- //pagina encuesta
+ //pagina encuesta - vista
     public function encuesta(){
         return view('encuesta.EncuestaInvInicial');
     }
     public function encuestados(){
         return view('encuesta.EncuestaInvFinal');
     }
+//ruta de la respuesta de la encuesta -respuestas
+    public function Resultencuesta(){
+        return view('encuesta.RespuestaInvInicial');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -51,6 +56,13 @@ class EncuestaController extends Controller
         //dd($request);
         $encuesta = new Encuesta($request->all());
         $encuesta->id_usuario = auth()->user()->id;
+        $encuesta->save();
+        return redirect('/escritorioinvestigador');
+    }
+    public function storerespuestauno(Request $request)
+    {  
+        //dd($request);
+        $encuesta = Encuesta::find($request->all());
         $encuesta->save();
         return redirect('/escritorioinvestigador');
     }

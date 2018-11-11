@@ -46,13 +46,17 @@
                             <p>{{$postulacion->actividad}}</p>
                         </div>
                         <div class="col-md-2">
-                                <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i></a>
-                                <a href="{{action('PostulacionController@AceptarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-success"><i class="fa fa-check"></i></a>
-                                <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i></a>
+                            <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-eye" style="color:#FFFFFF; width:6; height:6"></i></a>
+                            <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-primary"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
+                            <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" download="{{$postulacion->archivo_inv}}">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-download"></i>
+                                </button>
+                            </a>
                             <br>
                         </div>
                         <div class="col-md-2">
-
+                                <p>{{$postulacion->estado_inv}}</p>
                         </div>
                     </div>
                 <hr>

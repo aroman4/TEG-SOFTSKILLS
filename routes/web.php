@@ -97,9 +97,15 @@ Route::get('/proyectogrupal', function () {
 Route::get('/proyectogrupalpost', function () {
     return view('invproyecto.proyectogrupalpost');
 })->name('proyectogrupalpost');
-Route::get('/proyectodescarga', function () {
-    return view('invproyecto.proyectodescarga');
-})->name('proyectodescarga');
+
+Route::get('/proyectoverpost/{id}','PostulacionController@showproyectoverpost')->name('proyectoverpost.showproyectoverpost');
+//----------subir archivo a la investigacion
+Route::get('/proyectovista/{id}', function ($id) {
+    return view('invproyecto.proyectovista') ->with('idpostulacion',$id);
+})->name('proyectovista');
+//proyecto vista de subir archivo 
+Route::post('/proyectovista', 'PostulacionController@enviar')->name('proyectovista');
+
 //---------vista de investigaciones
 Route::get('/investigacionprincipal', function () {
     return view('invproyecto.investigacionprincipal');
@@ -110,6 +116,7 @@ Route::get('/postulaciones/{id}', function ($id) {
     $inv = \ App\ Investigacion::find($id);
     return view('postulacion.postulaciones')->with('inv',$inv);
 })->name('postulaciones');
+
 //--vista de lista de postulaciones
 Route::get('/listapostulaciones', function () {//postulacion
     return view('postulacion.listapostulaciones');
@@ -189,13 +196,17 @@ Route::get('encuesta',[
 ]);
 Route::post('/encuesta', 'EncuestaController@store')->name('encuesta');
 
+//respuesta encuesta 1
+//Route::get('/encuestauno', 'encuesta.RespuestaInvInicial');
+//Route::post('/encuestauno', 'PostulacionController@storerespuestauno')->name('encuestauno');
+
 //route de encuesta 2
 Route::get('encuestados',[
     'uses' => 'EncuestaController@encuestados',
     'as' =>'encuesta.encuestados'
 ]);
 Route::post('/encuestados', 'EncuestaController@storeencuestados')->name('encuestados');
-
+-
 
 //-------------------------------------------------------------------------------
 //ruta de prueba BORRAR LUEGO
