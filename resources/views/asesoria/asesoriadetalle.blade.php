@@ -6,9 +6,10 @@
     <div class="row">
         <div class="col-md-12 list-group-item top-bar">
             <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
-            @if(Auth::user()->tipo_usu == "asesor")                
-                <a href="{{route('moduloasesoria.edit', $asesoria->id)}}" class="btn btn-warning">Editar</a>
-                <a href="{{route('moduloasesoria.destroy', $asesoria->id)}}" class="btn btn-danger">Eliminar</a>
+            @if(Auth::user()->tipo_usu == "asesor" && $asesoria->estado=="activa")                
+                {{-- <a href="{{route('moduloasesoria.edit', $asesoria->id)}}" class="btn btn-warning">Editar</a> --}}
+                <a href="{{route('eliminarasesoria', $asesoria->id)}}" class="btn btn-danger">Eliminar</a>
+                <a href="{{route('finalizarasesoria', $asesoria->id)}}" class="btn btn-warning">Finalizar asesoría</a>
             @endif
             <h2 style="float:right"><span style="color:darkgray">Detalle de:</span> {{$asesoria->titulo}}</h2>
         </div>
@@ -38,7 +39,7 @@
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id)}}" style="float:left">{{$cuestionario->titulo}}</a>
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" ><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fas fa-chart-pie"></a>                                    
+                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fas fa-chart-pie"></i></a>                                    
                                     @if($cuestionario->respondido == false)
                                         <span style="color:black">No respondido</span>
                                     @else
@@ -80,7 +81,7 @@
                             </li>
                         @endif
                     @empty
-                        <p class="flow-text center-align">No hay cuestionarios creados</p>
+                        <p class="flow-text center-align">No hay rúbricas creadas</p>
                     @endforelse
                 </div>
             </div>

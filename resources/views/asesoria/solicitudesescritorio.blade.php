@@ -45,7 +45,7 @@
                             @endif
                         @endif
                     @empty
-                        <p>No hay solicitudes pendientes</p>                
+                        <p>No hay solicitudes aprobadas</p>                
                     @endforelse
                 </ul>
                 {{$solicitudesace->links()}}

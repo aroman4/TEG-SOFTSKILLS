@@ -19,7 +19,8 @@ class CreateCuestionarioTable extends Migration
             $table->integer('user_id')->unsigned()->index(); //id del asesor
             $table->integer('cliente_id');
             $table->string('descripcion');
-            $table->integer('id_asesoria')->nullable();
+            $table->integer('id_asesoria')->unsigned()->nullable();
+            $table->foreign('id_asesoria')->references('id')->on('asesoria')->onDelete('cascade');
             $table->boolean('respondido')->default(false);
             $table->timestamps();
         });

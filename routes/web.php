@@ -93,6 +93,8 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
     );
 });
 Route::resource('moduloasesoria','AsesoriaController');
+Route::get('/moduloasesoria/eliminar/{id}','AsesoriaController@eliminar')->name('eliminarasesoria');
+Route::get('/moduloasesoria/finalizar/{id}','AsesoriaController@finalizar')->name('finalizarasesoria');
 Route::resource('moduloinvestigaciones','InvestigacionController');
 Route::resource('verPostulacion','PostulacionController');
 

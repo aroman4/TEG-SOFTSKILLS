@@ -19,7 +19,7 @@ class CreateRubricaTable extends Migration
             $table->integer('user_id')->unsigned()->index(); //id del asesor
             $table->integer('cliente_id');
             $table->string('descripcion');
-            $table->integer('id_asesoria')->nullable();
+            $table->integer('id_asesoria')->nullable()->references('id')->on('asesoria')->onDelete('cascade');
             $table->boolean('respondidoa')->default(false);
             $table->boolean('respondidoc')->default(false);
             $table->boolean('enviar')->default(false);

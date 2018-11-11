@@ -23,7 +23,8 @@
                         </div>
                     @endif
                 @empty
-                    <p>No hay asesorías activas</p>                    
+                    {{-- <p>No hay asesorías activas</p> --}}
+                    <li class="list-group-item"><small style="font-style: italic;color:black">Debe aceptar solicitudes para tener asesorías <a href="{{route('solicitud.index')}}" class="btn btn-dark float-right" >Ir a solicitudes</a></small></li>                    
                 @endforelse                
             </ul>
             {{$asesoriasact->links()}}

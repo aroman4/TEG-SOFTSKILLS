@@ -114,10 +114,26 @@ class AsesoriaController extends Controller
      */
     public function destroy($id)
     {
+    }
+    public function eliminar($id)
+    {
         //
         $ases = Asesoria::find($id);
         $ases->delete();
         return redirect('/escritorioasesor')->with('success','Asesoría eliminada');
+    }
+    public function finalizar($id)
+    {
+        //
+        $asesoria = Asesoria::find($id);
+        $asesoria->estado = "finalizada";
+        $asesoria->save();
+        Mail::send('email.asesoriafinalizada',$asesoria->toArray(),function($mensaje) use ($asesoria){
+            $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
+            ->subject('Asesoría Finalizada - SoftSkills');
+            $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+        });
+        return redirect('/escritorioasesor')->with('success','Asesoría finalizada');
     }
     public function getChat($id){
         //al pasar un id de asesoria se conecte al chat
