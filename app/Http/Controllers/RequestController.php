@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
+use App\User;
 use Illuminate\Http\Request;
 use App\Solicitud;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 //use Laracasts\Flash\Flash;
 
 class RequestController extends Controller
@@ -19,6 +22,11 @@ class RequestController extends Controller
         //
         //return view('index');
         $tipoUser = Auth::user()->tipo_usu;
+        //solicitudes de asesoria paginadas
+        $solicitudesace = DB::table('solicitud')->where('estado','aceptada')->paginate(6);
+        $solicitudespen = DB::table('solicitud')->where('estado','pendiente')->paginate(6);
+        //return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
+        
 
         switch($tipoUser){
             case 'investigador':           
@@ -26,10 +34,14 @@ class RequestController extends Controller
             break;
             case 'asesor':
                 //return redirect('/escritorioasesor');
-                return view('asesoria.solicitudesescritorio');
+                /* $solicitudesA = Solicitud::paginate(6);
+                return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen'));
             break;
             case 'cliente':
-                return redirect('/escritoriocliente');
+                /* $solicitudesA = Solicitud::paginate(6);
+                return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen'));
             break;
         }
     }
@@ -113,6 +125,11 @@ public function publicacioninvestigacion()
                 return redirect('/escritorioasesor')->with('success','Solicitud Creada');
             break;
             case 'cliente':
+                Mail::send('email.emailsolicitud',$solicitud->toArray(),function($mensaje){
+                    $mensaje->to(User::find(auth()->user()->id)->email,User::find(auth()->user()->id)->nombre)
+                    ->subject('Creación de solicitud - SoftSkills');
+                    $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+                });
                 return redirect('/escritoriocliente')->with('success','Solicitud Creada');
             break;
         }

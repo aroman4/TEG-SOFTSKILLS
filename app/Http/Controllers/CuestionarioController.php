@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cuestionario;
 use App\Respuesta;
+use App\Asesoria;
 use Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+/* use Barryvdh\DomPDF\Facade as PDF; */
+use Dompdf\Dompdf;
 
 class CuestionarioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +33,17 @@ class CuestionarioController extends Controller
         return view('cuestionario.nuevo');
     }
 
+    public function nuevoNuevo($id){
+        $ase = Asesoria::find($id);
+        return view('cuestionario.nuevo')->with('asesoria',$ase);
+    }
+
     public function crear(Request $request, Cuestionario $cuest){
         $arr = $request->all();
         $arr['user_id'] = Auth::id();
+        //$arr['cliente_id'] = Asesoria::find($arr['id_asesoria'])->id_cliente;
+        $qItem = new Cuestionario($arr);
+        //dd($qItem);
         $qItem = $cuest->create($arr);
         return Redirect::to("/cuestionario/{$qItem->id}");
     }
@@ -76,11 +91,23 @@ class CuestionarioController extends Controller
     public function ver_respuestas_cuestionario(Cuestionario $cuestionario) 
     {
         $cuestionario->load('user.pregunta.respuesta');
-        return view('respuesta.ver', compact('cuestionario'));
+        $asesoria = Asesoria::find($cuestionario->id_asesoria);
+        //return view('respuesta.ver', compact('cuestionario'));
+        return view('reportes.reportedetalle', compact('cuestionario','asesoria'));
     }
-    public function delete_cuestionario(Cuestionario $cuestionario)
+    public function reportePdf(Request $request){
+        //dd($request['hidden_html']);
+        $file_name = 'Reporte.pdf';
+        $html = $request['hidden_html'];
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->render();
+        return $pdf->stream($file_name, array("Attachment" => false));
+    }
+    public function delete_cuestionario($id)
     {
+        $cuestionario = Cuestionario::find($id);
         $cuestionario->delete();
-        return redirect('');
+        return redirect()->route('escritorioasesor');
     }
 }

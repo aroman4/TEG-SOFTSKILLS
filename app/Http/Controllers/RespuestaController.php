@@ -12,7 +12,7 @@ class RespuestaController extends Controller
 {
     public function store(Request $request, Cuestionario $cuestionario) 
     {
-        // remove the token
+        // quitar el token
         $arr = $request->except('_token');
         foreach ($arr as $key => $value) {
             $newRespuesta = new Respuesta();
@@ -27,9 +27,13 @@ class RespuestaController extends Controller
             $newRespuesta->cuestionario_id = $cuestionario->id;
 
             $newRespuesta->save();
+            //guardar el cuestionario como respondido
+            $cuestionario->respondido = true;
+            $cuestionario->save();
 
             $respuestaArray[] = $newRespuesta;
         };
-        return redirect()->action('CuestionarioController@ver_respuestas_cuestionario', [$cuestionario->id]);
+        //return redirect()->action('CuestionarioController@ver_respuestas_cuestionario', [$cuestionario->id]);
+        return redirect()->route('escritoriocliente')->with('Success','Cuestionario respondido exitosamente');
     }
 }

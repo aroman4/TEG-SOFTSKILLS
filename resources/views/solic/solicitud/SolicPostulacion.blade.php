@@ -15,9 +15,9 @@
                 <div class="card-header">{{ __('Solicitud de Postulación') }}</div>
                     <div class="card-body">
                         {!!Form::open(['action' => 'PostulacionController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
-                        <input  type="hidden" name="id_post" value="{{ $inv }}">  
-                        @csrf
-                            <div class="form-group row">
+                            <input type="hidden" name="id_post" value="{{ $inv }}"> 
+                            @csrf
+                             <div class="form-group row">
                                     {!! Form::label ('otros_proyectos','Cuales proyectos has creado:*')!!}
                                     {!! Form::text ('otros_proyectos',null,['class'=>"form-control {{ $errors->has('otros_proyectos') ? ' is-invalid'}}",'placeholder'=>'Escribe que otros proyectos has participado y creado','required'])!!}
                                     @if ($errors->has('otros_proyectos'))

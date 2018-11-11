@@ -12,12 +12,15 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}" />
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/estilo.css')}}"  />
-
-    <script src="main.js"></script>
 </head>
 <body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <header>
-        <nav class="navbar navbar-expand-lg menu-estilo-navegacion">
+        <nav class="navbar navbar-expand-lg menu-estilo-navegacion flexMenu">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,12 +47,7 @@
                                 {{ Auth::user()->nombre . " " . Auth::user()->apellido }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">                                
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a class="dropdown-item" href="{{ route('escritorioasesor') }}">Ir al escritorio</a>
                                 @elseif(Auth::user()->tipo_usu == "investigador")
@@ -57,6 +55,11 @@
                                 @elseif(Auth::user()->tipo_usu == "cliente")
                                     <a class="dropdown-item" href="{{ route('escritoriocliente') }}">Ir al escritorio</a>
                                 @endif
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf

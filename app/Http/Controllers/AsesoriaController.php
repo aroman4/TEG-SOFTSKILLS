@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Solicitud;
@@ -9,6 +11,10 @@ use App\Asesoria;
 
 class AsesoriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,6 +50,12 @@ class AsesoriaController extends Controller
         $solicitud->estado = "aceptada";
         $solicitud->save();
         //dd('asesoria creada '.$id);
+        //enviar email al cliente
+        Mail::send('email.asesoriaaceptada',$asesoria->toArray(),function($mensaje) use ($asesoria){
+            $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
+            ->subject('Solicitud de asesoría Aceptada - SoftSkills');
+            $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+        });
         return redirect('/escritorioasesor')->with('success','Asesoría aceptada');
     }
 
@@ -102,9 +114,43 @@ class AsesoriaController extends Controller
      */
     public function destroy($id)
     {
+    }
+    public function eliminar($id)
+    {
         //
         $ases = Asesoria::find($id);
         $ases->delete();
         return redirect('/escritorioasesor')->with('success','Asesoría eliminada');
+    }
+    public function finalizar($id)
+    {
+        //
+        $asesoria = Asesoria::find($id);
+        $asesoria->estado = "finalizada";
+        $asesoria->save();
+        Mail::send('email.asesoriafinalizada',$asesoria->toArray(),function($mensaje) use ($asesoria){
+            $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
+            ->subject('Asesoría Finalizada - SoftSkills');
+            $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+        });
+        return redirect('/escritorioasesor')->with('success','Asesoría finalizada');
+    }
+    public function getChat($id){
+        //al pasar un id de asesoria se conecte al chat
+        //verificar si el usuario que intenta acceder no tiene permiso
+        $asesoria = Asesoria::find($id);
+        if(((auth()->user()->tipo_usu == "asesor") && ($asesoria->user_id == auth()->user()->id)) || ((auth()->user()->tipo_usu == "cliente") && ($asesoria->id_cliente == auth()->user()->id))){ //si es asesor o cliente autorizado
+            return view('webchat.index')->with('asesoria',$id);
+        }else{
+            return back()->with('error','No tienes permiso para acceder a este chat');
+        }
+    }
+
+    public function reporteshome(){
+        return view('reportes.reporteshome');
+    }
+    public function reporteasesoria($id){
+        $asesoria = Asesoria::find($id);
+        return view('reportes.reporteasesoria')->with('asesoria',$asesoria);
     }
 }

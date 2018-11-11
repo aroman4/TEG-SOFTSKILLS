@@ -12,11 +12,10 @@ $(document).ready(function() {
     });
   
     // will replace .form-g class when referenced
-    var material = '<div class="input-field input-g">' +
+    var material = '<div class="input-field list-group-item input-g">' +
       '<input name="opcion[]" id="opcion[]" type="text" class="form-control">' +
-      '<span style="float:right; cursor:pointer;"class="delete-option">Borrar opción</span>' +
-      '<label for="opcion">Opciones</label>' +
-      '<span class="add-option" style="cursor:pointer;">Añadir otra opción</span>' +
+      '<span style="float:right; cursor:pointer;"class="delete-option btn btn-danger">Borrar opción</span>' +
+      '<span class="add-option btn btn-success" style="cursor:pointer;">Añadir opción</span>' +
       '</div>';
   
     // for adding new option

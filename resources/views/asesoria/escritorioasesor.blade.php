@@ -1,46 +1,55 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-    {{-- @if(Auth::user()->sexo == "Femenino")
-        <p>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
-    @else
-        <p>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</p>
-    @endif --}}
-    
-    <div class="col-md-4">
-        <h2 class="escritorioH2 text-center">Asesorías Activas:</h2>
-        <ul class="list-group">
-            @forelse(\App\Asesoria::all() as $ase)
-                @if(($ase->user_id == Auth::user()->id) && ($ase->estado == "activa"))
-                    <div class="asesoria">
-                        <li class="list-group-item"><a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">{{$ase->titulo}}</a></li>
-                    </div>
-                @endif            
-            @empty
-                <p>No hay asesorías activas</p>
-                <a class="btn btn-warning">Ver solicitudes</a>
-                <p>Solicitudes creadas (pendientes por aprobación):</p>
-                @if(count(\App\Solicitud::all())>0)
-                    @foreach(\App\Solicitud::all() as $sol)
-                        @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"  && ($sol->estado=="pendiente"))
-                            <div>
-                                <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
-                            </div>
-                        @endif
-                    @endforeach
-                @else
-                    <p>No hay solicitudes pendientes</p>
-                @endif
-            @endforelse
-        </ul>
+    <div class="col-md-9 escritorioA">
+        <div class="row">
+            <div class="col-md-12 text-right" style="color:white">
+            @if(Auth::user()->sexo == "femenino")
+                <h1>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
+            @else
+                <h1>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
+            @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="elemEsc">
+                    <a class="escritorioElem" id="imgAse" href="{{route('asesescritorio')}}"></a>
+                    <h2 class="texElem">Asesorías</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="elemEsc">
+                    <a class="escritorioElem" id="imgSol" href="{{route('solicitud.index')}}"></a>
+                    <h2 class="texElem">Solicitudes</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="elemEsc">
+                    <a class="escritorioElem" id="imgRep" href="{{route('reporteshome')}}"></a>
+                    <h2 class="texElem">Reportes</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="elemEsc">
+                    <a class="escritorioElem" id="imgInst" href="{{route('cuestionario.home')}}"></a>
+                    <h2 class="texElem">Cuestionarios / Rúbricas</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="elemEsc">
+                    <a class="escritorioElem" id="imgCal" href="{{route('agenda')}}"></a>
+                    <h2 class="texElem">Agenda/Calendario</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="elemEsc">
+                    <a class="escritorioElem" id="imgCont" href="{{route('bancoclientes')}}"></a>
+                    <h2 class="texElem">Banco de Clientes</h2>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <div class="row"><a class="escritorioElem imgSol" href="{{route('solicitud.index')}}" class="ElementoEsc">Solicitudes</a></div>
-        <div class="row"><a class="escritorioElem imgInst" href="{{route('cuestionario.home')}}" class="ElementoEsc">Instrumento cuestionario</a></div>
-    </div>
-    <div class="col-md-3">
-        <div class="row"><a class="escritorioElem imgCal" href="{{route('solicitud.index')}}" class="ElementoEsc">Calendario</a></div>
-        <div class="row"><a class="escritorioElem imgRep" href="{{route('cuestionario.home')}}" class="ElementoEsc">Reportes</a></div>
-    </div>
-
 @endsection

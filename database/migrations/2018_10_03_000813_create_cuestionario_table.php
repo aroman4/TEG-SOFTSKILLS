@@ -16,8 +16,12 @@ class CreateCuestionarioTable extends Migration
         Schema::create('cuestionario', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
-            $table->integer('user_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index(); //id del asesor
+            $table->integer('cliente_id');
             $table->string('descripcion');
+            $table->integer('id_asesoria')->unsigned()->nullable();
+            $table->foreign('id_asesoria')->references('id')->on('asesoria')->onDelete('cascade');
+            $table->boolean('respondido')->default(false);
             $table->timestamps();
         });
     }
