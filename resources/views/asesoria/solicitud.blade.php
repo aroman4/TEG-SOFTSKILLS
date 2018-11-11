@@ -15,10 +15,13 @@
                 <div class="col-md-12 list-group-item">
                     <h2>Cliente: <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></h2>
                     <h2>Asunto:</h2>
-                    <h1>{{$solicitud->titulo}}</h1>
+                    <h4>{{$solicitud->titulo}}</h4>
                     <p>Creada el {{$solicitud->created_at}}</p>
                     <h2>Descripción:</h2>
                     <h4>{{$solicitud->mensaje}}</h4>
+                    @if($solicitud->archivo != null)
+                        <a class="btn btn-secondary" href="{{asset('archivoproyecto/'.$solicitud->archivo)}}">Descargar archivo adjunto</a>
+                    @endif
                     <br><br>
                     @if(Auth::user()->tipo_usu == "asesor" && $solicitud->estado == "pendiente")
                         <a href="{{action('AsesoriaController@AceptarAsesoria',['id'=> $solicitud->id])}}" class="btn btn-success">Aceptar Solicitud</a>

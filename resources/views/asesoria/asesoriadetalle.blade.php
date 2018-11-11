@@ -24,7 +24,7 @@
             <p>Descripción: {{$asesoria->mensaje}}</p>        
             <div class="text-center">  
                 <h1>Cuestionarios y Rúbricas</h1>      
-                @if(Auth::user()->tipo_usu == "asesor")
+                @if(Auth::user()->tipo_usu == "asesor" && $asesoria->estado=="activa")
                     <a href="{{route('cuestionario.nuevoq',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Cuestionario</a>
                     <a href="{{route('rubrica.nuevo',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Rúbrica</a>
                 @endif
