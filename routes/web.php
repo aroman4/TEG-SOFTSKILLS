@@ -178,7 +178,7 @@ Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->nam
 //boton de ver investigacion
 Route::get('/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
 //--vista de encuesta 1 y dos
-Route::get('/vistaencuenta', function () {
+Route::get('/vistaencuesta', function () {
     return view('invproyecto.vistaencuesta');
 })->name('vistaencuesta');
 //''vista de las investigaciones
@@ -241,13 +241,22 @@ Route::get('encuestados',[
     'as' =>'encuesta.encuestados'
 ]);
 Route::post('/encuestados', 'EncuestaController@storeencuestados')->name('encuestados');
-
+//----------------------------------------------------------------------------------------
 //respuesta encuesta 1
-Route::get('/encuestauno', function () {
-    return view('encuesta.RespuestaInvInicial');
+Route::get('/encuestauno/{id}', function ($id){
+    $encuesta = DB::table('encuesta')->where('id_usuario',$id)->first();
+        //dd($encuesta);
+    return view('encuesta.RespuestaInvInicial')->with('encuesta',$encuesta);
 })->name('encuestauno');
 Route::post('/encuestauno', 'EncuestaController@storerespuestauno')->name('encuestauno');
 
+//encuesta 1 pregunta
+Route::get('/encuestaunopreg/{id}', function ($id) {
+    $inv = \ App\ Investigacion::find($id);
+    return view('encuesta.EncuestaInvInicial')->with('inv',$inv);
+})->name('encuestaunopreg');
+Route::post('/encuestaunopreg', 'EncuestaController@store')->name('encuestaunopreg');
+//----------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------
 //ruta de prueba BORRAR LUEGO

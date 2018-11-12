@@ -2,7 +2,8 @@
 @section('content')
 <div class="text-center">
     {!!Form::open(['action' => 'EncuestaController@storerespuestauno', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
-
+    @csrf
+    <input type="hidden" name="encuestaid" value="{{ $encuesta->id }}">
         <p>{{$encuesta->pregunta1}}</p>
         <input type="radio" name="respuesta1" value="1">
         <input type="radio" name="respuesta1" value="2">
@@ -44,6 +45,12 @@
         <input type="radio" name="respuesta6" value="3">
         <input type="radio" name="respuesta6" value="4">
         <input type="radio" name="respuesta6" value="5">
+
+        <div class="form-group">
+                <div class="col-md-6 col-md-offset-4">
+                    <button type="submit" class="btn btn-primary">Enviar Resultados</button>
+                </div>
+        </div>
 
         <small>Creada el {{$encuesta->created_at}}</small>
     {!!Form::close()!!}              

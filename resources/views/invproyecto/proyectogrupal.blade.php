@@ -42,7 +42,7 @@
                                 <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary">Ver Más</a></h3>
                             </div>
                             <div class="col-md-2">
-                                <a href="{{route('RespuestaInvInicial.storerespuestauno',['id'=> $postulacion->id_inv])}}" class="btn btn-danger">Evaluación Inicial</a></h3>
+                                <a href="./encuestauno/{{$postulacion->id_invest}}" class="btn btn-danger">Evaluación Inicial</a></h3>
                             </div>
                             <div class="col-md-2">
                                 <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-success">Evaluación Final</a></h3>
