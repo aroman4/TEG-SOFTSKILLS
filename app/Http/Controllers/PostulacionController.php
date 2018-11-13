@@ -35,6 +35,11 @@ class PostulacionController extends Controller
     public function create()
     {
         //
+
+    }
+    public function  detalle($id){
+        $inv = Investigacion::find($id);
+        return view('invproyecto.investigaciondetalle')->with('inv',$inv);
     }
     public function SolicPostulacion($idinv)
     {

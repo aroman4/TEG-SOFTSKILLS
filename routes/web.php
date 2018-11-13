@@ -174,7 +174,7 @@ Route::resource('modulopostulacion','PostulacionController');
 //ver postulacion
 Route::resource('verPostulacion','PostulacionController');
 //ver postulacion de solicitud de postulacion
-Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->name('verSolPostulaciones');;
+Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->name('verSolPostulaciones');
 //boton de ver investigacion
 Route::get('/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
 //--vista de encuesta 1 y dos
@@ -185,6 +185,9 @@ Route::get('/vistaencuesta', function () {
 Route::get('/vistainvestigaciones', function () {
     return view('invproyecto.vistainvestigaciones');
 })->name('vistainvestigaciones');
+
+//-------------Ruta nuevas---------------------------------
+Route::get('/detallesinv/{id}', 'PostulacionController@detalle')->name('detallesinv');
 //-----------------------------------------------------------
 
 //cuestionario

@@ -51,7 +51,7 @@
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a class="dropdown-item" href="{{ route('escritorioasesor') }}">Ir al escritorio</a>
                                 @elseif(Auth::user()->tipo_usu == "investigador")
-                                    <a class="dropdown-item" href="{{ route('escritorioinvestigador') }}">Ir al escritorio</a>
+                                    <a class="dropdown-item" href="{{ route('publicacioninve') }}">Ir al escritorio</a>
                                 @elseif(Auth::user()->tipo_usu == "cliente")
                                     <a class="dropdown-item" href="{{ route('escritoriocliente') }}">Ir al escritorio</a>
                                 @endif

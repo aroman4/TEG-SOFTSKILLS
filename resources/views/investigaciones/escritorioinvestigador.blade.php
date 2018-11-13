@@ -1,7 +1,6 @@
 @extends('layouts.menuinv')
 
 @section('content')
-<div class="row justify-content-center">
     {{--<div class="col-md-8">
         <div class="card">
             <div class="card-header">
@@ -13,7 +12,7 @@
             </div>
         </div>
     </div>--}}
-    <div class="col-md-8">
+    <div class="col-md-3">
         <div class="card">
             <div class="card-body">
                 <p><b>Solicitudes creadas:</b></p>
@@ -31,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-3">
         <div class="card">
             <div class="card-body">
                 <p><b>Solicitudes Creadas (Pendientes por Aprobación):</b></p>
@@ -49,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-3">
         <div class="card">
             <div class="card-body">
                 <p><b>Investigaciones Activas:</b></p>
@@ -68,5 +67,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

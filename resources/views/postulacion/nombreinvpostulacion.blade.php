@@ -1,11 +1,13 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
-<div class="container">
     <br>
-    <h1 class="text-center">Lista de Postulado </h1>
+    
+    <div  class="col-md-10"style="margin:0px auto;">
+            <a style="float:right;" href="{{route('listapostulaciones')}}" class="btn btn-secondary">Regresar</a></h3>
 
-    <br><br>
+        <h1 style="margin-top:3px;" class="text-center">Lista de Postulado </h1>
+        <br><br>
         <div class="row">   
             <div class="col-md-3">
                 <h3>Nombre del Investigador</h3>
