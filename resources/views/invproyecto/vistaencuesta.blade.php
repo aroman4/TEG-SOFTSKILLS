@@ -1,26 +1,41 @@
 @extends('layouts.menuinv')
 @section('content')
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-            <div class="card-body">
-
-                <div class="col-md-3">
-                    <p class="text-center">Resultados y Encuestas</p>
-                </div>
-                <div class="col-md-3">
-                    <a href="{{route('encuesta')}}" class="btn btn-success">Encuesta Inicial</a></h3>
-                </div>
-                <div class="col-md-3">
-                    <br><br>
-                    <a href="{{route('encuestados')}}" class="btn btn-success">Encuenta Final</a></h3>
-                </div>
-                <div class="col-md-3">
-                        <br><br>
-                        <a href="#" class="btn btn-success">Resultados</a></h3>
-                    </div>
-            </div>
-    </div>
-</div>
+<div id="columnchart_material" style="width: 800px; height: 500px;"></div>
 
 @endsection
+
+
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Usuario', 'Respuesta1', 'Respuesta2', 'Respuesta3','Respuesta4','Respuesta5','Respuesta6'],
+          @foreach($encuestastodas as $value)
+            ['no se', '{!!$value->respuesta1!!}', '{!!$value->respuesta2!!}', '{!!$value->respuesta3!!}','{!!$value->respuesta4!!}','{!!$value->respuesta5!!}','{!!$value->respuesta6!!}'],
+          @endforeach
+          /* @foreach(\App\Encuesta::all() as $value)
+            ['no se', '{!!$value->respuesta1!!}', '{!!$value->respuesta2!!}', '{!!$value->respuesta3!!}','{!!$value->respuesta4!!}','{!!$value->respuesta5!!}','{!!$value->respuesta6!!}'],
+          @endforeach */
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  {{-- <body>
+    
+  </body> --}}

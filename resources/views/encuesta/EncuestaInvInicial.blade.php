@@ -17,8 +17,8 @@
                     <div class="card-body">
                         {!!Form::open(['action' => 'EncuestaController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                              @csrf  
-                            <input type="hidden" name="id_investg" value="{{ $inv->id}}">
-                            <input type="hidden" name="id_creador" value="{{ $inv->user_id }}">
+                            <input type="hidden" name="id_investg" value="{{$inv->id}}">
+                            <input type="hidden" name="id_creador" value="{{$inv->user_id}}">
                                 <div class="form-group row">
                                     {!! Form::label ('pregunta1','Cuales son tus capacidades para resolver problemas:*')!!}
                                     {!! Form::textarea ('pregunta1',null,['class'=>"form-control {{ $errors->has('pregunta1') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe tu Respuesta','required'])!!}

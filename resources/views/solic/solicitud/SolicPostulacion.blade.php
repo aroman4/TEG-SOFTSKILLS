@@ -37,7 +37,7 @@
                                     @endif
                                  </div>
                                 <div class="form-group row">
-                                        {!! Form::label ('aporte','Apostes:')!!}
+                                        {!! Form::label ('aporte','Aportes:')!!}
                                         {!! Form::text ('aporte',null,['class'=>"form-control {{ $errors->has('aporte') ? ' is-invalid' : '' }}",'placeholder'=>'Cual seria tu aporte','required'])!!}
                                         @if ($errors->has('aporte'))
                                         <span class="text-danger" role="alert">

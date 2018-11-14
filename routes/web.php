@@ -247,18 +247,18 @@ Route::post('/encuestados', 'EncuestaController@storeencuestados')->name('encues
 //----------------------------------------------------------------------------------------
 //respuesta encuesta 1
 Route::get('/encuestauno/{id}', function ($id){
-    $encuesta = DB::table('encuesta')->where('id_usuario',$id)->first();
-        //dd($encuesta);
-    return view('encuesta.RespuestaInvInicial')->with('encuesta',$encuesta);
+    //$encuesta = DB::table('encuesta')->where('id_usuario',$id)->first();
+    $inv = \ App\ Investigacion::find($id);
+    return view('encuesta.RespuestaInvInicial')->with('inv',$inv);
 })->name('encuestauno');
-Route::post('/encuestauno', 'EncuestaController@storerespuestauno')->name('encuestauno');
+Route::post('/encuestauno', 'EncuestaController@storerespuestauno')->name('encuestaunopost');
 
 //encuesta 1 pregunta
 Route::get('/encuestaunopreg/{id}', function ($id) {
     $inv = \ App\ Investigacion::find($id);
     return view('encuesta.EncuestaInvInicial')->with('inv',$inv);
 })->name('encuestaunopreg');
-Route::post('/encuestaunopreg', 'EncuestaController@store')->name('encuestaunopreg');
+Route::post('/encuestaunopreg', 'EncuestaController@store')->name('encuestaunopregpost');
 //----------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------
@@ -298,3 +298,11 @@ Route::get('bancoclientes',function(){
     return view('asesoria.bancoclientes');
 })->middleware('auth')->name('bancoclientes');
 Route::get('/exportclientes','UsersController@exportBanco')->name('exportclientes');
+
+//actividad
+//---------vista de actividad de Lider
+Route::get('/crearactividad/{id}', function ($id) {
+    $inv = \ App\ Investigacion::find($id);
+    return view('actividad.crearactividad')->with('inv',$inv);
+})->name('crearactividad');
+Route::post('crearactividad','ActividadController@store');

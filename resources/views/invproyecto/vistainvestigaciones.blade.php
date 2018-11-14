@@ -26,7 +26,7 @@
                  <hr>
                     @forelse(\App\Postulacion::all() as $postulacion)
                     
-                        @if($postulacion->id_invest == auth()->user()->id && $postulacion->estado_inv == "inicio")
+                        @if($postulacion->id_invest == auth()->user()->id && $postulacion->estado_inv == "inicio" && $postulacion->estado == 'aceptada')
                                 
                                     <p><b>Titulo de la Investigación</b></p>
                                     <p>{{\App\Investigacion::find($postulacion->id_post)->titulo}}</p>
