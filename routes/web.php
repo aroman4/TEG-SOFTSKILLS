@@ -248,8 +248,9 @@ Route::post('/encuestados', 'EncuestaController@storeencuestados')->name('encues
 //respuesta encuesta 1
 Route::get('/encuestauno/{id}', function ($id){
     //$encuesta = DB::table('encuesta')->where('id_usuario',$id)->first();
-    $inv = \ App\ Investigacion::find($id);
-    return view('encuesta.RespuestaInvInicial')->with('inv',$inv);
+    $inv = \App\Investigacion::find(DB::table('postulacion')->where('id_invest',$id)->first()->id_post);
+    $postulante = $id;
+    return view('encuesta.RespuestaInvInicial',compact('inv','postulante'));
 })->name('encuestauno');
 Route::post('/encuestauno', 'EncuestaController@storerespuestauno')->name('encuestaunopost');
 

@@ -69,7 +69,8 @@
             </tbody>
           </table> 
           <input type="hidden" name="id_investg" value="{{ $inv->id}}">
-            <input type="hidden" name="id_creador" value="{{ $inv->user_id }}">
+          <input type="hidden" name="id_creador" value="{{ $inv->user_id }}">
+          <input type="hidden" name="id_usuario" value="{{ $postulante }}">
 
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4" >
