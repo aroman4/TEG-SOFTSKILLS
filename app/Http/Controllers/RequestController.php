@@ -125,11 +125,11 @@ public function publicacioninvestigacion()
                 return redirect('/escritorioasesor')->with('success','Solicitud Creada');
             break;
             case 'cliente':
-                Mail::send('email.emailsolicitud',$solicitud->toArray(),function($mensaje){
+                /* Mail::send('email.emailsolicitud',$solicitud->toArray(),function($mensaje){
                     $mensaje->to(User::find(auth()->user()->id)->email,User::find(auth()->user()->id)->nombre)
                     ->subject('Creación de solicitud - SoftSkills');
                     $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-                });
+                }); */
                 return redirect('/escritoriocliente')->with('success','Solicitud Creada');
             break;
         }

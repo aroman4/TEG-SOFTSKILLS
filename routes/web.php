@@ -174,17 +174,20 @@ Route::resource('modulopostulacion','PostulacionController');
 //ver postulacion
 Route::resource('verPostulacion','PostulacionController');
 //ver postulacion de solicitud de postulacion
-Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->name('verSolPostulaciones');;
+Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->name('verSolPostulaciones');
 //boton de ver investigacion
 Route::get('/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
 //--vista de encuesta 1 y dos
-Route::get('/vistaencuenta', function () {
+Route::get('/vistaencuesta', function () {
     return view('invproyecto.vistaencuesta');
 })->name('vistaencuesta');
 //''vista de las investigaciones
 Route::get('/vistainvestigaciones', function () {
     return view('invproyecto.vistainvestigaciones');
 })->name('vistainvestigaciones');
+
+//-------------Ruta nuevas---------------------------------
+Route::get('/detallesinv/{id}', 'PostulacionController@detalle')->name('detallesinv');
 //-----------------------------------------------------------
 
 //cuestionario
@@ -241,13 +244,22 @@ Route::get('encuestados',[
     'as' =>'encuesta.encuestados'
 ]);
 Route::post('/encuestados', 'EncuestaController@storeencuestados')->name('encuestados');
-
+//----------------------------------------------------------------------------------------
 //respuesta encuesta 1
-Route::get('/encuestauno', function () {
-    return view('encuesta.RespuestaInvInicial');
+Route::get('/encuestauno/{id}', function ($id){
+    //$encuesta = DB::table('encuesta')->where('id_usuario',$id)->first();
+    $inv = \ App\ Investigacion::find($id);
+    return view('encuesta.RespuestaInvInicial')->with('inv',$inv);
 })->name('encuestauno');
-Route::post('/encuestauno', 'EncuestaController@storerespuestauno')->name('encuestauno');
+Route::post('/encuestauno', 'EncuestaController@storerespuestauno')->name('encuestaunopost');
 
+//encuesta 1 pregunta
+Route::get('/encuestaunopreg/{id}', function ($id) {
+    $inv = \ App\ Investigacion::find($id);
+    return view('encuesta.EncuestaInvInicial')->with('inv',$inv);
+})->name('encuestaunopreg');
+Route::post('/encuestaunopreg', 'EncuestaController@store')->name('encuestaunopregpost');
+//----------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------
 //ruta de prueba BORRAR LUEGO
@@ -286,3 +298,11 @@ Route::get('bancoclientes',function(){
     return view('asesoria.bancoclientes');
 })->middleware('auth')->name('bancoclientes');
 Route::get('/exportclientes','UsersController@exportBanco')->name('exportclientes');
+
+//actividad
+//---------vista de actividad de Lider
+Route::get('/crearactividad/{id}', function ($id) {
+    $inv = \ App\ Investigacion::find($id);
+    return view('actividad.crearactividad')->with('inv',$inv);
+})->name('crearactividad');
+Route::post('crearactividad','ActividadController@store');

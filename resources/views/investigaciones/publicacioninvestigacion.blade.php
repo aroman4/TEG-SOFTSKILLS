@@ -1,7 +1,7 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
-<div class="container">
+<div style="margin:0px auto;" class="">
     @if(count($errors)>0)
         <ul>
             @foreach ($errors->all() as $error)

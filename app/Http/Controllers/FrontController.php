@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Redirect;
+use App\Solicitud;
+use App\Investigacion;
+
 
 class FrontController extends Controller
 {
@@ -16,8 +20,10 @@ class FrontController extends Controller
     }
     //Investigación
     public function investigacion(){
-        return view('investigacion');
-    }
+        //metodo de Paginacion
+        $pub = Investigacion::paginate(2);
+        return view('investigacion', compact('pub'));
+        }
 
     //prueba de blade
     public function prueba(){

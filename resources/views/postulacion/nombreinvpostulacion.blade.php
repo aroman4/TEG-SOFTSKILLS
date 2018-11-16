@@ -1,11 +1,13 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
-<div class="container">
     <br>
-    <h1 class="text-center">Lista de Postulado </h1>
+    
+    <div  class="col-md-10"style="margin:0px auto;">
+            <a style="float:right;" href="{{route('listapostulaciones')}}" class="btn btn-secondary">Regresar</a></h3>
 
-    <br><br>
+        <h1 style="margin-top:3px;" class="text-center">Lista de Postulado </h1>
+        <br><br>
         <div class="row">   
             <div class="col-md-3">
                 <h3>Nombre del Investigador</h3>
@@ -36,7 +38,7 @@
                         <div class="col-md-3">                
                             <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">
                                 <button type="button" class="btn btn-primary">
-                                    <i class="fa fa-upload">  Download </i>
+                                    <i class="fa fa-download">  Download </i>
                                 </button>
                             </a>
                         </div>
@@ -44,10 +46,10 @@
                             <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
                         </div>
                         <div class="col-md-3">
-                            <a href="{{action('PostulacionController@AceptarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-success"><i class="fa fa-check"></i>Aceptar</a>
+                            <a  href="{{route('crearactividad',['id'=> $postulacion->id_post])}}" class="btn btn-success"><i class="fa fa-check"></i>Aceptar</a></h3>
+
                             <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
-                            <br>
-                            <span>El estado es: </span>
+                           <br> <span>El estado es: </span>
                             <span>{{$postulacion->estado}}</span>
                         </div>
                     </div>

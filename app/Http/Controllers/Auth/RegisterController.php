@@ -40,7 +40,7 @@ class RegisterController extends Controller
                 if(Auth::user()->tipo_inv == "comite"){
                     return '/escritoriocomite';
                 }else{
-                    return '/escritorioinvestigador';
+                    return '/publicacioninve';
                 }
             break;
             case 'asesor':

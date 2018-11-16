@@ -51,11 +51,11 @@ class AsesoriaController extends Controller
         $solicitud->save();
         //dd('asesoria creada '.$id);
         //enviar email al cliente
-        Mail::send('email.asesoriaaceptada',$asesoria->toArray(),function($mensaje) use ($asesoria){
+        /* Mail::send('email.asesoriaaceptada',$asesoria->toArray(),function($mensaje) use ($asesoria){
             $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
             ->subject('Solicitud de asesoría Aceptada - SoftSkills');
             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-        });
+        }); */
         return redirect('/escritorioasesor')->with('success','Asesoría aceptada');
     }
 
@@ -128,11 +128,11 @@ class AsesoriaController extends Controller
         $asesoria = Asesoria::find($id);
         $asesoria->estado = "finalizada";
         $asesoria->save();
-        Mail::send('email.asesoriafinalizada',$asesoria->toArray(),function($mensaje) use ($asesoria){
+        /* Mail::send('email.asesoriafinalizada',$asesoria->toArray(),function($mensaje) use ($asesoria){
             $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
             ->subject('Asesoría Finalizada - SoftSkills');
             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-        });
+        }); */
         return redirect('/escritorioasesor')->with('success','Asesoría finalizada');
     }
     public function getChat($id){
