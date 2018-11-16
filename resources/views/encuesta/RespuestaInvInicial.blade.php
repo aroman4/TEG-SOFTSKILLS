@@ -75,8 +75,8 @@
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4" >
                 <button type="submit" class="btn btn-primary">Enviar Resultados</button>
-                <a href="{{route('vistaencuesta')}}" class="btn btn-secondary">Regresar</a>
-            </div>
+                <a style="float:right;" href="{{route('vistainvestigaciones')}}" class="btn btn-secondary">Regresar</a></h3>
+              </div>
         </div>
 
     {!!Form::close()!!}              

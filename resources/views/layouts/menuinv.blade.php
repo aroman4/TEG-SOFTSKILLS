@@ -10,7 +10,7 @@
                 <li {{ request()->is('listapostulaciones') ? 'active' : '' }}><a href="{{route('listapostulaciones')}}"><i class="fa fa-address-card" style="color:blue"></i>   Postulaciones</a></li>
                 <li {{ request()->is('vistainvestigaciones') ? 'active' : '' }}><a href="{{route('vistainvestigaciones')}}"><i class="fa fa-file-code" style="color:blue"></i>   Investigación</a></li>
                 <li {{ request()->is('publicacioninve') ? 'active' : '' }}><a href="{{route('publicacioninve')}}"><i class="fa fa-newspaper" style="color:blue"></i>   Publicaciones</a></li>
-                <li {{ request()->is('vistaencuesta') ? 'active' : '' }}><a href="{{route('vistaencuesta')}}"><i class="fa fa-folder" style="color:blue"></i>   Resultados</a></li>
+                <li {{ request()->is('#') ? 'active' : '' }}><a href="#"><i class="fa fa-folder" style="color:blue"></i>   Resultados</a></li>
                 <li {{ request()->is('') ? 'active' : '' }}><a href="#"><i class="fa fa-envelope" style="color:blue"></i>   Mensajes</a></li>
             </ul>
         </div>

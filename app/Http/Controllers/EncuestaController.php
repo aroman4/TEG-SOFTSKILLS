@@ -73,11 +73,10 @@ class EncuestaController extends Controller
         for($i=0;$i < 6; $i++){
             $promedio = $promedio + ($encuesta->{'respuesta'.$i}) * (20/6)/5;
         }
-        $encuesta->calificacion = $promedio;
+        $encuesta->calificacion = $promedio; 
         $encuesta->save();
         $encuestastodas = DB::table('encuesta')->where('id_investg',1)->get(); //esto esta mal pero solo es para probar algo
-        return view('invproyecto.vistaencuesta')->with('encuestastodas',$encuestastodas);
-
+        return redirect()->route('detallesinv',$encuesta->id_investg)->with('success','Evaluación Realizada');
     }
 
     /**
