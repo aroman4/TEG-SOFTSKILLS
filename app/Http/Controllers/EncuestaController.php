@@ -65,7 +65,8 @@ class EncuestaController extends Controller
     {  
         //dd($request);
         $encuesta = new Encuesta($request->all());
-        $encuesta->id_usuario = auth()->user()->id;
+        //el usuario es el que se esta evaluando
+        //$encuesta->id_usuario = DB::table('postulacion')->where('id_post',$encuesta->id_investg)->first();
         $encuesta->id_creador = auth()->user()->id;
         
         $promedio = 0;
@@ -74,7 +75,7 @@ class EncuestaController extends Controller
         }
         $encuesta->calificacion = $promedio;
         $encuesta->save();
-        $encuestastodas = DB::table('encuesta')->where('id_investg',2)->get(); //esto esta mal pero solo es para probar algo
+        $encuestastodas = DB::table('encuesta')->where('id_investg',1)->get(); //esto esta mal pero solo es para probar algo
         return view('invproyecto.vistaencuesta')->with('encuestastodas',$encuestastodas);
 
     }
