@@ -1,8 +1,8 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    {{--<div class="col-md-8">
         <div class="card">
             <div class="card-header">
                 @if(Auth::user()->sexo == "Femenino")
@@ -12,7 +12,7 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div>--}}
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
@@ -26,7 +26,7 @@
                             @endif
                         @endforeach
                     @else
-                        <p><b>No hay Solicitudes Creada</b>s</p>
+                        <p><b>No hay Solicitudes Creadas</b></p>
                     @endif
             </div>
         </div>

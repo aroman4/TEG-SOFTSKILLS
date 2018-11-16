@@ -67,7 +67,6 @@ class InvestigacionController extends Controller
         $inv = Investigacion::find($id);
         return view('investigaciones.investigacionshow')->with('investigaciones',$inv);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
