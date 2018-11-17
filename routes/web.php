@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /**********************************************************************/
 /* Route del proyecto TEG realizado por Alvaro Roman y Felicia Jardim */
@@ -307,3 +308,47 @@ Route::get('/crearactividad/{id}', function ($id) {
     return view('actividad.crearactividad')->with('inv',$inv);
 })->name('crearactividad');
 Route::post('crearactividad','ActividadController@store');
+
+//mensajes
+Route::get('/mensajes/{id}',function($id){
+    //$recibidos = DB::table('mensaje')->where('id_destinatario',$id)->get();
+    $recibidos = DB::table('mensaje')->where('id_destinatario',$id)->orderBy('id','desc')->get();
+    //$enviados = DB::table('mensaje')->where('id_remitente',$id)->get();
+    $enviados = DB::table('mensaje')->where('id_remitente',$id)->orderBy('id','desc')->get();
+    return view('mensajes.bandejaentrada',compact('recibidos','enviados'));
+})->name('mensajes');
+
+Route::get('/crearmensaje/{id_destinatario}',function($id_destinatario){
+    $id_remitente = auth()->user()->id;
+    return view('mensajes.nuevomensaje',compact('id_destinatario','id_remitente'));
+})->name('crearmensaje');
+
+Route::post('/crearmensaje',function(Request $request){
+    $mensaje = new \App\Mensaje($request->all());
+    if($request->hasFile('archivo')){
+        $archivo = $request->file('archivo');
+        $nombreArch = time().$archivo->getClientOriginalName();
+        $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
+        $mensaje->archivo = $nombreArch;
+    }
+    $mensaje->save();
+    Mail::send('email.mensajerecibido',$mensaje->toArray(),function($correo) use ($mensaje){
+        $correo->to(\App\User::find($mensaje->id_destinatario)->email,\App\User::find($mensaje->id_destinatario)->nombre)
+        ->subject('Mensaje recibido - SoftSkills');
+        $correo->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+    });
+    return redirect()->route('mensajes',auth()->user()->id);
+})->name('crearmensajepost');
+Route::get('/vermensaje/{id}',function($id){
+    $mensaje = \App\Mensaje::find($id);
+    if($mensaje->estado == "recibido"){
+        $mensaje->estado = "leido";
+        $mensaje->save();
+    }
+    return view('mensajes.vermensaje')->with('mensaje',$mensaje);
+})->name('vermensaje');
+Route::get('/borrarmensaje/{id}',function($id){
+    $mensaje = \App\Mensaje::find($id);
+    $mensaje->delete();
+    return redirect()->route('mensajes',auth()->user()->id);
+})->name('borrarmensaje');

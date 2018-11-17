@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-9 escritorioA">
         <div class="row">
-            <div class="col-md-12 text-right" style="color:white">
+            <div class="col-md-12 text-right">
             @if(Auth::user()->sexo == "femenino")
                 <h1>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
             @else
@@ -35,7 +35,7 @@
             <div class="col-md-4">
                 <div class="elemEsc">
                     <a class="escritorioElem" id="imgInst" href="{{route('cuestionario.home')}}"></a>
-                    <h2 class="texElem">Cuestionarios / Rúbricas</h2>
+                    <h2 class="texElem">Cuestionarios / <br> Rúbricas</h2>
                 </div>
             </div>
             <div class="col-md-4">

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -101,12 +102,18 @@ class RegisterController extends Controller
     {
         //dd($data['password']);
         $data['password'] = bcrypt($data['password']);
+        
+        $imageName = time() . '.' . $data['imagen']->getClientOriginalExtension();
+
+        $data['imagen']->move( base_path() . '/public/imagenperfil/', $imageName );
+        $data['imagen'] = $imageName;
+        $user = new User($data);
         /* $user = new User($data);
         $user->password = bcrypt($user->password);
         //dd($user->password);
         //$user->save();
         return $user; */
-        $user = new User($data);
+        
         //$user::create($data);
         
         //if(($user->tipo_usu == "investigador") && (User::where('tipo_usu','=','investigador')->count()==0)){

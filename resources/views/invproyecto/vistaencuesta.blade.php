@@ -16,7 +16,7 @@
         var data = google.visualization.arrayToDataTable([
           ['Usuario', 'Respuesta1', 'Respuesta2', 'Respuesta3','Respuesta4','Respuesta5','Respuesta6'],
           @foreach($encuestastodas as $value)
-            ['no se', '{!!$value->respuesta1!!}', '{!!$value->respuesta2!!}', '{!!$value->respuesta3!!}','{!!$value->respuesta4!!}','{!!$value->respuesta5!!}','{!!$value->respuesta6!!}'],
+            ['{!! App\User::find($value->id_usuario)->nombre .' '. App\User::find($value->id_usuario)->apellido !!}', '{!!$value->respuesta1!!}', '{!!$value->respuesta2!!}', '{!!$value->respuesta3!!}','{!!$value->respuesta4!!}','{!!$value->respuesta5!!}','{!!$value->respuesta6!!}'],
           @endforeach
           /* @foreach(\App\Encuesta::all() as $value)
             ['no se', '{!!$value->respuesta1!!}', '{!!$value->respuesta2!!}', '{!!$value->respuesta3!!}','{!!$value->respuesta4!!}','{!!$value->respuesta5!!}','{!!$value->respuesta6!!}'],

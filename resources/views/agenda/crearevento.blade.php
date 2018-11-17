@@ -1,7 +1,6 @@
 @extends('layouts.plantillaQ')
 
 @section('content')
-<div class="container">
     @if(count($errors)>0)
         <ul>
             @foreach ($errors->all() as $error)
@@ -9,8 +8,7 @@
             @endforeach
         </ul>
     @endif
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-9 listaQuest">
             <div class="card" style="border: none">
                 <div class="card-header text-center top-bar">
                     <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
@@ -40,6 +38,4 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection

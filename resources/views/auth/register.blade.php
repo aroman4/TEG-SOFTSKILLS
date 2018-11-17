@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Registrar') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <p>Los campos señalados con * son requeridos</p>
                         <div class="form-group row">
@@ -86,6 +86,12 @@
                             <p>Los siguientes campos son opcionales:</p>
                         </div>
                         <div class="form-group row">
+                            <label class="col-md-4 control-label">Subir imagen de perfil</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control" name="imagen" >
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             {!! Form::label ('edad','Edad')!!}
                             {!! Form::text ('edad',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' }}",'placeholder'=>'Edad','integer'])!!}
                             @if ($errors->has('edad'))
@@ -118,24 +124,6 @@
                             @if ($errors->has('direccion'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('direccion') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group row">
-                            {!! Form::label ('pais','Pais')!!}
-                            {!! Form::text ('pais',null,['class'=>"form-control {{ $errors->has('pais') ? ' is-invalid' }}",'placeholder'=>'Pais'])!!}
-                            @if ($errors->has('pais'))
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $errors->first('pais') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group row">
-                            {!! Form::label ('cedula','Cedula')!!}
-                            {!! Form::text ('cedula',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' }}",'placeholder'=>'Cedula','integer'])!!}
-                            @if ($errors->has('cedula'))
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $errors->first('cedula') }}</strong>
                                 </span>
                             @endif
                         </div>

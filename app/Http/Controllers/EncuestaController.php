@@ -75,9 +75,9 @@ class EncuestaController extends Controller
         }
         $encuesta->calificacion = $promedio;
         $encuesta->save();
-        $encuestastodas = DB::table('encuesta')->where('id_investg',1)->get(); //esto esta mal pero solo es para probar algo
-        return view('invproyecto.vistaencuesta')->with('encuestastodas',$encuestastodas);
-
+        //$encuestastodas = DB::table('encuesta')->where('id_investg',1)->get(); //esto esta mal pero solo es para probar algo
+        //return view('invproyecto.vistaencuesta')->with('encuestastodas',$encuestastodas);
+        return redirect()->route('detallesinv',$encuesta->id_investg)->with('success','Evaluación Realizada');
     }
 
     /**

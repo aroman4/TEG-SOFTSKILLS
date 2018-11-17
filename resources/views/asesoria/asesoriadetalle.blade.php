@@ -15,15 +15,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 list-group-item contentAlv">
+        <div class="col-md-8 list-group-item contentAlv">
             @if(Auth::user()->tipo_usu == "asesor")
-                <p>Cliente: <span>{{\App\User::find($asesoria->id_cliente)->nombre}} {{\App\User::find($asesoria->id_cliente)->apellido}}</span></p>
+                <p>Cliente: <span>{{\App\User::find($asesoria->id_cliente)->nombre}} {{\App\User::find($asesoria->id_cliente)->apellido}}</span><a style="float:right" href="{{route('crearmensaje',$asesoria->id_cliente)}}" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a></p>
             @elseif(Auth::user()->tipo_usu == "cliente")
-                <p>Asesor: <span>{{\App\User::find($asesoria->user_id)->nombre}} {{\App\User::find($asesoria->user_id)->apellido}}</span></p>
+                <p>Asesor: <span>{{\App\User::find($asesoria->user_id)->nombre}} {{\App\User::find($asesoria->user_id)->apellido}}</span><a style="float:right" href="{{route('crearmensaje',$asesoria->user_id)}}" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a></p>
             @endif
-            <p>Descripción: {{$asesoria->mensaje}}</p>        
+            <p>Descripción: {{$asesoria->mensaje}}</p>    
+            <hr>    
             <div class="text-center">  
-                <h1>Cuestionarios y Rúbricas</h1>      
+                <h3>Cuestionarios y Rúbricas</h3>      
                 @if(Auth::user()->tipo_usu == "asesor" && $asesoria->estado=="activa")
                     <a href="{{route('cuestionario.nuevoq',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Cuestionario</a>
                     <a href="{{route('rubrica.nuevo',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Rúbrica</a>
@@ -86,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 list-group-item contentAlv1">
+        <div class="col-md-4 list-group-item contentAlv1">
             <div class="text-right">
                 <p>Estado de la asesoria: <span>{{$asesoria->estado}}</span></p>
                 <p>Creada el {{$asesoria->created_at}}</p>

@@ -21,7 +21,7 @@
                     </div>
                 </div>
             @endif
-            <div class="row">
+            <div class="row" style="min-height: 70vh">
                 <div class="col-md-6 list-group-item contentAlv">
                     <h2>Cuestionarios:</h2>
                     <ul class="list-group">

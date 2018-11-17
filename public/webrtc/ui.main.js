@@ -23,7 +23,7 @@ function addNewMessage(args) {
 
     var userinfoDIV = document.createElement('div');
     userinfoDIV.className = 'user-info';
-    userinfoDIV.innerHTML = args.userinfo || '<img src="/images/user.png">';
+    userinfoDIV.innerHTML = args.userinfo || '<img src="/imagenperfil/avatarplaceholder.png">';
 
     //userinfoDIV.style.background = args.color || rtcMultiConnection.extra.color || getRandomColor();
 
@@ -105,7 +105,7 @@ topbar.querySelector('#continue').onclick = function() {
     addNewMessage({
         header: username,
         message: 'Iniciando sesión...',
-        userinfo: '<img src="/images/action-needed.png">',
+        userinfo: '<img src="/imagenperfil/avatarplaceholder.png">',
         tipo: 'propio'
     });
     
@@ -122,7 +122,7 @@ topbar.querySelector('#continue').onclick = function() {
 			addNewMessage({
                 header: username,
                 message: 'Sesión iniciada.',
-                userinfo: '<img src="/images/action-needed.png">',
+                userinfo: '<img src="/imagenperfil/avatarplaceholder.png">',
                 tipo: 'propio'
             });
 
@@ -140,7 +140,7 @@ topbar.querySelector('#continue').onclick = function() {
 			addNewMessage({
                 header: username,
                 message: 'Sesión iniciada.',
-                userinfo: '<img src="/images/action-needed.png">',
+                userinfo: '<img src="/imagenperfil/avatarplaceholder.png">',
                 tipo: 'propio'
             });
             rtcMultiConnection.join(sessionDescription);

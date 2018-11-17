@@ -13,11 +13,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12 list-group-item">
-                    <h2>Cliente: <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></h2>
-                    <h2>Asunto:</h2>
-                    <h4>{{$solicitud->titulo}}</h4>
                     <p>Creada el {{$solicitud->created_at}}</p>
-                    <h2>Descripción:</h2>
+                    <h3>Asunto: <span>{{$solicitud->titulo}}</span></h3>
+                    <h3>Cliente: <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></h3>
+                    <br><br>
+                                      
+                    <h3>Descripción:</h3>
                     <h4>{{$solicitud->mensaje}}</h4>
                     @if($solicitud->archivo != null)
                         <a class="btn btn-secondary" href="{{asset('archivoproyecto/'.$solicitud->archivo)}}">Descargar archivo adjunto</a>

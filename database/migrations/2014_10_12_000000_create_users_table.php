@@ -25,10 +25,9 @@ class CreateUsersTable extends Migration
             $table->string('apellido');
             $table->string('telefono')->nullable();
             $table->string('direccion')->nullable();
-            $table->string('pais')->nullable();
+            $table->string('imagen')->nullable();
             $table->string('profesion')->nullable();
             $table->string('sexo')->nullable();
-            $table->integer('cedula')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
