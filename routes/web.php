@@ -96,7 +96,11 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
         'AsesoriaController@AceptarAsesoria', ['id' => $id]
     );
 });
-
+Route::get('/rechazarasesoria/{id}','AsesoriaController@RechazarSolicitud', function($id){
+    return redirect()->action(
+        'AsesoriaController@RechazarSolicitud', ['id' => $id]
+    );
+});
 Route::resource('moduloasesoria','AsesoriaController');
 Route::get('/moduloasesoria/eliminar/{id}','AsesoriaController@eliminar')->name('eliminarasesoria');
 Route::post('/moduloasesoria/finalizar','AsesoriaController@finalizar')->name('finalizarasesoriapost');
@@ -109,6 +113,14 @@ Route::get('/moduloasesoria/reporte/{id}',function($id){
     $reporte = \App\Reportefinalase::find($asesoria->reporte_id);
     return view('reportes.reportefinalase',compact('asesoria','reporte'));
 })->name('reportefinalasesoria');
+//presolicitud
+Route::get('/presolicitud',function(){
+    return view('asesoria.presolicitud');
+})->name('presolicitud');
+Route::post('/presolic','RequestController@storePre');
+
+
+
 Route::resource('moduloinvestigaciones','InvestigacionController');
 //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 //-------------postulacion

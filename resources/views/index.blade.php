@@ -4,6 +4,7 @@
 	</div>
 	<div class="banner">
 		<h1>Nos dedicamos al desarrollo de las habilidades blandas</h1>
+		<a class="btn btn-primary" style="height:100px;width:300px;font-size:20px;padding-top:30px" href="{{route('presolicitud')}}">Realiza una pre-solicitud</a>
 	</div>
 	<div class="seccion2">
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum

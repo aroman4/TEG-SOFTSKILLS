@@ -58,6 +58,19 @@ class AsesoriaController extends Controller
         }); */
         return redirect('/escritorioasesor')->with('success','Asesoría aceptada');
     }
+    public function RechazarSolicitud($id){
+       //consigo la solicitud
+        $solicitud = Solicitud::find($id);
+        $solicitud->estado = "rechazada";
+        $solicitud->save();
+        //enviar email al cliente
+        /* Mail::send('email.solicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
+            $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
+            ->subject('Solicitud de asesoría Rechazada - SoftSkills');
+            $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+        }); */
+        return redirect('/escritorioasesor')->with('error','Solicitud Rechazada');
+    }
 
     /**
      * Store a newly created resource in storage.

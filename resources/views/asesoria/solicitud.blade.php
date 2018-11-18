@@ -24,8 +24,18 @@
                         <a class="btn btn-secondary" href="{{asset('archivoproyecto/'.$solicitud->archivo)}}">Descargar archivo adjunto</a>
                     @endif
                     <br><br>
+                    <h3>Contacto:</h3>
+                    @if($solicitud->estado == "pendiente")
+                        <p><b>Email:</b> {{\App\User::find($solicitud->user_id)->email}}</p>
+                    @elseif($solicitud->estado == "presolicitud")
+                        <p><b>Nombre:</b> {{$solicitud->nombre}}</p>
+                        <p><b>Email:</b> {{$solicitud->email}}</p>
+                        <p><b>Otros:</b> {{$solicitud->otros}}</p>
+                    @endif
+                    <br><br>
                     @if(Auth::user()->tipo_usu == "asesor" && $solicitud->estado == "pendiente")
                         <a href="{{action('AsesoriaController@AceptarAsesoria',['id'=> $solicitud->id])}}" class="btn btn-success">Aceptar Solicitud</a>
+                        <a href="{{action('AsesoriaController@RechazarSolicitud',['id'=> $solicitud->id])}}" class="btn btn-danger">Rechazar Solicitud</a>
                     @endif
                 </div>                
             </div>
