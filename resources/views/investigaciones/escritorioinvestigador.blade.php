@@ -4,7 +4,7 @@
 <div class="col-md-9 solicitudInv">
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
-            <a style="float:right; margin-top:5px; border-radius: 5px;" href="{{route('solicinvestigacion')}}" class="btn btn-primary">Crear Solicitud</a>
+            <a href="{{route('solicinvestigacion')}}" class="btn btn-primary boton">Crear Solicitud</a>
             <h1 style="float:left">Solicitud </h1>
         </div>
     </div>
@@ -20,7 +20,7 @@
                                 @if($sol->user_id == Auth::user()->id)
                                     <div class="row">
                                         <p><b>Título:</b> {{$sol->titulo}}</p>
-                                        <a href="{{route('solicitud.show',['id'=> $sol->id])}}" class="btn btn-primary" style="border-radius: 5px;">Ver</a>
+                                        <a href="{{route('solicitud.show',['id'=> $sol->id])}}" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a>
                                     </div>
                                 @endif
                             @endforeach
@@ -58,7 +58,7 @@
                             @if(($inv->user_id == Auth::user()->id) && ($inv->estado == "activa"))
                                 <div class="investigaciones">
                                     <p><b>Título:</b> {{$inv->titulo}}</p>
-                                    <a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}" class="btn btn-primary" style="border-radius: 5px;">Ver</a>
+                                    <a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a>
                                 </div>
                             @endif
                         @endforeach

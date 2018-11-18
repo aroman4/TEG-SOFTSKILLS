@@ -615,5 +615,10 @@ body{
 	margin-top:20px; 
 	color:#FFF;
 }
+.boton{
+	float:right;
+	margin-top:5px; 
+	border-radius: 5px;
+}
 /*----------------------------------------------*/
 
