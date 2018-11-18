@@ -35,10 +35,10 @@
                                 <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary">Ver Más</a>
                             </div>
                             <div class="col-md-2">
-                                <a href="{{route('encuestauno',$postulacion->id_invest)}}" class="btn btn-danger">Evaluación Inicial</a>
+                                <a href="{{route('encuestauno',$postulacion->id_invest)}}" class="btn btn-danger">Realizar Evaluación</a>
                             </div>
                             <div class="col-md-2">
-                                <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-success">Evaluación Final</a>
+                                <a href="{{route('vistaencuesta', $postulacion->id_post)}}" class="btn btn-success">Ver Resultados</a>
                             </div>
                         </div>
                         <hr>

@@ -370,6 +370,7 @@ textarea{
 }
 .elemEsc:hover :not(a){
 	opacity: 1;
+	
 }
 #imgAse{
 	background-image: url(../img/asesoriaescritorio.jpg);
@@ -409,8 +410,9 @@ textarea{
 	font-size: 20pt;
 	font-weight: bolder;
 	text-shadow: 2px 2px black;
-	opacity: 0;
+	opacity: 0; 
 }
+
 .texDet{
 	text-align: right;
 	width: 100%;
@@ -625,4 +627,21 @@ body{
 	color: #000fff;
 }
 /*----------------------------------------------*/
+
 /*----------proyectosinv-------------*/
+.solicitudInv{
+	color:#000;
+	margin: 0px auto;
+}
+
+.separador{
+	margin-top:20px; 
+	color:#FFF;
+}
+.boton{
+	float:right;
+	margin-top:5px; 
+	border-radius: 5px;
+}
+/*----------------------------------------------*/
+

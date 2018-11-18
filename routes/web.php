@@ -200,10 +200,11 @@ Route::get('/verSolPostulaciones/{id}','PostulacionController@showverpost')->nam
 //boton de ver investigacion
 Route::get('/modpost/{id}' , 'PostulacionController@invtg')->name('modpost');//estaaa
 //--vista de encuesta 1 y dos
-Route::get('/vistaencuesta', function () {
-    return view('invproyecto.vistaencuesta');
+Route::get('/vistaencuesta/{id}', function ($id) {
+    $encuestastodas = DB::table('encuesta')->where('id_investg',$id)->get();
+    return view('invproyecto.vistaencuesta')->with('encuestastodas',$encuestastodas);
 })->name('vistaencuesta');
-//''vista de las investigaciones
+//--vista de las investigaciones
 Route::get('/vistainvestigaciones', function () {
     return view('invproyecto.vistainvestigaciones');
 })->name('vistainvestigaciones');
