@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('tipo_usu','Selecciona el Tipo de usuario que deseas ser*')!!}
-                            {!! Form::select ('tipo_usu',['investigador'=>'Investigador','asesor'=>'Asesor','cliente'=>'Cliente'],null,['class'=>"form-control {{ $errors->has('tipo_usu') ? ' is-invalid' : '' }}",'required'])!!}
+                            {!! Form::select ('tipo_usu',['investigador'=>'Investigador','usuario'=>'Asesor','cliente'=>'Cliente'],null,['class'=>"form-control {{ $errors->has('tipo_usu') ? ' is-invalid' : '' }}",'required'])!!}
                             @if ($errors->has('tipo_usu'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('tipo_usu') }}</strong>

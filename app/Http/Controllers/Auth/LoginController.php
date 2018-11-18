@@ -50,7 +50,11 @@ class LoginController extends Controller
                 return '/administracion';
             break;
             case 'comite':
-            return '/escritoriocomite';
+                return '/escritoriocomite';
+            break;
+            case 'usuario':
+                return route('postulacionasesor');
+            break;
         break;
         }
     }

@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('imagen')->nullable();
             $table->string('profesion')->nullable();
             $table->string('sexo')->nullable();
+            $table->boolean('votoejercido')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

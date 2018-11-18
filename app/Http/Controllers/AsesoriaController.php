@@ -58,6 +58,33 @@ class AsesoriaController extends Controller
         }); */
         return redirect('/escritorioasesor')->with('success','Asesoría aceptada');
     }
+    public function AceptarSolicitudAse($id){
+        //consigo la solicitud
+         $solicitud = Solicitud::find($id);
+         $solicitud->votoscomite = $solicitud->votoscomite + 1;
+
+         //ver cuantos votos tiene la solicitud
+         if($solicitud->votoscomite >= 2){
+            //cambiar tipo de usuario si hay mas de dos votos
+            $user = User::find($solicitud->user_id);
+            $user->tipo_usu = "asesor";
+            $user->save();
+            $solicitud->estado = "aceptada";
+         }
+         $solicitud->save();
+         //colocar que el usuario comite no pueda volver a votar
+         $userC = User::find(auth()->user()->id);
+         $userC->votoejercido = true;
+         $userC->save();
+         
+         //enviar email al cliente
+         /* Mail::send('email.solicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
+             $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
+             ->subject('Solicitud de asesoría Rechazada - SoftSkills');
+             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+         }); */
+         return redirect()->route('escritoriocomite')->with('success','Voto contado');
+     }
     public function RechazarSolicitud($id){
        //consigo la solicitud
         $solicitud = Solicitud::find($id);

@@ -26,7 +26,8 @@ class CreateSolicitud extends Migration
             $table->string('otros_proyectos')->nullable();
             $table->string('aporte')->nullable();
             $table->string('archivo')->nullable();
-            $table->enum('estado', ['pendiente', 'aceptada','rechazada','presolicitud'])->default('pendiente');
+            $table->enum('estado', ['pendiente', 'aceptada','rechazada'])->default('pendiente');
+            $table->enum('tipo', ['normal', 'presolicitud','asesor'])->default('normal');
             $table->string('nombre')->nullable();
             $table->string('email')->nullable();
             $table->string('otros')->nullable();

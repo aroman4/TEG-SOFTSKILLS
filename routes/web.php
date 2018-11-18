@@ -74,7 +74,11 @@ Route::get('/escritoriocomite', function () {
     return view('investigaciones.escritoriocomite');
 })->name('escritoriocomite');
 Route::get('/administracion', function () {
-    return view('admin.administracion');
+    if(auth()->user()->tipo_usu == "admin"){
+        return view('admin.administracion');
+    }else{
+        return redirect()->route('index')->with('error','No tienes permiso para acceder aquí.');
+    }
 })->name('administracion');
 Route::get('/postulaciones', function () {
     return view('investigaciones.postulaciones');
@@ -94,6 +98,11 @@ Route::get('/nombreinvpostulacion', function () {
 Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', function($id){
     return redirect()->action(
         'AsesoriaController@AceptarAsesoria', ['id' => $id]
+    );
+});
+Route::get('/aceptarasesoriaase/{id}','AsesoriaController@AceptarSolicitudAse', function($id){
+    return redirect()->action(
+        'AsesoriaController@AceptarSolicitudAse', ['id' => $id]
     );
 });
 Route::get('/rechazarasesoria/{id}','AsesoriaController@RechazarSolicitud', function($id){
@@ -118,6 +127,15 @@ Route::get('/presolicitud',function(){
     return view('asesoria.presolicitud');
 })->name('presolicitud');
 Route::post('/presolic','RequestController@storePre');
+//postulacion asesor
+Route::get('/postulacionasesor',function(){
+    return view('asesoria.solicitudasesor');
+})->name('postulacionasesor');
+Route::post('/postasesor','RequestController@storePostAsesor');
+Route::get('/solasedetalle/{id}',function($id){
+    $solicitud = \App\Solicitud::find($id);
+    return view('asesoria.solicitudasedetalle')->with('solicitud',$solicitud);
+})->name('solasedetalle');
 
 
 

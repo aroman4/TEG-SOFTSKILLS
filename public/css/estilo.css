@@ -9,6 +9,9 @@ body{
     background-color: #000000
 
 }
+.alert{
+	z-index:2;
+}
 
 .menu-estilo-principal {/*ul*/
     margin: 0;
