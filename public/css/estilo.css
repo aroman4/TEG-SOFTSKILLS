@@ -607,7 +607,15 @@ body{
 
 /*----------proyectosinv-------------*/
 .solicitudInv{
+	height: 70vh;
 	color:#000;
+	margin: 0px auto;
+	padding: 0px;
+}
+.solii{
+	overflow: auto;
+}
+.investigaciones{
 	margin: 0px auto;
 }
 
@@ -619,6 +627,14 @@ body{
 	float:right;
 	margin-top:5px; 
 	border-radius: 5px;
+}
+.boton1{
+	border-radius: 5px;
+}
+.datos-inve{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
 }
 /*----------------------------------------------*/
 
