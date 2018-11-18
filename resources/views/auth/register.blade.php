@@ -92,6 +92,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            {!! Form::label ('organizacion','Organización')!!}
+                            {!! Form::text ('organizacion',null,['class'=>"form-control {{ $errors->has('organizacion') ? ' is-invalid' }}",'placeholder'=>'Organización','integer'])!!}
+                            @if ($errors->has('organizacion'))
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('organizacion') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group row">
                             {!! Form::label ('edad','Edad')!!}
                             {!! Form::text ('edad',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' }}",'placeholder'=>'Edad','integer'])!!}
                             @if ($errors->has('edad'))

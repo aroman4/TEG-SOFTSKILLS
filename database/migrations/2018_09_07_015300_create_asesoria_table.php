@@ -19,6 +19,7 @@ class CreateAsesoriaTable extends Migration
             $table->string('titulo')->nullable();
             $table->string('mensaje')->nullable();
             $table->string('archivo')->nullable();
+            $table->integer('reporte_id')->nullable();
             $table->enum('estado', ['activa', 'finalizada'])->default('activa');
             $table->timestamps();
 

@@ -6,13 +6,20 @@
         <div class="row">
             <div class="col-md-12 list-group-item text-center top-bar">
                 <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
+                <form method="post" id="make_pdf" action="{{action('CuestionarioController@reportePdf')}}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="hidden_html" id="hidden_html" />
+                    <button style="float:left" type="button" name="create_pdf" id="create_pdf" class="btn btn-danger btn-xs">Generar PDF</button>
+                </form>
                 <h2 style="float:right"><span style="color:darkgray">Resultados</span> {{$rubrica->titulo}}</h2>
             </div>     
         </div>
-        <div class="row">
-            <div class="col-md-12 list-group-item">   
+        <div id="reporte">
+        <div class="row">            
+            <div class="col-md-12 list-group-item">                   
                 @if($rubrica->respondidoa || $rubrica->respondidoc)
                     @if($rubrica->respondidoa)
+                        <h3>Rúbrica:  {{$rubrica->titulo}}</h3>
                         <h2>Resultados Asesor</h2>
                         
                         <table class="table table-bordered">
@@ -98,14 +105,16 @@
                         {{-- mostrar puntaje --}}
                         <h4>Puntuación total / 20pts: <span style="font-size:50px">{!! $rubrica->totalc !!}</span></h4>
                         <div id="piechart2" style="width: 900px; height: 500px;"></div>
+                        <h2>Comparación resultados cliente y asesor</h2>
                      @endif
                 @else
                     No hay respuestas para esta rúbrica
                 @endif
-                <h2>Comparación resultados cliente y asesor</h2>
+                
                 <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
             </div>{{-- col con list item --}}
         </div>
+        </div>{{-- reporte --}}
     </div>{{-- listgroup --}}
 </div>
 @endsection
@@ -133,17 +142,17 @@
             title: 'Resultados asesor'
           };
 
-          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
+          /* var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options); */
   
-          /* var chart_area = document.getElementById('piechart');
+          var chart_area = document.getElementById('piechart');
           var chart = new google.visualization.PieChart(chart_area);
   
           google.visualization.events.addListener(chart,'ready',function(){
               chart_area.innerHTML = '<img src="'+ chart.getImageURI() +'" class="img-responsive">';
           });
   
-          chart.draw(data, options); */
+          chart.draw(data, options);
         }
         function drawChart2() {
   
@@ -158,17 +167,17 @@
             title: 'Resultados cliente'
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart.draw(data, options);
+        /* var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data, options); */
 
-        /* var chart_area = document.getElementById('piechart');
+        var chart_area = document.getElementById('piechart2');
         var chart = new google.visualization.PieChart(chart_area);
 
         google.visualization.events.addListener(chart,'ready',function(){
             chart_area.innerHTML = '<img src="'+ chart.getImageURI() +'" class="img-responsive">';
         });
 
-        chart.draw(data, options); */
+        chart.draw(data, options);
         }
       </script>
       <script type="text/javascript">
@@ -189,9 +198,23 @@
             }
             };
 
-            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+            /* var chart = new google.charts.Bar(document.getElementById('columnchart_material')); */
+            var chart_area = document.getElementById('columnchart_material');
+            var chart = new google.visualization.BarChart(chart_area);
+
+            google.visualization.events.addListener(chart,'ready',function(){
+                chart_area.innerHTML = '<img src="'+ chart.getImageURI() +'" class="img-responsive">';
+            });
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
         </script>
     </head>
+    <script>
+        $(document).ready(function(){
+            $('#create_pdf').click(function(){
+                $('#hidden_html').val($('#reporte').html());
+                $('#make_pdf').submit();
+            });
+        });    
+    </script>

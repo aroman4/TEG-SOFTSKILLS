@@ -103,10 +103,12 @@ class RegisterController extends Controller
         //dd($data['password']);
         $data['password'] = bcrypt($data['password']);
         
-        $imageName = time() . '.' . $data['imagen']->getClientOriginalExtension();
+        if(isset($data['imagen'])){
+            $imageName = time() . '.' . $data['imagen']->getClientOriginalExtension();
 
-        $data['imagen']->move( base_path() . '/public/imagenperfil/', $imageName );
-        $data['imagen'] = $imageName;
+            $data['imagen']->move( base_path() . '/public/imagenperfil/', $imageName );
+            $data['imagen'] = $imageName;
+        }
         $user = new User($data);
         /* $user = new User($data);
         $user->password = bcrypt($user->password);

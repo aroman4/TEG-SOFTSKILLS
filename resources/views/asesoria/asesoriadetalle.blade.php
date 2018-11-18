@@ -9,7 +9,9 @@
             @if(Auth::user()->tipo_usu == "asesor" && $asesoria->estado=="activa")                
                 {{-- <a href="{{route('moduloasesoria.edit', $asesoria->id)}}" class="btn btn-warning">Editar</a> --}}
                 <a href="{{route('eliminarasesoria', $asesoria->id)}}" class="btn btn-danger">Eliminar</a>
-                <a href="{{route('finalizarasesoria', $asesoria->id)}}" class="btn btn-warning">Finalizar asesoría</a>
+                @if($asesoria->estado != "finalizada")
+                    <a href="{{route('finalizarasesoria', $asesoria->id)}}" class="btn btn-success">Finalizar asesoría</a>
+                @endif
             @endif
             <h2 style="float:right"><span style="color:darkgray">Detalle de:</span> {{$asesoria->titulo}}</h2>
         </div>
@@ -18,6 +20,9 @@
         <div class="col-md-8 list-group-item contentAlv">
             @if(Auth::user()->tipo_usu == "asesor")
                 <p>Cliente: <span>{{\App\User::find($asesoria->id_cliente)->nombre}} {{\App\User::find($asesoria->id_cliente)->apellido}}</span><a style="float:right" href="{{route('crearmensaje',$asesoria->id_cliente)}}" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a></p>
+                @if(\App\User::find($asesoria->id_cliente)->organizacion != null)
+                    <p>Organización: {{\App\User::find($asesoria->id_cliente)->organizacion}}</p>
+                @endif
             @elseif(Auth::user()->tipo_usu == "cliente")
                 <p>Asesor: <span>{{\App\User::find($asesoria->user_id)->nombre}} {{\App\User::find($asesoria->user_id)->apellido}}</span><a style="float:right" href="{{route('crearmensaje',$asesoria->user_id)}}" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a></p>
             @endif
@@ -35,20 +40,21 @@
                     @forelse (\App\Cuestionario::all() as $cuestionario)
                         @if($cuestionario->id_asesoria == $asesoria->id)
                             <li class="list-group-item listaAsesSolic">
-                            <div>
+                            <div class="text-left">
                                 
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id)}}" style="float:left">{{$cuestionario->titulo}}</a>
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" ><i class="fas fa-pencil-alt"></i></a>
                                     <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fas fa-chart-pie"></i></a>                                    
+                                    <br><small>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></small><br>
                                     @if($cuestionario->respondido == false)
                                         <span style="color:black">No respondido</span>
                                     @else
                                         <span style="color:black">Respondido</span>
                                     @endif
-                                @elseif(Auth::user()->tipo_usu == "cliente" && $cuestionario->respondido == false)
+                                @elseif(Auth::user()->tipo_usu == "cliente")
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="">{{$cuestionario->titulo}}</a>    
-                                    <span style="color:black">Cuestionario</span>
+                                    <br><small>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></small><br>
                                 @endif
                             </div>
                             

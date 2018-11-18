@@ -27,6 +27,14 @@
         <div class="main">
             <input type="hidden" value="{{$asesoria}}" id="room-name" placeholder="Private Room-ID" title="unique-id requerido"><br />                    
             <input type="hidden" value="{{auth()->user()->nombre ." ". auth()->user()->apellido}}" id="your-name" placeholder="(optional)" title="Optional">
+            @if(auth()->user()->imagen != null)
+                {{-- <input type="hidden" value='<img class="userImg" style="height:80px;width:80px;box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.329);" src="{{asset('imagenperfil/'.auth()->user()->imagen)}}">' id="user-image" placeholder="imagen" title="imagen"> --}}
+                <input type="hidden" value='{{asset('imagenperfil/'.auth()->user()->imagen)}}' id="user-image" placeholder="imagen" title="imagen">
+            @else
+                {{-- <input type="hidden" value='<img class="userImg" style="height:80px;width:80px;box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.329);" src="{{asset('imagenperfil/avatarplaceholder.png')}}">' id="user-image" placeholder="imagen" title="imagen">                 --}}
+                <input type="hidden" value='{{asset('imagenperfil/avatarplaceholder.png')}}' id="user-image" placeholder="imagen" title="imagen">
+
+            @endif
         </div>
 
         <div class="main-input-box">

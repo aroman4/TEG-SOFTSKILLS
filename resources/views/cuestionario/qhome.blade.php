@@ -14,13 +14,15 @@
                     {{-- <a href="{{route('cuestionario.nuevo') }}">Crear</a> --}}
                 </div>
             </div>
-            @if(auth()->user()->tipo_usu == "asesor")
-                <div class="row">
+            <div class="row">
                     <div class="col-md-12 list-group-item" style="background:black; color: darkgray">
-                        <small style="font-style: italic; float:right">Para crear un nuevo cuestionario o rúbrica, debe hacerlo desde una asesoría activa   <a href="{{route('asesescritorio')}}" class="btn btn-dark" >Ir a asesorías</a></small>                            
-                    </div>
-                </div>
+            @if(auth()->user()->tipo_usu == "asesor")                
+                <small style="font-style: italic; float:right">Para crear un nuevo cuestionario o rúbrica, debe hacerlo desde una asesoría activa   <a href="{{route('asesescritorio')}}" class="btn btn-dark" >Ir a asesorías</a></small>         
+            @else
+                <small style="font-style: italic; float:right">Seleccione el título para responder o tambien puede enviar el Enlace público a quien desee</small>
             @endif
+                </div>
+            </div>
             <div class="row" style="min-height: 70vh">
                 <div class="col-md-6 list-group-item contentAlv">
                     <h2>Cuestionarios:</h2>
@@ -32,6 +34,7 @@
                                         {{ link_to_route('cuestionario.detalle', $cuestionario->titulo, ['id'=>$cuestionario->id])}}
                                         <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" class="secondary-content"><i class="fas fa-pencil-alt"></i></a>
                                         <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario" class="secondary-content"><i class="fas fa-chart-pie"></i></a>
+                                        <br><small>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></small><br>
                                     </div>
                                     @if($cuestionario->respondido == false)
                                         <span style="color:black">No respondido</span>
@@ -39,9 +42,10 @@
                                         <span style="color:black">Respondido</span>
                                     @endif
                                 </li>                                                                                
-                            @elseif(auth()->user()->id == $cuestionario->cliente_id && $cuestionario->respondido == false)
+                            @elseif(auth()->user()->id == $cuestionario->cliente_id)
                                 <li class="list-group-item listaAsesSolic">
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="secondary-content">{{$cuestionario->titulo}}</a>  
+                                    <br><small>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></small><br>
                                 </li>
                             @endif
                         @empty
@@ -65,9 +69,9 @@
                                         <a href="{{route('rubrica.responder', $rubrica->id) }}" title="Responder rúbrica" class=""><i class="fab fa-wpforms"></i></a>    
                                     </div>
                                     @if($rubrica->respondidoc == false)
-                                        <span style="color:black">No respondido</span>
+                                        <p style="color:black">No respondido</p>
                                     @else
-                                        <span style="color:black">Respondido</span>
+                                        <p style="color:black">Respondido</p>
                                     @endif
                                 </li>                                   
                             @elseif(auth()->user()->id == $rubrica->cliente_id && $rubrica->respondidoc == false)
