@@ -32,15 +32,18 @@ class InvestigacionController extends Controller
     //Aceptar Investigacion COMITE
     public function AceptarInvestigacion($id){
         $solicitud = Solicitud::find($id);
+        $solicitud->votoscomite = $solicitud->votoscomite + 1;
         //cambiar el estado de la solicitud
-        $Investigacion = new Investigacion();
-        $Investigacion->id_solic = $solicitud->id;
-        $Investigacion->titulo = $solicitud->titulo;
-        $Investigacion->caracteristica = $solicitud->caracteristica;
-        $Investigacion->actividades = $solicitud->actividades;
-        $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
-        $Investigacion->save();       
-        $solicitud->estado = "aceptada";
+        if($solicitud->votoscomite >= 2){ //si hay 2 votos o mas
+            $Investigacion = new Investigacion();
+            $Investigacion->id_solic = $solicitud->id;
+            $Investigacion->titulo = $solicitud->titulo;
+            $Investigacion->caracteristica = $solicitud->caracteristica;
+            $Investigacion->actividades = $solicitud->actividades;
+            $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
+            $Investigacion->save();       
+            $solicitud->estado = "aceptada";
+        }
         $solicitud->save();
         return redirect('/escritoriocomite')->with('success','Investigación aceptada');
     }
