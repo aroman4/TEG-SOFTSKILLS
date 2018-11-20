@@ -4,17 +4,25 @@
     {!!Form::open(['action' => 'EncuestaController@storerespuestauno', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
     {{-- @csrf --}}
     <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
-    
+    <div class="row text-center separador">
+        <div class="col-md-12 list-group-item text-center top-bar">
+                <a href="{{route('vistainvestigaciones')}}" class="btn btn-primary boton">Regresar</a>
+                <button type="submit" class="text-center btn btn-success boton">Enviar Resultados</button>
+                <h1 style="float:left">Evaluar al Investigador</h1>
+        </div>
+    </div>
     {{-- <input type="hidden" name="encuestaid" value="{{ $encuesta->id }}"> --}}
-    <table class="table table-bordered text-center">
+    <div class="row">
+        <div class="col-md-12 list-group-item ">
+          <table class="table table-bordered text-center">
             <thead>
               <tr >
-                <th scope="col">Preguntas</th>
-                <th scope="col">Muy en Desacuerdo</th>
-                <th scope="col">Algo en Desacuerdo</th>
-                <th scope="col">Ni de Acuerdo ni en Desacuerdo</th>
-                <th scope="col">Algo de Acuerdo</th>
-                <th scope="col">Muy de Acuerdo</th>
+                <th style="background: #2B3033;color: white;" scope="col"><h1>Preguntas</h1></th>
+                <th style="background: #2B3033;color: white;" scope="col">Muy en Desacuerdo</th>
+                <th style="background: #2B3033;color: white;" scope="col">Algo en Desacuerdo</th>
+                <th style="background: #2B3033;color: white;" scope="col">Ni de Acuerdo ni en Desacuerdo</th>
+                <th style="background: #2B3033;color: white;" scope="col">Algo de Acuerdo</th>
+                <th style="background: #2B3033;color: white;" scope="col">Muy de Acuerdo</th>
               </tr>
             </thead>
             <tbody>
@@ -67,19 +75,12 @@
                 <td><input type="radio" name="respuesta6" value="5"></td>
                 </tr>
             </tbody>
-          </table> 
+          </table>
+        </div>
+      </div> 
           <input type="hidden" name="id_investg" value="{{ $inv->id}}">
           <input type="hidden" name="id_creador" value="{{ $inv->user_id }}">
           <input type="hidden" name="id_usuario" value="{{ $postulante }}">
-
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-4" >
-                <button type="submit" class="btn btn-primary">Enviar Resultados</button>
-                <a style="float:right;" href="{{route('vistainvestigaciones')}}" class="btn btn-secondary">Regresar</a></h3>
-              </div>
-        </div>
-
     {!!Form::close()!!}              
-
-    </div>
+  </div>
 @endsection

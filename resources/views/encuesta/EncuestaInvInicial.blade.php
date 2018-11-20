@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Encuesta Número 1') }}</div>
+                <div class="card-header">{{ __('Evaluación') }}</div>
 
                     <div class="card-body">
                         {!!Form::open(['action' => 'EncuestaController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
@@ -65,7 +65,7 @@
                                 </div>                                   
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-4">
-                                            <button type="submit" class="btn btn-primary">Enviar Respuestas</button>
+                                            <button type="submit" class="btn btn-success">Enviar Respuestas</button>
                                         </div>
                                     </div>
                         {!!Form::close()!!}              

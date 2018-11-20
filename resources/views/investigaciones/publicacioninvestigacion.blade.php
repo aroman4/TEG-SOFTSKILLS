@@ -1,21 +1,16 @@
 @extends('layouts.menuinv')
 
 @section('content')
-<div style="margin:0px auto;" class="">
-    @if(count($errors)>0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li class="alert alert-danger">{{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
-
-    <div class="col-sm-12">
-            <br>
-            <h2 class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
-            <br>
+<div class="col-md-9 investigaciones">
+    <div class="row text-center separador">
+        <div class="col-md-12 list-group-item text-center top-bar">
+                <h1 style="float:left">Publicacion de Investigaciones </h1>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-12 list-group-item ">            <br>
             <p>Hay {{ $pub->lastPage()}} Pagina</p>
-        <div class="row justify-content-center">  
+          <div class="row justify-content-center">  
             @foreach ($pub as $inv)
                 <div class="col-md-12">
                     <div class="card">
@@ -39,21 +34,15 @@
                                 <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>
                                 <button type="button" class="btn btn-outline-info">
                                     <a href="#" class="far fa-thumbs-up">Like</a>
-                               </button>
-                                <div class="ec-stars-wrapper">   
-                                    <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
-                                    <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
-                                    <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
-                                    <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
-                                    <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
-                                </div>       
+                               </button>      
                             </div> 
                         </div>
                     </div>
                 </div>
             @endforeach    
         </div>
-    </div>   
+    </div> 
+</div>   
     {!! $pub->render()!!}
 </div>
 @endsection

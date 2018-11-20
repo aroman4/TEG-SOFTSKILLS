@@ -1,13 +1,15 @@
 @extends('layouts.menuinv')
 
 @section('content')
-    <br>
-    
-    <div  class="col-md-10"style="margin:0px auto;">
-            <a style="float:right;" href="{{route('listapostulaciones')}}" class="btn btn-secondary">Regresar</a></h3>
-
-        <h1 style="margin-top:3px;" class="text-center">Lista de Postulado </h1>
+<div class="col-md-9 investigaciones">
+    <div class="row text-center separador">
+        <div class="col-md-12 list-group-item text-center top-bar">
+                <a href="{{route('listapostulaciones')}}" class="btn btn-primary boton">Regresar</a>
+                <h1 style="float:left">Lista de Postulado </h1>
+        </div>
+    </div>
         <br><br>
+        
         <div class="row">   
             <div class="col-md-3">
                 <h3>Nombre del Investigador</h3>
@@ -25,7 +27,7 @@
     <hr>
     @forelse(\App\Investigacion::all() as $inv)
         @if($inv->user_id == Auth::user()->id)
-        <span>{{$inv->titulo}}</span>
+        <h5><b>{{$inv->titulo}}</b></h5><hr>
             @forelse(\App\Postulacion::all() as $postulacion)
                 @if($postulacion->id_post == $inv->id)
                     <div class="row">            
