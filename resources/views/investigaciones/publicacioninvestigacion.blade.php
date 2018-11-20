@@ -4,12 +4,12 @@
 <div class="col-md-9 investigaciones">
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
-                <h1 style="float:left">Publicacion de Investigaciones </h1>
+                <h1 style="float:left">Publicaciones de Investigaciones </h1>
         </div>
     </div>
     <div class="row text-center">
         <div class="col-md-12 list-group-item ">            <br>
-            <p>Hay {{ $pub->lastPage()}} Pagina</p>
+            {{-- <p>Hay {{ $pub->lastPage()}} Pagina</p> --}}
           <div class="row justify-content-center">  
             @foreach ($pub as $inv)
                 <div class="col-md-12">

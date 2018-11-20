@@ -84,7 +84,7 @@
                             @endif
                         @endforeach
                     @else
-                        <p><b>No hay asesorías activas</b></p>
+                        <p>No hay solicitud activas</p>
                      @endif
             </div>
         </div>

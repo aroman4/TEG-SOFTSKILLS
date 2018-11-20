@@ -4,8 +4,8 @@
 <div class="col-md-9 investigaciones">
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
-                <h1 style="float:left">Publicaciones</h1>
-                <a href="{{route('nombreinvpostulacion')}}" class="btn btn-secondary boton">Postulados</a></h3>
+                <h1 style="float:left">Postulaciones</h1>
+                <a href="{{route('nombreinvpostulacion')}}" class="btn btn-primary boton">Postulados</a></h3>
             </div>
     </div>
          
@@ -17,7 +17,7 @@
             <div class="col-md-4 solicitudInv">
                 <div class="card solii">
                     <div class="card-body">
-                        <p class="text-center"><b>Creadas (Pendientes por Aprobación):</b></p>
+                        <p class="text-center"><b>Creadas (Pendientes por Aprobación):</b></p><hr>
                             @if(count(\App\Postulacion::all())>0)
                                 @foreach(\App\Postulacion::all() as $post)
                                     @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente"))
@@ -29,7 +29,7 @@
                                     @endif
                                 @endforeach
                             @else
-                                <p><b>No hay Postulacion creadas Pendientes por aprobar</b></p>
+                                <p>No hay Postulaciones creadas ni pendientes por aprobar</p>
                             @endif
                     </div>
                 </div>
@@ -38,7 +38,7 @@
        <div class="col-md-4 solicitudInv">
             <div class="card solii">
                 <div class="card-body">
-                    <p class="text-center"><b>Aceptadas - Activas:</b></p>
+                    <p class="text-center"><b>Aceptadas - Activas:</b></p><hr>
                         @if(count(\App\Postulacion::all())>0)
                             @foreach(\App\Postulacion::all() as $post)
                                 @if(($post->id_invest == Auth::user()->id) && ($post->estado=="aceptada"))
@@ -51,7 +51,7 @@
                                 @endif
                             @endforeach
                         @else
-                            <p><b>No hay postulaciones activas</b></p>
+                            <p>No hay postulaciones activas ni aceptadas</p>
                         @endif
                 </div>
             </div>
@@ -59,7 +59,7 @@
         <div class="col-md-4 solicitudInv">
             <div class="card solii">
                     <div class="card-body">
-                        <p class="text-center"><b>Rechazadas:</b></p>
+                        <p class="text-center"><b>Rechazadas:</b></p><hr>
                             @if(count(\App\Postulacion::all())>0)
                                 @foreach(\App\Postulacion::all() as $post)
                                     @if(($post->id_invest == Auth::user()->id) && ($post->estado=="rechazada"))
@@ -70,7 +70,7 @@
                                     @endif
                                 @endforeach
                             @else
-                                <p><b>No hay postulaciones Rechazadas</b></p>
+                                <p>No hay postulaciones Rechazadas</p>
                             @endif
                     </div>
                 </div>
