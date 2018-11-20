@@ -25,6 +25,7 @@ class RequestController extends Controller
         //solicitudes de asesoria paginadas
         $solicitudesace = DB::table('solicitud')->where('estado','aceptada')->paginate(6);
         $solicitudespen = DB::table('solicitud')->where('estado','pendiente')->paginate(6);
+        $presolicitudes = DB::table('solicitud')->where('tipo','presolicitud')->paginate(6);
         //return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
         
 
@@ -36,12 +37,12 @@ class RequestController extends Controller
                 //return redirect('/escritorioasesor');
                 /* $solicitudesA = Solicitud::paginate(6);
                 return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
-                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen'));
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','presolicitudes'));
             break;
             case 'cliente':
                 /* $solicitudesA = Solicitud::paginate(6);
                 return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
-                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen'));
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','presolicitudes'));
             break;
         }
     }
@@ -136,6 +137,38 @@ public function publicacioninvestigacion()
         
         dd( $request->all());//guarda en la base de datos 
         dd('Bien...');
+        //
+
+    }
+    public function storePre(Request $request)
+    {
+        $solicitud = new Solicitud($request->all());
+        if($request->hasFile('archivo')){
+            $archivo = $request->file('archivo');
+            $nombreArch = time().$archivo->getClientOriginalName();
+            $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
+            $solicitud->archivo = $nombreArch;
+        }
+        $solicitud->tipo = 'presolicitud';
+        $solicitud->user_id = 1; //presolicitud //admin
+        $solicitud->save();
+        return redirect()->route('index')->with('success','Solicitud Creada');
+        //
+
+    }
+    public function storePostAsesor(Request $request)
+    {
+        $solicitud = new Solicitud($request->all());
+        if($request->hasFile('archivo')){
+            $archivo = $request->file('archivo');
+            $nombreArch = time().$archivo->getClientOriginalName();
+            $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
+            $solicitud->archivo = $nombreArch;
+        }
+        $solicitud->tipo = 'asesor';
+        $solicitud->user_id = auth()->user()->id;  //admin
+        $solicitud->save();
+        return redirect()->route('index')->with('success','Solicitud Creada');
         //
 
     }

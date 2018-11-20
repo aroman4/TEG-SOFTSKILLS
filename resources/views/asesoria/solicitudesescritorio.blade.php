@@ -31,6 +31,21 @@
                 {{$solicitudespen->links()}}
             </div>
             <div class="col-md-6 list-group-item contentAlv1">
+                @if((auth()->user()->tipo_usu == "asesor"))
+                <h2>Pre-Solicitudes:</h2>
+                <ul class="list-group">
+                    @forelse($presolicitudes as $sol)
+                        <div>
+                            <li class="list-group-item listaAsesSolic">
+                                <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>                                
+                            </li>
+                        </div>
+                    @empty
+                        <p>No hay presolicitudes</p>                
+                    @endforelse
+                </ul>
+                {{$solicitudesace->links()}}
+                @else
                 <h2>Solicitudes aprobadas:</h2>
                 <ul class="list-group">
                     @forelse($solicitudesace as $sol)
@@ -49,6 +64,7 @@
                     @endforelse
                 </ul>
                 {{$solicitudesace->links()}}
+                @endif
             </div>
         </div>
         </div>

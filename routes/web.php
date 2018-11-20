@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /**********************************************************************/
 /* Route del proyecto TEG realizado por Alvaro Roman y Felicia Jardim */
@@ -19,7 +20,7 @@ route::group(['prefix' => 'admin'], function(){
 });
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
-    Route::resource('solicitud','RequestController');
+    Route::resource('solicitud','RequestController')->middleware('auth');
     //Eliminar
     Route::get('solicitud/{id}/destroy',[
         'uses' => 'RequestController@destroy',
@@ -59,10 +60,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 //ruta escritorios
 Route::get('/escritoriocliente', function () {
     return view('asesoria.escritoriocliente');
-})->name('escritoriocliente');
+})->middleware('auth')->name('escritoriocliente');
 Route::get('/escritorioasesor', function () {
     return view('asesoria.escritorioasesor');
-})->name('escritorioasesor');
+})->middleware('auth')->name('escritorioasesor');
 Route::get('/escritorioinv', function () {
     return view('investigaciones.escritorioinv');
 })->name('escritorioinv');
@@ -73,7 +74,11 @@ Route::get('/escritoriocomite', function () {
     return view('investigaciones.escritoriocomite');
 })->name('escritoriocomite');
 Route::get('/administracion', function () {
-    return view('admin.administracion');
+    if(auth()->user()->tipo_usu == "admin"){
+        return view('admin.administracion');
+    }else{
+        return redirect()->route('index')->with('error','No tienes permiso para acceder aquí.');
+    }
 })->name('administracion');
 Route::get('/postulaciones', function () {
     return view('investigaciones.postulaciones');
@@ -84,7 +89,7 @@ Route::get('/asesoriasescritorio', function () {
     $asesoriasfin = DB::table('asesoria')->where('estado','finalizada')->paginate(6);
     //return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
     return view('asesoria.asesoriasescritorio',compact('asesoriasact','asesoriasfin'));
-})->name('asesescritorio');
+})->middleware('auth')->name('asesescritorio');
 Route::get('/nombreinvpostulacion', function () {
     return view('postulacion.nombreinvpostulacion');
 })->name('nombreinvpostulacion');
@@ -95,10 +100,45 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
         'AsesoriaController@AceptarAsesoria', ['id' => $id]
     );
 });
-
+Route::get('/aceptarasesoriaase/{id}','AsesoriaController@AceptarSolicitudAse', function($id){
+    return redirect()->action(
+        'AsesoriaController@AceptarSolicitudAse', ['id' => $id]
+    );
+});
+Route::get('/rechazarasesoria/{id}','AsesoriaController@RechazarSolicitud', function($id){
+    return redirect()->action(
+        'AsesoriaController@RechazarSolicitud', ['id' => $id]
+    );
+});
 Route::resource('moduloasesoria','AsesoriaController');
 Route::get('/moduloasesoria/eliminar/{id}','AsesoriaController@eliminar')->name('eliminarasesoria');
-Route::get('/moduloasesoria/finalizar/{id}','AsesoriaController@finalizar')->name('finalizarasesoria');
+Route::post('/moduloasesoria/finalizar','AsesoriaController@finalizar')->name('finalizarasesoriapost');
+Route::get('/moduloasesoria/finalizar/{id}',function($id){
+    $asesoria = \App\Asesoria::find($id);
+    return view('asesoria.reportefinal')->with('asesoria',$asesoria);
+})->name('finalizarasesoria');
+Route::get('/moduloasesoria/reporte/{id}',function($id){
+    $asesoria = \App\Asesoria::find($id);
+    $reporte = \App\Reportefinalase::find($asesoria->reporte_id);
+    return view('reportes.reportefinalase',compact('asesoria','reporte'));
+})->name('reportefinalasesoria');
+//presolicitud
+Route::get('/presolicitud',function(){
+    return view('asesoria.presolicitud');
+})->name('presolicitud');
+Route::post('/presolic','RequestController@storePre');
+//postulacion asesor
+Route::get('/postulacionasesor',function(){
+    return view('asesoria.solicitudasesor');
+})->name('postulacionasesor');
+Route::post('/postasesor','RequestController@storePostAsesor');
+Route::get('/solasedetalle/{id}',function($id){
+    $solicitud = \App\Solicitud::find($id);
+    return view('asesoria.solicitudasedetalle')->with('solicitud',$solicitud);
+})->name('solasedetalle');
+
+
+
 Route::resource('moduloinvestigaciones','InvestigacionController');
 //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 //-------------postulacion
@@ -206,7 +246,17 @@ Route::patch('/cuestionario/{cuestionario}/update', 'CuestionarioController@upda
  
 Route::post('/cuestionario/ver/{cuestionario}/completado', 'RespuestaController@store')->name('cuestionario.completado');
 Route::post('/cuestionario/crear', 'CuestionarioController@crear')->name('cuestionario.crear');
- 
+
+Route::get('/cuestionariopublico/{id}',function($id){
+    $cuestionario = \App\Cuestionario::find($id);
+    $cuestionario->opcion = unserialize($cuestionario->opcion);
+    return view('cuestionario.encuestapublica', compact('cuestionario'));
+})->name('cuestionariopublico');
+Route::post('/cuestionario/ver/{cuestionario}/publico', 'RespuestaController@storepublic')->name('cuestionario.publico');
+Route::get('/cuestionariopublicorespondido',function(){
+    return view('cuestionario.respondido');
+})->name('cuestionariopublicorespondido');
+
 // preguntas
 Route::post('/cuestionario/{cuestionario}/preguntas', 'PreguntaController@store')->name('pregunta.guardar');
  
@@ -273,7 +323,7 @@ Route::get('/header', 'FrontController@header');
 Route::get('/footer', 'FrontController@footer');
 
 //webchat
-Route::get('/chat/{id}','AsesoriaController@getChat')->middleware('auth')->name('getChat');
+Route::get('/chat/{id}','AsesoriaController@getChat')->name('getChat');
 
 //agenda
 Route::get('agenda', 'EventController@index')->middleware('auth')->name('agenda');
@@ -308,3 +358,47 @@ Route::get('/crearactividad/{id}', function ($id) {
     return view('actividad.crearactividad')->with('inv',$inv);
 })->name('crearactividad');
 Route::post('crearactividad','ActividadController@store');
+
+//mensajes
+Route::get('/mensajes/{id}',function($id){
+    //$recibidos = DB::table('mensaje')->where('id_destinatario',$id)->get();
+    $recibidos = DB::table('mensaje')->where('id_destinatario',$id)->orderBy('id','desc')->get();
+    //$enviados = DB::table('mensaje')->where('id_remitente',$id)->get();
+    $enviados = DB::table('mensaje')->where('id_remitente',$id)->orderBy('id','desc')->get();
+    return view('mensajes.bandejaentrada',compact('recibidos','enviados'));
+})->middleware('auth')->name('mensajes');
+
+Route::get('/crearmensaje/{id_destinatario}',function($id_destinatario){
+    $id_remitente = auth()->user()->id;
+    return view('mensajes.nuevomensaje',compact('id_destinatario','id_remitente'));
+})->middleware('auth')->name('crearmensaje');
+
+Route::post('/crearmensaje',function(Request $request){
+    $mensaje = new \App\Mensaje($request->all());
+    if($request->hasFile('archivo')){
+        $archivo = $request->file('archivo');
+        $nombreArch = time().$archivo->getClientOriginalName();
+        $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
+        $mensaje->archivo = $nombreArch;
+    }
+    $mensaje->save();
+    /* Mail::send('email.mensajerecibido',$mensaje->toArray(),function($correo) use ($mensaje){
+        $correo->to(\App\User::find($mensaje->id_destinatario)->email,\App\User::find($mensaje->id_destinatario)->nombre)
+        ->subject('Mensaje recibido - SoftSkills');
+        $correo->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+    }); */
+    return redirect()->route('mensajes',auth()->user()->id);
+})->name('crearmensajepost');
+Route::get('/vermensaje/{id}',function($id){
+    $mensaje = \App\Mensaje::find($id);
+    if($mensaje->estado == "recibido"){
+        $mensaje->estado = "leido";
+        $mensaje->save();
+    }
+    return view('mensajes.vermensaje')->with('mensaje',$mensaje);
+})->middleware('auth')->name('vermensaje');
+Route::get('/borrarmensaje/{id}',function($id){
+    $mensaje = \App\Mensaje::find($id);
+    $mensaje->delete();
+    return redirect()->route('mensajes',auth()->user()->id);
+})->name('borrarmensaje');

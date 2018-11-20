@@ -27,6 +27,11 @@ class CreateSolicitud extends Migration
             $table->string('aporte')->nullable();
             $table->string('archivo')->nullable();
             $table->enum('estado', ['pendiente', 'aceptada','rechazada'])->default('pendiente');
+            $table->enum('tipo', ['normal', 'presolicitud','asesor'])->default('normal');
+            $table->string('nombre')->nullable();
+            $table->string('email')->nullable();
+            $table->string('otros')->nullable();
+            $table->integer('votoscomite')->default(0);            
 
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned();
