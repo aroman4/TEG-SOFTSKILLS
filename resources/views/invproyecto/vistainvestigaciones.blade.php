@@ -49,11 +49,11 @@
                                 </div>
                                 <div class="col-md-5">
                                     <p><b>Archivo</b></p>
-                                    <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-eye" style="color:#FFFFFF; width:6; height:6"></i></a>
-                                    <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-primary"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                    <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-eye" style="color:#000; width:6; height:6"></i></a>
+                                    <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-success"><i class="fa fa-upload" style="color:#000; width:6; height:6"></i></a>
                                     <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" download="{{$postulacion->archivo_inv}}">
-                                    <button type="button" class="btn btn-primary">
-                                        <i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i>
+                                    <button type="button" class="btn btn-warning">
+                                        <i class="fa fa-download" style="color:#000; width:6; height:6"></i>
                                     </button></a>
                                 </div>
                                 <div class="col-md-3">
