@@ -21,10 +21,15 @@
     </div>
     <div class="row">
         <div class="col-md-6" style="">
-            <p>hola2ooooooooooooooooooooooooooooooooooooooooooooooooooooo
-            ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-            ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-            oooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</p>
+                <ul>
+                        <li class="text-center">
+                            @if(auth()->user()->imagen != null)
+                                <img class="userImg" src="{{asset('imagenperfil/'.auth()->user()->imagen)}}">
+                            @else
+                                <img class="userImg" src="{{asset('imagenperfil/avatarplaceholder.png')}}">
+                            @endif
+                        </li>
+                    </ul>
         </div>
         <div class="col-md-6">
                 <p>hola2</p>
