@@ -28,6 +28,7 @@
 </div>--}}   
         @yield('content')
 </div>
+
 {{-- click en menu--}}
 {{-- @include('footer') <i class="fa fa-envelope-o" color: #000fff;>--}}
 <script src="{{ asset('js/app.js') }}"></script>
