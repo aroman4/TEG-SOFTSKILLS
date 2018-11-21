@@ -31,11 +31,15 @@
                                 <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
                             </div>
                             <div class="col-12">
-                                <hr style="color: #0056b2;" />
-                                <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>
-                                <button type="button" class="btn btn-outline-info">
-                                    <a href="#" class="far fa-thumbs-up">Like</a>
-                               </button>      
+                                @if(auth()->user()->id == $inv->id_inv)
+                                    <p>Es tu Investigacion</p>
+                                 @else
+                                    <hr style="color: #0056b2;" />
+                                    <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>
+                                    <button type="button" class="btn btn-outline-info">
+                                        <a href="#" class="far fa-thumbs-up">Like</a>
+                                </button> 
+                               @endif     
                             </div> 
                         </div>
                     </div>
