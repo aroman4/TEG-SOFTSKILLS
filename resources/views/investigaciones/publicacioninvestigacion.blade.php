@@ -1,5 +1,6 @@
 @extends('layouts.menuinv')
-
+{{-- <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
+ --}}
 @section('content')
 <div class="col-md-9 investigaciones">
     <div class="row text-center separador">
