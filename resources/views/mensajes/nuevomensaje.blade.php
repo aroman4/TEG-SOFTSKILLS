@@ -1,4 +1,4 @@
-@extends('layouts.plantillaQ')
+@extends((( auth()->user()->tipo_usu == "investigador") ? 'layouts.menuinv' : 'layouts.plantillaQ' ))
 
 @section('content')
     <div class="col-md-9 listaQuest">
