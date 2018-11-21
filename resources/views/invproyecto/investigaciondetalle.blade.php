@@ -22,10 +22,13 @@
                         <div class="col-md-2">
                             <b>Ver Contenido</b>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                            <b>Enviar Mensaje</b>
+                        </div>
+                        <div class="col-md-2">
                             <b>Evaluación Inicial</b>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <b>Evaluación Final</b>
                         </div>
                     </div>
@@ -42,10 +45,13 @@
                             <div class="col-md-2">
                                 <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary boton1">Ver Más</a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
+                                <a href="{{route('crearmensaje',$postulacion->id_invest)}}" class="btn btn-warning boton1">Enviar Mensaje</a>
+                            </div>
+                            <div class="col-md-2">
                                 <a href="{{route('encuestauno',$postulacion->id_invest)}}" class="btn btn-danger boton1">Realizar Evaluación</a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <a href="{{route('vistaencuesta', $postulacion->id_post)}}" class="btn btn-success boton1">Ver Resultados</a>
                             </div>
                         </div>

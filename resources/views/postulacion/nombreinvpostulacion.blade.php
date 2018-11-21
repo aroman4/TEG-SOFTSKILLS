@@ -37,25 +37,31 @@
                             <br>
                             <span>{{\App\User::find($postulacion->id_invest)->email}}</span>
                         </div>
-                        <div class="col-md-3">                
-                            <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">
-                                <button type="button" class="btn btn-primary">
+                        <div class="col-md-3"> 
+                            <button type="button" class="btn btn-primary boton1">
                                     <i class="fa fa-download">  Download </i>
-                                </button>
-                            </a>
+{{--                             @if($postulacion->archivo != null)                                         
+ --}}                                <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">
+                                
+                             </a>
+{{--                             @endif
+ --}}                        </button>
+                             
                         </div>
                         <div class="col-md-3">
-                            <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
+                            <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary boton1">Revisar Postulación</a></h3>
                         </div>
                         <div class="col-md-3">
-                            <a  href="{{route('crearactividad',['id'=> $postulacion->id_post])}}" class="btn btn-success"><i class="fa fa-check"></i>Aceptar</a></h3>
+                            <a  href="{{route('crearactividad',['id'=> $postulacion->id_post])}}" class="btn btn-success boton1"><i class="fa fa-check"></i>Aceptar</a></h3>
 
-                            <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
+                            <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
                            <br> <span>El estado es: </span>
                             <span>{{$postulacion->estado}}</span>
                         </div>
                     </div>
                     <hr>
+                @else
+                    <p>No hay Postulados</p>
                 @endif
             @endforeach 
         @endif

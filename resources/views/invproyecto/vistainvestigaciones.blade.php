@@ -4,11 +4,7 @@
 <div class="col-md-9 solicitudInv">
     <div class="row separador">
         <div class="col-md-12 list-group-item text-right top-bar" style="color:white;">
-            @if(Auth::user()->sexo == "Femenino")
-                <h1>Bienvenida {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
-            @else
-                <h1>Bienvenido {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
-            @endif
+            <h1>Seguimiento de Investigaciones: Inv. {{Auth::user()->nombre ." ". Auth::user()->apellido}}</h1>
         </div>
     </div>
     <div class="row" style="height:70vh">
