@@ -33,7 +33,7 @@
         </div>
         <div class="col-md-6 list-group-item" style="overflow:auto">
             <div class="text-center">
-                <br>
+                
                 <ul class="list-group"> 
                     <li class="list-group-item listaAsesSolic" style="background: #2B3033; color:#FFFFFF">
                         <h2 style='margin-right:20px'>Mis Postulaciones</h2>

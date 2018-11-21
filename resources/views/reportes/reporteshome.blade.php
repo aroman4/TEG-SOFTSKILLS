@@ -23,8 +23,8 @@
                                             <button class="btn btn-light" data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="true" aria-controls="collapse{{$index}}">
                                                     Reportes disponibles para {{$ase->titulo}}
                                             </button>
-                                            @if($asesoria->estado == "finalizada")
-                                                <a href="{{route('reportefinalasesoria',$asesoria->id)}}" class="btn btn-primary">Ver reporte final</a>
+                                            @if($ase->estado == "finalizada")
+                                                <a href="{{route('reportefinalasesoria',$ase->id)}}" class="btn btn-primary">Ver reporte final</a>
                                             @endif
                                             <a class="btn btn-dark" style="float:right" href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">Ver asesoría</a>
                                         </h5>
