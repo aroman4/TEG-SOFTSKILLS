@@ -11,22 +11,26 @@
             @endif
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 list-group-item">
+    <div class="row" style="height:70vh">
+        <div class="col-md-6 list-group-item" style="overflow:auto">
             <div class="text-center">
                 <br>  
                 <h2 style='margin-right:20px'>Mis Investigaciones</h2>
                 <br>
                 <b>Investigadores:</b>
                 <hr>
+                <ul class="list-group">
                 @forelse(\App\Investigacion::all() as $inv)
                     @if($inv->user_id == Auth::user()->id)
+                    <li class="list-group-item listaAsesSolic">
                         <strong> <a href="{{route('detallesinv',$inv->id)}}">{{$inv->titulo}}</a></strong>
+                    </li>
                     @endif
                 @endforeach
+                </ul>
             </div>
         </div>
-        <div class="col-md-6 list-group-item">
+        <div class="col-md-6 list-group-item" style="overflow:auto">
             <div class="text-center">
                 <br>
                 <h2 style='margin-right:20px; color:blue;'>Mis Postulaciones</h2>
@@ -36,10 +40,6 @@
                     @if($postulacion->id_invest == auth()->user()->id && $postulacion->estado_inv == "inicio" && $postulacion->estado == 'aceptada')
                         <p><b>Titulo de la Investigación</b></p>
                         <p>{{\App\Investigacion::find($postulacion->id_post)->titulo}}</p>
-                        <p><b>Correo</b></p>
-                        <span>{{\App\User::find($postulacion->id_invest)->email}}</span>
-                        <p><b>Actividad</b></p>
-                        <p>{{$postulacion->actividad}}</p>
                         <p><b>Archivo</b></p>
                         <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-eye" style="color:#FFFFFF; width:6; height:6"></i></a>
                         <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-primary"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
@@ -50,11 +50,9 @@
                         </a>
                         <br>
                         <p><b>Etapa</b></p>
-                            @if($postulacion->estado_inv == 'inicio')
-                                <a title="realizar encuesta inicial" href="./encuestaunopreg/{{$postulacion->id}}" class="btn btn-primary"><i class="#" style="color:#FFFFFF; width:6; height:6"></i>Encuesta Inicial</a>
+                            @if($postulacion->estado_inv == 'inicio')                                
                                 <p>{{$postulacion->estado_inv}}</p>
                             @else
-                                <a title="realizar encuesta final" href="./encuestados/{{$postulacion->id}}" class="btn btn-primary"><i class="#" style="color:#FFFFFF; width:6; height:6"></i>Encuesta Final</a>
                                 <p>{{$postulacion->estado_inv}}</p>
                             @endif
                         <hr>
