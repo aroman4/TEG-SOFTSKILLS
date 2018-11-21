@@ -1,4 +1,4 @@
-@extends('layouts.plantillaQ')
+@extends((( auth()->user()->tipo_usu == "investigador") ? 'layouts.menuinv' : 'layouts.plantillaQ' ))
 
 @section('content')
     <div class="col-md-9 listaQuest">
@@ -13,7 +13,7 @@
                 <div class="col-md-12 list-group-item" style="background:black; color: darkgray">
                     @if(auth()->user()->tipo_usu == "asesor")                
                         <small style="font-style: italic"><a href="{{route('bancoclientes')}}" class="btn btn-success" >Crear nuevo mensaje</a> Como Asesor selecciona un cliente en la próxima pantalla</small>                    
-                    @else
+                    @elseif(auth()->user()->tipo_usu == "cliente")
                         <small style="font-style: italic"><a href="{{route('asesescritorio')}}" class="btn btn-success" >Crear nuevo mensaje</a> Como Cliente selecciona una asesoría y luego Enviar mensaje</small>
                     @endif
                 </div>
