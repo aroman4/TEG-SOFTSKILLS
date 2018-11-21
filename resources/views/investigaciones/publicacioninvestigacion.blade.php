@@ -15,16 +15,16 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="form-group row" style="float:right;">
+                                <p ><b>Fecha:</b> {{$inv->created_at}} </p>
+                            </div>
                             <div class="form-group row">
-                                <p><b>Titulo:</b>  {{($inv->titulo)}}</p>
+                                <h4><b>Titulo:</b>  {{($inv->titulo)}}</h4>
                             </div>
                             <div class="form-group row">
                                 <p><b>Creado por el Investigador</b> 
                                     {{\App\User::find($inv->user_id)->nombre}}
                                 </p>
-                            </div>
-                            <div class="form-group row">
-                                <p><b>Fecha:</b> {{$inv->created_at}} </p>
                             </div>
                             <div class="form-group row">
                                 <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
