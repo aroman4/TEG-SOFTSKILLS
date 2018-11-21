@@ -64,9 +64,7 @@
                                         <p>{{$postulacion->estado_inv}}</p>
                                     @endif
                                 </div>
-                            </div>
-                            <hr>
-    
+                            </div>    
                         @endif
                     @endforeach
                 </li>
