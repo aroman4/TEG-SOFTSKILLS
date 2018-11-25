@@ -30,16 +30,25 @@
                             <div class="form-group row">
                                 <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
                             </div>
+                            <div class="form-group row">
+                                <p><b>Descripción:</b> {{$inv->descripcion}}</p>
+                            </div>
                             <div class="col-12">
                                 @if(auth()->user()->id == $inv->user_id)
                                     <p style="color:darkgreen;"><i>Es mi Investigación</i> </p>
                                  @else
                                     <hr style="color: #0056b2;" />
                                     <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>      
-                                @endif 
+                                @endif
+                                {{-- @if($inv->$estado == 'activa')
+                                    <p span{ background-color: #FFB400; }>Investigación Activa </p>
+                                @else
+                                    <p span{ background-color: #reb; }>Investigación Finalizada </p>
+                                @endif --}}
                                 <button type="button" class="btn btn-outline-info">
                                     <a href="#" class="far fa-thumbs-up">Like</a>
-                                </button>     
+                                </button>
+                                
                             </div> 
                         </div>
                     </div>

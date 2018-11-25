@@ -17,6 +17,15 @@
                         {!!Form::open(['action' => 'PostulacionController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                             <input type="hidden" name="id_post" value="{{ $inv }}"> 
                             @csrf
+                            <div class="form-group row">
+                                {!! Form::label ('tituloinv','Titulo de la Postulación:')!!}
+                                {!! Form::text ('tituloinv',null,['class'=>"form-control {{ $errors->has('tituloinv') ? ' is-invalid'}}",'placeholder'=>'Ingrese el Titulo de su postulación','required'])!!}
+                                @if ($errors->has('tituloinv'))
+                                        <span class="text-danger" role="alert">
+                                        <strong>{{ $errors->first('tituloinv') }}</strong>
+                                        </span>
+                                @endif
+                            </div>
                              <div class="form-group row">
                                     {!! Form::label ('otros_proyectos','Cuales proyectos has creado:')!!}
                                     {!! Form::text ('otros_proyectos',null,['class'=>"form-control {{ $errors->has('otros_proyectos') ? ' is-invalid'}}",'placeholder'=>'Escribe que otros proyectos has participado y creado','required'])!!}
