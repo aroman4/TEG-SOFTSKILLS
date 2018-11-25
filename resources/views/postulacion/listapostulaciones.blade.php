@@ -22,9 +22,10 @@
                                 @foreach(\App\Postulacion::all() as $post)
                                     @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente"))
                                         <div class="postulacion">
-                                            <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                            <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary">Revisar</a></h3>
-                                    
+                                            <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></h3>
+                                           <div style="margin:10px;">
+                                            <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary boton1">Revisar</a></h3>
+                                            </div>
                                         </div>
                                     @endif
                                 @endforeach
@@ -43,10 +44,10 @@
                             @foreach(\App\Postulacion::all() as $post)
                                 @if(($post->id_invest == Auth::user()->id) && ($post->estado=="aceptada"))
                                     <div class="postulacion">
-                                        <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                        <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary">Revisar </a></h3>
+                                        <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></h3>
+                                        <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary boton1">Revisar </a></h3>
                                         
-                                        <a href="{{route('modpost',['id'=> $post->id_post])}}" class="btn btn-primary">Ver Postulación</a></h3>
+                                        <a href="{{route('modpost',['id'=> $post->id_post])}}" class="btn btn-primary boton1">Ver Postulación</a></h3>
                                     </div>
                                 @endif
                             @endforeach
@@ -64,8 +65,8 @@
                                 @foreach(\App\Postulacion::all() as $post)
                                     @if(($post->id_invest == Auth::user()->id) && ($post->estado=="rechazada"))
                                         <div class="postulacion">
-                                            <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                            <a href="{{route('modulopost.destroy', $post->id)}}" class="btn btn-danger" > <i class="fa fa-times"></i> Eliminar</a>
+                                            <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></h3>
+                                            <a href="{{route('modulopost.destroy', $post->id)}}" class="btn btn-danger boton1" > <i class="fa fa-times"></i> Eliminar</a>
                                         </div>
                                     @endif
                                 @endforeach

@@ -58,8 +58,7 @@
                         </div>
                     </div>
                     <hr>
-                @else
-                    <p>No hay Postulados</p>
+            
                 @endif
             @endforeach 
         @endif
