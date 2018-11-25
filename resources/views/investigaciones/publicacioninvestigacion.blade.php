@@ -10,7 +10,7 @@
     </div>
     <div class="row text-center">
         <div class="col-md-12 list-group-item ">            <br>
-            {{-- <p>Hay {{ $pub->lastPage()}} Pagina</p> --}}
+            <p>Total de {{ $pub->lastPage()}} Página </p>
           <div class="row justify-content-center">  
             @foreach ($pub as $inv)
                 <div class="col-md-12">
@@ -23,9 +23,13 @@
                                 <h4><b>Titulo:</b>  {{($inv->titulo)}}</h4>
                             </div>
                             <div class="form-group row">
-                                <p><b>Creado por el Investigador</b> 
-                                    {{\App\User::find($inv->user_id)->nombre}}
-                                </p>
+                                @if(\App\User::find($inv->user_id)->sexo == "Femenino")
+                                    <p><b>Creado por la Investigadora: </b>{{\App\User::find($inv->user_id)->nombre}}</h1>
+                                @else
+                                    <p><b> Creado por la Investigador: </b>{{\App\User::find($inv->user_id)->nombre}}</h1>
+                                @endif
+                               {{--  <p><b>Creado por la Investigadora:</b>
+                                    {{\App\User::find($inv->user_id)->nombre}}</p> --}}
                             </div>
                             <div class="form-group row">
                                 <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
@@ -34,21 +38,37 @@
                                 <p><b>Descripción:</b> {{$inv->descripcion}}</p>
                             </div>
                             <div class="col-12">
-                                @if(auth()->user()->id == $inv->user_id)
-                                    <p style="color:darkgreen;"><i>Es mi Investigación</i> </p>
-                                 @else
-                                    <hr style="color: #0056b2;" />
-                                    <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>      
-                                @endif
-                                {{-- @if($inv->$estado == 'activa')
-                                    <p span{ background-color: #FFB400; }>Investigación Activa </p>
-                                @else
-                                    <p span{ background-color: #reb; }>Investigación Finalizada </p>
-                                @endif --}}
-                                <button type="button" class="btn btn-outline-info">
-                                    <a href="#" class="far fa-thumbs-up">Like</a>
-                                </button>
-                                
+                                <div class="row">
+
+                                    @if($inv->estado == 'activa')
+                                        <p style="color: #CC9900; margin:8px;"><b>Investigación Activa</b> </p>
+                                    @else
+                                        <p style="color: #990000; margin:8px;"><b>Investigación Finalizada</b> </p>
+                                        <button type="button" class="btn btn-primary" >
+                                                <i>  Download </i>
+                                          @if($inv->archivofinal != null)                                         
+                                          <a href="archivoproyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"></a>
+                                        @endif
+                                         </button>
+                                    @endif
+
+                                    @if(auth()->user()->id == $inv->user_id)
+                                        <p style="color:darkgreen; margin:8px;"><b><i>Es mi Investigación</i></b> </p>
+                                        <div style="margin:8px;"></div>
+                                        <div class="col-md-6">
+                                            <input type="file" class="form-control" name="archivo" >
+                                        </div>  
+                                    @else
+                                        <hr style="color: #0056b2; margin:8px;" />
+                                        <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>
+                                        <div style="margin:8px;"></div>      
+                                    @endif
+                                    <div style="margin:8px;"></div>
+                                        <button type="button" class="btn btn-outline-info">
+                                            <a href="#" class="far fa-thumbs-up">Like</a>
+                                        </button>
+                                    
+                                </div>
                             </div> 
                         </div>
                     </div>
