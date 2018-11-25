@@ -359,6 +359,13 @@ Route::get('/crearactividad/{id}', function ($id) {
 })->name('crearactividad');
 Route::post('crearactividad','ActividadController@store');
 
+//--actividad asignada
+Route::get('/veractividadasignada/{id}', function ($id) {
+    $actividad = DB::table('actividad')->where('id_postulacion',$id)->first();
+    return view('actividad.veractividadasignada')->with('actividad',$actividad);
+})->name('veractividadasignada');
+
+
 //mensajes
 Route::get('/mensajes/{id}',function($id){
     //$recibidos = DB::table('mensaje')->where('id_destinatario',$id)->get();

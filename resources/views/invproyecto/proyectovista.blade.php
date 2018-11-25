@@ -25,9 +25,5 @@
                     {!!Form::close()!!}              
             </div>
     </div>
-    <br><br><br>
-    <div class="text-center">
-        <a href="{{route('proyectogrupalpost')}}" class="btn btn-secondary boton1">Regresar</a>
-    </div>
 </div>
 @endsection
