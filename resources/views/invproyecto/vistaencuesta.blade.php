@@ -1,5 +1,16 @@
 @extends('layouts.menuinv')
+
 @section('content')
+<div class="col-md-9 investigaciones">
+    <div class="row text-center separador">
+        <div class="col-md-12 list-group-item text-center top-bar">
+            @if(Auth::user()->tipo_inv == "normal")
+            <button  onclick="goBack()" class="btn btn-primary boton">Regresar</button>
+                <h1 style="float:left">Resultados </h1>
+            @endif
+        </div>
+    </div>
+
 
 <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
 

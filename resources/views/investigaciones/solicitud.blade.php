@@ -23,7 +23,7 @@
                 @if(Auth::user()->tipo_inv == "normal")
                     <a href="{{route('solicitud.destroy', $solicitud->id)}}" class="btn btn-danger boton1">Eliminar Solicitud</a>
                     <a href="{{route('editarinves', $solicitud->id)}}" class="btn btn-success boton1">Editar Solicitud</a>
-                    <a href="{{route('postulaciones', $solicitud->id)}}" class="btn btn-secondary boton1">Revisar Postulaciones</a>
+                    <a href="{{route('nombreinvpostulacion', $solicitud->id)}}" class="btn btn-secondary boton1">Revisar Postulaciones</a>
                     @elseif(Auth::user()->tipo_inv == "comite")
                     <a href="{{route('escritoriocomite')}}" class="btn btn-secondary boton1">Regresar</a>
                 @endif

@@ -17,15 +17,22 @@
             <div class="col-md-4 solicitudInv">
                 <div class="card solii">
                     <div class="card-body">
-                        <p class="text-center"><b>Creadas (Pendientes por Aprobación):</b></p><hr>
+                            <ul class="list-group text-center"> 
+                                    <li class="list-group-item listaAsesSolic" style="background: #2B3033; color:#FFFFFF">
+                                        <p style='margin-right:20px'><b>Creadas (Pendientes por Aprobación): </b></p>
+                                    </li>
+                                </ul>
                             @if(count(\App\Postulacion::all())>0)
                                 @foreach(\App\Postulacion::all() as $post)
                                     @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente"))
+                                    <li class="list-group-item ">
                                         <div class="postulacion">
-                                            <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                            <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary">Revisar</a></h3>
-                                    
+                                            <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
+                                           <div style="margin:10px;">
+                                            <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary boton1">Revisar</a></h3>
+                                            </div>
                                         </div>
+                                    </li>
                                     @endif
                                 @endforeach
                             @else
@@ -38,16 +45,25 @@
        <div class="col-md-4 solicitudInv">
             <div class="card solii">
                 <div class="card-body">
-                    <p class="text-center"><b>Aceptadas - Activas:</b></p><hr>
+                        <ul class="list-group text-center"> 
+                                <li class="list-group-item listaAsesSolic" style="background: #2B3033; color:#FFFFFF">
+                                    <p style='margin-right:20px'><b>Aceptadas - Activas:</b></p>
+                                </li>
+                            </ul>
                         @if(count(\App\Postulacion::all())>0)
                             @foreach(\App\Postulacion::all() as $post)
                                 @if(($post->id_invest == Auth::user()->id) && ($post->estado=="aceptada"))
+                                <li class="list-group-item ">
                                     <div class="postulacion">
-                                        <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                        <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary">Revisar </a></h3>
+                                        <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
+                                        <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary boton1">Revisar </a></h3>
                                         
-                                        <a href="{{route('modpost',['id'=> $post->id_post])}}" class="btn btn-primary">Ver Postulación</a></h3>
+                                        <a href="{{route('modpost',['id'=> $post->id_post])}}" class="btn btn-primary boton1">Postulación</a></h3>
+                                       
+                                        <a href="{{route('veractividadasignada',['id'=> $post->id])}}" class="btn btn-success boton1">Actividad</a></h3>
+
                                     </div>
+                                </li>
                                 @endif
                             @endforeach
                         @else
@@ -59,14 +75,20 @@
         <div class="col-md-4 solicitudInv">
             <div class="card solii">
                     <div class="card-body">
-                        <p class="text-center"><b>Rechazadas:</b></p><hr>
+                            <ul class="list-group text-center"> 
+                                    <li class="list-group-item listaAsesSolic" style="background: #2B3033; color:#FFFFFF">
+                                        <p style='margin-right:20px'><b>Rechazadas:</b></p>
+                                    </li>
+                                </ul>
                             @if(count(\App\Postulacion::all())>0)
                                 @foreach(\App\Postulacion::all() as $post)
                                     @if(($post->id_invest == Auth::user()->id) && ($post->estado=="rechazada"))
-                                        <div class="postulacion">
-                                            <h3><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->actividad}}</a></h3>
-                                            <a href="{{route('modulopost.destroy', $post->id)}}" class="btn btn-danger" > <i class="fa fa-times"></i> Eliminar</a>
+                                    <li class="list-group-item ">
+                                         <div class="postulacion">
+                                            <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
+                                            <a href="{{route('modulopost.destroy', $post->id)}}" class="btn btn-danger boton1" > <i class="fa fa-times"></i> Eliminar</a>
                                         </div>
+                                    </li>
                                     @endif
                                 @endforeach
                             @else

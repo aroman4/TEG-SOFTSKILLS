@@ -1,19 +1,17 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
-<div class="container">
-    @if(count($errors)>0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li class="alert alert-danger">{{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Crear actividad') }}</div>
-                    <div class="card-body">
+<div class="col-md-9 investigaciones">
+    <div class="row text-center separador">
+        <div class="col-md-12 list-group-item text-center top-bar">
+            @if(Auth::user()->tipo_inv == "normal")
+                <a href="{{route('nombreinvpostulacion')}}" class="btn btn-primary boton">Regresar</a>
+                <h1 style="float:left">Crear Actividad </h1>
+            @endif
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-12 list-group-item ">
                         {!!Form::open(['action' => 'ActividadController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                             <input type="hidden" name="id_investigacion" value="{{ $inv->id }}"> 
                             @csrf
@@ -38,14 +36,11 @@
                                  </div>                                  
                                <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">Enviar Actividad</button>
+                                        <button type="submit" class="btn btn-primary boton1">Enviar Actividad</button>
                                     </div>
                                </div>
                         {!!Form::close()!!}              
                     </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 @endsection

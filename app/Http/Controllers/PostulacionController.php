@@ -82,7 +82,7 @@ class PostulacionController extends Controller
         $postulacion->estado_inv = "finalizado";  
         $postulacion->save();
         
-        return redirect('/proyectogrupalpost')->with('success','investigacion finalizada');
+        return redirect('/vistainvestigaciones')->with('success','investigacion finalizada');
 
     }
 

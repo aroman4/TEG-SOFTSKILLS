@@ -40,12 +40,10 @@
                         <div class="col-md-3"> 
                             <button type="button" class="btn btn-primary boton1">
                                     <i class="fa fa-download">  Download </i>
-{{--                             @if($postulacion->archivo != null)                                         
- --}}                                <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">
-                                
-                             </a>
-{{--                             @endif
- --}}                        </button>
+                                 @if($postulacion->archivo != null)                                         
+                                    <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}"></a>
+                                 @endif
+                            </button>
                              
                         </div>
                         <div class="col-md-3">
@@ -60,8 +58,7 @@
                         </div>
                     </div>
                     <hr>
-                @else
-                    <p>No hay Postulados</p>
+            
                 @endif
             @endforeach 
         @endif
