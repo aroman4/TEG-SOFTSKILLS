@@ -12,6 +12,8 @@ Route::get('/solicitud', 'RequestController@solicitud');
 
 //publicacion
 Route::get('/publicacioninve', 'PublicacionController@index')->name('publicacioninve');
+Route::get('/nombreinvpostulacion', 'PublicacionController@index')->name('nombreinvpostulacion');
+
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
     Route::resource('usuarios','UsersController');

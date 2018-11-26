@@ -29,7 +29,7 @@
                                         <div class="postulacion">
                                             <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
                                            <div style="margin:10px;">
-                                            <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary boton1">Revisar</a></h3>
+                                            <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" title="Revisar postulación" class="btn btn-secondary boton1">Revisar</a></h3>
                                             </div>
                                         </div>
                                     </li>
@@ -56,11 +56,11 @@
                                 <li class="list-group-item ">
                                     <div class="postulacion">
                                         <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
-                                        <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" class="btn btn-secondary boton1">Revisar </a></h3>
+                                        <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" title="Revisar Postulación" class="btn btn-secondary boton1">Revisar </a></h3>
                                         
-                                        <a href="{{route('modpost',['id'=> $post->id_post])}}" class="btn btn-primary boton1">Postulación</a></h3>
+                                        <a href="{{route('modpost',['id'=> $post->id_post])}}" title="Ver Investigación" class="btn btn-primary boton1">Ver</a></h3>
                                        
-                                        <a href="{{route('veractividadasignada',['id'=> $post->id])}}" class="btn btn-success boton1">Actividad</a></h3>
+                                        <a href="{{route('veractividadasignada',['id'=> $post->id])}}" title="Revisar Actividad Asignada" class="btn btn-success boton1">Actividad</a></h3>
 
                                     </div>
                                 </li>
@@ -86,7 +86,7 @@
                                     <li class="list-group-item ">
                                          <div class="postulacion">
                                             <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
-                                            <a href="{{route('modulopost.destroy', $post->id)}}" class="btn btn-danger boton1" > <i class="fa fa-times"></i> Eliminar</a>
+                                            <a href="{{route('modulopost.destroy', $post->id)}}" titles="Eliminar postulación" class="btn btn-danger boton1" > <i class="fa fa-times"></i> Eliminar</a>
                                         </div>
                                     </li>
                                     @endif

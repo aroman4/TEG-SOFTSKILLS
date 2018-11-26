@@ -4,7 +4,7 @@
 <div class="col-md-9 solicitudInv">
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
-            <a href="{{route('solicinvestigacion')}}" class="btn btn-primary boton">Crear Solicitud</a>
+            <a onclick="goBack()" class="btn btn-primary boton">Crear Solicitud</a>
             <h1 style="float:left">Solicitud </h1>
         </div>
     </div>
@@ -31,7 +31,7 @@
                                                 </tr>
                                                 <tr >
                                                     <td><p>{{$sol->titulo}}</p></td>
-                                                    <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a></td>
+                                                    <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" title="Ver Solicitud" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a></td>
                                                 </tr>
                                         </table>
                                     </li>
@@ -64,7 +64,7 @@
                                         </tr>
                                         <tr >
                                             <td><p>{{$sol->titulo}}</p></td>
-                                            <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" class="btn btn-primary" style="border-radius: 5px;">Ver</a></td>           
+                                            <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" title="Ver Solicitud" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a></td>
                                         </tr>
                                 </table>
                                 </li>

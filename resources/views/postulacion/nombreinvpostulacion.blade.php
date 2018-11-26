@@ -4,12 +4,11 @@
 <div class="col-md-9 investigaciones">
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
-                <a href="{{route('listapostulaciones')}}" class="btn btn-primary boton">Regresar</a>
+                <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>
                 <h1 style="float:left">Lista de Postulado </h1>
         </div>
     </div>
         <br><br>
-        
         <div class="row">   
             <div class="col-md-3">
                 <h3>Nombre del Investigador</h3>
@@ -53,7 +52,8 @@
                             <a  href="{{route('crearactividad',['id'=> $postulacion->id_post])}}" class="btn btn-success boton1"><i class="fa fa-check"></i>Aceptar</a></h3>
 
                             <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
-                           <br> <span>El estado es: </span>
+                          
+                            <br> <span>El estado es: </span>
                             <span>{{$postulacion->estado}}</span>
                         </div>
                     </div>
