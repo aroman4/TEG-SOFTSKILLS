@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Redirect;
 use App\Solicitud;
 use App\Investigacion;
+use App\Postulacion;
+
 //use Cache;
 
 class PublicacionController extends Controller
@@ -22,6 +24,12 @@ class PublicacionController extends Controller
         //metodo de Paginacion
         $pub = Investigacion::paginate(2);
         return view('investigaciones.publicacioninvestigacion', compact('pub'));
+    }
+    public function indexp()
+    {
+        //metodo de Paginacion
+        $paginacionp = Postulacion::paginate(1);
+        return view('postulacion.nombreinvpostulacion', compact('paginacionp'));
     }
     
     /**

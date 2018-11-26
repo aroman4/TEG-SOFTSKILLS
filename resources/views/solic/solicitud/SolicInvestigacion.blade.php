@@ -38,13 +38,22 @@
                                 </div>
                                 <div class="form-group row">
                                         {!! Form::label ('actividades','Actividades:*')!!}
-                                        {!! Form::textarea ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca las Actividades necesaria para desarrollar la investigación','required'])!!}
+                                        {!! Form::text ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca las Actividades necesaria para desarrollar la investigación','required'])!!}
                                         @if ($errors->has('actividades'))
                                         <span class="text-danger" role="alert">
                                                 <strong>{{ $errors->first('actividades') }}</strong>
                                         </span>
                                         @endif
-                                    </div>                                        
+                                    </div>
+                                    <div class="form-group row">
+                                        {!! Form::label ('descripcion','Descripción:*')!!}
+                                        {!! Form::textarea ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca una pequeña descripción de la investigación','required'])!!}
+                                        @if ($errors->has('descripcion'))
+                                        <span class="text-danger" role="alert">
+                                                <strong>{{ $errors->first('descripcion') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>                                       
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Subir Archivo</label>
                                         <div class="col-md-6">

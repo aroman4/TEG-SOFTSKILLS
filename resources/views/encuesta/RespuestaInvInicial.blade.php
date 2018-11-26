@@ -6,7 +6,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
-                <a href="{{route('vistainvestigaciones')}}" class="btn btn-primary boton">Regresar</a>
+                <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>
                 <button type="submit" class="text-center btn btn-success boton">Enviar Resultados</button>
                 <h1 style="float:left">Evaluar al Investigador</h1>
         </div>

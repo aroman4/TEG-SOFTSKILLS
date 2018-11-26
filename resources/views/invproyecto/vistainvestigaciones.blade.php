@@ -24,7 +24,7 @@
                 @forelse(\App\Investigacion::all() as $inv)
                     @if($inv->user_id == Auth::user()->id)
                     <li class="list-group-item listaAsesSolic">
-                        <strong> <a href="{{route('detallesinv',$inv->id)}}">{{$inv->titulo}}</a></strong>
+                        <strong> <a title="Seguimiento de mi Investigación" href="{{route('detallesinv',$inv->id)}}">{{$inv->titulo}}</a></strong>
                     </li>
                     @endif
                 @endforeach
@@ -33,41 +33,79 @@
         </div>
         <div class="col-md-6 list-group-item" style="overflow:auto">
             <div class="text-center">
-                
+                <br>
                 <ul class="list-group"> 
                     <li class="list-group-item listaAsesSolic" style="background: #2B3033; color:#FFFFFF">
                         <h2 style='margin-right:20px'>Mis Postulaciones</h2>
                     </li>
-                    <li class="list-group-item listaAsesSolic">
-                            
-                    @forelse(\App\Postulacion::all() as $postulacion)
-                        @if($postulacion->id_invest == auth()->user()->id && $postulacion->estado_inv == "inicio" && $postulacion->estado == 'aceptada')
-                            <div class="row">
+                </ul>
+
+                <ul class="list-group">                
+                @forelse(\App\Investigacion::all() as $inv)
+                    @forelse(\App\Postulacion::all() as $postulacion) 
+                        {{--Postulados a mi investigaciones--}}
+                        @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada' && $postulacion->estado_inv == "inicio")
+                        <li class="list-group-item listaAsesSolic">
+                        <div class="row">
                                 <div class="col-md-4">
                                     <p><b>Titulo de la Investigación</b></p>
                                     <p>{{\App\Investigacion::find($postulacion->id_post)->titulo}}</p>        
                                 </div>
                                 <div class="col-md-5">
-                                    <p><b>Archivo</b></p>
-                                    <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-eye" style="color:#000; width:6; height:6"></i></a>
-                                    <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-success"><i class="fa fa-upload" style="color:#000; width:6; height:6"></i></a>
-                                    <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" download="{{$postulacion->archivo_inv}}">
-                                    <button type="button" class="btn btn-warning">
-                                        <i class="fa fa-download" style="color:#000; width:6; height:6"></i>
-                                    </button></a>
+                                    <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-eye" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                    <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-success"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                    <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                    <br>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <p><b>Etapa</b></p>
                                     @if($postulacion->estado_inv == 'inicio')                                
-                                        <p>{{$postulacion->estado_inv}}</p>
+                                        <p style="color:green;"><b>{{$postulacion->estado_inv}}</b></p>
                                     @else
-                                        <p>{{$postulacion->estado_inv}}</p>
+                                        <p style="color:green;"><b>{{$postulacion->estado_inv}}</b></p>
                                     @endif
                                 </div>
-                            </div>    
+                                
+                            </div>  
+                            <div class="row">
+                                <p><b>Nombre del Investigador:  </b>{{\App\User::find($postulacion->id_invest)->nombre ." ". \App\User::find($postulacion->id_invest)->apellido}}</p>
+                            </div> 
+                        </li> 
                         @endif
                     @endforeach
-                </li>
+                @endforeach
+
+                        {{--MIS POSTULACIONES--}}
+                    @forelse(\App\Postulacion::all() as $postulacion) 
+                        @if($postulacion->id_invest == Auth::user()->id && $postulacion->estado == 'aceptada' && $postulacion->estado_inv == "inicio")
+                        <li class="list-group-item listaAsesSolic">
+                        <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>Titulo de la Investigación</b></p>
+                                    <p>{{\App\Investigacion::find($postulacion->id_post)->titulo}}</p>        
+                                </div>
+                                <div class="col-md-5">
+                                    <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary"><i class="fa fa-eye" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                    <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-success"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                    <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                    <br>
+                                </div>
+                                <div class="col-md-2">
+                                    <p><b>Etapa</b></p>
+                                    @if($postulacion->estado_inv == 'inicio')                                
+                                        <p style="color:green;"><b>{{$postulacion->estado_inv}}</b></p>
+                                    @else
+                                        <p style="color:green;"><b>{{$postulacion->estado_inv}}</b></p>
+                                    @endif
+                                </div>
+                                
+                            </div>  
+                            <div class="row">
+                                <p><b>Nombre del Investigador:  </b>{{\App\User::find($postulacion->id_invest)->nombre ." ". \App\User::find($postulacion->id_invest)->apellido}}</p>
+                            </div> 
+                        </li> 
+                        @endif
+                    @endforeach
             </ul>
         </div>
     </div>
