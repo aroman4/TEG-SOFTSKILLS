@@ -70,7 +70,7 @@
                                     @endif
                                     <div style="margin:8px;"></div>
                                         <button type="button" class="btn btn-outline-info boton1">
-                                            <a href="#" class="far fa-thumbs-up">Like</a>
+                                            <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like</a>
                                         </button>
                                     
                                 </div>

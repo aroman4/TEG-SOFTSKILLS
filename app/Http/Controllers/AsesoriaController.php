@@ -72,10 +72,13 @@ class AsesoriaController extends Controller
             $solicitud->estado = "aceptada";
          }
          $solicitud->save();
-         //colocar que el usuario comite no pueda volver a votar
-         $userC = User::find(auth()->user()->id);
-         $userC->votoejercido = true;
-         $userC->save();
+        
+         //Contar voto
+         
+        $voto = new \App\Voto();
+        $voto->user_id = auth()->user()->id;
+        $voto->id_sol = $id;
+        $voto->save();
          
          //enviar email al cliente
          /* Mail::send('email.solicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){

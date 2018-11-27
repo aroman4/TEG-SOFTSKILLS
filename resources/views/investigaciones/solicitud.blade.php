@@ -27,7 +27,7 @@
                     @elseif(Auth::user()->tipo_inv == "comite")
                     <a href="{{route('escritoriocomite')}}" class="btn btn-secondary boton1">Regresar</a>
                 @endif
-                @if(Auth::user()->tipo_inv == "comite")
+                @if(Auth::user()->tipo_inv == "comite"  && ((DB::table('voto')->where('user_id',auth()->user()->id)->count() == 0)||(DB::table('voto')->where('id_sol',$solicitud->id)->count() == 0)))
                     <a href="{{action('InvestigacionController@AceptarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-success boton1">Aceptar Solicitud</a>
                     <!--Cuando se acepte la solicitud se deberia dejar de mostrar la solicitud, cambiar el estado?-->
                     
