@@ -42,10 +42,9 @@ class ActividadController extends Controller
     {
         //actividad crear
         $actividad = new Actividad($request->all());
-        //id de la postulacion
-        $actividad->id_postulacion  = DB::table('postulacion')->where('id_post',$actividad->id_investigacion)->first()->id;    
-        //id de la investigador
-        //dd($actividad);
+        //id de la investigacion
+        $actividad->id_investigacion = Postulacion::find($actividad->id_postulacion)->id_post;
+        //id de investigador
         $actividad->id_investigador = Postulacion::find($actividad->id_postulacion)->id_invest;
         $postulacion = Postulacion::find($actividad->id_postulacion);
         $postulacion->estado = "aceptada";

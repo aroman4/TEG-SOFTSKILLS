@@ -49,7 +49,7 @@
                             <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary boton1">Revisar Postulación</a></h3>
                         </div>
                         <div class="col-md-3">
-                            <a  href="{{route('crearactividad',['id'=> $postulacion->id_post])}}" class="btn btn-success boton1"><i class="fa fa-check"></i>Aceptar</a></h3>
+                            <a  href="{{route('crearactividad',['id'=> $postulacion->id])}}" class="btn btn-success boton1"><i class="fa fa-check"></i>Aceptar</a></h3>
 
                             <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
                           

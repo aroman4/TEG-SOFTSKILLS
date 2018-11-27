@@ -13,7 +13,7 @@
     <div class="row">
             <div class="col-md-12 list-group-item ">
                         {!!Form::open(['action' => 'ActividadController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
-                            <input type="hidden" name="id_investigacion" value="{{ $inv->id }}"> 
+                            <input type="hidden" name="id_postulacion" value="{{ $inv->id }}"> 
                             @csrf
                             
                              <div class="form-group row">
