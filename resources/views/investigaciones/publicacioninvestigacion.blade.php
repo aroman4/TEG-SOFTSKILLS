@@ -22,7 +22,7 @@
                                 <p ><b>Fecha:</b> {{$inv->created_at}} </p>
                                 @if(auth()->user()->id == $inv->user_id)
                                         <p style="color:darkgreen; margin:8px;"><b><i>  </i></b> </p><br>
-                                        <a href="#" class="btn btn-success boton1">Subir Archivo</a>  
+                                        <a href="{{route('subirarchivofinal',$inv->id)}}" class="btn btn-success boton1">Subir Archivo</a>  
                                     @endif
                             </div>
                             <div class=" row">
@@ -59,7 +59,7 @@
                                         @endif
                                          </button>
                                     @endif
-                                    {{--<p style="color:darkgreen; margin:8px;"><b><i>Es mi Investigación</i></b> </p>--}}                                        
+                                {{--<p style="color:darkgreen; margin:8px;"><b><i>Es mi Investigación</i></b> </p>--}}                                        
                                     <div style="margin:8px;"></div>
                                         <button type="button" class="btn btn-outline-info boton1">
                                             <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
