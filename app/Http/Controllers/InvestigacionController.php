@@ -21,6 +21,24 @@ class InvestigacionController extends Controller
     {
         //
     }
+    public function enviar(Request $request)
+    {
+        //dd($request);  
+         
+        $inv =  Investiagcion::find($request->idinvestigacion);
+        if($request->hasFile('archivofinal')){
+            $archivo_inv = $request->file('archivofinal');
+            $nombreArch = time().$archivo_inv->getClientOriginalName();
+            $archivo_inv->move(public_path().'/proyecto/',$nombreArch);
+            $inv->archivofinal = $nombreArch;
+        }
+        $inv->id_invest = auth()->user()->id;  
+        $inv->save();
+        
+        return redirect('/publicacioninve')->with('success','Investigación Publicada');
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
