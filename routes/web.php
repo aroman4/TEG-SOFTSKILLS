@@ -12,8 +12,8 @@ Route::get('/solicitud', 'RequestController@solicitud');
 
 //publicacion
 Route::get('/publicacioninve', 'PublicacionController@index')->name('publicacioninve');
-Route::get('/nombreinvpostulacion', 'PublicacionController@index')->name('nombreinvpostulacion');
-
+/* Route::get('/nombreinvpostulacion', 'PublicacionController@index')->name('nombreinvpostulacion');
+ */
 //route de usuario
 route::group(['prefix' => 'admin'], function(){
     Route::resource('usuarios','UsersController');
@@ -171,7 +171,14 @@ Route::get('/proyectovista/{id}', function ($id) {
 })->name('proyectovista');
 //proyecto vista de subir archivo 
 Route::post('/proyectovista', 'PostulacionController@enviar')->name('proyectovista');
+//''''''subir archivo final de la investigacion'''''''''''
+Route::get('/subirarchivofinal/{id}', function ($id) {
+    return view('investigaciones.subirarchivofinal') ->with('idinvestigacion',$id);
+})->name('subirarchivofinal');
+//proyecto vista de subir archivo 
+Route::post('/subirarchivofinal', 'InvestigacionController@enviar')->name('subirarchivofinal');
 
+//''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 //---------vista de investigaciones
 Route::get('/investigacionprincipal', function () {
     return view('invproyecto.investigacionprincipal');
