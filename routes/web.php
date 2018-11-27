@@ -411,3 +411,22 @@ Route::get('/borrarmensaje/{id}',function($id){
     $mensaje->delete();
     return redirect()->route('mensajes',auth()->user()->id);
 })->name('borrarmensaje');
+
+//me gusta
+Route::get('/like/{id}', function($id){
+    //si no hay votos por este usuario o no ha votado por esta inv
+    if((DB::table('voto')->where('user_id',auth()->user()->id)->count() == 0)||(DB::table('voto')->where('id_inv',$id)->count() == 0)){
+        //guardar voto
+        $voto = new \App\Voto();
+        $voto->user_id = auth()->user()->id;
+        $voto->id_inv = $id;
+        $voto->save();
+
+        //contar like
+        $inv = \App\Investigacion::find($id);
+        $inv->cantidad = $inv->cantidad + 1;
+        $inv->save();
+        return back()->with('success','Te ha gustado esta publicación');
+    }
+    return back();
+})->name('like');
