@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Controllers;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +7,6 @@ use App\Solicitud;
 use App\Investigacion;
 use DB;
 use App\Voto;
-
 class InvestigacionController extends Controller
 {
     /**
@@ -32,14 +29,11 @@ class InvestigacionController extends Controller
             $archivo_inv->move(public_path().'/proyecto/',$nombreArch);
             $inv->archivofinal = $nombreArch;
         }
-        $inv->id_invest = auth()->user()->id;  
+        $inv->user_id = auth()->user()->id;  
         $inv->save();
         
-        return redirect('/publicacioninve')->with('success','Investigación Publicada');
-
+        return redirect('/publicacioninve')->with('success','Investigación subida, lista para descargar');
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -65,14 +59,11 @@ class InvestigacionController extends Controller
             $solicitud->estado = "aceptada";
         }
         $solicitud->save();
-
         //verificar voto
         $voto = new \App\Voto();
         $voto->user_id = auth()->user()->id;
         $voto->id_sol = $id;
         $voto->save();
-
-
         return redirect('/escritoriocomite')->with('success','Voto recibido');
     }
     /**
@@ -85,7 +76,6 @@ class InvestigacionController extends Controller
     {
         //store
     }
-
     /**
      * Display the specified resource.
      *
@@ -111,7 +101,6 @@ class InvestigacionController extends Controller
         return view('investigaciones.edit')->with('investigaciones', $inv);
         
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -126,7 +115,6 @@ class InvestigacionController extends Controller
         $inv = $request->all();
         $inv->save();
     }
-
     /**
      * Remove the specified resource from storage.
      *

@@ -18,7 +18,7 @@
                          <div class="form-group">   
                             <label class="col-md-4 control-label">Subir Archivo</label>
                                 <div class="col-md-6">
-                                    <input type="file" class="form-control" name="archivo_inv" >
+                                    <input type="file" class="form-control" name="archivofinal" >
                                 </div>
                         </div>   
                         <button type="submit" class="btn btn-primary boton1">Enviar</button>
