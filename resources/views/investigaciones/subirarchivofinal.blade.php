@@ -12,7 +12,7 @@
     </div>
     <div class="row">
             <div class="col-md-12 list-group-item ">
-                    {!!Form::open(['action' => 'PostulacionController@enviar', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
+                    {!!Form::open(['action' => 'InvestigacionController@enviar', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                     @csrf    
                      <input type="hidden" name="idinvestigacion" value="{{ $idinvestigacion }}">
                          <div class="form-group">   

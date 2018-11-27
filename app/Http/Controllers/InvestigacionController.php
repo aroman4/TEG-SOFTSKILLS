@@ -25,7 +25,7 @@ class InvestigacionController extends Controller
     {
         //dd($request);  
          
-        $inv =  Investiagcion::find($request->idinvestigacion);
+        $inv =  Investigacion::find($request->idinvestigacion);
         if($request->hasFile('archivofinal')){
             $archivo_inv = $request->file('archivofinal');
             $nombreArch = time().$archivo_inv->getClientOriginalName();

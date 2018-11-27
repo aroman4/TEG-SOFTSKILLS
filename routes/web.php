@@ -176,7 +176,7 @@ Route::get('/subirarchivofinal/{id}', function ($id) {
     return view('investigaciones.subirarchivofinal') ->with('idinvestigacion',$id);
 })->name('subirarchivofinal');
 //proyecto vista de subir archivo 
-Route::post('/subirarchivofinal', 'InvestigacionController@enviar')->name('subirarchivofinal');
+Route::post('/subirarchivofinal', 'InvestigacionController@enviar')->name('subirarchivofinalpost');
 
 //''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 //---------vista de investigaciones
