@@ -4,7 +4,7 @@
 <div class="col-md-9 solicitudInv">
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
-            <a onclick="goBack()" class="btn btn-primary boton">Crear Solicitud</a>
+            <a href="{{route('solicinvestigacion')}}" class="btn btn-primary boton">Crear Solicitud</a>
             <h1 style="float:left">Solicitud </h1>
         </div>
     </div>
