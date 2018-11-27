@@ -356,7 +356,7 @@ Route::get('/exportclientes','UsersController@exportBanco')->name('exportcliente
 //actividad
 //---------vista de actividad de Lider
 Route::get('/crearactividad/{id}', function ($id) {
-    $inv = \ App\ Investigacion::find($id);
+    $inv = \ App\ Postulacion::find($id);
     return view('actividad.crearactividad')->with('inv',$inv);
 })->name('crearactividad');
 Route::post('crearactividad','ActividadController@store');
