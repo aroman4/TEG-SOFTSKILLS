@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Solicitud;
 use App\Investigacion;
+use DB;
+use App\Voto;
 
 class InvestigacionController extends Controller
 {
@@ -45,7 +47,15 @@ class InvestigacionController extends Controller
             $solicitud->estado = "aceptada";
         }
         $solicitud->save();
-        return redirect('/escritoriocomite')->with('success','Investigación aceptada');
+
+        //verificar voto
+        $voto = new \App\Voto();
+        $voto->user_id = auth()->user()->id;
+        $voto->id_sol = $id;
+        $voto->save();
+
+
+        return redirect('/escritoriocomite')->with('success','Voto recibido');
     }
     /**
      * Store a newly created resource in storage.
