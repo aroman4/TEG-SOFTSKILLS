@@ -5,7 +5,7 @@
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
             @if(Auth::user()->tipo_inv == "normal")
-                <a href="{{route('nombreinvpostulacion')}}" class="btn btn-primary boton">Regresar</a>
+                <a href="{{route('vistainvestigaciones')}}" class="btn btn-primary boton">Regresar</a>
                 <h1 style="float:left">Subir Actividad Asignada </h1>
             @endif
         </div>

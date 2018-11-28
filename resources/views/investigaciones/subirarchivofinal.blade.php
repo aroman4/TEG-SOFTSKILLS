@@ -6,7 +6,7 @@
         <div class="col-md-12 list-group-item text-center top-bar">
             @if(Auth::user()->tipo_inv == "normal")
                 <a href="{{route('publicacioninve')}}" class="btn btn-primary boton">Regresar</a>
-                <h1 style="float:left">Subir Actividad Final de la Investigación</h1>
+                <h1 style="float:left">Subir Investigación Final </h1>
             @endif
         </div>
     </div>
