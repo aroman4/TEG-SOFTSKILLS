@@ -53,7 +53,7 @@
                     @endif
                 @endforeach
                 <div class="row">
-                    <a href="{{route('vistaencuesta', $postulacion->id_post)}}" class="btn btn-success boton">Ver Resultados</a>
+                    <a href="{{route('vistaencuesta', $inv->id)}}" class="btn btn-success boton">Ver Resultados</a>
                 </div>
             </div>
         </div>
