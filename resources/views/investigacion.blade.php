@@ -1,20 +1,16 @@
 @extends('layouts.plantilla')
 @section('content')
     <div class="imagen-fija imagen-fija3">
-		<div class="parte1">
-				<h1 class="parte12">Investigación</h1>
-				<p class="parte12">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
-					sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
-					Nullam feugiat luctus tortor nec hendrerit
+		<div class="parte1 animated fadeInLeftBig">
+				<h1 class="parte12 ">Investigación</h1>
+				<p class="parte12">En nuestra plataforma puede unirse a investigaciones existentes sobre habilidades blandas o puede postular las suyas propias
 				</p>
 		</div>				
 	</div>
 	<div class="seccion1">
 		<div class="textoSeccion1">
 			<h1>Importancia</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
-			sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
-			Nullam feugiat luctus tortor nec hendrerit. </p>
+			<p>Es sumamente importante investigar más sobre las habilidades blandas debido a que el 71% de los proyectos de software que se realizan fracasan por deficit de habilidades blandas.</p>
 		</div>
 	
 	</div>
@@ -57,13 +53,10 @@
 	</div>
 	<div class="imagen-fija imagen-fija4">
 		<div class="texto-divImagen">
-			<h1>Como Crear un Proyecto de Investigación</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ipsum nulla, condimentum
-				sed bibendum placerat, interdum eu diam. Aenean elementum vel dui pretium scelerisque. 
-				Nullam feugiat luctus tortor nec hendrerit
-            </p>
-            <br><br>
-            <h1>No esperes mas ser parte de nosotros y demuestra tus conocimientos</h1>
+				<h1 class="texth1Index">¡No esperes más!</h1>
+				<h3 style="padding:50px">Regístrate como investigador y postulate a una investigación o solicita la creación de tu investigación propia
+				</h3>
+				<a class="btn btn-primary" style="height:100px;width:300px;font-size:20px;padding-top:30px" href="{{route('register')}}">¡Quiero empezar!</a>
 		</div>
 	</div>
     

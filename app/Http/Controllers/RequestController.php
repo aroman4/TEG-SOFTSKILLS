@@ -107,6 +107,10 @@ public function publicacioninvestigacion()
      */
     public function store(Request $request)
     {
+        /* $this->validate($request,[
+
+        ]); */
+
         $solicitud = new Solicitud($request->all());
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
