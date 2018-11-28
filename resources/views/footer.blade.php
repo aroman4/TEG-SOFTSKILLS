@@ -1,6 +1,6 @@
 <footer>
 		<div class="inside-footer">
-		<p>2018 tesis</p>
+		<p>2018 SoftSkills</p>
 		</div>
     </footer>
 	

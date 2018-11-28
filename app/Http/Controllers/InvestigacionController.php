@@ -32,7 +32,6 @@ class InvestigacionController extends Controller
         }
         $inv->user_id = auth()->user()->id;  
         $inv->estado = "finalizada";  
-
         $inv->save();
         
         return redirect('/publicacioninve')->with('success','Investigación Finalizada');
