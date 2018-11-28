@@ -14,7 +14,7 @@
             <div class="col-md-12 list-group-item ">
                 <p><b>Otros Proyectos: </b>{{$postulacion->otros_proyectos}}</p>
                 <p><b>Aporte a la Investigación: </b>{{$postulacion->aporte}}</p>
-                <p><b>Actividad en la que se quiere postular: {{$postulacion->actividad}}</p>
+                <p><b>Actividad en la que se quiere postular: </b>{{$postulacion->actividad}}</p>
                 <small>Creada el {{$postulacion->created_at}}</small>
 
                 <br><br>
