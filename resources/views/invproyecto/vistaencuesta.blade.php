@@ -8,12 +8,12 @@
             <button  onclick="goBack()" class="btn btn-primary boton">Regresar</button>
                   <h1 class="boton1">Resultados </h1>
             @endif
-            <form method="post" id="make_pdf" action="{{action('CuestionarioController@reportePdf')}}">
+            {{-- <form method="post" id="make_pdf" action="{{action('CuestionarioController@reportePdf')}}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="hidden_html" id="hidden_html" />
                 <button type="button" name="create_pdf" id="create_pdf" class="btn btn-danger btn-xs">Generar PDF</button>
-            </form>
-            <h1 style="float:left">Calificación: $postulacion->id_invest </h1>
+            </form> --}}
+            {{-- <h1 style="float:left">Calificación: {{$encuestastodas->calificacion}} </h1> --}}
         </div>
     </div>
 
