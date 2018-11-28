@@ -8,16 +8,25 @@
             <button  onclick="goBack()" class="btn btn-primary boton">Regresar</button>
                 <h1 style="float:left">Resultados </h1>
             @endif
+            <form method="post" id="make_pdf" action="{{action('CuestionarioController@reportePdf')}}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="hidden_html" id="hidden_html" />
+                <button type="button" name="create_pdf" id="create_pdf" class="btn btn-danger btn-xs">Generar PDF</button>
+            </form>
         </div>
     </div>
 
-
-<div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-
+    <div id="reporte">
+        <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+    </div>
 @endsection
 
 
   <head>
+      <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
@@ -36,17 +45,32 @@
 
         var options = {
           chart: {
-            title: 'Resultados Obtenidos',
-            subtitle: '',
+            title: 'Resultados Obtenidos'
           }
         };
 
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
+        /* var chart_area = document.getElementById('columnchart_material');
+            var chart = new google.visualization.BarChart(chart_area);
+
+            google.visualization.events.addListener(chart,'ready',function(){
+                chart_area.innerHTML = '<img src="'+ chart.getImageURI() +'" class="img-responsive">';
+            });
+
+            chart.draw(data, google.charts.Bar.convertOptions(options)); */
       }
     </script>
   </head>
+  <script>
+      $(document).ready(function(){
+          $('#create_pdf').click(function(){
+              $('#hidden_html').val($('#reporte').html());
+              $('#make_pdf').submit();
+          });
+      });    
+  </script>
   {{-- <body>
     
   </body> --}}
