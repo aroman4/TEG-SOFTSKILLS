@@ -30,10 +30,13 @@ class InvestigacionController extends Controller
             $inv->archivofinal = $tipo_inv;
         }
         $inv->user_id = auth()->user()->id;  
+        $inv->estado = "finalizada";  
+
         $inv->save();
         
-        return redirect('/publicacioninve')->with('success','Investigación subida, lista para descargar');
+        return redirect('/publicacioninve')->with('success','Investigación Finalizada');
     }
+    
     /**
      * Show the form for creating a new resource.
      *

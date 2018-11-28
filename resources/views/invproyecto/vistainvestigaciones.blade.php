@@ -24,6 +24,7 @@
                 @forelse(\App\Investigacion::all() as $inv)
                     @if($inv->user_id == Auth::user()->id)
                     <li class="list-group-item listaAsesSolic">
+                        <p style="float:left;"><b>{{$inv->estado}}</b></p>
                         <strong> <a title="Seguimiento de mi Investigación" href="{{route('detallesinv',$inv->id)}}">{{$inv->titulo}}</a></strong>
                     </li>
                     @endif
@@ -44,7 +45,7 @@
                 @forelse(\App\Investigacion::all() as $inv)
                     @forelse(\App\Postulacion::all() as $postulacion) 
                         {{--Postulados a mi investigaciones--}}
-                      @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada' && $postulacion->estado_inv == "inicio")
+                      @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada' && $inv->estado == 'aceptada')
                         <li class="list-group-item listaAsesSolic">
                             <div class="row">
                                 <p><b>Nombre del Investigador:  </b>{{\App\User::find($postulacion->id_invest)->nombre ." ". \App\User::find($postulacion->id_invest)->apellido}}</p>
@@ -81,7 +82,7 @@
 
                         {{--Mis Postulaciones--}}
                     @forelse(\App\Postulacion::all() as $postulacion) 
-                        @if($postulacion->id_invest == Auth::user()->id && $postulacion->estado == 'aceptada' && $postulacion->estado_inv == "inicio")
+                        @if($postulacion->id_invest == Auth::user()->id && $postulacion->estado == 'aceptada' && $inv->estado == 'aceptada')
                         <li class="list-group-item listaAsesSolic">
                                 <div class="row">
                                     <p><b>Nombre del Investigador:  </b>{{\App\User::find($postulacion->id_invest)->nombre ." ". \App\User::find($postulacion->id_invest)->apellido}}</p>
