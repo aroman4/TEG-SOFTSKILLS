@@ -25,9 +25,9 @@ class InvestigacionController extends Controller
         $inv =  Investigacion::find($request->idinvestigacion);
         if($request->hasFile('archivofinal')){
             $archivo_inv = $request->file('archivofinal');
-            $nombreArch = time().$archivo_inv->getClientOriginalName();
-            $archivo_inv->move(public_path().'/proyecto/',$nombreArch);
-            $inv->archivofinal = $nombreArch;
+            $tipo_inv = time().$archivo_inv->getClientOriginalName();
+            $archivo_inv->move(public_path().'/proyecto/',$tipo_inv);
+            $inv->archivofinal = $tipo_inv;
         }
         $inv->user_id = auth()->user()->id;  
         $inv->save();
