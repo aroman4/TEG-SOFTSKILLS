@@ -24,7 +24,7 @@
                                 </ul>
                             @if(count(\App\Postulacion::all())>0)
                                 @foreach(\App\Postulacion::all() as $post)
-                                    @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente"))
+                                    @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente") && (\App\Investigacion::find($post->id_post)->estado == "activa"))
                                     <li class="list-group-item ">
                                         <div class="postulacion">
                                             <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
@@ -52,7 +52,7 @@
                             </ul>
                         @if(count(\App\Postulacion::all())>0)
                             @foreach(\App\Postulacion::all() as $post)
-                                @if(($post->id_invest == Auth::user()->id) && ($post->estado=="aceptada"))
+                                @if(($post->id_invest == Auth::user()->id) && ($post->estado=="aceptada") && (\App\Investigacion::find($post->id_post)->estado == "activa"))
                                 <li class="list-group-item ">
                                     <div class="postulacion">
                                         <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
@@ -82,7 +82,7 @@
                                 </ul>
                             @if(count(\App\Postulacion::all())>0)
                                 @foreach(\App\Postulacion::all() as $post)
-                                    @if(($post->id_invest == Auth::user()->id) && ($post->estado=="rechazada"))
+                                    @if(($post->id_invest == Auth::user()->id) &&  (\App\Investigacion::find($post->id_post)->estado == "activa") && ($post->estado=="rechazada"))
                                     <li class="list-group-item ">
                                          <div class="postulacion">
                                             <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>

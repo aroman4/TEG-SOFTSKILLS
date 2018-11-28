@@ -46,17 +46,18 @@
                                 <div class="row">
 
                                     @if($inv->estado == 'activa')
-                                        <p style="color: #CC9900; margin:8px;"><b>Investigación Activa</b> </p>
+                                        <p style="color: #CC9900; margin:8px; float:right;"><b>Investigación Activa</b> </p>
                                         <hr style="color: #0056b2; margin:8px;" />
                                         <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postulación</a>
                                         <div style="margin:8px;"></div>
                                     @else
-                                        <p style="color: #990000; margin:8px;"><b>Investigación Finalizada</b> </p>
+                                        <p style="color: #990000; margin:8px; float:right;"><b>Investigación Finalizada</b> </p>
                                         <button type="button" class="btn btn-primary boton1" >
-                                                <i class="fa fa-download">  Download </i>
-                                          @if($inv->archivofinal != null)                                         
-                                                <a href="archivoproyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"></a>
-                                             @endif
+                                                <i title="Descargar Archivo Final"class="fa fa-download">  Download </i>
+                                          @if($inv->archivofinal != NULL)                                         
+                                                <a href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"></a>
+                                          @endif
+                                          
                                          </button>
                                     @endif
                                 {{--<p style="color:darkgreen; margin:8px;"><b><i>Es mi Investigación</i></b> </p>--}}                                        
