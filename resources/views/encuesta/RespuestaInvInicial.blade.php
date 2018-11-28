@@ -27,7 +27,7 @@
             </thead>
             <tbody>
               <tr >
-                <th scope="row">{!! Form::label ('pregunta1','Cuales son sus capacidades para resolver problemas')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta1','Para ti cuales fueron sus capacidades o cualidades para la ejecucion de un proyecto d einvestigación')!!}</th>
                 <td><input type="radio" name="respuesta1" value="1"></td>
                 <td><input type="radio" name="respuesta1" value="2"></td>
                 <td><input type="radio" name="respuesta1" value="3"></td>
@@ -35,7 +35,7 @@
                 <td><input type="radio" name="respuesta1" value="5"></td>
               </tr>
               <tr>
-                <th scope="row">{!! Form::label ('pregunta2','Te Gusta Trabajar en Equipo')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta2','Considera que el Investigador supo tener una buena comunicacion')!!}</th>
                 <td><input type="radio" name="respuesta2" value="1"></td>
                 <td><input type="radio" name="respuesta2" value="2"></td>
                 <td><input type="radio" name="respuesta2" value="3"></td>
@@ -43,7 +43,7 @@
                 <td><input type="radio" name="respuesta2" value="5"></td>
               </tr>
               <tr>
-                <th scope="row">{!! Form::label ('pregunta3','Te Adaptas a Cualquier cambio')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta3','Realizo un buen trabajo de Investigación')!!}</th>
                 <td><input type="radio" name="respuesta3" value="1"></td>
                 <td><input type="radio" name="respuesta3" value="2"></td>
                 <td><input type="radio" name="respuesta3" value="3"></td>
@@ -59,7 +59,7 @@
                 <td><input type="radio" name="respuesta4" value="5"></td>
                 </tr>
                 <tr>
-                <th scope="row">{!! Form::label ('pregunta5','Eres bueno Optimizando tu tiempo')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta5','Fue bueno Optimizando tu tiempo')!!}</th>
                 <td><input type="radio" name="respuesta5" value="1"></td>
                 <td><input type="radio" name="respuesta5" value="2"></td>
                 <td><input type="radio" name="respuesta5" value="3"></td>
@@ -67,7 +67,7 @@
                 <td><input type="radio" name="respuesta5" value="5"></td>
                 </tr>
                 <tr>
-                <th scope="row">{!! Form::label ('pregunta6','Como te consideras como persona')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta6','Cómo consideras al investigador')!!}</th>
                 <td><input type="radio" name="respuesta6" value="1"></td>
                 <td><input type="radio" name="respuesta6" value="2"></td>
                 <td><input type="radio" name="respuesta6" value="3"></td>

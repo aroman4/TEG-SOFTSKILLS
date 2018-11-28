@@ -6,8 +6,9 @@
         <div class="col-md-12 list-group-item text-center top-bar">
             @if(Auth::user()->tipo_inv == "normal")
             <button  onclick="goBack()" class="btn btn-primary boton">Regresar</button>
-                <h1 style="float:left">Resultados </h1>
+                  <h1 class="boton1">Resultados </h1>
             @endif
+            <h1 style="float:left">Calificación: $postulacion->id_invest </h1>
         </div>
     </div>
 

@@ -53,10 +53,9 @@
                                     @else
                                         <p style="color: #990000; margin:8px; float:right;"><b>Investigación Finalizada</b> </p>
                                         <button type="button" class="btn btn-primary boton1" >
-                                                <i title="Descargar Archivo Final"class="fa fa-download">  Download </i>
-                                          @if($inv->archivofinal != NULL)                                         
-                                                <a href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"></a>
-                                          @endif
+                                                @if($inv->archivofinal != NULL) 
+                                                     <a class="btn btn-primary boton1" href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"><i title="Descargar Archivo Final"class="fa fa-download"> Download </i></a>
+                                                @endif
                                           
                                          </button>
                                     @endif
