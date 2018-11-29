@@ -28,7 +28,7 @@
                     @endif
                     <br><br>
                     {{-- @if((Auth::user()->tipo_inv == "comite" && !auth()->user()->votoejercido) && $solicitud->estado == "pendiente") --}}
-                    @if(Auth::user()->tipo_inv == "comite" && $solicitud->estado == "pendiente" && ((DB::table('voto')->where('user_id',auth()->user()->id)->count() == 0)||(DB::table('voto')->where('id_sol',$solicitud->id)->count() == 0)))
+                    @if(Auth::user()->tipo_inv == "comite" && $solicitud->estado == "pendiente" && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_sol',$solicitud->id)->count() == 0)))
                         <a href="{{action('AsesoriaController@AceptarSolicitudAse',['id'=> $solicitud->id])}}" class="btn btn-success">Aceptar Solicitud</a>
                         {{-- <a href="{{action('AsesoriaController@RechazarSolicitud',['id'=> $solicitud->id])}}" class="btn btn-danger">Rechazar Solicitud</a> --}}
                     @endif
