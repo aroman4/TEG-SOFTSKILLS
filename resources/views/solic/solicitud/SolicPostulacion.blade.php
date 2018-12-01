@@ -36,14 +36,19 @@
                                     @endif
                                 </div>
                                 <div class="form-group row">
-                                    {!! Form::label ('actividad','Actividad de la Investigación:  ')!!}
-                                    <p>{{\App\Investigacion::find($inv)->actividades}}</p>
-                                    {!! Form::textarea ('actividad',null,['class'=>"form-control {{ $errors->has('actividad') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe la actividad a desarrollar','required'])!!}
+                                    {!! Form::label ('actividad','Actividad que deseas participar de la Investigación:  ')!!}
+                                    {{-- <p>{{\App\Investigacion::find($inv)->actividades}}</p> --}}
+                                    <ul class="form-control">
+                                        @foreach(json_decode(\App\Investigacion::find($inv)->actividades) as $key=>$value)
+                                            <li><input type="radio" value="{{$value}}" name="actividad" id="actividad"> {{$value}}</li>
+                                        @endforeach
+                                    </ul>
+                                    {{-- {!! Form::textarea ('actividad',null,['class'=>"form-control {{ $errors->has('actividad') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe la actividad a desarrollar','required'])!!}
                                     @if ($errors->has('actividad'))
                                             <span class="text-danger" role="alert">
                                             <strong>{{ $errors->first('actividad') }}</strong>
                                             </span>
-                                    @endif
+                                    @endif --}}
                                  </div>
                                 <div class="form-group row">
                                         {!! Form::label ('aporte','Aportes:')!!}

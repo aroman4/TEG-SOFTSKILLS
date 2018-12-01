@@ -50,16 +50,36 @@ class InvestigacionController extends Controller
     public function AceptarInvestigacion($id){
         $solicitud = Solicitud::find($id);
         $solicitud->votoscomite = $solicitud->votoscomite + 1;
+        $solicitud->votosfavor = $solicitud->votosfavor + 1;
+        $mensaje = ""; //para avisar el estado de la solicitud
         //cambiar el estado de la solicitud
-        if($solicitud->votoscomite >= 2){ //si hay 2 votos o mas
-            $Investigacion = new Investigacion();
-            $Investigacion->id_solic = $solicitud->id;
-            $Investigacion->titulo = $solicitud->titulo;
-            $Investigacion->caracteristica = $solicitud->caracteristica;
-            $Investigacion->actividades = $solicitud->actividades;
-            $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
-            $Investigacion->save();       
-            $solicitud->estado = "aceptada";
+        if($solicitud->votoscomite == 3){ //si todo el comite ya votó
+            if($solicitud->votosfavor >= 2){ //si hay 2 votos o mas a favor
+                $Investigacion = new Investigacion();
+                $Investigacion->id_solic = $solicitud->id;
+                $Investigacion->titulo = $solicitud->titulo;
+                $Investigacion->caracteristica = $solicitud->caracteristica;
+                $Investigacion->actividades = $solicitud->actividades;
+                $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
+                $Investigacion->save();       
+                $solicitud->estado = "aceptada";
+
+                //luego de guardar la investigacion, creo las actividades
+                $array = json_decode($Investigacion->actividades);
+                foreach($array as $key=>$value){
+                    $act = new \App\Actividad();
+                    $act->titulo = $value;
+                    $act->asignado = false;
+                    $act->id_investigacion = $Investigacion->id;
+                    $act->id_investigador = $Investigacion->user_id; //le asigno el id del lider mientras no ha sido asignado
+                    $act->save();
+                }
+                $mensaje = " Investigación aceptada";
+            }else if($solicitud->votoscontra >= 2){ //si hay dos o más votos en contra
+                //avisar que la solicitud fue rechazada
+                $mensaje = " Investigación rechazada";
+                $solicitud->estado = "rechazada";
+            }
         }
         $solicitud->save();
         //verificar voto
@@ -67,7 +87,49 @@ class InvestigacionController extends Controller
         $voto->user_id = auth()->user()->id;
         $voto->id_sol = $id;
         $voto->save();
-        return redirect('/escritoriocomite')->with('success','Voto recibido');
+        return redirect('/escritoriocomite')->with('success','Voto recibido'.$mensaje);
+    }
+    public function RechazarInvestigacion($id){
+        //
+        $solicitud = Solicitud::find($id);
+        $solicitud->votoscomite = $solicitud->votoscomite + 1;
+        $solicitud->votoscontra = $solicitud->votoscontra + 1;
+        $mensaje = ""; //para avisar el estado de la solicitud
+        if($solicitud->votoscomite == 3){ //si todo el comite ya votó
+            if($solicitud->votosfavor >= 2){ //si hay 2 votos o mas a favor
+                $Investigacion = new Investigacion();
+                $Investigacion->id_solic = $solicitud->id;
+                $Investigacion->titulo = $solicitud->titulo;
+                $Investigacion->caracteristica = $solicitud->caracteristica;
+                $Investigacion->actividades = $solicitud->actividades;
+                $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
+                $Investigacion->save();       
+                $solicitud->estado = "aceptada";
+
+                //luego de guardar la investigacion, creo las actividades
+                $array = json_decode($Investigacion->actividades);
+                foreach($array as $key=>$value){
+                    $act = new \App\Actividad();
+                    $act->titulo = $value;
+                    $act->asignado = false;
+                    $act->id_investigacion = $Investigacion->id;
+                    $act->id_investigador = $Investigacion->user_id; //le asigno el id del lider mientras no ha sido asignado
+                    $act->save();
+                }
+                $mensaje = " Investigación aceptada";
+            }else if($solicitud->votoscontra >= 2){ //si hay dos o más votos en contra
+                //avisar que la solicitud fue rechazada
+                $mensaje = " Investigación rechazada";
+                $solicitud->estado = "rechazada";
+            }
+        }
+        $solicitud->save();
+        //verificar voto
+        $voto = new \App\Voto();
+        $voto->user_id = auth()->user()->id;
+        $voto->id_sol = $id;
+        $voto->save();
+        return redirect('/escritoriocomite')->with('success','Voto recibido'.$mensaje);
     }
     /**
      * Store a newly created resource in storage.

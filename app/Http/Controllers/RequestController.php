@@ -110,8 +110,12 @@ public function publicacioninvestigacion()
         /* $this->validate($request,[
 
         ]); */
-
-        $solicitud = new Solicitud($request->all());
+        $arr = $request->all();
+        //dd($arr);
+        //$arr['actividades'] =  implode(",", $request->actividades);
+        $arr['actividades'] =  json_encode($request->actividades);
+        //dd($arr['actividades']);
+        $solicitud = new Solicitud($arr);
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $nombreArch = time().$archivo->getClientOriginalName();

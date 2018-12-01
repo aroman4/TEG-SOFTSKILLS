@@ -40,7 +40,21 @@ class ActividadController extends Controller
      */
     public function store(Request $request)
     {
-        //actividad crear
+        //buscar y modificar actividad
+        $actividad = DB::table('actividad')->where('id_investigacion',Postulacion::find($request->id_postulacion)->id_post)->where('titulo',$request->titulo)->first();
+        $actividad = Actividad::find($actividad->id);
+        //dd($actividad);
+        $actividad->fill($request->all());
+        $actividad->asignado = true;
+        //id de investigador
+        $actividad->id_investigador = Postulacion::find($actividad->id_postulacion)->id_invest;
+        $postulacion = Postulacion::find($actividad->id_postulacion);
+        $postulacion->estado = "aceptada";
+        $postulacion->save();
+
+        $actividad->save();
+        return redirect('/nombreinvpostulacion')->with('success','Actividad asignada');
+        /* //actividad crear
         $actividad = new Actividad($request->all());
         //id de la investigacion
         $actividad->id_investigacion = Postulacion::find($actividad->id_postulacion)->id_post;
@@ -51,7 +65,7 @@ class ActividadController extends Controller
         $postulacion->save();
 
         $actividad->save();
-        return redirect('/nombreinvpostulacion')->with('success','Actividad Creada');
+        return redirect('/nombreinvpostulacion')->with('success','Actividad Creada'); */
 
     }
 

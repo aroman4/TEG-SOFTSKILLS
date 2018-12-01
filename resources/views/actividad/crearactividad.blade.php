@@ -26,13 +26,18 @@
                                     @endif
                                 </div>
                                 <div class="form-group row">
-                                    {!! Form::label ('titulo','Titulo de la actividad:')!!}
-                                    {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}",'placeholder'=>'Titulo de la Actividad','required'])!!}
+                                    {!! Form::label ('titulo','Selecciona la actividad a asignar:')!!}
+                                    <ul class="form-control">
+                                        @foreach(json_decode(\App\Investigacion::find($inv->id_post)->actividades) as $key=>$value)
+                                            <li><input type="radio" value="{{$value}}" name="titulo" id="titulo"> {{$value}}</li>
+                                        @endforeach
+                                    </ul>
+                                    {{-- {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}",'placeholder'=>'Titulo de la Actividad','required'])!!}
                                     @if ($errors->has('titulo'))
                                             <span class="text-danger" role="alert">
                                             <strong>{{ $errors->first('titulo') }}</strong>
                                             </span>
-                                    @endif
+                                    @endif --}}
                                  </div>                                  
                                <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">

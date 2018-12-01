@@ -290,6 +290,11 @@ Route::get('/aceptarinvestigacion/{id}','InvestigacionController@AceptarInvestig
         'InvestigacionController@AceptarInvestigacion', ['id' => $id]
     );
 });
+Route::get('/rechazarinvestigacion/{id}','InvestigacionController@RechazarInvestigacion', function($id){
+    return redirect()->action(
+        'InvestigacionController@RechazarInvestigacion', ['id' => $id]
+    );
+});
 
 //---------------------Encuesta de Ivestigadores---------------------------------
 //route de encuesta 1

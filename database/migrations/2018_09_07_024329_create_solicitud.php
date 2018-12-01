@@ -32,6 +32,8 @@ class CreateSolicitud extends Migration
             $table->string('email')->nullable();
             $table->string('otros')->nullable();
             $table->integer('votoscomite')->default(0);            
+            $table->integer('votosfavor')->default(0);
+            $table->integer('votoscontra')->default(0);
 
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned();
