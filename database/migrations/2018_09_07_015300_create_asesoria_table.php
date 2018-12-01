@@ -17,7 +17,7 @@ class CreateAsesoriaTable extends Migration
             $table->increments('id');
             $table->integer('id_cliente'); //id del cliente que creó la solicitud
             $table->string('titulo')->nullable();
-            $table->string('mensaje')->nullable();
+            $table->string('mensaje',500)->nullable();
             $table->string('archivo')->nullable();
             $table->integer('reporte_id')->nullable();
             $table->enum('estado', ['activa', 'finalizada'])->default('activa');

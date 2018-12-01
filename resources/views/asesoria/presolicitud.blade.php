@@ -21,8 +21,8 @@
 
                              @csrf
                                 <div class="form-group row">
-                                {!! Form::label ('Asunto','Asunto:*')!!}
-                                {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo'])!!}
+                                {!! Form::label ('Asunto','Titulo de la asesesoría que deseas recibir:*')!!}
+                                {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo','required'])!!}
                                 @if ($errors->has('titulo'))
                                         <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('titulo') }}</strong>
@@ -30,8 +30,8 @@
                                 @endif
                                 </div>
                                 <div class="form-group row">
-                                {!! Form::label ('Descripción','Descripción:*')!!}
-                                {!! Form::textarea ('mensaje',null,['class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'mensaje'])!!}
+                                {!! Form::label ('Descripción','Descripción de la asesoría:*')!!}
+                                {!! Form::textarea ('mensaje',null,['id'=>'article-ckeditor','class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'Descripción','required','id'])!!}
                                 @if ($errors->has('mensaje'))
                                         <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('mensaje') }}</strong>
@@ -39,24 +39,37 @@
                                 @endif
                             </div>                                
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Subir Archivo</label>
+                                <label class="col-md-4 control-label">Adjunta un archivo si lo deseas</label>
                                 <div class="col-md-6">
                                     <input type="file" class="form-control" name="archivo" >
                                 </div>
                             </div>
 
-                            <h3>Ingresa unos datos de contacto para que podamos responderte:</h3>
+                            <h3>Ingresa tus datos de contacto:</h3>
                             <div class="form-group row">
-                                {!! Form::label ('nombre','Su nombre:')!!}
-                                {!! Form::text ('nombre',null,['class'=>"form-control {{ $errors->has('nombre') ? ' is-invalid' }}",'placeholder'=>'nombre'])!!}
+                                {!! Form::label ('nombre','Su nombre:*')!!}
+                                {!! Form::text ('nombre',null,['class'=>"form-control {{ $errors->has('nombre') ? ' is-invalid' }}",'placeholder'=>'Nombre','required'])!!}
                             </div>
                             <div class="form-group row">
-                                {!! Form::label ('email','Email:')!!}
-                                {!! Form::text ('email',null,['class'=>"form-control {{ $errors->has('email') ? ' is-invalid' }}",'placeholder'=>'email'])!!}
+                                {!! Form::label ('apellido','Su apellido:*')!!}
+                                {!! Form::text ('apellido',null,['class'=>"form-control {{ $errors->has('nombre') ? ' is-invalid' }}",'placeholder'=>'Apellido','required'])!!}
                             </div>
                             <div class="form-group row">
-                                {!! Form::label ('otros','Otros:')!!}
-                                {!! Form::textarea ('otros',null,['class'=>"form-control {{ $errors->has('otros') ? ' is-invalid' }}",'placeholder'=>'Indique: Skype, Teléfono, etc.'])!!}
+                                {!! Form::label ('email','Email:*')!!}
+                                {!! Form::email ('email',null,['class'=>"form-control {{ $errors->has('email') ? ' is-invalid' }}",'placeholder'=>'Email','required'])!!}
+                            </div>
+                            <div class="form-group row">
+                                {!! Form::label ('telefono','Telefono')!!}
+                                {!! Form::text ('telefono',null,['class'=>"form-control {{ $errors->has('telefono') ? ' is-invalid'}}",'placeholder'=>'Telefono'])!!}
+                                @if ($errors->has('telefono'))
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $errors->first('telefono') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group row">
+                                {!! Form::label ('otros','Otros medios de contacto:')!!}
+                                {!! Form::textarea ('otros',null,['class'=>"form-control {{ $errors->has('otros') ? ' is-invalid' }}",'placeholder'=>'Indique otros medios por donde puede ser contactado'])!!}
                             </div>
                     
                             <div class="form-group">

@@ -107,6 +107,11 @@ Route::get('/aceptarasesoriaase/{id}','AsesoriaController@AceptarSolicitudAse', 
         'AsesoriaController@AceptarSolicitudAse', ['id' => $id]
     );
 });
+Route::get('/rechazarasesoriaase/{id}','AsesoriaController@RechazarSolicitudAse', function($id){
+    return redirect()->action(
+        'AsesoriaController@RechazarSolicitudAse', ['id' => $id]
+    );
+});
 Route::get('/rechazarasesoria/{id}','AsesoriaController@RechazarSolicitud', function($id){
     return redirect()->action(
         'AsesoriaController@RechazarSolicitud', ['id' => $id]

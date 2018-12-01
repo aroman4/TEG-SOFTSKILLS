@@ -13,6 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css"  />
     <link rel="stylesheet" href="{{asset('css/estilo.css')}}"  />
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 </head>
 <body>
     <script>
@@ -42,7 +46,11 @@
                     @else
                         <li class="nav-item dropdown menu-estilo">
                             <a id="navbarDropdown" class="menu nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->nombre . " " . Auth::user()->apellido }} <span class="caret"></span>
+                               <span>(@if(Auth::user()->tipo_inv == "comite")
+                                    Miembro Comité
+                                @else
+                                    {{Auth::user()->tipo_usu}}
+                                @endif)</span> {{ Auth::user()->nombre . " " . Auth::user()->apellido }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">                                

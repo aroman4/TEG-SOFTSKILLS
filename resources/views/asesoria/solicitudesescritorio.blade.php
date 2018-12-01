@@ -14,13 +14,23 @@
                 <h2>Solicitudes pendientes por aprobación:</h2>
                 <ul class="list-group">
                     @forelse($solicitudespen as $sol)
-                        @if(\App\User::find($sol->user_id)->tipo_usu == "cliente" && ($sol->estado=="pendiente"))
+                        {{-- @if(\App\User::find($sol->user_id)->tipo_usu == "cliente" && ($sol->estado=="pendiente")) --}}                        
+                        @if((\App\User::find($sol->user_id)->tipo_usu == "cliente" || \App\User::find($sol->user_id)->tipo_usu == "admin") && ($sol->estado=="pendiente"))                        
                             @if((auth()->user()->tipo_usu == "asesor") || ((auth()->user()->tipo_usu == "cliente") && (auth()->user()->id == $sol->user_id)))
                                 <div>
+                                    @if(\App\User::find($sol->user_id)->tipo_usu == "cliente")
                                     <li class="list-group-item listaAsesSolic">
                                         <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>
                                         <small>{{\App\User::find($sol->user_id)->nombre .' '. \App\User::find($sol->user_id)->apellido}}</small>
-                                    </li>                                
+                                        <p>{{$sol->created_at}}</p>
+                                    </li>   
+                                    @elseif(\App\User::find($sol->user_id)->tipo_usu == "admin")
+                                        <li class="list-group-item listaAsesSolic">
+                                            <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>
+                                            <small>Pre-solicitud</small>                                            
+                                            <p>{{$sol->created_at}}</p>
+                                        </li>   
+                                    @endif
                                 </div>
                             @endif
                         @endif
@@ -31,21 +41,6 @@
                 {{$solicitudespen->links()}}
             </div>
             <div class="col-md-6 list-group-item contentAlv1">
-                @if((auth()->user()->tipo_usu == "asesor"))
-                <h2>Pre-Solicitudes:</h2>
-                <ul class="list-group">
-                    @forelse($presolicitudes as $sol)
-                        <div>
-                            <li class="list-group-item listaAsesSolic">
-                                <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>                                
-                            </li>
-                        </div>
-                    @empty
-                        <p>No hay presolicitudes</p>                
-                    @endforelse
-                </ul>
-                {{$solicitudesace->links()}}
-                @else
                 <h2>Solicitudes aprobadas:</h2>
                 <ul class="list-group">
                     @forelse($solicitudesace as $sol)
@@ -64,7 +59,7 @@
                     @endforelse
                 </ul>
                 {{$solicitudesace->links()}}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
         </div>

@@ -36,10 +36,31 @@ class AsesoriaController extends Controller
     }
 
     public function AceptarAsesoria($id){
-        //$solicitud = Solicitud::where('id',$id); //consigo la solicitud
+        
         $solicitud = Solicitud::find($id);
         $asesoria = new Asesoria();
+        $tipo="";
+
         //dd($solicitud);
+        if($solicitud->tipo == "presolicitud"){
+            //registrar al cliente nuevo
+            $cliente = new \App\User();
+            //asignar datos genericos, luego el usuario puede editar sus datos
+            $cliente->nombre_usu = "cliente".$solicitud->id;
+            $cliente->tipo_usu = "cliente";
+            $cliente->email = $solicitud->email;
+            $cliente->password = bcrypt("123456");
+            $cliente->nombre = $solicitud->nombre;
+            $cliente->apellido = $solicitud->apellido;
+            $cliente->telefono = $solicitud->telefono;
+            $cliente->otros = $solicitud->otros;
+            $cliente->save();
+
+            $solicitud->user_id = $cliente->id;
+            $tipo = "presolicitud";
+        }
+
+        //crear asesoria
         $asesoria->id_cliente = $solicitud->user_id;
         $asesoria->titulo = $solicitud->titulo;
         $asesoria->mensaje = $solicitud->mensaje;
@@ -49,56 +70,124 @@ class AsesoriaController extends Controller
         //cambiar el estado de la solicitud
         $solicitud->estado = "aceptada";
         $solicitud->save();
-        //dd('asesoria creada '.$id);
+
+        
         //enviar email al cliente
-        /* Mail::send('email.asesoriaaceptada',$asesoria->toArray(),function($mensaje) use ($asesoria){
+        Mail::send('email.asesoriaaceptada'.$tipo,$asesoria->toArray(),function($mensaje) use ($asesoria){
             $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
             ->subject('Solicitud de asesoría Aceptada - SoftSkills');
             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-        }); */
+        });
+
+        
         return redirect('/escritorioasesor')->with('success','Asesoría aceptada');
     }
     public function AceptarSolicitudAse($id){
         //consigo la solicitud
-         $solicitud = Solicitud::find($id);
-         $solicitud->votoscomite = $solicitud->votoscomite + 1;
-
+        $solicitud = Solicitud::find($id);
+        $solicitud->votoscomite = $solicitud->votoscomite + 1;
+        $solicitud->votosfavor = $solicitud->votosfavor + 1;
+        $mensaje = ""; //para avisar el estado de la solicitud
          //ver cuantos votos tiene la solicitud
-         if($solicitud->votoscomite >= 2){
-            //cambiar tipo de usuario si hay mas de dos votos
-            $user = User::find($solicitud->user_id);
-            $user->tipo_usu = "asesor";
-            $user->save();
-            $solicitud->estado = "aceptada";
-         }
-         $solicitud->save();
+        if($solicitud->votoscomite == 3){ //si todo el comite ya votó
+            if($solicitud->votosfavor >= 2){ //si hay 2 votos o mas a favor
+                $solicitud->estado = "aceptada";
+                $mensaje = " Postulación de Asesor aceptada";
+                if($solicitud->tipo == "asesor"){
+                    //registrar al asesor nuevo
+                    $asesor = new \App\User();
+                    //asignar datos genericos, luego el usuario puede editar sus datos
+                    $asesor->nombre_usu = "asesor".$solicitud->id;
+                    $asesor->tipo_usu = "asesor";
+                    $asesor->email = $solicitud->email;
+                    $asesor->password = bcrypt("123456");
+                    $asesor->nombre = $solicitud->nombre;
+                    $asesor->apellido = $solicitud->apellido;
+                    $asesor->telefono = $solicitud->telefono;
+                    $asesor->otros = $solicitud->otros;
+                    $asesor->save();
         
-         //Contar voto
-         
+                    $solicitud->user_id = $asesor->id;
+                }
+                //enviar email al asesor
+                Mail::send('email.asesorsolicitud',$solicitud->toArray(),function($mensaje) use ($solicitud){
+                    $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
+                    ->subject('Solicitud de asesor aceptada - SoftSkills');
+                    $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+                });
+            }else if($solicitud->votoscontra >= 2){ //si hay dos o más votos en contra
+                $mensaje = " Postulación de Asesor rechazada";
+            }
+        }
+        $solicitud->save();
+    
+        //Contar voto
+        
         $voto = new \App\Voto();
         $voto->user_id = auth()->user()->id;
         $voto->id_sol = $id;
         $voto->save();
-         
-         //enviar email al cliente
-         /* Mail::send('email.solicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
-             $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
-             ->subject('Solicitud de asesoría Rechazada - SoftSkills');
-             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-         }); */
-         return redirect()->route('escritoriocomite')->with('success','Voto contado');
-     }
+        
+        return redirect('/escritoriocomite')->with('success','Voto recibido'.$mensaje);
+    }
+    public function RechazarSolicitudAse($id){
+        //consigo la solicitud
+        $solicitud = Solicitud::find($id);
+        $solicitud->votoscomite = $solicitud->votoscomite + 1;
+        $solicitud->votosfavor = $solicitud->votoscontra + 1;
+        $mensaje = ""; //para avisar el estado de la solicitud
+         //ver cuantos votos tiene la solicitud
+        if($solicitud->votoscomite == 3){ //si todo el comite ya votó
+            if($solicitud->votosfavor >= 2){ //si hay 2 votos o mas a favor
+                $solicitud->estado = "aceptada";
+                $mensaje = " Postulación de Asesor aceptada";
+                if($solicitud->tipo == "asesor"){
+                    //registrar al asesor nuevo
+                    $asesor = new \App\User();
+                    //asignar datos genericos, luego el usuario puede editar sus datos
+                    $asesor->nombre_usu = "asesor".$solicitud->id;
+                    $asesor->tipo_usu = "asesor";
+                    $asesor->email = $solicitud->email;
+                    $asesor->password = bcrypt("123456");
+                    $asesor->nombre = $solicitud->nombre;
+                    $asesor->apellido = $solicitud->apellido;
+                    $asesor->telefono = $solicitud->telefono;
+                    $asesor->otros = $solicitud->otros;
+                    $asesor->save();
+        
+                    $solicitud->user_id = $asesor->id;
+                }
+                //enviar email al asesor
+                Mail::send('email.asesorsolicitud',$solicitud->toArray(),function($mensaje) use ($solicitud){
+                    $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
+                    ->subject('Solicitud de asesor aceptada - SoftSkills');
+                    $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+                });
+            }else if($solicitud->votoscontra >= 2){ //si hay dos o más votos en contra
+                $mensaje = " Postulación de Asesor rechazada";
+            }
+        }
+        $solicitud->save();
+    
+        //Contar voto
+        
+        $voto = new \App\Voto();
+        $voto->user_id = auth()->user()->id;
+        $voto->id_sol = $id;
+        $voto->save();
+        return redirect('/escritoriocomite')->with('success','Voto recibido'.$mensaje);
+    }
     public function RechazarSolicitud($id){
        //consigo la solicitud
         $solicitud = Solicitud::find($id);
         $solicitud->estado = "rechazada";
         $solicitud->save();
         //enviar email al cliente
-        /* Mail::send('email.solicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
+        Mail::send('email.solicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
             $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
             ->subject('Solicitud de asesoría Rechazada - SoftSkills');
             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-        }); */
+        });
         return redirect('/escritorioasesor')->with('error','Solicitud Rechazada');
     }
 

@@ -14,6 +14,7 @@
             <div class="row">
                 <div class="col-md-12 list-group-item">
                     <p>Creada el {{$solicitud->created_at}}</p>
+                    <h3><b>Por:</b> {{$solicitud->nombre}} {{$solicitud->apellido}}</h3>
                     <br><br>
                                       
                     <h3>Descripción:</h3>
@@ -23,14 +24,17 @@
                     @endif
                     <br><br>
                     <h3>Contacto:</h3>
-                    @if($solicitud->estado == "pendiente")
-                        <p><b>Email:</b> {{\App\User::find($solicitud->user_id)->email}}</p>
-                    @endif
+                    
+                    <p><b>Email:</b> {{$solicitud->email}}</p>
+                    <p><b>Otros:</b> {{$solicitud->otros}}</p>
+                   
                     <br><br>
                     {{-- @if((Auth::user()->tipo_inv == "comite" && !auth()->user()->votoejercido) && $solicitud->estado == "pendiente") --}}
                     @if(Auth::user()->tipo_inv == "comite" && $solicitud->estado == "pendiente" && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_sol',$solicitud->id)->count() == 0)))
                         <a href="{{action('AsesoriaController@AceptarSolicitudAse',['id'=> $solicitud->id])}}" class="btn btn-success">Aceptar Solicitud</a>
-                        {{-- <a href="{{action('AsesoriaController@RechazarSolicitud',['id'=> $solicitud->id])}}" class="btn btn-danger">Rechazar Solicitud</a> --}}
+                        <a href="{{action('AsesoriaController@RechazarSolicitudAse',['id'=> $solicitud->id])}}" class="btn btn-danger">Rechazar Solicitud</a>
+                    @else
+                        Usted ya ha votado.
                     @endif
                 </div>                
             </div>
