@@ -15,8 +15,10 @@
     <div class="row">
         <div class="col-md-12 list-group-item ">
             <p><b>Fecha de Entrega:  </b>{{$actividad->fecha_entrega}}</p>
-            <p><b>Titulo:  </b>{{$actividad->titulo}}</p>
-            <small>Asignada el {{$actividad->created_at}}</small>
+            <p><b>Título:  </b>{{$actividad->titulo}}</p>
+            <p><b>Detalle:  </b>{{$actividad->observacion}}</p>
+            <p>Asignada el {{$actividad->created_at}}</p>
+            <a title="Descargar archivo" href="proyecto/{{$actividad->archivo_actividad}}" class="btn btn-success boton1" download="{{$actividad->archivo_actividad}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i> Descargar Documento</a>                           
             <br><br>
         </div>
     </div>

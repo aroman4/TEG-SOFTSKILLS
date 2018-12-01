@@ -38,8 +38,11 @@
                         <p><b>Correo:</b> {{Auth::user()->email}}</p>
                         <p><b>Profesión:</b> {{Auth::user()->profesion}}</p>
                     </li>
-                    <a href="{{route('solicinvestigacion')}}" class="btn btn-primary boton">Crear Solicitud</a>
-        </div>
+                    <div style="padding:8px;">
+                        <a href="{{route('solicinvestigacion')}}" class="btn btn-primary boton1">Crear Solicitud</a>
+                        <a href="#" class="btn btn-success boton1">Editar Pefil</a>
+                        <a href="#" class="btn btn-danger boton1">Agregar Datos al Perfil </a>
+                    </div>
     </div>
 </div>
 @endsection

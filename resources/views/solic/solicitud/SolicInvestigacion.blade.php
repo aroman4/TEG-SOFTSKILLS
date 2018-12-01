@@ -1,7 +1,7 @@
-@extends('layouts.plantilla')
-
+@extends('layouts.menuinv')
 @section('content')
-<div class="container">
+
+<div class="col-md-9 solicitudInv">
     @if(count($errors)>0)
         <ul>
             @foreach ($errors->all() as $error)
@@ -10,7 +10,7 @@
         </ul>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Solicitud de Investigación') }}</div>
 
@@ -28,8 +28,8 @@
                                     @endif
                                  </div>
                                 <div class="form-group row">
-                                    {!! Form::label ('caracteristica','Caracteristica:*')!!}
-                                    {!! Form::text ('caracteristica',null,['class'=>"form-control {{ $errors->has('caracteristica') ? ' is-invalid'}}",'placeholder'=>'Caracteristica'])!!}
+                                    {!! Form::label ('caracteristica','Palabras Claves:*')!!}
+                                    {!! Form::text ('caracteristica',null,['class'=>"form-control {{ $errors->has('caracteristica') ? ' is-invalid'}}",'placeholder'=>'Palabras Claves'])!!}
                                     @if ($errors->has('caracteristica'))
                                             <span class="text-danger" role="alert">
                                             <strong>{{ $errors->first('caracteristica') }}</strong>
@@ -38,11 +38,11 @@
                                 </div>
                                 <div class="form-group row agg-actividad">
                                         {!! Form::label ('actividades','Actividades:*')!!}
-                                        <span class="add-option btn btn-success" style="cursor:pointer;">Añadir objetivo</span>
+                                        <span class="add-option btn btn-success boton1" style="cursor:pointer;">Añadir objetivo</span>
                                         {{-- {!! Form::text ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca las Actividades necesaria para desarrollar la investigación','required'])!!} --}}
                                         <div class="input-field form-control" style="border:none;">
                                             <input type="text" name="actividades[]" id="actividades[]" class="form-control">
-                                            <span style="float:right; cursor:pointer;"class="delete-option btn btn-danger">Borrar objetivo</span>                                            
+                                            <span style="float:right; cursor:pointer;"class="delete-option btn btn-danger boton1">Borrar objetivo</span>                                            
                                         </div>
                                         {{-- <span class="agg-actividad"></span> --}}
                                         @if ($errors->has('actividades'))
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-group row">
                                         {!! Form::label ('descripcion','Descripción:*')!!}
-                                        {!! Form::textarea ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca una pequeña descripción de la investigación','required'])!!}
+                                        {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca una pequeña descripción de la investigación','required'])!!}
                                         @if ($errors->has('descripcion'))
                                         <span class="text-danger" role="alert">
                                                 <strong>{{ $errors->first('descripcion') }}</strong>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-4">
-                                            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+                                            <button type="submit" class="btn btn-primary boton1">Enviar Solicitud</button>
                                         </div>
                                     </div>
                         {!!Form::close()!!}              

@@ -27,9 +27,9 @@
                                     @if(($post->id_invest == Auth::user()->id) && ($post->estado=="pendiente") && (\App\Investigacion::find($post->id_post)->estado == "activa"))
                                     <li class="list-group-item ">
                                         <div class="postulacion">
-                                            <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
+                                            <p><b>{{$post->tituloinv}}</b></p>
                                            <div style="margin:10px;">
-                                            <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" title="Revisar postulación" class="btn btn-secondary boton1">Revisar</a></h3>
+                                                <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" title="Revisar Postulación" class="btn btn-secondary boton1">Revisar </a></h3>
                                             </div>
                                         </div>
                                     </li>
@@ -55,7 +55,7 @@
                                 @if(($post->id_invest == Auth::user()->id) && ($post->estado=="aceptada") && (\App\Investigacion::find($post->id_post)->estado == "activa"))
                                 <li class="list-group-item ">
                                     <div class="postulacion">
-                                        <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
+                                        <p><b>{{$post->tituloinv}}</b></p>
                                         <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" title="Revisar Postulación" class="btn btn-secondary boton1">Revisar </a></h3>
                                         
                                         <a href="{{route('modpost',['id'=> $post->id_post])}}" title="Ver Investigación" class="btn btn-primary boton1">Ver</a></h3>
@@ -85,7 +85,7 @@
                                     @if(($post->id_invest == Auth::user()->id) &&  (\App\Investigacion::find($post->id_post)->estado == "activa") && ($post->estado=="rechazada"))
                                     <li class="list-group-item ">
                                          <div class="postulacion">
-                                            <p><b><a href="{{route('modulopostulacion.show',['id'=> $post->id])}}">{{$post->tituloinv}}</a></b></p>
+                                            <p><b>{{$post->tituloinv}}</b></p>
                                             <a href="{{route('modulopost.destroy', $post->id)}}" titles="Eliminar postulación" class="btn btn-danger boton1" > <i class="fa fa-times"></i> Eliminar</a>
                                         </div>
                                     </li>

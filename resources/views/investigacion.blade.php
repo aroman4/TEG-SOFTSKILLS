@@ -17,47 +17,42 @@
 		</div>
 	
 	</div>
-	
 	<div class="noesperes" style="height: 600px;">
-			<h2 style="margin:20px; " class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
-				<div class="row" style="padding: 30px;">
+		<h2 style="margin:20px; " class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
+				<div class="row justify-content-center">  
 					@foreach ($pub as $inv)
-					<div class="card" style="margin:20px; height:40%; width:20%;">
-						<div class="item px-1 mb-6 mb-md-0">
-								<div class="d-block h-100">
-									<div class="px-4 pt-4 pb-4 content text-center">
-										<div class="form-group row">
-											<p><b>{{($inv->titulo)}}</b></p>
+						<div class="col-md-8">
+							<div class="card ">
+								<div class="card-body ">
+									<div class="form-group row" style="float:right;"><br>
+										<p style="margin:10px"><b>Fecha:</b> {{$inv->created_at}} </p>
+										<p style="margin:10px"><b>Estátus:</b> {{$inv->estado}} </p>
+									</div>
+									<div class="form-group row">
+										<p><b>Título:</b>  {{($inv->titulo)}}</p>
+									</div>
+									<div class="row">
+										<p><b>Actividad:</b> {{$inv->caracteristica}}</p>
+									</div>
+									<div class="row">
+										<p><b>Descripción:</b> {{$inv->descripcion}}</p>
+									</div>
+									<div class="col-12">
+										<a class="btn btn-success boton1"href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+										<a class="btn btn-secondary boton1"href="{{ route('register') }}">{{ __('Registro') }}</a>											
+                                        <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postulación</a>
+										<div class="row" style="float:right;"><br>
+                                            <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
 										</div>
-										<div class="form-group row">
-											<p><b>{{$inv->descripcion}}</b> </p>
-										</div>	       
 									</div> 
-								</div>
-								<div class="text-center pt-4">
-									<button type="button" class="btn btn-outline-info">
-										<a href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
-									</button>       
-								</div>
-								<div class="text-center pt-4">      
-									<button type="button" class="btn btn-outline-info">
-										<a href="{{ route('register') }}">{{ __('Registro') }}</a>
-									</button>       
-								</div>
-								<div class="text-center pt-4">
-									<a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postulación</a>
-								</div>
-								<div class="text-center pt-4">           
-									<button type="button" class="btn btn-outline-info boton1">
-										<a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
-									</button><br>
 								</div>
 							</div>
 						</div>
 					@endforeach 
+					{!! $pub->render()!!}   
 				</div>
-				{!! $pub->render()!!} 
-	</div>	   
+		</div>
+   
 	<div class="imagen-fija imagen-fija4">
 		<div class="texto-divImagen">
 				<h1 class="texth1Index">¡No esperes más!</h1>

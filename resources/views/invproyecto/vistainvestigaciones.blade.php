@@ -97,9 +97,12 @@
                                         @if(Auth::user()->id == $postulacion->id_invest)
                                             <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-success boton1"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
                                         @endif
-                                        @if($inv->archivofinal != null)                                         
-                                            <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning boton1" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
-                                        @endif       
+                                        <button type="button" class="btn btn-primary boton1">
+                                                <i class="fa fa-download">  Download </i>
+                                             @if($postulacion->archivo_inv != null)                                         
+                                             <a title="Descargar archivo" href="archivoproyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning boton1" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                             @endif
+                                        </button>                                               
                                     </div>
                                     <div class="col-md-2">
                                         <p><b>Etapa</b></p>

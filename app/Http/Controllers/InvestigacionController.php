@@ -14,7 +14,11 @@ class InvestigacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+/* //funcion de descarga de archivos 
+public function descargafuc(){
+    $postulacion = DB::table('postulacion')->get();
+    return view('postulacion.nombreinvpostulacion',compact('nombreinvpostulacion'));
+} */
     public function index()
     {
         //
@@ -60,6 +64,7 @@ class InvestigacionController extends Controller
                 $Investigacion->titulo = $solicitud->titulo;
                 $Investigacion->caracteristica = $solicitud->caracteristica;
                 $Investigacion->actividades = $solicitud->actividades;
+                $Investigacion->descripcion = $solicitud->descripcion;
                 $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo
                 $Investigacion->save();       
                 $solicitud->estado = "aceptada";

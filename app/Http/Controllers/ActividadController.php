@@ -21,7 +21,11 @@ class ActividadController extends Controller
         //
        
     }
-
+//funcion de descarga de archivos 
+/* public function descargafuc(){
+    $actividad = DB::table('actividad')->get();
+    return view('actividad.veractividadasignada',compact('veractividadasignada'));
+} */
     /**
      * Show the form for creating a new resource.
      *
