@@ -16,7 +16,7 @@
             {{-- <h1 style="float:left">Calificación: {{$encuestastodas->calificacion}} </h1> --}}
         </div>
     </div>
-
+ 
     <div id="reporte">
         <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
     </div>
