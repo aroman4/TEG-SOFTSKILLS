@@ -15,7 +15,7 @@ $(document).ready(function() {
     var material = '<div class="input-field list-group-item input-g">' +
       '<input name="opcion[]" id="opcion[]" type="text" class="form-control">' +
       '<span style="float:right; cursor:pointer;"class="delete-option btn btn-danger">Borrar opción</span>' +
-      '<span class="add-option btn btn-success" style="cursor:pointer;">Añadir opción</span>' +
+      '<span class="add-option btn btn-success" style="cursor:pointer;">Añadir otra opción</span>' +
       '</div>';
   
     // for adding new option

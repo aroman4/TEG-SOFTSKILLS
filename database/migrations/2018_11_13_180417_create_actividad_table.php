@@ -21,6 +21,7 @@ class CreateActividadTable extends Migration
                 $table->string('archivo_actividad')->nullable();
                 $table->string('observacion')->nullable();
                 $table->date('fecha_entrega')->nullable();
+                $table->boolean('asignado')->default(false);
                 $table->enum('estado_actividad', ['aceptado','rechazar'])->default('aceptado');
                 $table->enum('estado_Resput', ['Enviadolider','enviadoinvestigador'])->default('enviadolider');
                 $table->integer('id_investigador')->unsigned(); 

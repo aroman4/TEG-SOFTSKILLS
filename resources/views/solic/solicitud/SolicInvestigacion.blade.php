@@ -36,9 +36,15 @@
                                             </span>
                                     @endif
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row agg-actividad">
                                         {!! Form::label ('actividades','Actividades:*')!!}
-                                        {!! Form::text ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca las Actividades necesaria para desarrollar la investigación','required'])!!}
+                                        <span class="add-option btn btn-success" style="cursor:pointer;">Añadir objetivo</span>
+                                        {{-- {!! Form::text ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca las Actividades necesaria para desarrollar la investigación','required'])!!} --}}
+                                        <div class="input-field form-control" style="border:none;">
+                                            <input type="text" name="actividades[]" id="actividades[]" class="form-control">
+                                            <span style="float:right; cursor:pointer;"class="delete-option btn btn-danger">Borrar objetivo</span>                                            
+                                        </div>
+                                        {{-- <span class="agg-actividad"></span> --}}
                                         @if ($errors->has('actividades'))
                                         <span class="text-danger" role="alert">
                                                 <strong>{{ $errors->first('actividades') }}</strong>
@@ -74,8 +80,11 @@
 </div>
 @endsection
 
-
-
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="{{asset('js/actividad.js')}}"></script>
 
 
 

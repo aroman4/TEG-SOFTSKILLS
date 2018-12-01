@@ -3,7 +3,7 @@
     <div class="fondo imagen-fija5">
 	</div>
 	<div class="banner">
-		<h1 class="animated fadeInDownBig" style="padding-top:30%">Los estudios demuestran que el éxito está garantizado si tus Soft Skills son excelentes</h1>
+		<h1 class="animated fadeInDownBig" style="margin-top:30%">Los estudios demuestran que el éxito está garantizado si tus Soft Skills son excelentes</h1>
 		<img style="position:relative; z-index:1;" width="150" height="120" src="{{asset('img/statsup.jpg')}}">
 	</div>
 	<div class="seccion2">

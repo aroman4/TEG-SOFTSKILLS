@@ -16,7 +16,13 @@
         <div class="col-md-12 list-group-item ">
             <p><b>Título:  <u>{{$solicitud->titulo}}</u></b></p>
             <p><b>Caracteristicas:</b> {{$solicitud->caracteristica}}</p>
-            <p><b>Actividades:</b> {{$solicitud->actividades}}</p>
+            <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}</p>
+            {{-- Listar los objetivos especificos --}}
+            <ol>
+                @foreach(json_decode($solicitud->actividades) as $key=>$value)
+                    <li>{{$value}}</li>
+                @endforeach
+            </ol>
             <small>Creada el {{$solicitud->created_at}}</small>
             <br><br>
             <div class="datos-inve">
@@ -27,9 +33,9 @@
                     @elseif(Auth::user()->tipo_inv == "comite")
                     <a href="{{route('escritoriocomite')}}" class="btn btn-secondary boton1">Regresar</a>
                 @endif
-                @if(Auth::user()->tipo_inv == "comite"  && ((DB::table('voto')->where('user_id',auth()->user()->id)->count() == 0)||(DB::table('voto')->where('id_sol',$solicitud->id)->count() == 0)))
+                @if(Auth::user()->tipo_inv == "comite"  && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_sol',$solicitud->id)->count() == 0)))
                     <a href="{{action('InvestigacionController@AceptarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-success boton1">Aceptar Solicitud</a>
-                    <!--Cuando se acepte la solicitud se deberia dejar de mostrar la solicitud, cambiar el estado?-->
+                    <a href="{{action('InvestigacionController@RechazarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-danger boton1">Rechazar Solicitud</a>
                     
                 @endif
             </div>
