@@ -54,7 +54,7 @@
                 @forelse(DB::table('solicitud')->where('tipo','asesor')->get(); as $sol)
                     @if($sol->estado == "pendiente")
                         <div class="investigaciones">
-                            <h3><a href="{{route('solasedetalle',['id'=> $sol->id])}}">{{\App\User::find($sol->user_id)->nombre.' '.\App\User::find($sol->user_id)->apellido}}</a></h3>
+                            <h3><a href="{{route('solasedetalle',['id'=> $sol->id])}}">{{$sol->nombre.' '.$sol->apellido}}</a><small style="float:right"><b>Estatus: </b>{{$sol->estado}}<b> Fecha: </b>{{$sol->created_at}}</small></h3>
                         </div>
                     @endif
                 @empty

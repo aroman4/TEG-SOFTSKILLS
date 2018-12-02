@@ -20,10 +20,12 @@
 	<div class="imagen-fija imagen-fija2">
 	<div class="texto-divImagen">
 		<h1 class="texth1Index">¡No esperes más!</h1>
-		<h3 style="padding:50px">Regístrate como cliente y accede a nuestros servicios ó postulate como
+		<h3 style="padding:50px">Regístrate como cliente y accede a nuestros servicios ó postúlate como
 			asesor si deseas formar parte de nuestro staff
 		</h3>
-		<a class="btn btn-primary" style="height:100px;width:300px;font-size:20px;padding-top:30px" href="{{route('register')}}">¡Quiero empezar!</a>
+		{{-- <a class="btn btn-primary" style="height:100px;width:300px;font-size:20px;padding-top:30px" href="{{route('register')}}">¡Quiero empezar!</a> --}}
+		<a class="btn btn-primary" style="height:100px;width:300px;font-size:20px;padding-top:30px" href="{{route('presolicitud')}}">Realiza una pre-solicitud</a>
+		<a class="btn btn-primary" style="height:100px;width:300px;font-size:20px;padding-top:30px" href="{{route('postulacionasesor')}}">Postúlate como asesor</a>
 	</div>
 	</div>
 	

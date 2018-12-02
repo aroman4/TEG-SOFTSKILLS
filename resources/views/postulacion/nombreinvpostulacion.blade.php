@@ -31,10 +31,17 @@
                 @if($postulacion->id_post == $inv->id)
                     <div class="row">            
                         <div class="col-md-3">
-                            <span>{{\App\User::find($postulacion->id_invest)->nombre}}</span>
-                            <span>{{\App\User::find($postulacion->id_invest)->apellido}}</span>
-                            <br>
-                            <span>{{\App\User::find($postulacion->id_invest)->email}}</span>
+                            @if(!$postulacion->deafuera)
+                                <span>{{\App\User::find($postulacion->id_invest)->nombre}}</span>
+                                <span>{{\App\User::find($postulacion->id_invest)->apellido}}</span>
+                                <br>
+                                <span>{{\App\User::find($postulacion->id_invest)->email}}</span>
+                            @else
+                                <span>{{$postulacion->nombre}}</span>
+                                <span>{{$postulacion->apellido}}</span>
+                                <br>
+                                <span>{{$postulacion->email}}</span>
+                            @endif
                         </div>
                         <div class="col-md-3"> 
                             <button type="button" class="btn btn-primary boton1">

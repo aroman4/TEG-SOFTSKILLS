@@ -16,7 +16,7 @@ class CreateReportefinalaseTable extends Migration
         Schema::create('reportefinalase', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_asesoria');
-            $table->string('texto');
+            $table->string('texto',500);
             $table->string('archivo')->nullable();
             $table->boolean('enviar')->default(false);
             $table->timestamps();

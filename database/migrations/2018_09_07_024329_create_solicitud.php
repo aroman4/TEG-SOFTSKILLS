@@ -21,7 +21,7 @@ class CreateSolicitud extends Migration
             $table->string('titulo')->nullable();
             $table->string('caracteristica')->nullable();
             $table->string('asunto')->nullable();
-            $table->string('mensaje')->nullable();
+            $table->string('mensaje',500)->nullable();
             $table->string('actividad')->nullable();
             $table->string('otros_proyectos')->nullable();
             $table->string('aporte')->nullable();
@@ -29,8 +29,10 @@ class CreateSolicitud extends Migration
             $table->enum('estado', ['pendiente', 'aceptada','rechazada'])->default('pendiente');
             $table->enum('tipo', ['normal', 'presolicitud','asesor'])->default('normal');
             $table->string('nombre')->nullable();
+            $table->string('apellido')->nullable();
             $table->string('email')->nullable();
             $table->string('otros')->nullable();
+            $table->string('telefono')->nullable();
             $table->integer('votoscomite')->default(0);            
             $table->integer('votosfavor')->default(0);
             $table->integer('votoscontra')->default(0);

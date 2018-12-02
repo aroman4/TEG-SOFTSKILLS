@@ -14,21 +14,25 @@
             <div class="row">
                 <div class="col-md-12 list-group-item">
                     <p>Creada el {{$solicitud->created_at}}</p>
-                    <h3>Asunto: <span>{{$solicitud->titulo}}</span></h3>
-                    <h3>Cliente: <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></h3>
+                    <h3><b>Asunto:</b> <span>{{$solicitud->titulo}}</span></h3>
+                    @if($solicitud->tipo == "normal")
+                        <h3><b>Cliente:</b> <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></h3>
+                    @elseif($solicitud->tipo == "presolicitud")
+                        <h3><b>Cliente:</b> {{$solicitud->nombre}} {{$solicitud->apellido}}</h3>
+                    @endif
                     <br><br>
                                       
-                    <h3>Descripción:</h3>
+                    <h3><b>Descripción:</b></h3>
                     <h4>{{$solicitud->mensaje}}</h4>
                     @if($solicitud->archivo != null)
                         <a class="btn btn-secondary" href="{{asset('archivoproyecto/'.$solicitud->archivo)}}">Descargar archivo adjunto</a>
                     @endif
                     <br><br>
-                    <h3>Contacto:</h3>
-                    @if($solicitud->estado == "pendiente")
+                    <h3><b>Contacto:</b></h3>
+                    @if($solicitud->tipo == "normal")
                         <p><b>Email:</b> {{\App\User::find($solicitud->user_id)->email}}</p>
                     @elseif($solicitud->tipo == "presolicitud")
-                        <p><b>Nombre:</b> {{$solicitud->nombre}}</p>
+                        {{-- <p><b>Nombre:</b> {{$solicitud->nombre}}</p> --}}
                         <p><b>Email:</b> {{$solicitud->email}}</p>
                         <p><b>Otros:</b> {{$solicitud->otros}}</p>
                     @endif

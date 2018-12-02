@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('tipo_usu','Selecciona el Tipo de usuario que deseas ser*')!!}
-                            {!! Form::select ('tipo_usu',['investigador'=>'Investigador','usuario'=>'Asesor','cliente'=>'Cliente'],null,['class'=>"form-control {{ $errors->has('tipo_usu') ? ' is-invalid' : '' }}",'required'])!!}
+                            {!! Form::select ('tipo_usu',['investigador'=>'Investigador','cliente'=>'Cliente de asesoría'],null,['class'=>"form-control {{ $errors->has('tipo_usu') ? ' is-invalid' : '' }}",'required'])!!}
                             @if ($errors->has('tipo_usu'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('tipo_usu') }}</strong>
@@ -82,7 +82,7 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <p>Los siguientes campos son opcionales:</p>
                         </div>
                         <div class="form-group row">
@@ -120,7 +120,7 @@
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('telefono','Telefono')!!}
-                            {!! Form::text ('telefono',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid'}}",'placeholder'=>'Telefono'])!!}
+                            {!! Form::text ('telefono',null,['class'=>"form-control {{ $errors->has('telefono') ? ' is-invalid'}}",'placeholder'=>'Telefono'])!!}
                             @if ($errors->has('telefono'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('telefono') }}</strong>
@@ -135,7 +135,7 @@
                                     <strong>{{ $errors->first('direccion') }}</strong>
                                 </span>
                             @endif
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">

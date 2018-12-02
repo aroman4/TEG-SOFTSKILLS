@@ -45,6 +45,9 @@ Route::group(['prefix' => 'postulacion'], function(){
         'as' => 'postulacion.destroy'
     ]);
     Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
+    Route::get('solicpostulacionfuera/{idinv}', function($idinv){
+        return view('solic.solicitud.SolicPostulacionFuera')->with('inv',$idinv);
+    })->name('solicpostulacionfuera');
 });
 
 Route::resource('moduloinvestigacion','InvestigacionController');
@@ -108,6 +111,11 @@ Route::get('/aceptarasesoria/{id}','AsesoriaController@AceptarAsesoria', functio
 Route::get('/aceptarasesoriaase/{id}','AsesoriaController@AceptarSolicitudAse', function($id){
     return redirect()->action(
         'AsesoriaController@AceptarSolicitudAse', ['id' => $id]
+    );
+});
+Route::get('/rechazarasesoriaase/{id}','AsesoriaController@RechazarSolicitudAse', function($id){
+    return redirect()->action(
+        'AsesoriaController@RechazarSolicitudAse', ['id' => $id]
     );
 });
 Route::get('/rechazarasesoria/{id}','AsesoriaController@RechazarSolicitud', function($id){

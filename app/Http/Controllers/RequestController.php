@@ -25,7 +25,8 @@ class RequestController extends Controller
         //solicitudes de asesoria paginadas
         $solicitudesace = DB::table('solicitud')->where('estado','aceptada')->paginate(6);
         $solicitudespen = DB::table('solicitud')->where('estado','pendiente')->paginate(6);
-        $presolicitudes = DB::table('solicitud')->where('tipo','presolicitud')->paginate(6);
+        $solicitudesrec = DB::table('solicitud')->where('estado','rechazada')->paginate(6);
+        //$presolicitudes = DB::table('solicitud')->where('tipo','presolicitud')->paginate(6);
         //return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
         
 
@@ -37,12 +38,13 @@ class RequestController extends Controller
                 //return redirect('/escritorioasesor');
                 /* $solicitudesA = Solicitud::paginate(6);
                 return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
-                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','presolicitudes'));
+                //return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','presolicitudes'));
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','solicitudesrec'));
             break;
             case 'cliente':
                 /* $solicitudesA = Solicitud::paginate(6);
                 return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
-                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','presolicitudes'));
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','solicitudesrec'));
             break;
         }
     }
@@ -160,9 +162,16 @@ public function publicacioninvestigacion()
         $solicitud->tipo = 'presolicitud';
         $solicitud->user_id = 1; //presolicitud //admin
         $solicitud->save();
-        return redirect()->route('index')->with('success','Solicitud Creada');
-        //
 
+        //enviar email
+        Mail::send('email.emailpresolicitud',$solicitud->toArray(),function($mensaje) use ($solicitud){
+            $mensaje->to($solicitud->email,$solicitud->nombre)
+            ->subject('Creación de solicitud - SoftSkills');
+            $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+        });
+        return redirect()->route('asesorias')->with('success','Solicitud Creada');
+        //
+        
     }
     public function storePostAsesor(Request $request)
     {
@@ -174,9 +183,9 @@ public function publicacioninvestigacion()
             $solicitud->archivo = $nombreArch;
         }
         $solicitud->tipo = 'asesor';
-        $solicitud->user_id = auth()->user()->id;  //admin
+        $solicitud->user_id = 1;  //admin
         $solicitud->save();
-        return redirect()->route('index')->with('success','Solicitud Creada');
+        return redirect()->route('asesorias')->with('success','Solicitud Creada');
         //
 
     }

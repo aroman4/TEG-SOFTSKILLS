@@ -62,9 +62,16 @@ class PostulacionController extends Controller
             $archivo->move(public_path().'/archivoproyecto/',$nombreArch);
             $postulacion->archivo = $nombreArch;
         }
-        $postulacion->id_invest = auth()->user()->id;    
-        $postulacion->save();
-        return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
+
+        if(!$postulacion->deafuera){
+            $postulacion->id_invest = auth()->user()->id;    
+            $postulacion->save();
+            return redirect('/escritorioinvestigador')->with('success','Postulación Enviada al lider');
+        }else{
+            $postulacion->id_invest = 1;
+            $postulacion->save();
+            return redirect('/investigacion')->with('success','Postulación Enviada al lider');
+        }
     }
 
     public function enviar(Request $request)
@@ -90,6 +97,30 @@ class PostulacionController extends Controller
     public function AceptarPostulacion($id){
         $postulacion = Postulacion::find($id);
         $postulacion->estado = "aceptada";
+        
+
+        //si la postulacion vino de la pag principal
+        if($postulacion->deafuera){
+            //registrar al investigador nuevo
+            $investigador = new \App\User();
+            //asignar datos genericos, luego el usuario puede editar sus datos
+            $investigador->nombre_usu = "investigador".$postulacion->id;
+            $investigador->tipo_usu = "investigador";
+            $investigador->email = $postulacion->email;
+            $investigador->password = bcrypt("123456");
+            $investigador->nombre = $postulacion->nombre;
+            $investigador->apellido = $postulacion->apellido;
+            $investigador->telefono = $postulacion->telefono;
+            $investigador->otros = $postulacion->otros;
+            $investigador->save();
+
+            $postulacion->user_id = $investigador->id;
+            Mail::send('email.asesorsolicitud',$postulacion->toArray(),function($mensaje) use ($postulacion){
+                $mensaje->to($postulacion->email,$postulacion->nombre)
+                ->subject('Postulación a investigación aceptada - SoftSkills');
+                $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+            });
+        }
         $postulacion->save();
         return redirect('/nombreinvpostulacion')->with('success','Postulación Aceptada');
     }
