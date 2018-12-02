@@ -20,6 +20,9 @@ route::group(['prefix' => 'admin'], function(){
     Route::get('/usuarios/borrar/{id}','UsersController@borrar')->name('usuarios.borrar');
     Route::get('/export','UsersController@export')->name('usuarios.export');
 });
+//Editar usuario
+Route::get( '/editarusu/{id}' , 'UsersController@edit')->name('editarusu');
+
 //route de solicitud
 Route::group(['prefix' => 'solic'], function(){
     Route::resource('solicitud','RequestController')->middleware('auth');

@@ -40,9 +40,9 @@
                     </li>
                     <div style="padding:8px;">
                         <a href="{{route('solicinvestigacion')}}" class="btn btn-primary boton1">Crear Solicitud</a>
-                        <a href="#" class="btn btn-success boton1">Editar Pefil</a>
-                        <a href="#" class="btn btn-danger boton1">Agregar Datos al Perfil </a>
-                    </div>
+                        <a href="{{route('editarusu/{id}')}}" class="btn btn-success boton1">Editar Pefil</a>
+{{--                         <a href="#" class="btn btn-danger boton1">Agregar Datos al Perfil </a>
+ --}}                    </div>
     </div>
 </div>
 @endsection

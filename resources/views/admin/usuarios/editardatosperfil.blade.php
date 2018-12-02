@@ -2,27 +2,30 @@
 
 @section('content')
 <div class="container">
+    @if(count($errors)>0)
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li class="alert alert-danger">{{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Editar Datos de Perfil') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                        {!!Form::open(['route' => ['usuario.update', $usuario], 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                         @csrf
                         <div class="form-group row">
                             {!! Form::label ('sexo','Sexo*')!!}
-                            <!--{!! Form::text ('sexo',null,['class'=>"form-control {{ $errors->has('sexo') ? ' is-invalid' }}",'placeholder'=>'Sexo'])!!}-->
-                            {!! Form::select ('sexo',['Femenino'=>'Femenino','Masculino'=>'Masculino'],null,['class'=>"form-control {{ $errors->has('sexo') ? ' is-invalid' : '' }}",'required'])!!}
+                            {!! Form::text ('sexo', $usuario->sexo, ['class'=>"form-control {{ $errors->has('sexo') ? ' is-invalid' : '' }}",'placeholder'=>'Sexo','required'])!!}
                             @if ($errors->has('sexo'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('sexo') }}</strong>
                                 </span>
                             @endif
                         </div>
-                 {{--        <div class="form-group row">
-                            <p>Los siguientes campos son opcionales:</p>
-                        </div> --}}
                         <div class="form-group row">
                             <label class="col-md-4 control-label">Subir imagen de perfil</label>
                             <div class="col-md-6">
@@ -30,26 +33,26 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            {!! Form::label ('edad','Edad')!!}
-                            {!! Form::text ('edad',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' }}",'placeholder'=>'Edad','integer'])!!}
-                            @if ($errors->has('edad'))
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $errors->first('edad') }}</strong>
-                                </span>
-                            @endif
+                                {!! Form::label ('edad','Edad')!!}
+                                {!! Form::text ('edad', $usuario->edad, ['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid' : '' }}",'placeholder'=>'Edad','required'])!!}
+                                @if ($errors->has('edad'))
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $errors->first('edad') }}</strong>
+                                    </span>
+                                @endif
                         </div>
                         <div class="form-group row">
                             {!! Form::label ('profesion','Profesion')!!}
-                            {!! Form::text ('profesion',null,['class'=>"form-control {{ $errors->has('profesion') ? ' is-invalid' }}",'placeholder'=>'Profesion'])!!}
+                            {!! Form::text ('profesion', $usuario->profesion, ['class'=>"form-control {{ $errors->has('profesion') ? ' is-invalid' : '' }}",'placeholder'=>'Profesion','required'])!!}
                             @if ($errors->has('profesion'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('profesion') }}</strong>
                                 </span>
                             @endif
-                        </div>
+                        </div> 
                         <div class="form-group row">
-                            {!! Form::label ('telefono','Telefono')!!}
-                            {!! Form::text ('telefono',null,['class'=>"form-control {{ $errors->has('edad') ? ' is-invalid'}}",'placeholder'=>'Telefono'])!!}
+                            {!! Form::label ('telefono','Teléfono')!!}
+                            {!! Form::text ('telefono', $usuario->telefono, ['class'=>"form-control {{ $errors->has('telefono') ? ' is-invalid' : '' }}",'placeholder'=>'Teléfono','required'])!!}
                             @if ($errors->has('telefono'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('telefono') }}</strong>
@@ -57,8 +60,8 @@
                             @endif
                         </div>
                         <div class="form-group row">
-                            {!! Form::label ('direccion','Direccion')!!}
-                            {!! Form::text ('direccion',null,['class'=>"form-control {{ $errors->has('direccion') ? ' is-invalid' }}",'placeholder'=>'Direccion'])!!}
+                            {!! Form::label ('direccion','Dirección')!!}
+                            {!! Form::text ('direccion', $usuario->direccion, ['class'=>"form-control {{ $errors->has('direccion') ? ' is-invalid' : '' }}",'placeholder'=>'Dirección','required'])!!}
                             @if ($errors->has('direccion'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('direccion') }}</strong>
@@ -66,8 +69,8 @@
                             @endif
                         </div>
 
-                    </form>
-                </div>
+                        {!!Form::close()!!}  
+                    </div>
             </div>
         </div>
     </div>
