@@ -100,7 +100,7 @@
                                         <button type="button" class="btn btn-primary boton1">
                                                 <i class="fa fa-download"></i>
                                              @if($postulacion->archivo_inv != null)                                         
-                                             <a title="Descargar archivo" href="archivoproyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning boton1" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                             <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning boton1" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
                                              @endif
                                         </button>                                               
                                     </div>
