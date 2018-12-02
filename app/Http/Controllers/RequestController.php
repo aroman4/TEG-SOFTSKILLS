@@ -25,6 +25,7 @@ class RequestController extends Controller
         //solicitudes de asesoria paginadas
         $solicitudesace = DB::table('solicitud')->where('estado','aceptada')->paginate(6);
         $solicitudespen = DB::table('solicitud')->where('estado','pendiente')->paginate(6);
+        $solicitudesrec = DB::table('solicitud')->where('estado','rechazada')->paginate(6);
         //$presolicitudes = DB::table('solicitud')->where('tipo','presolicitud')->paginate(6);
         //return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
         
@@ -38,12 +39,12 @@ class RequestController extends Controller
                 /* $solicitudesA = Solicitud::paginate(6);
                 return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
                 //return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','presolicitudes'));
-                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen'));
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','solicitudesrec'));
             break;
             case 'cliente':
                 /* $solicitudesA = Solicitud::paginate(6);
                 return view('asesoria.solicitudesescritorio')->with('solicitudes', $solicitudesA); */
-                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','presolicitudes'));
+                return view('asesoria.solicitudesescritorio',compact('solicitudesace','solicitudespen','solicitudesrec'));
             break;
         }
     }

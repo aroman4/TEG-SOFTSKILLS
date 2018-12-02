@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row" style="min-height: 70vh">
-            <div class="col-md-6 list-group-item contentAlv">
+            <div class="col-md-4 list-group-item contentAlv">
                 <h2>Solicitudes pendientes por aprobación:</h2>
                 <ul class="list-group">
                     @forelse($solicitudespen as $sol)
@@ -40,7 +40,7 @@
                 </ul>
                 {{$solicitudespen->links()}}
             </div>
-            <div class="col-md-6 list-group-item contentAlv1">
+            <div class="col-md-4 list-group-item contentAlv1">
                 <h2>Solicitudes aprobadas:</h2>
                 <ul class="list-group">
                     @forelse($solicitudesace as $sol)
@@ -59,6 +59,27 @@
                     @endforelse
                 </ul>
                 {{$solicitudesace->links()}}
+                {{-- @endif --}}
+            </div>
+            <div class="col-md-4 list-group-item contentAlv1">
+                <h2>Solicitudes rechazadas:</h2>
+                <ul class="list-group">
+                    @forelse($solicitudesrec as $sol)
+                        @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"  && ($sol->estado=="rechazada"))
+                            @if((auth()->user()->tipo_usu == "asesor") || ((auth()->user()->tipo_usu == "cliente") && (auth()->user()->id == $sol->user_id)))
+                                <div>
+                                    <li class="list-group-item listaAsesSolic">
+                                        <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>
+                                        <small>{{\App\User::find($sol->user_id)->nombre .' '. \App\User::find($sol->user_id)->apellido}}</small>
+                                    </li>
+                                </div>
+                            @endif
+                        @endif
+                    @empty
+                        <p>No hay solicitudes rechazadas</p>                
+                    @endforelse
+                </ul>
+                {{$solicitudesrec->links()}}
                 {{-- @endif --}}
             </div>
         </div>
