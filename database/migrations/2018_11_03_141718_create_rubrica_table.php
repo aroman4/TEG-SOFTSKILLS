@@ -24,8 +24,10 @@ class CreateRubricaTable extends Migration
             $table->boolean('respondidoc')->default(false);
             $table->boolean('enviar')->default(false);
             $table->boolean('predefinido')->default(false);
+            $table->boolean('predefinidoasesor')->default(false);
             $table->enum('columnas', ['3', '4','5'])->default('3');
             $table->enum('filas', ['2','3', '4','5','6'])->default('3');
+            $table->float('baseevaluacion')->nullable();
             //criterios, columna izquierda
             $table->string('criterio0')->nullable();
             $table->string('criterio1')->nullable();
@@ -39,6 +41,12 @@ class CreateRubricaTable extends Migration
             $table->string('evaluacion2')->nullable();
             $table->string('evaluacion3')->nullable();
             $table->string('evaluacion4')->nullable();
+            //valores evaluaciones
+            $table->float('evaluacionval0')->nullable();
+            $table->float('evaluacionval1')->nullable();
+            $table->float('evaluacionval2')->nullable();
+            $table->float('evaluacionval3')->nullable();
+            $table->float('evaluacionval4')->nullable();
             //respuestas asesor
             $table->float('respuestaa0')->nullable();
             $table->float('respuestaa1')->nullable();

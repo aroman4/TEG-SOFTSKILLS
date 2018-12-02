@@ -41,7 +41,7 @@
                         </div>        
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-primary">Siguiente</button>
+                                <button class="btn btn-primary">Siguiente (Crear)</button>
                             </div>
                         </div>
                     </form>            

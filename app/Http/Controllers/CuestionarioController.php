@@ -108,6 +108,6 @@ class CuestionarioController extends Controller
     {
         $cuestionario = Cuestionario::find($id);
         $cuestionario->delete();
-        return redirect()->route('escritorioasesor');
+        return redirect()->route('escritorioasesor')->with('success','Cuestionario eliminado');
     }
 }

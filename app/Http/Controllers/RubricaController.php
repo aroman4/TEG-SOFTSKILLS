@@ -32,8 +32,10 @@ class RubricaController extends Controller
         $rubricaNueva->predefinido = false;
         $rubricaNueva->id_asesoria = $idase;
         $rubricaNueva->cliente_id = $asesoria->id_cliente;
+        $rubricaNueva->enviar = false;
+        $rubricaNueva->predefinidoasesor = false;
         $rubricaNueva->save();
-        return view('rubricas.detalle')->with('rubrica',$rubricaNueva);
+        return view('rubricas.detallepred')->with('rubrica',$rubricaNueva);
     }
     public function crear(Request $request){
         //dd($request);
@@ -52,7 +54,8 @@ class RubricaController extends Controller
         $rubrica = Rubrica::find($id); //busco la rubrica en la tabla
         $rubrica->fill($request->all()); //asigno a rubrica los valores nuevos
         $rubrica->save(); //guardo en la bd
-        return redirect()->route('moduloasesoria.show',$rubrica->id_asesoria)->with('success','Rúbrica creada exitosamente');
+        //return redirect()->route('moduloasesoria.show',$rubrica->id_asesoria)->with('success','Rúbrica creada exitosamente');
+        return redirect()->route('rubrica.ver',$id);
     }
     public function responderRubrica($id){
         $rubrica = Rubrica::find($id);
@@ -119,5 +122,28 @@ class RubricaController extends Controller
             $rubrica->save();
         }
         return redirect()->route('moduloasesoria.show',$rubrica->id_asesoria)->with('success','Rúbrica respondida exitosamente');
+    }
+
+    public function EliminarRubrica($id){
+        $rubrica = Rubrica::find($id);
+        $rubrica->delete();
+        return redirect()->route('moduloasesoria.show',$rubrica->id_asesoria)->with('error','Rúbrica eliminada');
+    }
+
+    public function ver($id){
+        $rubrica = Rubrica::find($id);
+        return view('rubricas.ver')->with('rubrica',$rubrica);
+    }
+    public function enviar($id){
+        $rubrica = Rubrica::find($id);
+        $rubrica->enviar = true;
+        $rubrica->save();
+        return back()->with('success','Rúbrica enviada al cliente');
+    }
+    public function guardarpred($id){
+        $rubrica = Rubrica::find($id);
+        $rubrica->predefinidoasesor = true;
+        $rubrica->save();
+        return back()->with('success','Rúbrica guardada como predefinida');
     }
 }

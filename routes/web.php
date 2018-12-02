@@ -293,6 +293,10 @@ Route::post('/rubrica/formar/{id}', 'RubricaController@formar')->name('rubrica.f
 Route::get('/rubrica/responder/{rubrica}', 'RubricaController@responderRubrica')->name('rubrica.responder');
 Route::get('/rubrica/respuesta/{rubrica}', 'RubricaController@respuestasRubrica')->name('rubrica.respuesta');
 Route::post('/rubrica/guardarrespuesta{id}','RubricaController@guardarRespuesta')->name('rubrica.guardarResp');
+Route::get('/rubrica/eliminar/{rubrica}', 'RubricaController@EliminarRubrica')->name('rubrica.eliminar');
+Route::get('/rubrica/ver/{rubrica}', 'RubricaController@ver')->name('rubrica.ver');
+Route::get('/rubrica/enviar/{rubrica}', 'RubricaController@enviar')->name('rubrica.enviar');
+Route::get('/rubrica/guardarpred/{rubrica}', 'RubricaController@guardarpred')->name('rubrica.guardarpred');
 
 //admin
 //ruta aceptar investigacion

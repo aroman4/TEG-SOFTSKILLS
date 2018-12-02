@@ -22,7 +22,8 @@
                                 <th scope="col"></th>
                                 @for($j=0; $j < $rubrica->columnas; $j++)
                                     <th scope="col">                                        
-                                        <textarea name="{{"evaluacion".$j}}" id="{{"evaluacion".$j}}" class="form-control" placeholder="{{"Valoración ".($j+1)}}">{!!$rubrica->{'evaluacion'.$j}!!}</textarea>
+                                        <textarea name="{{"evaluacion".$j}}" id="{{"evaluacion".$j}}" class="form-control" placeholder="{{"Valoración escrita".($j+1)}}">{!!$rubrica->{'evaluacion'.$j}!!}</textarea>
+                                        <input type="text" name="{{"evaluacionval".$j}}" id="{{"evaluacionval".$j}}" class="form-control" placeholder="{{"Valoración numerica".($j+1)}}" value="{!!$j!!}">
                                     </th>
                                 @endfor
                             </tr>
@@ -46,7 +47,8 @@
                     </table>
                     <div class="form-group">
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-primary">Guardar</button>
+                            <button class="btn btn-success">Guardar</button>
+                            <a class="btn btn-danger" href="{{route('rubrica.eliminar', $rubrica->id) }}" title="Eliminar rúbrica">Cancelar y descartar cambios</a>
                         </div>
                     </div>
                 </form>
