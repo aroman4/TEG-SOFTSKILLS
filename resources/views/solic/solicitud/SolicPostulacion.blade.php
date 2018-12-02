@@ -1,7 +1,7 @@
-@extends('layouts.plantilla')
-
+@extends('layouts.menuinv')
 @section('content')
-<div class="container">
+
+<div class="col-md-9 solicitudInv">
     @if(count($errors)>0)
         <ul>
             @foreach ($errors->all() as $error)
@@ -10,7 +10,7 @@
         </ul>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Solicitud de Postulación') }}</div>
                     <div class="card-body">
@@ -40,7 +40,7 @@
                                     {{-- <p>{{\App\Investigacion::find($inv)->actividades}}</p> --}}
                                     <ul class="form-control">
                                         @foreach(json_decode(\App\Investigacion::find($inv)->actividades) as $key=>$value)
-                                            <li><input type="radio" value="{{$value}}" name="actividad" id="actividad"> {{$value}}</li>
+                                            <li > <input type="radio" value="{{$value}}" name="actividad" id="actividad"> {{$value}}</li>
                                         @endforeach
                                     </ul>
                                     {{-- {!! Form::textarea ('actividad',null,['class'=>"form-control {{ $errors->has('actividad') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe la actividad a desarrollar','required'])!!}
@@ -67,7 +67,7 @@
                                 </div>
                                <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">Enviar Postulación</button>
+                                        <button type="submit" class="btn btn-primary boton1">Enviar Postulación</button>
                                     </div>
                                </div>
                         {!!Form::close()!!}              

@@ -33,7 +33,7 @@ class UsersController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+    
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -71,9 +71,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usu = User::find($id);
+        //dd($usu);
+        return view('admin.usuarios.editardatosperfil')->with('usuario',$usu);
+        
+        
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -85,9 +88,15 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $user->tipo_inv = $request->tipo_inv;
+        $user->sexo = $request->sexo;
+        $user->telefono = $request->telefono;
+        $user->direccion = $request->direccion;
+        $user->edad = $request->edad;
+        $user->profesion = $request->profesion;
         $user->save();
         return back()->with('success','tipo cambiado');
     }
+
 
     /**
      * Remove the specified resource from storage.

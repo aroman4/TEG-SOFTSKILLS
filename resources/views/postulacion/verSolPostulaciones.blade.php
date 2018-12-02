@@ -14,10 +14,16 @@
     </div>
     <div class="row">
         <div class="col-md-12 list-group-item ">
-            <p><b>Otras Investigaciones que ha Pertenecido:  </b>{{$postulacion->otros_proyectos}}</p>
-            <p><b>Aporte:  </b>{{$postulacion->aporte}}</p>
-            <p><b>Actividad:  </b>{{$postulacion->actividad}}</p>
-            <small>Creada el {{$postulacion->created_at}}</small>
+            <p><b>Otras Investigaciones que has Participado:  </b>{{$postulacion->otros_proyectos}}</p>
+            <p><b>Aporte:  </b> {{$postulacion->aporte}}</p>
+            <p><b>Actividades: </b> {{$postulacion->actividad}}
+                {{-- Listar los objetivos especificos --}}</p>
+                @if($postulacion->estado == 'aceptada')
+                    <p style="color: #CC9900;"><b>Estátus: Investigación {{$postulacion->estado}}</b> </p>
+                @else
+                    <p style="color: #CC9900;"><b>Estátus: Investigación {{$postulacion->estado}}</b> </p>
+                @endif            
+                <small>Creada el {{$postulacion->created_at}}</small>
             <br><br>
         </div>
     </div>

@@ -38,12 +38,27 @@
                                             <strong>{{ $errors->first('titulo') }}</strong>
                                             </span>
                                     @endif --}}
-                                 </div>                                  
-                               <div class="form-group">
-                                    <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary boton1">Enviar Actividad</button>
-                                    </div>
-                               </div>
+                                 </div>  
+                                 <div class="form-group row">
+                                        {!! Form::label ('observacion','Detalle de la Actividad:')!!}
+                                        {!! Form::textarea ('observacion',null,['class'=>"form-control {{ $errors->has('onservacion') ? ' is-invalid'}}",'placeholder'=>'Descripción de la Actividad','required'])!!}
+                                        @if ($errors->has('observacion'))
+                                                <span class="text-danger" role="alert">
+                                                <strong>{{ $errors->first('observacion') }}</strong>
+                                                </span>
+                                        @endif
+                                    </div>    
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Ajustar Archivo de Actividad</label>
+                                            <div class="col-md-6">
+                                                <input type="file" class="form-control" name="archivo" >
+                                            </div>
+                                    </div> 
+                                        <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-4">
+                                                    <button type="submit" class="btn btn-primary boton1">Enviar Actividad</button>
+                                                </div>
+                                        </div>
                         {!!Form::close()!!}              
                     </div>
     </div>

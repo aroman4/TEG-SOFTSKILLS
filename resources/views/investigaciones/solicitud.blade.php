@@ -15,23 +15,29 @@
     <div class="row">
         <div class="col-md-12 list-group-item ">
             <p><b>Título:  <u>{{$solicitud->titulo}}</u></b></p>
-            <p><b>Caracteristicas:</b> {{$solicitud->caracteristica}}</p>
-            <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}</p>
+            <p><b>Palabras Claves:</b> {{$solicitud->caracteristica}}</p>
+            <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
             {{-- Listar los objetivos especificos --}}
             <ol>
                 @foreach(json_decode($solicitud->actividades) as $key=>$value)
                     <li>{{$value}}</li>
                 @endforeach
-            </ol>
+            </ol></p>
+            @if($solicitud->estado == 'activa')
+                <p style="color: #CC9900; margin:8px;"><b>Estatus: Investigación {{$solicitud->estado}}</b> </p>
+            @else
+                <p style="color: #CC9900; margin:8px;"><b>Estatus: Investigación {{$solicitud->estado}}</b> </p>
+            @endif
             <small>Creada el {{$solicitud->created_at}}</small>
             <br><br>
             <div class="datos-inve">
-                @if(Auth::user()->tipo_inv == "normal")
-                    <a href="{{route('solicitud.destroy', $solicitud->id)}}" class="btn btn-danger boton1">Eliminar Solicitud</a>
+                @if(Auth::user()->tipo_inv == "normal" && $solicitud->estado== "aceptada")
                     <a href="{{route('editarinves', $solicitud->id)}}" class="btn btn-success boton1">Editar Solicitud</a>
                     <a href="{{route('nombreinvpostulacion', $solicitud->id)}}" class="btn btn-secondary boton1">Revisar Postulaciones</a>
                     @elseif(Auth::user()->tipo_inv == "comite")
                     <a href="{{route('escritoriocomite')}}" class="btn btn-secondary boton1">Regresar</a>
+                @else
+                    <a href="{{route('solicitud.destroy', $solicitud->id)}}" class="btn btn-danger boton1">Eliminar Solicitud</a>
                 @endif
                 @if(Auth::user()->tipo_inv == "comite"  && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_sol',$solicitud->id)->count() == 0)))
                     <a href="{{action('InvestigacionController@AceptarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-success boton1">Aceptar Solicitud</a>
