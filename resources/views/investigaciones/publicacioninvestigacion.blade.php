@@ -30,23 +30,23 @@
                             </div>
                             <div class=" row">
                                 @if(\App\User::find($inv->user_id)->sexo == "Femenino")
-                                    <p><b>Creado por la Investigadora: </b>{{\App\User::find($inv->user_id)->nombre}}</h1>
+                                    <p><b>Creado por la Investigadora: </b>{{\App\User::find($inv->user_id)->nombre ." ".\App\User::find($inv->user_id)->apellido}}</h1>
                                 @else
-                                    <p><b> Creado por la Investigador: </b>{{\App\User::find($inv->user_id)->nombre}}</h1>
+                                    <p><b> Creado por la Investigador: </b>{{\App\User::find($inv->user_id)->nombre ." ".\App\User::find($inv->user_id)->apellido}}</h1>
                                 @endif
                             </div>
                             <div class=" row">
                                 <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
                             </div>
                             <div class=" row">
-                                <p><b>Descripción:</b> {{$inv->descripcion}}</p>
+                                <p><b>Resumen:</b> {{$inv->descripcion}}</p>
                             </div>
                             <div class="col-12">
                                 <div class="row">
                                     @if($inv->estado == 'activa')
                                         <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación Activa</b> </p>
                                         <hr style="color: #0056b2; margin:8px;" />
-                                        <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postulación</a>
+                                        <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
                                         <div style="margin:20px;"></div>
                                     @else
                                         <p style="color: #990000; margin:8px; float:right;"><b>Estátus: Investigación Finalizada</b> </p>

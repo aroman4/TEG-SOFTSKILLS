@@ -18,7 +18,7 @@
 	
 	</div>
 	<div class="noesperes" style="height: 600px;">
-		<h2 style="margin:20px; " class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
+		<h2 class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
 				<div class="row justify-content-center">  
 					@foreach ($pub as $inv)
 						<div class="col-md-8">

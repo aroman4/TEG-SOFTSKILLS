@@ -6,11 +6,8 @@ body{
 	border-radius: 0%;
 }
 .menu-estilo-navegacion{
-    background-color: #000000
+    background-color: #000000;
 
-}
-.alert{
-	/* z-index:1; */
 }
 
 .menu-estilo-principal {/*ul*/
@@ -278,7 +275,7 @@ header{
 
 .noesperes{
 	height: 400px;
-	background: #f8fafc;
+	background: #d7dadc;
 	z-index: 1;
 	position: relative;
 }
