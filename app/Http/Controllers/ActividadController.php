@@ -72,7 +72,7 @@ class ActividadController extends Controller
             $investigador->save();
 
             $postulacion->id_invest = $investigador->id;
-            Mail::send('email.asesorsolicitud',$postulacion->toArray(),function($mensaje) use ($postulacion){
+            Mail::send('email.postulacionafueraaceptada',$postulacion->toArray(),function($mensaje) use ($postulacion){
                 $mensaje->to($postulacion->email,$postulacion->nombre)
                 ->subject('Postulación a investigación aceptada - SoftSkills');
                 $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
