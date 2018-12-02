@@ -45,6 +45,9 @@ Route::group(['prefix' => 'postulacion'], function(){
         'as' => 'postulacion.destroy'
     ]);
     Route::get('solicpostulacion/{idinv}', 'PostulacionController@SolicPostulacion')->name('solicpostulacion');
+    Route::get('solicpostulacionfuera/{idinv}', function($idinv){
+        return view('solic.solicitud.SolicPostulacionFuera')->with('inv',$idinv);
+    })->name('solicpostulacionfuera');
 });
 
 Route::resource('moduloinvestigacion','InvestigacionController');

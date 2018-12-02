@@ -168,7 +168,7 @@ public function publicacioninvestigacion()
             ->subject('Creación de solicitud - SoftSkills');
             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
         });
-        return redirect()->route('index')->with('success','Solicitud Creada');
+        return redirect()->route('asesorias')->with('success','Solicitud Creada');
         //
         
     }
@@ -184,7 +184,7 @@ public function publicacioninvestigacion()
         $solicitud->tipo = 'asesor';
         $solicitud->user_id = 1;  //admin
         $solicitud->save();
-        return redirect()->route('index')->with('success','Solicitud Creada');
+        return redirect()->route('asesorias')->with('success','Solicitud Creada');
         //
 
     }

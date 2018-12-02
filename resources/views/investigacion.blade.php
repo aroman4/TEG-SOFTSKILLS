@@ -39,8 +39,12 @@
 									</div>
 									<div class="col-12">
 										<a class="btn btn-success boton1"href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
-										<a class="btn btn-secondary boton1"href="{{ route('register') }}">{{ __('Registro') }}</a>											
-                                        <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postulación</a>
+										<a class="btn btn-secondary boton1"href="{{ route('register') }}">{{ __('Registro') }}</a>	
+										@guest										
+											<a href="{{route('solicpostulacionfuera',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
+										@else
+											<a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
+										@endguest
 										<div class="row" style="float:right;"><br>
                                             <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
 										</div>

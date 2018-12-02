@@ -19,30 +19,30 @@
                         {!!Form::open(['action' => 'RequestController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
 
                              @csrf
-                                <div class="form-group row">
-                                {!! Form::label ('Asunto','Asunto:*')!!}
-                                {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo'])!!}
-                                @if ($errors->has('titulo'))
-                                        <span class="text-danger" role="alert">
-                                        <strong>{{ $errors->first('titulo') }}</strong>
-                                        </span>
-                                @endif
+                             <div class="form-group row">
+                                    {!! Form::label ('Asunto','Titulo de la asesesoría que deseas recibir:*')!!}
+                                    {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo','required'])!!}
+                                    @if ($errors->has('titulo'))
+                                            <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('titulo') }}</strong>
+                                            </span>
+                                    @endif
+                                    </div>
+                                    <div class="form-group row">
+                                    {!! Form::label ('Descripción','Descripción de la asesoría:*')!!}
+                                    {!! Form::textarea ('mensaje',null,['id'=>'article-ckeditor','class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'Descripción','required','id'])!!}
+                                    @if ($errors->has('mensaje'))
+                                            <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('mensaje') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Adjunta un archivo si lo deseas</label>
+                                    <div class="col-md-6">
+                                        <input type="file" class="form-control" name="archivo" >
+                                    </div>
                                 </div>
-                                <div class="form-group row">
-                                {!! Form::label ('Descripción','Descripción:*')!!}
-                                {!! Form::textarea ('mensaje',null,['class'=>"form-control {{ $errors->has('mensaje') ? ' is-invalid' }}",'placeholder'=>'mensaje'])!!}
-                                @if ($errors->has('mensaje'))
-                                        <span class="text-danger" role="alert">
-                                        <strong>{{ $errors->first('mensaje') }}</strong>
-                                        </span>
-                                @endif
-                            </div>                                
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Subir Archivo</label>
-                                <div class="col-md-6">
-                                    <input type="file" class="form-control" name="archivo" >
-                                </div>
-                            </div>
                     
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">

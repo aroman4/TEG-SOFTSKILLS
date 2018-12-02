@@ -28,6 +28,12 @@ class CreatePostulacionTable extends Migration
                 //clave foranea id de usuario y investigacion
                 $table->integer('id_invest')->unsigned(); //id del usuario 
                 $table->foreign('id_invest')->references('id')->on('usuario')->onDelete('cascade');
+                $table->boolean('deafuera')->default(false);
+                $table->string('nombre')->nullable();
+                $table->string('apellido')->nullable();
+                $table->string('email')->nullable();
+                $table->string('otros')->nullable();
+                $table->string('telefono')->nullable();
                 $table->timestamps();
         });
     }

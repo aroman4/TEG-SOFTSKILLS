@@ -8,6 +8,7 @@ use App\Solicitud;
 use App\Investigacion;
 use App\Actividad;
 use DB;
+use Mail;
 
 class ActividadController extends Controller
 {
@@ -50,12 +51,36 @@ class ActividadController extends Controller
         //dd($actividad);
         $actividad->fill($request->all());
         $actividad->asignado = true;
-        //id de investigador
-        $actividad->id_investigador = Postulacion::find($actividad->id_postulacion)->id_invest;
+       
+        
         $postulacion = Postulacion::find($actividad->id_postulacion);
         $postulacion->estado = "aceptada";
-        $postulacion->save();
 
+        //si la postulacion vino de la pag principal
+        if($postulacion->deafuera){
+            //registrar al investigador nuevo
+            $investigador = new \App\User();
+            //asignar datos genericos, luego el usuario puede editar sus datos
+            $investigador->nombre_usu = "investigador".$postulacion->id;
+            $investigador->tipo_usu = "investigador";
+            $investigador->email = $postulacion->email;
+            $investigador->password = bcrypt("123456");
+            $investigador->nombre = $postulacion->nombre;
+            $investigador->apellido = $postulacion->apellido;
+            $investigador->telefono = $postulacion->telefono;
+            $investigador->otros = $postulacion->otros;
+            $investigador->save();
+
+            $postulacion->id_invest = $investigador->id;
+            Mail::send('email.asesorsolicitud',$postulacion->toArray(),function($mensaje) use ($postulacion){
+                $mensaje->to($postulacion->email,$postulacion->nombre)
+                ->subject('Postulación a investigación aceptada - SoftSkills');
+                $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+            });
+        }
+        $postulacion->save();
+         //id de investigador
+        $actividad->id_investigador = $postulacion->id_invest;
         $actividad->save();
         return redirect('/nombreinvpostulacion')->with('success','Actividad asignada');
         /* //actividad crear
