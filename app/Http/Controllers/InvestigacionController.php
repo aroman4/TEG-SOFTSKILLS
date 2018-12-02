@@ -40,6 +40,25 @@ public function descargafuc(){
         
         return redirect('/publicacioninve')->with('success','Investigación Cargada');
     }
+//''''''''''''''''enviar al comite
+    public function enviaralcomite(Request $request)
+    {
+        //dd($request);  
+         
+        $inv =  Investigacion::find($request->idinvestigacion);
+        if($request->hasFile('archivof')){
+            $archivof = $request->file('archivof');
+            $tipo_inv = time().$archivof->getClientOriginalName();
+            $archivof->move(public_path().'/proyecto/',$nombreArch);
+            $inv->archivof = $tipo_inv;
+        }
+        $inv->user_id = auth()->user()->id;  
+/*         $inv->estado_inv = "finalizado";  
+ */        $inv->save();
+        
+        return redirect('/vistainvestigaciones')->with('success','investigación Enviada al Comité');
+
+    }
     
     /**
      * Show the form for creating a new resource.
