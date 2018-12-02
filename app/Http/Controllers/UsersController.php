@@ -87,14 +87,15 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->tipo_inv = $request->tipo_inv;
+        $user->fill($request->all());
+/*         $user->tipo_inv = $request->tipo_inv;
         $user->sexo = $request->sexo;
         $user->telefono = $request->telefono;
         $user->direccion = $request->direccion;
         $user->edad = $request->edad;
-        $user->profesion = $request->profesion;
+        $user->profesion = $request->profesion; */
         $user->save();
-        return back()->with('success','tipo cambiado');
+        return redirect('/escritorioinv')->with('success','Modificado');
     }
 
 

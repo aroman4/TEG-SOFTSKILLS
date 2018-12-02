@@ -58,9 +58,9 @@
                                          </button>
                                     @endif
                                 {{--<p style="color:darkgreen; margin:8px;"><b><i>Es mi Investigación</i></b> </p>--}}                                        
-                                    <div style="margin:8px;"></div>
-                                    <div class="row" style="float:right;"><br>
-                                        <a class="btn btn-outline-info boton1" href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
+                                    <div style="margin:8px float:right;"></div>
+                                    <div class="row" ><br>
+                                        <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
                                     </div>
                                 </div>
                             </div> 
