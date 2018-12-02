@@ -1,7 +1,7 @@
 @extends('layouts.menuinv')
 
 @section('content')
-<div class="container">
+<div class="col-md-9 solicitudInv">
     @if(count($errors)>0)
         <ul>
             @foreach ($errors->all() as $error)
@@ -10,12 +10,12 @@
         </ul>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Editar Datos de Perfil') }}</div>
 
                 <div class="card-body">
-                        {!!Form::open(['route' => ['usuario.update', $usuario], 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
+                        {!!Form::open(['route' => ['usuarios.update', $usuario], 'method' => 'PUT', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                         @csrf
                         <div class="form-group row">
                             {!! Form::label ('sexo','Sexo*')!!}
@@ -42,8 +42,8 @@
                                 @endif
                         </div>
                         <div class="form-group row">
-                            {!! Form::label ('profesion','Profesion')!!}
-                            {!! Form::text ('profesion', $usuario->profesion, ['class'=>"form-control {{ $errors->has('profesion') ? ' is-invalid' : '' }}",'placeholder'=>'Profesion','required'])!!}
+                            {!! Form::label ('profesion','Profesión')!!}
+                            {!! Form::text ('profesion', $usuario->profesion, ['class'=>"form-control {{ $errors->has('profesion') ? ' is-invalid' : '' }}",'placeholder'=>'Profesión','required'])!!}
                             @if ($errors->has('profesion'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('profesion') }}</strong>
@@ -52,7 +52,7 @@
                         </div> 
                         <div class="form-group row">
                             {!! Form::label ('telefono','Teléfono')!!}
-                            {!! Form::text ('telefono', $usuario->telefono, ['class'=>"form-control {{ $errors->has('telefono') ? ' is-invalid' : '' }}",'placeholder'=>'Teléfono','required'])!!}
+                            {!! Form::text ('telefono', $usuario->telefono, ['class'=>"form-control {{ $errors->has('telefono') ? ' is-invalid' : '' }}",'placeholder'=>'00000000000','required'])!!}
                             @if ($errors->has('telefono'))
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $errors->first('telefono') }}</strong>
@@ -68,7 +68,9 @@
                                 </span>
                             @endif
                         </div>
-
+                        <div class="form-group text-center">
+                            {!! Form::submit ('Guardar Datos',['class'=>'btn btn-primary boton1'])!!}
+                        </div>
                         {!!Form::close()!!}  
                     </div>
             </div>

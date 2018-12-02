@@ -1,7 +1,7 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
-<div class="container">
+<div class="col-md-9 solicitudInv">
     @if(count($errors)>0)
         <ul>
             @foreach ($errors->all() as $error)
@@ -10,7 +10,7 @@
         </ul>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Editar Solicitud de Investigación') }}</div>
 
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-md-offset-4">
-                                            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+                                            <button type="submit" class="btn btn-primary boton1">Enviar Solicitud</button>
                                         </div>
                                     </div>
                         {!!Form::close()!!}              
