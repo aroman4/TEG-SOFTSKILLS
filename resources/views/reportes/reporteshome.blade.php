@@ -21,7 +21,7 @@
                                         <div class="card-header" id="heading{{$index}}">
                                         <h5 class="mb-0">
                                             <button class="btn btn-light" data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="true" aria-controls="collapse{{$index}}">
-                                                    Reportes disponibles para {{$ase->titulo}}
+                                                    <i class="fas fa-angle-down"></i> Reportes disponibles para {{$ase->titulo}}
                                             </button>
                                             @if($ase->estado == "finalizada")
                                                 <a href="{{route('reportefinalasesoria',$ase->id)}}" class="btn btn-primary">Ver reporte final</a>
@@ -41,6 +41,7 @@
                                                                         <li class="list-group-item listaAsesSolic">
                                                                             <div>
                                                                                 <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Respuestas cuestionario" class="secondary-content">{{$cuestionario->titulo}}</a>
+                                                                                <p>{{$cuestionario->created_at}}</p>
                                                                             </div>
                                                                         </li>                                                                                
                                                                     {{-- @elseif(auth()->user()->id == $cuestionario->cliente_id && $cuestionario->respondido == false)
@@ -63,6 +64,7 @@
                                                                         <li class="list-group-item listaAsesSolic">
                                                                             <div>
                                                                                 <a href="{{route('rubrica.respuesta', $rubrica->id) }}" title="Ver respuestas de la rubrica" class="secondary-content">{{$rubrica->titulo}}</a>  
+                                                                                <p>{{$rubrica->created_at}}</p>
                                                                             </div>
                                                                         </li>                                   
                                                                     {{-- @elseif(auth()->user()->id == $rubrica->cliente_id && $rubrica->respondidoc == false)

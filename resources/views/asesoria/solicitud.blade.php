@@ -13,7 +13,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12 list-group-item">
-                    <p>Creada el {{$solicitud->created_at}}</p>
+                    <p><b>Creada el</b> {{$solicitud->created_at}}</p>
+                    <p><b>Estatus: </b>{{$solicitud->estado}}</p>
                     <h3><b>Asunto:</b> <span>{{$solicitud->titulo}}</span></h3>
                     @if($solicitud->tipo == "normal")
                         <h3><b>Cliente:</b> <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></h3>

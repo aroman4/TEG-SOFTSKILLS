@@ -11,7 +11,7 @@
         </div>
         <div class="row" style="min-height: 70vh">
             <div class="col-md-4 list-group-item contentAlv">
-                <h2>Solicitudes pendientes por aprobación:</h2>
+                <h2>Pendientes por aprobación:</h2>
                 <ul class="list-group">
                     @forelse($solicitudespen as $sol)
                         {{-- @if(\App\User::find($sol->user_id)->tipo_usu == "cliente" && ($sol->estado=="pendiente")) --}}                        
@@ -21,13 +21,13 @@
                                     @if(\App\User::find($sol->user_id)->tipo_usu == "cliente")
                                     <li class="list-group-item listaAsesSolic">
                                         <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>
-                                        <small>{{\App\User::find($sol->user_id)->nombre .' '. \App\User::find($sol->user_id)->apellido}}</small>
+                                        <p>{{\App\User::find($sol->user_id)->nombre .' '. \App\User::find($sol->user_id)->apellido}}</p>
                                         <p>{{$sol->created_at}}</p>
                                     </li>   
                                     @elseif(\App\User::find($sol->user_id)->tipo_usu == "admin")
                                         <li class="list-group-item listaAsesSolic">
                                             <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>
-                                            <small>Pre-solicitud</small>                                            
+                                            <p>Pre-solicitud</p>
                                             <p>{{$sol->created_at}}</p>
                                         </li>   
                                     @endif
@@ -41,15 +41,16 @@
                 {{$solicitudespen->links()}}
             </div>
             <div class="col-md-4 list-group-item contentAlv1">
-                <h2>Solicitudes aprobadas:</h2>
+                <h2>Aprobadas:</h2>
                 <ul class="list-group">
                     @forelse($solicitudesace as $sol)
-                        @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"  && ($sol->estado=="aceptada"))
+                        @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"   && ($sol->estado=="aceptada"))
                             @if((auth()->user()->tipo_usu == "asesor") || ((auth()->user()->tipo_usu == "cliente") && (auth()->user()->id == $sol->user_id)))
                                 <div>
                                     <li class="list-group-item listaAsesSolic">
                                         <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>
-                                        <small>{{\App\User::find($sol->user_id)->nombre .' '. \App\User::find($sol->user_id)->apellido}}</small>
+                                        <p>{{\App\User::find($sol->user_id)->nombre .' '. \App\User::find($sol->user_id)->apellido}}</p>
+                                        <p>{{$sol->created_at}}</p>
                                     </li>
                                 </div>
                             @endif
@@ -62,15 +63,15 @@
                 {{-- @endif --}}
             </div>
             <div class="col-md-4 list-group-item contentAlv1">
-                <h2>Solicitudes rechazadas:</h2>
+                <h2>Rechazadas:</h2>
                 <ul class="list-group">
                     @forelse($solicitudesrec as $sol)
-                        @if(\App\User::find($sol->user_id)->tipo_usu == "cliente"  && ($sol->estado=="rechazada"))
+                        @if((\App\User::find($sol->user_id)->tipo_usu == "cliente" || \App\User::find($sol->user_id)->tipo_usu == "admin")   && ($sol->estado=="rechazada"))
                             @if((auth()->user()->tipo_usu == "asesor") || ((auth()->user()->tipo_usu == "cliente") && (auth()->user()->id == $sol->user_id)))
                                 <div>
                                     <li class="list-group-item listaAsesSolic">
                                         <a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a>
-                                        <small>{{\App\User::find($sol->user_id)->nombre .' '. \App\User::find($sol->user_id)->apellido}}</small>
+                                        <p>{{$sol->created_at}}</p>
                                     </li>
                                 </div>
                             @endif

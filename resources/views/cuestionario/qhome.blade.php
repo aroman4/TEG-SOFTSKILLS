@@ -41,11 +41,13 @@
                                     @else
                                         <span style="color:black">Respondido</span>
                                     @endif
+                                    <p>{{$cuestionario->created_at}}</p>
                                 </li>                                                                                
                             @elseif(auth()->user()->id == $cuestionario->cliente_id)
                                 <li class="list-group-item listaAsesSolic">
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="secondary-content">{{$cuestionario->titulo}}</a>  
                                     <br><small>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></small><br>
+                                    <p>{{$cuestionario->created_at}}</p>
                                 </li>
                             @endif
                         @empty
@@ -73,10 +75,12 @@
                                     @else
                                         <p style="color:black">Respondido</p>
                                     @endif
+                                    <p>{{$rubrica->created_at}}</p>
                                 </li>                                   
                             @elseif(auth()->user()->id == $rubrica->cliente_id && $rubrica->respondidoc == false)
                                 <li class="list-group-item listaAsesSolic">
                                     <a href="{{route('rubrica.responder', $rubrica->id) }}" title="Responder rubrica" class="secondary-content">{{$rubrica->titulo}}</a>  
+                                    <p>{{$rubrica->created_at}}</p>
                                 </li>
                             @endif
                         @empty
