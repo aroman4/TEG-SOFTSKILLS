@@ -20,7 +20,16 @@
                                 <div class="col-md-6">
                                     <input type="file" class="form-control" name="archivofinal" >
                                 </div>
-                        </div>   
+                        </div> 
+                        <div class="form-group row">
+                                {!! Form::label ('resumen2','Descripción:')!!}
+                                {!! Form::text ('resumen2',null,['class'=>"form-control {{ $errors->has('resumen2') ? ' is-invalid' : '' }}",'placeholder'=>'Resumen del Archivo a Enviar','required'])!!}
+                                @if ($errors->has('resumen2'))
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $errors->first('resumen2') }}</strong>
+                                </span>
+                             @endif
+                        </div>  
                         <button type="submit" class="btn btn-primary boton1">Enviar</button>
                     {!!Form::close()!!}              
             </div>

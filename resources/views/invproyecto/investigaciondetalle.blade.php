@@ -54,6 +54,7 @@
                 @endforeach
                 <div class="row">
                     <a href="{{route('vistaencuesta', $inv->id)}}" class="btn btn-success boton">Ver Resultados</a>
+                <br>  <a title="Cargar Archivo para enviar al Lider" href="./proyectovista/{{$postulacion->id_post}}" class="btn btn-success boton1"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i>Enviar Investigación</a>
                 </div>
             </div>
         </div>

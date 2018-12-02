@@ -59,11 +59,12 @@
                                                 <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-success boton1"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
                                             @endif
                                                 <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning boton1" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
+                                                
                                             <br>
                                         </div>
                                         
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="row">
                                             @if($postulacion->estado_inv == 'inicio')                                
                                                 <p><b style="color:green;"> Etapa:</b> {{$postulacion->estado_inv}} de la Investigación</p>
@@ -97,7 +98,7 @@
  --}}                                       <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning boton1" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
                                     </div>     
                                 </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="row">
                                             @if($postulacion->estado_inv == 'inicio')                                
                                                 <p><b style="color:green;"> Etapa:</b> {{$postulacion->estado_inv}} de la Investigación</p>

@@ -47,6 +47,24 @@
             </div>
         </div>
     </div>
+    {{-- <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <p><b>Solicitudes (Pendientes por aprobación de Finalización de la Investigación):</b></p>
+                    @if(count(\App\Postulacion::all())>0)
+                        @foreach(\App\Postulacion::all() as $Postulacion)
+                            @if(\App\User::find($Postulacion->estado_c=="pendiente"))
+                                <div>
+                                    <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                        <p><b>No hay solicitudes pendientes</b></p>
+                    @endif       
+            </div>
+        </div>
+    </div> --}}
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
