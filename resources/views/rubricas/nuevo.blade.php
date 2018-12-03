@@ -15,11 +15,11 @@
                         <input type="hidden" name="cliente_id" value="{{ $asesoria->id_cliente }}">
                         <div class="form-group row">
                             <label for="titulo">Titulo de la rúbrica</label>
-                            <input name="titulo" id="titulo" type="text" class="form-control">
+                            <input name="titulo" id="titulo" type="text" class="form-control" required>
                         </div>
                         <div class="form-group row">                            
                             <label for="descripcion">Descripción</label>
-                            <textarea name="descripcion" id="descripcion" class="form-control"></textarea>  
+                            <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>  
                         </div>
                         <div class="form-group row">
                             <label for="filas">Ingrese la cantidad de filas</label>                  

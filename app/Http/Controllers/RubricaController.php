@@ -90,7 +90,7 @@ class RubricaController extends Controller
             for($i=0;$i < $rubrica->filas; $i++){ //para cada fila
                 //$promedio = $promedio + $rubrica->{'respuestaa'.$i} + 1; //le sumo 1 para valorar mejor
                 //guardar total cada fila
-                $rubrica->{'total'.$i.'a'} = ($rubrica->{'respuestaa'.$i}+1) * (20/($rubrica->filas))/$rubrica->columnas;
+                $rubrica->{'total'.$i.'a'} = ($rubrica->{'respuestaa'.$i}) * ($rubrica->baseevaluacion/($rubrica->filas))/$rubrica->columnas;
                 $promedio = $promedio + $rubrica->{'total'.$i.'a'};
                 $rubrica->save();
             }
@@ -109,7 +109,7 @@ class RubricaController extends Controller
             for($i=0;$i < $rubrica->filas; $i++){
                 //$promedio = $promedio + $rubrica->{'respuestac'.$i} + 1;
                 //guardar total cada fila
-                $rubrica->{'total'.$i.'c'} = ($rubrica->{'respuestac'.$i}+1) * (20/($rubrica->filas))/$rubrica->columnas;
+                $rubrica->{'total'.$i.'c'} = ($rubrica->{'respuestac'.$i}) * ($rubrica->baseevaluacion/($rubrica->filas))/$rubrica->columnas;
                 $promedio = $promedio + $rubrica->{'total'.$i.'c'};
                 $rubrica->save();
             }

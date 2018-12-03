@@ -13,10 +13,16 @@
       <div class="list-group-item text-center top-bar">
           {{-- <a href='ver/{{$cuestionario->id}}'>Responder cuestionario</a> | <a href="{{$cuestionario->id}}/editar">Editar nombre y descripción</a> | <a href="{{route('cuestionario.respuestas',$cuestionario->id)}}">Ver respuestas</a> <a href="#doDelete" data-toggle="modal" data-target="#doDelete" style="float:right;">Borrar cuestionario</a> --}}
           @if(Auth::user()->tipo_usu == "asesor")
-                <a href="{{route('escritorioasesor')}}" class="btn btn-secondary">Regresar</a>
+                <a href="{{route('moduloasesoria.show',$cuestionario->id_asesoria)}}" class="btn btn-secondary">Regresar</a>
             @elseif(Auth::user()->tipo_usu == "cliente")
                 <a href="{{route('escritoriocliente')}}" class="btn btn-secondary">Regresar</a>    
             @endif  <a href="{{$cuestionario->id}}/editar" class="btn btn-warning">Editar titulo y descripción</a>  <a href="#doDelete" data-toggle="modal" data-target="#doDelete" class="btn btn-danger">Borrar cuestionario</a>
+            @if(!$cuestionario->enviar)
+                <a class="btn btn-primary" href="{{route('cuestionario.enviar',$cuestionario->id)}}">Enviar a cliente</a>
+            @endif
+            @if(!$cuestionario->predefinidoasesor)
+                <a class="btn btn-secondary" href="{{route('cuestionario.guardarpred',$cuestionario->id)}}">Guardar como predefinido</a>
+            @endif
       </div>
       <div class="divider" style="margin:20px 0px;"></div>
       <h2 class="list-group-item text-center top-bar">Añadir pregunta</h2>
@@ -24,7 +30,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">                       
           <div class="list-group-item">
             <label for="titulo">Pregunta</label>
-            <input name="titulo" id="titulo" type="text" class="form-control" placeholder="Formule la pregunta">            
+            <input name="titulo" id="titulo" type="text" class="form-control" placeholder="Formule la pregunta" required>            
           </div>  
           <div class="list-group-item">
             <select name="tipo_pregunta" id="tipo_pregunta" class="form-control">
@@ -51,7 +57,8 @@
               <div style="margin:5px; padding:10px;">
                   {!! Form::open() !!}
                     @if($pregunta->tipo_pregunta === 'text')
-                      {{ Form::text('titulo')}}
+                      {{-- {{ Form::text('titulo')}} --}}
+                      Respuesta escrita
                     @elseif($pregunta->tipo_pregunta === 'textarea')
                       <div class="row">
                         <div class="">
@@ -60,6 +67,7 @@
                         </div>
                       </div>
                     @elseif($pregunta->tipo_pregunta === 'radio')
+                      Selección única
                       @foreach($pregunta->opcion as $key=>$value)
                         <p style="margin:0px; padding:0px;">
                           <input type="radio" id="{{ $key }}" />
@@ -67,6 +75,7 @@
                         </p>
                       @endforeach
                     @elseif($pregunta->tipo_pregunta === 'checkbox')
+                      Selección múltiple
                       @foreach($pregunta->opcion as $key=>$value)
                       <p style="margin:0px; padding:0px;">
                         <input type="checkbox" id="{{ $key }}" />

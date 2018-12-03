@@ -31,7 +31,7 @@
             <div class="text-center">  
                 <h3>Cuestionarios y Rúbricas</h3>      
                 @if(Auth::user()->tipo_usu == "asesor" && $asesoria->estado=="activa")
-                    <a href="{{route('cuestionario.nuevoq',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Cuestionario</a>
+                    <a href="{{route('cuestionario.pantallanuevo',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Cuestionario</a>
                     <a href="{{route('rubrica.nuevo',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Rúbrica</a>
                 @endif
                 <br><br>
@@ -56,7 +56,7 @@
                                         <span style="color:black">Respondido</span>
                                     @endif
                                     <p>{{$cuestionario->created_at}}</p>
-                                @elseif(Auth::user()->tipo_usu == "cliente")
+                                @elseif(Auth::user()->tipo_usu == "cliente" && $cuestionario->enviar)
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="">{{$cuestionario->titulo}}</a>    
                                     <p>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></p>
                                 @endif

@@ -11,14 +11,15 @@
         </div>
         <div class="row">
             <div class="col-md-12 list-group-item">
-                <p><b>Creada el: </b>{{$rubrica->created_at}}</p>
-                <p><b>Descripción: </b>{{$rubrica->descripcion}}</p>
                 <div class="text-right">
                     <a href="{{route('rubrica.detalle', $rubrica->id) }}" title="Editar rúbrica"><i class="fas fa-pencil-alt"></i> Editar</a>
                     <a href="{{route('rubrica.respuesta', $rubrica->id) }}" title="Ver respuesta de rúbrica"><i class="fas fa-chart-pie"></i> Ver respuestas</a>                                    
                     <a href="{{route('rubrica.responder', $rubrica->id) }}" title="Responder rúbrica"><i class="fab fa-wpforms"></i> Responder</a>                                    
                     <a href="{{route('rubrica.eliminar', $rubrica->id) }}" title="Eliminar rúbrica"><i class="fas fa-trash-alt"></i> Eliminar</a>
                 </div>
+                <p><b>Creada el: </b>{{$rubrica->created_at}}</p>
+                <p><b>Descripción: </b>{{$rubrica->descripcion}}</p>
+                <p><b>Puntuación en base a: </b>{{$rubrica->baseevaluacion}}</p>                
                     
                     <table class="table table-bordered">
                         <thead>

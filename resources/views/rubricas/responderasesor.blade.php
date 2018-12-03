@@ -38,7 +38,7 @@
                                     @for($j=0; $j < $rubrica->columnas; $j++)
                                         <td> {{-- celdas internas --}}
                                             {!! $rubrica->{"celda".$i.$j} !!}
-                                            <input type="radio" name="{{'respuestaa'.$i}}" value="{{$j}}">
+                                            <input type="radio" name="{{'respuestaa'.$i}}" value="{{ $rubrica->{"evaluacionval".$j} }}">
                                         </td>
                                     @endfor
                                 </tr>

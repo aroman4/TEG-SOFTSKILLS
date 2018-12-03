@@ -46,7 +46,7 @@
                                     @endif
                                     <p>{{$cuestionario->created_at}}</p>
                                 </li>                                                                                
-                            @elseif(auth()->user()->id == $cuestionario->cliente_id)
+                            @elseif(auth()->user()->id == $cuestionario->cliente_id && $cuestionario->enviar)
                                 <li class="list-group-item listaAsesSolic">
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="secondary-content">{{$cuestionario->titulo}}</a>  
                                     <p>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></p>

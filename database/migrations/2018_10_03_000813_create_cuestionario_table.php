@@ -22,6 +22,9 @@ class CreateCuestionarioTable extends Migration
             $table->integer('id_asesoria')->unsigned()->nullable();
             $table->foreign('id_asesoria')->references('id')->on('asesoria')->onDelete('cascade');
             $table->boolean('respondido')->default(false);
+            $table->boolean('enviar')->default(false);
+            $table->boolean('predefinido')->default(false);
+            $table->boolean('predefinidoasesor')->default(false);
             $table->timestamps();
         });
     }
