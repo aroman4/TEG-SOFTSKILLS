@@ -47,7 +47,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="hidden_html" id="hidden_html" />
                     <button type="button" name="create_pdf" id="create_pdf" class="btn btn-danger btn-xs">Generar PDF</button>
-                    {{--<a class="btn btn-success" href="{{route('exportcuestionario',$cuestionario->id)}}">Generar Excel</a>--}}
+                    <a class="btn btn-success" href="{{route('exportcuestionario',$cuestionario->id)}}">Generar Excel</a>
                 </form>
                 <h2 style="float:right"><span style="color:darkgray">Reporte de:</span> {{$cuestionario->titulo}}</h2>
             </div>

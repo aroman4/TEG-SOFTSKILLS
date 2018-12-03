@@ -10,6 +10,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="hidden_html" id="hidden_html" />
                     <button style="float:left" type="button" name="create_pdf" id="create_pdf" class="btn btn-danger btn-xs">Generar PDF</button>
+                    <a style="float:left" class="btn btn-success" href="{{route('exportrubrica',$rubrica->id)}}">Generar Excel</a>
                 </form>
                 <h2 style="float:right"><span style="color:darkgray">Resultados</span> {{$rubrica->titulo}}</h2>
             </div>     

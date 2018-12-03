@@ -389,6 +389,7 @@ Route::get('bancoclientes',function(){
 })->middleware('auth')->name('bancoclientes');
 Route::get('/exportclientes','UsersController@exportBanco')->name('exportclientes');
 Route::get('/exportcuestionario/{id}','CuestionarioController@exportExcel')->name('exportcuestionario');
+Route::get('/exportrubrica/{id}','RubricaController@exportExcel')->name('exportrubrica');
 
 //actividad
 //---------vista de actividad de Lider

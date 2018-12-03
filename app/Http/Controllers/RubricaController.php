@@ -8,6 +8,9 @@ use App\Rubrica;
 use Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Dompdf\Dompdf;
+use App\Exports\RubricaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RubricaController extends Controller
 {
@@ -145,5 +148,10 @@ class RubricaController extends Controller
         $rubrica->predefinidoasesor = true;
         $rubrica->save();
         return back()->with('success','Rúbrica guardada como predefinida');
+    }
+    public function exportExcel($id) 
+    {
+        $rubrica = Rubrica::find($id);
+        return Excel::download(new RubricaExport($id), $rubrica->titulo.'.xlsx');
     }
 }
