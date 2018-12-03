@@ -54,7 +54,6 @@
                 @endforeach
                 <div class="row">
                     <a href="{{route('vistaencuesta', $inv->id)}}" class="btn btn-success boton">Ver Resultados</a>
-                    <a title="Cargar Archivo para enviar al comite" href="{{route('subirarchivoc', $inv->id)}}" class="btn btn-success boton1"> Enviar Investigación</a>
                 </div>
             </div>
         </div>

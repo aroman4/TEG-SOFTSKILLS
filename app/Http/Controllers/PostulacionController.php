@@ -93,6 +93,25 @@ class PostulacionController extends Controller
 
     }
 
+    //''''''''''''''''enviar al comite
+    public function enviaralcomite(Request $request)
+    {
+        //dd($request);  
+         
+        $postulacion =  Postulacion::find($request->idinvestigacion);
+        if($request->hasFile('archivof')){
+            $archivof = $request->file('archivof');
+            $nombreArch = time().$archivof->getClientOriginalName();
+            $archivof->move(public_path().'/proyecto/',$nombreArch);
+            $postulacion->archivof = $nombreArch;
+        }
+        $postulacion->id_invest = auth()->user()->id;  
+        $postulacion->save();
+        
+        return redirect('/vistainvestigaciones')->with('success','investigación Enviada al Comité');
+
+    }
+
     //aceptar postulacion
     public function AceptarPostulacion($id){
         $postulacion = Postulacion::find($id);

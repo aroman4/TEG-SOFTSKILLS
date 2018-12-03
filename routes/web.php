@@ -176,13 +176,13 @@ Route::get('/proyectogrupalpost', function () {
 })->name('proyectogrupalpost');
 
 Route::get('/proyectoverpost/{id}','PostulacionController@showproyectoverpost')->name('proyectoverpost.showproyectoverpost');
-//---------------enviar archivo al comite---------------------
+/* //---------------enviar archivo al comite---------------------
 //proyecto vista de subir archivo 
-Route::get('/subirarchivoc/{id}', function ($id) {
-    return view('investigacion.subirarchivoc') ->with('idinvestigacion',$id);
-})->name('subirarchivoc');
-Route::post('/subirarchivoc', 'InvestigacionController@enviaralcomite')->name('subirarchivoc');
-
+Route::get('/subirarchivocomite/{id}', function ($id) {
+    return view('investigacion.subirarchivocomite') ->with('idinvestigacion',$id);
+})->name('subirarchivocomite');
+Route::post('/subirarchivocomite', 'PostulacionController@enviaralcomite')->name('subirarchivocomite');
+ */
 //----------subir archivo a la investigacion
 Route::get('/proyectovista/{id}', function ($id) {
     return view('invproyecto.proyectovista') ->with('idpostulacion',$id);
