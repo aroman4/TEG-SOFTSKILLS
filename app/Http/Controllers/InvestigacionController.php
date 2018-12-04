@@ -14,11 +14,11 @@ class InvestigacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-/* //funcion de descarga de archivos 
+ //funcion de descarga de archivos 
 public function descargafuc(){
-    $postulacion = DB::table('postulacion')->get();
-    return view('postulacion.nombreinvpostulacion',compact('nombreinvpostulacion'));
-} */
+    $inv = DB::table('investigacion')->get();
+    return view('investigaciones.moduloinvestigacion',compact('moduloinvestigacion'));
+} 
     public function index()
     {
         //
@@ -34,9 +34,9 @@ public function descargafuc(){
             $inv->archivofinal = $tipo_inv;
         }
         $inv->user_id = auth()->user()->id;  
-/*         $inv->estado = "finalizada";  
- */        $inv->save();
-        return redirect('/publicacioninve')->with('success','Investigación Cargada');
+        $inv->estado_com = "enviado";  
+        $inv->save();
+        return redirect('/publicacioninve')->with('success','Investigación Enviada al comité');
     }
     
     /**
@@ -133,6 +133,50 @@ public function descargafuc(){
         $voto->id_sol = $id;
         $voto->save();
         return redirect('/escritoriocomite')->with('success','Voto recibido'.$mensaje);
+    }
+    //Aceptar Investigacion finalizada de COMITE
+    public function AceptarInvest($id){
+        $inv = Investigacion::find($id);
+        $inv->votoscomite = $inv->votoscomite + 1;
+        $inv->votosfavor = $inv->votosfavor + 1;
+        //cambiar el estado de la investigacion
+        if($inv->votoscomite == 3){ //si todo el comite ya votó
+            if($inv->votosfavor >= 2){ //si hay 2 votos o mas a favor
+                $inv->estado = 'finalizada';
+            }else if($inv->votoscontra >= 2){ //si hay dos o más votos en contra
+                //avisar que la inv fue rechazada
+                $inv->estado = 'activa';
+            }
+        }
+        $inv->save();
+        //verificar voto
+        $voto = new \App\Voto();
+        $voto->user_id = auth()->user()->id;
+        $voto->id = $id;
+        $voto->save();
+        return redirect('/escritoriocomite')->with('success','Voto recibido');
+    }
+    public function RechazarInvest($id){
+        //
+        $inv = Investigacion::find($id);
+        $inv->votoscomite = $inv->votoscomite + 1;
+        $inv->votosfavor = $inv->votosfavor + 1;
+        //cambiar el estado de la inv
+        if($inv->votoscomite == 3){ //si todo el comite ya votó
+            if($inv->votosfavor >= 2){ //si hay 2 votos o mas a favor
+                $inv->estado = 'finalizada';
+            }else if($inv->votoscontra >= 2){ //si hay dos o más votos en contra
+                //avisar que la inv fue rechazada
+                $inv->estado = 'activa';
+            }
+        }
+        $inv->save();
+        //verificar voto
+        $voto = new \App\Voto();
+        $voto->user_id = auth()->user()->id;
+        $voto->id = $id;
+        $voto->save();
+        return redirect('/escritoriocomite')->with('success','Voto recibido');
     }
     /**
      * Store a newly created resource in storage.

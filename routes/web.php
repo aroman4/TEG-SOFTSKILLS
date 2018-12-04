@@ -224,6 +224,19 @@ Route::get('/rechazarpostulacion/{id}','PostulacionController@RechazarPostulacio
         'PostulacionController@RechazarPostulacion', ['id' => $id]
     );
 });
+//investigacion finalizada
+//ruta aceptar postulacion
+Route::get('/aceptarinvest/{id}','InvestigacionController@AceptarInvest', function($id){
+    return redirect()->action(
+        'InvestigacionController@AceptarInvest', ['id' => $id]
+    );
+});
+//rechachar postulacion
+Route::get('/rechazarinvest/{id}','InvestigacionController@RechazarInvest', function($id){
+    return redirect()->action(
+        'InvestigacionController@RechazarInvest', ['id' => $id]
+    );
+});
 
 //Eliminar postulacion rechazada
 Route::resource('modulopost','PostulacionController');
