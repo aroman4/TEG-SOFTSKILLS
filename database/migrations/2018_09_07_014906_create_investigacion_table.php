@@ -28,7 +28,6 @@ class CreateInvestigacionTable extends Migration
             $table->integer('votosfavor')->default(0);
             $table->integer('votoscontra')->default(0);
             $table->timestamps();
-
             //clave foranea id de usuario
             $table->integer('user_id')->unsigned(); //id del investigador
             $table->foreign('user_id')->references('id')->on('usuario')->onDelete('cascade');
