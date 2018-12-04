@@ -26,7 +26,6 @@ public function descargafuc(){
     public function enviar(Request $request)
     {
         //dd($request);  
-         
         $inv =  Investigacion::find($request->idinvestigacion);
         if($request->hasFile('archivofinal')){
             $archivo_inv = $request->file('archivofinal');
@@ -35,10 +34,9 @@ public function descargafuc(){
             $inv->archivofinal = $tipo_inv;
         }
         $inv->user_id = auth()->user()->id;  
-        $inv->estado = "finalizada";  
-        $inv->save();
-        
-        return redirect('/publicacioninve')->with('success','Investigación Finalizada');
+/*         $inv->estado = "finalizada";  
+ */        $inv->save();
+        return redirect('/publicacioninve')->with('success','Investigación Cargada');
     }
     
     /**

@@ -23,7 +23,10 @@ class CreateInvestigacionTable extends Migration
             $table->string('tipo_inv')->nullable();//nombre del investigador 
             $table->integer('id_solic')->nullable();
             $table->enum('estado', ['activa', 'finalizada'])->default('activa');
-            $table->integer('cantidad')->nullable();
+            $table->integer('cantidad')->default(0);
+            $table->integer('votoscomite')->default(0);            
+            $table->integer('votosfavor')->default(0);
+            $table->integer('votoscontra')->default(0);
             $table->timestamps();
 
             //clave foranea id de usuario
