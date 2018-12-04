@@ -139,12 +139,14 @@ public function descargafuc(){
         $inv = Investigacion::find($id);
         $inv->votoscomite = $inv->votoscomite + 1;
         $inv->votosfavor = $inv->votosfavor + 1;
+        $mensaje = ""; //para avisar el estado de la solicitud
         //cambiar el estado de la investigacion
         if($inv->votoscomite == 3){ //si todo el comite ya votó
             if($inv->votosfavor >= 2){ //si hay 2 votos o mas a favor
                 $inv->estado = 'finalizada';
             }else if($inv->votoscontra >= 2){ //si hay dos o más votos en contra
                 //avisar que la inv fue rechazada
+                $mensaje = " Investigación rechazada";
                 $inv->estado = 'activa';
             }
         }
@@ -152,21 +154,24 @@ public function descargafuc(){
         //verificar voto
         $voto = new \App\Voto();
         $voto->user_id = auth()->user()->id;
-        $voto->id = $id;
+        $voto->id_inv = $id;
         $voto->save();
-        return redirect('/escritoriocomite')->with('success','Voto recibido');
+        return redirect('/escritoriocomite')->with('success','Voto recibido'.$mensaje);
     }
+
     public function RechazarInvest($id){
         //
         $inv = Investigacion::find($id);
         $inv->votoscomite = $inv->votoscomite + 1;
         $inv->votosfavor = $inv->votosfavor + 1;
+        $mensaje = ""; //para avisar el estado de la solicitud
         //cambiar el estado de la inv
         if($inv->votoscomite == 3){ //si todo el comite ya votó
             if($inv->votosfavor >= 2){ //si hay 2 votos o mas a favor
                 $inv->estado = 'finalizada';
             }else if($inv->votoscontra >= 2){ //si hay dos o más votos en contra
                 //avisar que la inv fue rechazada
+                $mensaje = " Investigación rechazada";
                 $inv->estado = 'activa';
             }
         }
@@ -174,9 +179,9 @@ public function descargafuc(){
         //verificar voto
         $voto = new \App\Voto();
         $voto->user_id = auth()->user()->id;
-        $voto->id = $id;
+        $voto->id_inv = $id;
         $voto->save();
-        return redirect('/escritoriocomite')->with('success','Voto recibido');
+        return redirect('/escritoriocomite')->with('success','Voto recibido'.$mensaje);
     }
     /**
      * Store a newly created resource in storage.
