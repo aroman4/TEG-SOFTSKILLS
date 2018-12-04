@@ -149,7 +149,9 @@ Route::get('/solasedetalle/{id}',function($id){
     $solicitud = \App\Solicitud::find($id);
     return view('asesoria.solicitudasedetalle')->with('solicitud',$solicitud);
 })->name('solasedetalle');
-
+Route::get('/perfilusu', function () {
+    return view('admin.usuarios.perfil');
+})->name('perfilusu');
 
 
 Route::resource('moduloinvestigaciones','InvestigacionController');
