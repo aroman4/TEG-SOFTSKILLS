@@ -10,6 +10,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="hidden_html" id="hidden_html" />
                     <button style="float:left" type="button" name="create_pdf" id="create_pdf" class="btn btn-danger btn-xs">Generar PDF</button>
+                    <a style="float:left" class="btn btn-success" href="{{route('exportrubrica',$rubrica->id)}}">Generar Excel</a>
                 </form>
                 <h2 style="float:right"><span style="color:darkgray">Resultados</span> {{$rubrica->titulo}}</h2>
             </div>     
@@ -28,9 +29,12 @@
                                 <tr>
                                     <th scope="col"></th>
                                     @for($j=0; $j < $rubrica->columnas; $j++)
-                                        <th scope="col">{!!$rubrica->{'evaluacion'.$j}!!}</th>
+                                        <th scope="col">
+                                            {!!$rubrica->{'evaluacion'.$j}!!}<br>
+                                            {!!$rubrica->{'evaluacionval'.$j}!!}
+                                        </th>
                                     @endfor
-                                    <th scope="col">Puntuación / 20pts</th>
+                                    <th scope="col">Puntuación</th>
                                 </tr>
                             </thead>
                             {{-- resto de la tabla --}}                    
@@ -43,7 +47,7 @@
                                         @for($j=0; $j < $rubrica->columnas; $j++)
                                             {{-- marcar la respuesta en la tabla --}}
                                             {{--  || $rubrica->{'respuestac'.$i} == $j --}}
-                                            @if($rubrica->{'respuestaa'.$i} == $j)
+                                            @if($rubrica->{'respuestaa'.$i} == $rubrica->{"evaluacionval".$j})
                                                 <td class="table-success">
                                             @else
                                                 <td>
@@ -53,14 +57,14 @@
                                             </td>                                        
                                         @endfor  
                                         {{-- mostrar puntaje --}}
-                                        <td>{!! $rubrica->{"total".$i.'a'} !!}</td>
+                                        <td>{!! /* $rubrica->{"total".$i.'a'} */$rubrica->{'respuestaa'.$i} !!}</td>
                                     </tr>
                                 @endfor
                             </tbody>
 
                         </table>
                         {{-- mostrar puntaje --}}
-                        <h4>Puntuación total / 20pts: <span style="font-size:50px">{!! $rubrica->totala !!}</span></h4>
+                        {{-- <h4>Puntuación total / {{$rubrica->baseevaluacion}}pts: <span style="font-size:50px">{!! $rubrica->totala !!}</span></h4> --}}
                         <div id="piechart" style="width: 900px; height: 500px;"></div>
                     @endif
                     @if($rubrica->respondidoc)
@@ -74,7 +78,7 @@
                                     @for($j=0; $j < $rubrica->columnas; $j++)
                                         <th scope="col">{!!$rubrica->{'evaluacion'.$j}!!}</th>
                                     @endfor
-                                    <th scope="col">Puntuación / 20pts</th>
+                                    <th scope="col">Puntuación</th>
                                 </tr>
                             </thead>
                             {{-- resto de la tabla --}}                    
@@ -86,7 +90,7 @@
                                         </th>
                                         @for($j=0; $j < $rubrica->columnas; $j++)
                                             {{-- marcar la respuesta en la tabla --}}
-                                            @if($rubrica->{'respuestac'.$i} == $j)
+                                            @if($rubrica->{'respuestac'.$i} == $rubrica->{"evaluacionval".$j})
                                                 <td class="table-success">
                                             @else
                                                 <td>
@@ -96,14 +100,14 @@
                                             </td>                                        
                                         @endfor  
                                         {{-- mostrar puntaje --}}
-                                        <td>{!! $rubrica->{"total".$i.'c'} !!}</td>
+                                        <td>{!! /* $rubrica->{"total".$i.'c'} */$rubrica->{'respuestac'.$i} !!}</td>
                                     </tr>
                                 @endfor
                             </tbody>
 
                         </table>
                         {{-- mostrar puntaje --}}
-                        <h4>Puntuación total / 20pts: <span style="font-size:50px">{!! $rubrica->totalc !!}</span></h4>
+                        {{-- <h4>Puntuación total / {{$rubrica->baseevaluacion}}pts: <span style="font-size:50px">{!! $rubrica->totalc !!}</span></h4> --}}
                         <div id="piechart2" style="width: 900px; height: 500px;"></div>
                         <h2>Comparación resultados cliente y asesor</h2>
                      @endif

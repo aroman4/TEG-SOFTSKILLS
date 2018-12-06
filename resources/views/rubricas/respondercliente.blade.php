@@ -12,6 +12,8 @@
         </div>
         <div class="row">
             <div class="col-md-12 list-group-item">   
+                <p><b>Creada el: </b>{{$rubrica->created_at}}</p>
+                <p><b>Descripción: </b>{{$rubrica->descripcion}}</p>
                 <h4>Seleccione una opción por cada fila y presione Responder</h4>
                 <form method="POST" action="{{route('rubrica.guardarResp',$rubrica->id)}}" id="crearR" class="form-group">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -36,7 +38,7 @@
                                     @for($j=0; $j < $rubrica->columnas; $j++)
                                         <td> {{-- celdas internas --}}
                                             {!! $rubrica->{"celda".$i.$j} !!}
-                                            <input type="radio" name="{{'respuestac'.$i}}" value="{{$j}}">
+                                            <input type="radio" name="{{'respuestac'.$i}}" value="{{ $rubrica->{"evaluacionval".$j} }}">
                                         </td>
                                     @endfor
                                 </tr>

@@ -11,6 +11,8 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 /* use Barryvdh\DomPDF\Facade as PDF; */
 use Dompdf\Dompdf;
+use App\Exports\CuestionarioExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CuestionarioController extends Controller
 {
@@ -108,6 +110,38 @@ class CuestionarioController extends Controller
     {
         $cuestionario = Cuestionario::find($id);
         $cuestionario->delete();
-        return redirect()->route('escritorioasesor');
+        return redirect()->route('moduloasesoria.show',$cuestionario->id_asesoria)->with('error','Cuestionario eliminado');
+    }
+    public function detallepred($idrub, $idase){
+        $cuestionario = Cuestionario::find($idrub);
+        //$cuestionarioNuevo = new cuestionario($cuestionario);
+        $cuestionarioNuevo = $cuestionario->replicate();
+        $asesoria = Asesoria::find($idase);
+        $cuestionarioNuevo->user_id = auth()->user()->id;
+        $cuestionarioNuevo->predefinido = false;
+        $cuestionarioNuevo->id_asesoria = $idase;
+        $cuestionarioNuevo->cliente_id = $asesoria->id_cliente;
+        $cuestionarioNuevo->enviar = false;
+        $cuestionarioNuevo->predefinidoasesor = false;
+        $cuestionarioNuevo->save();
+        /* return view('cuestionario.detalle')->with('cuestionario',$cuestionarioNuevo); */
+        return redirect()->route('cuestionario.detalle',$cuestionarioNuevo);
+    }
+    public function enviar($id){
+        $cuestionario = Cuestionario::find($id);
+        $cuestionario->enviar = true;
+        $cuestionario->save();
+        return back()->with('success','Cuestionario enviado al cliente');
+    }
+    public function guardarpred($id){
+        $cuestionario = Cuestionario::find($id);
+        $cuestionario->predefinidoasesor = true;
+        $cuestionario->save();
+        return back()->with('success','Cuestionario guardado como predefinido');
+    }
+    public function exportExcel($id) 
+    {
+        $cuestionario = Cuestionario::find($id);
+        return Excel::download(new CuestionarioExport($id), $cuestionario->titulo.'.xlsx');
     }
 }

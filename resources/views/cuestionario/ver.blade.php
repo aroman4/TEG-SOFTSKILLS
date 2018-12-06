@@ -18,7 +18,7 @@
             @if($pregunta->tipo_pregunta === 'text')
                 <div class="list-group-item">
                     <label for="respuesta">Su respuesta</label>
-                    <input id="respuesta" type="text" name="{{ $pregunta->id }}[respuesta]" class="form-control">
+                    <input id="respuesta" type="text" name="{{ $pregunta->id }}[respuesta]" class="form-control" required>
                 </div>
             @elseif($pregunta->tipo_pregunta === 'textarea')
                 <div class="list-group-item">

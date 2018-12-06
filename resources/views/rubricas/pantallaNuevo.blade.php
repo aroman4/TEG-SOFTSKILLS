@@ -8,16 +8,17 @@
                 <h3 style="float:right">{{ __('Añadir nueva rúbrica') }}</h3>
             </div>
                 <div class="card-body">
-                    <h2>Elige una de las siguientes rúbricas predefinidas...</h2>
+                    <h2>Elige una de las siguientes rúbricas predefinidas...</h2>                    
                     <div class="list-group">
                     @foreach(\App\Rubrica::all() as $rubrica)
-                        @if($rubrica->predefinido == true)
+                        @if($rubrica->predefinido || ($rubrica->predefinidoasesor && ($rubrica->user_id == auth()->user()->id)))
                             <div class="list-group-item listaAsesSolic">
                                 <a href="{{route('rubrica.detallepred',['rubrica'=>$rubrica->id,'asesoria'=>$asesoria->id])}}">{{$rubrica->titulo}}</a>
                             </div>
                         @endif
-                    @endforeach  
+                    @endforeach
                     </div>
+                    <br>
                     <h2>...O crea una nueva rúbrica</h2>
                     <a href="{{route('rubrica.pantallanuevo',$asesoria->id)}}" class="btn btn-primary">Crear nueva</a>
                 </div>

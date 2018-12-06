@@ -183,11 +183,17 @@ class AsesoriaController extends Controller
         $solicitud->estado = "rechazada";
         $solicitud->save();
         //enviar email al cliente
-        Mail::send('email.solicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
-            $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
-            ->subject('Solicitud de asesoría Rechazada - SoftSkills');
-            $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-        });
+        if($solicitud->tipo == "presolicitud"){
+
+        }else{
+            Mail::send('email.presolicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
+                $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
+                ->subject('Solicitud de asesoría Rechazada - SoftSkills');
+                $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
+            });
+        }
+        
+        
         return redirect('/escritorioasesor')->with('error','Solicitud Rechazada');
     }
 

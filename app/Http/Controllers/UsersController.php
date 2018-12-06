@@ -87,7 +87,20 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        $pass = $user->password;
         $user->fill($request->all());
+
+        if($request->password == null){
+            $user->password = $pass;
+        }
+
+        //imagen
+        if($request->hasFile('imagen')){
+            $archivo = $request->file('imagen');
+            $nombreArch = time().$archivo->getClientOriginalName();
+            $archivo->move(public_path().'/imagenperfil/',$nombreArch);
+            $user->imagen = $nombreArch;
+        }
 /*         $user->tipo_inv = $request->tipo_inv;
         $user->sexo = $request->sexo;
         $user->telefono = $request->telefono;
@@ -95,7 +108,12 @@ class UsersController extends Controller
         $user->edad = $request->edad;
         $user->profesion = $request->profesion; */
         $user->save();
-        return redirect('/escritorioinv')->with('success','Modificado');
+
+        if(auth()->user()->tipo_usu == "investigador"){
+            return redirect('/escritorioinv')->with('success','Modificado');
+        }else{
+            return redirect('/perfilusu')->with('success','Modificado');
+        }
     }
 
 

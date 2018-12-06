@@ -23,9 +23,12 @@ class RequestController extends Controller
         //return view('index');
         $tipoUser = Auth::user()->tipo_usu;
         //solicitudes de asesoria paginadas
-        $solicitudesace = DB::table('solicitud')->where('estado','aceptada')->paginate(6);
-        $solicitudespen = DB::table('solicitud')->where('estado','pendiente')->paginate(6);
-        $solicitudesrec = DB::table('solicitud')->where('estado','rechazada')->paginate(6);
+        /* $solicitudesace = DB::table('solicitud')->where('estado','aceptada')->paginate(3);
+        $solicitudespen = DB::table('solicitud')->where('estado','pendiente')->paginate(3);
+        $solicitudesrec = DB::table('solicitud')->where('estado','rechazada')->paginate(3); */
+        $solicitudesace = \App\Solicitud::paginate(10, ['*'], 'aceptada');
+        $solicitudespen = \App\Solicitud::paginate(10, ['*'], 'pendiente');
+        $solicitudesrec = \App\Solicitud::paginate(10, ['*'], 'rechazada');
         //$presolicitudes = DB::table('solicitud')->where('tipo','presolicitud')->paginate(6);
         //return view('asesoria.asesoriasescritorio')->with('asesorias',$asesorias);
         

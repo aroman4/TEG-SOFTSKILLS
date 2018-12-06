@@ -18,7 +18,8 @@
                         <div class="asesoria">
                             <li class="list-group-item listaAsesSolic">
                                 <a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">{{$ase->titulo}}</a>
-                                <small>{{\App\User::find($ase->id_cliente)->nombre .' '. \App\User::find($ase->id_cliente)->apellido}}</small>
+                                <p>{{\App\User::find($ase->id_cliente)->nombre .' '. \App\User::find($ase->id_cliente)->apellido}}</p>
+                                <p>{{$ase->created_at}}</p>
                             </li>
                         </div>
                     @endif
@@ -37,7 +38,8 @@
                         <div class="asesoria">
                             <li class="list-group-item listaAsesSolic">
                                 <a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}">{{$ase->titulo}}</a>
-                                <small>{{\App\User::find($ase->id_cliente)->nombre .' '. \App\User::find($ase->id_cliente)->apellido}}</small>
+                                <p>{{\App\User::find($ase->id_cliente)->nombre .' '. \App\User::find($ase->id_cliente)->apellido}}</p>
+                                <p>{{$ase->created_at}}</p>
                             </li>
                         </div>
                     @endif    

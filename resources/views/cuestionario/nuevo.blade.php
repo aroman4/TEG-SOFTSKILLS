@@ -15,16 +15,16 @@
                         <input type="hidden" name="cliente_id" value="{{ $asesoria->id_cliente }}">
                         <div class="form-group row">
                             <label for="titulo">Titulo del cuestionario</label>
-                            <input name="titulo" id="titulo" type="text" class="form-control">
+                            <input name="titulo" id="titulo" type="text" class="form-control" required>
                         </div>
                         <div class="form-group row">                            
                             <label for="descripcion">Descripción</label>
-                            <textarea name="descripcion" id="descripcion" class="form-control"></textarea>  
+                            <textarea name="descripcion" id="descripcion" class="form-control" required></textarea>  
                         </div>
                 
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-primary">Siguiente</button>
+                                <button class="btn btn-primary">Siguiente (Crear)</button>
                             </div>
                         </div>
                     </form>            

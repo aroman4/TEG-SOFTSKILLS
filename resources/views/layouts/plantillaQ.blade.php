@@ -12,7 +12,7 @@
                         <img class="userImg" src="{{asset('imagenperfil/avatarplaceholder.png')}}">
                     @endif
                 </li>
-                <li class="list-group-item text-center">{{Auth::user()->nombre ." ". Auth::user()->apellido}}</li>
+                <li class="list-group-item text-center"><a style="color:white" href="{{route('perfilusu')}}">{{Auth::user()->nombre ." ". Auth::user()->apellido}}</a></li>
                 @if(auth()->user()->tipo_usu == "asesor")
                     <li class="list-group-item {{ request()->is('escritorioasesor') ? 'active' : '' }}"><a class="aMenuLateral" href="{{route('escritorioasesor')}}"><i class="fas fa-home"></i> Escritorio</a></li>
                 @elseif(auth()->user()->tipo_usu == "cliente")

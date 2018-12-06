@@ -31,7 +31,7 @@
             <div class="text-center">  
                 <h3>Cuestionarios y Rúbricas</h3>      
                 @if(Auth::user()->tipo_usu == "asesor" && $asesoria->estado=="activa")
-                    <a href="{{route('cuestionario.nuevoq',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Cuestionario</a>
+                    <a href="{{route('cuestionario.pantallanuevo',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Cuestionario</a>
                     <a href="{{route('rubrica.nuevo',$asesoria->id)}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Rúbrica</a>
                 @endif
                 <br><br>
@@ -44,17 +44,21 @@
                                 
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a href="{{route('cuestionario.detalle', $cuestionario->id)}}" style="float:left">{{$cuestionario->titulo}}</a>
-                                    <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" ><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fas fa-chart-pie"></i></a>                                    
-                                    <br><small>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></small><br>
+                                    <div class="text-right">
+                                        <a href="{{route('cuestionario.detalle', $cuestionario->id) }}" title="Editar cuestionario" ><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{route('cuestionario.respuestas', $cuestionario->id) }}" title="Ver respuestas del cuestionario"><i class="fas fa-chart-pie"></i></a>     
+                                        <a href="{{route('cuestionario.delete', $cuestionario->id) }}" title="Eliminar cuestionario"><i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                    <p>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></p>
                                     @if($cuestionario->respondido == false)
                                         <span style="color:black">No respondido</span>
                                     @else
                                         <span style="color:black">Respondido</span>
                                     @endif
-                                @elseif(Auth::user()->tipo_usu == "cliente")
+                                    <p>{{$cuestionario->created_at}}</p>
+                                @elseif(Auth::user()->tipo_usu == "cliente" && $cuestionario->enviar)
                                     <a href="{{route('cuestionario.ver', $cuestionario->id) }}" title="Responder cuestionario" class="">{{$cuestionario->titulo}}</a>    
-                                    <br><small>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></small><br>
+                                    <p>Enlace público: <a style="font-size:10px;" href="{{route('cuestionariopublico', $cuestionario->id) }}" title="Enlace público:">{{route('cuestionariopublico', $cuestionario->id) }}</a></p>
                                 @endif
                             </div>
                             
@@ -66,26 +70,32 @@
                     {{-- Rúbricas --}}
                     @forelse (\App\Rubrica::all() as $rub)
                         @if($rub->id_asesoria == $asesoria->id)
-                            <li class="list-group-item listaAsesSolic">
-                            <div>
+                            
+                            <div class="text-left">
                                 
                                 @if(Auth::user()->tipo_usu == "asesor")
-                                    <a href="{{route('rubrica.detalle', $rub->id)}}" style="float:left">{{$rub->titulo}}</a>
-                                    <a href="{{route('rubrica.detalle', $rub->id) }}" title="Editar rúbrica"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{route('rubrica.respuesta', $rub->id) }}" title="Ver respuesta de rúbrica"><i class="fas fa-chart-pie"></i></a>                                    
-                                    <a href="{{route('rubrica.responder', $rub->id) }}" title="Responder rúbrica"><i class="fab fa-wpforms"></i></a>
-                                    @if($rub->respondidoc == false)
-                                        <span style="color:black">No respondido</span>
-                                    @else
-                                        <span style="color:black">Respondido</span>
-                                    @endif
-                                @elseif(Auth::user()->tipo_usu == "cliente" && $rub->respondidoc == false)
-                                    <a href="{{route('rubrica.responder', $rub->id) }}" title="Responder rúbrica" class="">{{$rub->titulo}}</a>    
-                                    <span style="color:black">Rúbrica</span>
+                                    <li class="list-group-item listaAsesSolic">
+                                        <a href="{{route('rubrica.ver', $rub->id)}}" style="float:left">{{$rub->titulo}}</a>
+                                        <div class="text-right">
+                                            <a href="{{route('rubrica.detalle', $rub->id) }}" title="Editar rúbrica"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="{{route('rubrica.respuesta', $rub->id) }}" title="Ver respuesta de rúbrica"><i class="fas fa-chart-pie"></i></a>                                    
+                                            <a href="{{route('rubrica.responder', $rub->id) }}" title="Responder rúbrica"><i class="fab fa-wpforms"></i></a>                                    
+                                            <a href="{{route('rubrica.eliminar', $rub->id) }}" title="Eliminar rúbrica"><i class="fas fa-trash-alt"></i></a>
+                                        </div>
+                                        @if($rub->respondidoc == false)
+                                            <p style="color:black">No respondido</p>
+                                        @else
+                                            <p style="color:black">Respondido</p>
+                                        @endif
+                                        <p>{{$rub->created_at}}</p>
+                                    </li>
+                                @elseif(Auth::user()->tipo_usu == "cliente" && $rub->respondidoc == false && $rub->enviar)
+                                    <li class="list-group-item listaAsesSolic">    
+                                        <a href="{{route('rubrica.responder', $rub->id) }}" title="Responder rúbrica" class="">{{$rub->titulo}}</a>    
+                                        <span style="color:black">Rúbrica</span>
+                                    </li>
                                 @endif
                             </div>
-                            
-                            </li>
                         @endif
                     @empty
                         <p class="flow-text center-align">No hay rúbricas creadas</p>

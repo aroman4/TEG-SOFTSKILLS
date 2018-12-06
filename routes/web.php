@@ -154,7 +154,9 @@ Route::get('/solasedetalle/{id}',function($id){
     $solicitud = \App\Solicitud::find($id);
     return view('asesoria.solicitudasedetalle')->with('solicitud',$solicitud);
 })->name('solasedetalle');
-
+Route::get('/perfilusu', function () {
+    return view('admin.usuarios.perfil');
+})->name('perfilusu');
 
 
 Route::resource('moduloinvestigaciones','InvestigacionController');
@@ -296,6 +298,15 @@ Route::get('/cuestionariopublicorespondido',function(){
     return view('cuestionario.respondido');
 })->name('cuestionariopublicorespondido');
 
+Route::get('/cuestionario/pnuevo/{id}', function($id){
+    $asesoria = \App\Asesoria::find($id);
+    return view('cuestionario.pantallaNuevo')->with('asesoria',$asesoria);
+})->name('cuestionario.pantallanuevo');
+Route::get('/cuestionario/enviar/{cuestionario}', 'CuestionarioController@enviar')->name('cuestionario.enviar');
+Route::get('/cuestionario/guardarpred/{cuestionario}', 'CuestionarioController@guardarpred')->name('cuestionario.guardarpred');
+Route::get('/cuestionario/predefinida/{cuestionario}/ase/{asesoria}', 'CuestionarioController@detallepred')->name('cuestionario.detallepred');
+
+
 // preguntas
 Route::post('/cuestionario/{cuestionario}/preguntas', 'PreguntaController@store')->name('pregunta.guardar');
  
@@ -312,6 +323,10 @@ Route::post('/rubrica/formar/{id}', 'RubricaController@formar')->name('rubrica.f
 Route::get('/rubrica/responder/{rubrica}', 'RubricaController@responderRubrica')->name('rubrica.responder');
 Route::get('/rubrica/respuesta/{rubrica}', 'RubricaController@respuestasRubrica')->name('rubrica.respuesta');
 Route::post('/rubrica/guardarrespuesta{id}','RubricaController@guardarRespuesta')->name('rubrica.guardarResp');
+Route::get('/rubrica/eliminar/{rubrica}', 'RubricaController@EliminarRubrica')->name('rubrica.eliminar');
+Route::get('/rubrica/ver/{rubrica}', 'RubricaController@ver')->name('rubrica.ver');
+Route::get('/rubrica/enviar/{rubrica}', 'RubricaController@enviar')->name('rubrica.enviar');
+Route::get('/rubrica/guardarpred/{rubrica}', 'RubricaController@guardarpred')->name('rubrica.guardarpred');
 
 //admin
 //ruta aceptar investigacion
@@ -394,6 +409,8 @@ Route::get('bancoclientes',function(){
     return view('asesoria.bancoclientes');
 })->middleware('auth')->name('bancoclientes');
 Route::get('/exportclientes','UsersController@exportBanco')->name('exportclientes');
+Route::get('/exportcuestionario/{id}','CuestionarioController@exportExcel')->name('exportcuestionario');
+Route::get('/exportrubrica/{id}','RubricaController@exportExcel')->name('exportrubrica');
 
 //actividad
 //---------vista de actividad de Lider
