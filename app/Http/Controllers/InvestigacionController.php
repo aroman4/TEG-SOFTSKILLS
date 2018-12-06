@@ -21,7 +21,7 @@ public function descargafuc(){
 } 
     public function index()
     {
-        //
+       //
     }
     public function enviar(Request $request)
     {
@@ -144,6 +144,13 @@ public function descargafuc(){
         if($inv->votoscomite == 3){ //si todo el comite ya votó
             if($inv->votosfavor >= 2){ //si hay 2 votos o mas a favor
                 $inv->estado = 'finalizada';
+                /* $postulacion = DB::table('postulacion')->where('id_post', $inv->id)->first();
+                $postulacion->estado_inv = 'finalizado';
+                dd($postulacion);
+
+                $postulacion->save();
+                dd($postulacion); */
+
             }else if($inv->votoscontra >= 2){ //si hay dos o más votos en contra
                 //avisar que la inv fue rechazada
                 $mensaje = " Investigación rechazada";

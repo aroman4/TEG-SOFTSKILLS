@@ -12,6 +12,8 @@ Route::get('/solicitud', 'RequestController@solicitud');
 
 //publicacion
 Route::get('/publicacioninve', 'PublicacionController@index')->name('publicacioninve');
+Route::get('/resultados', 'InvestigacionController@index')->name('resultados');
+
 /* Route::get('/nombreinvpostulacion', 'PublicacionController@index')->name('nombreinvpostulacion');
  */
 //route de usuario
@@ -91,6 +93,9 @@ Route::get('/administracion', function () {
 Route::get('/postulaciones', function () {
     return view('investigaciones.postulaciones');
 })->name('postulaciones');
+Route::get('/resultados', function () {
+    return view('investigaciones.resultados');
+})->name('resultados');
 Route::get('/asesoriasescritorio', function () {
     //$asesorias = \App\Asesoria::paginate(6);
     $asesoriasact = DB::table('asesoria')->where('estado','activa')->paginate(6);
@@ -176,13 +181,7 @@ Route::get('/proyectogrupalpost', function () {
 })->name('proyectogrupalpost');
 
 Route::get('/proyectoverpost/{id}','PostulacionController@showproyectoverpost')->name('proyectoverpost.showproyectoverpost');
-/* //---------------enviar archivo al comite---------------------
-//proyecto vista de subir archivo 
-Route::get('/subirarchivocomite/{id}', function ($id) {
-    return view('investigacion.subirarchivocomite') ->with('idinvestigacion',$id);
-})->name('subirarchivocomite');
-Route::post('/subirarchivocomite', 'PostulacionController@enviaralcomite')->name('subirarchivocomite');
- */
+
 //----------subir archivo a la investigacion
 Route::get('/proyectovista/{id}', function ($id) {
     return view('invproyecto.proyectovista') ->with('idpostulacion',$id);

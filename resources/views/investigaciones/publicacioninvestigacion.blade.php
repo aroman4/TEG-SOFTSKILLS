@@ -22,11 +22,13 @@
                                 <p ><b>Fecha:</b> {{$inv->created_at}} </p>
                                 @if(auth()->user()->id == $inv->user_id)
                                         <p style="color:darkgreen; margin:8px;"><b><i>  </i></b> </p><br>
+                                    @if($inv->estado == 'activa')
                                         <a href="{{route('subirarchivofinal',$inv->id)}}" class="btn btn-success boton1">Subir Archivo</a>  
                                     @endif
+                                @endif
                             </div>
                             <div class=" row">
-                                <h4><b>Título:</b>  {{($inv->titulo)}}</h4>
+                                <h4><i>Título:  {{($inv->titulo)}}</i></h4>
                             </div>
                             <div class=" row">
                                 @if(\App\User::find($inv->user_id)->sexo == "Femenino")
@@ -44,20 +46,18 @@
                             <div class="col-12">
                                 <div class="row">
                                     @if($inv->estado == 'activa')
-                                        <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación Activa</b> </p>
+                                        <p><b>Estatus:</b>  Investigación Activa</p>
                                         <hr style="color: #0056b2; margin:8px;" />
                                         <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
                                         <div style="margin:20px;"></div>
                                     @else
-                                        <p style="color: #990000; margin:8px; float:right;"><b>Estátus: Investigación Finalizada</b> </p>
-                                        <button type="button" class="btn btn-primary boton1" >
-                                                @if($inv->archivofinal != NULL) 
-                                                     <a class="btn btn-primary" href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"><i title="Descargar Archivo Final"class="fa fa-download"> Download </i></a>
-                                                @endif
-                                          
-                                         </button>
+                                        <p><b>Estatus:</b> Investigación Finalizada </p>
+                                        <div style="margin:8px;"></div>
+                                            @if($inv->archivofinal != NULL) 
+                                                <a class="btn btn-primary boton1" href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"><i title="Descargar Archivo Final"class="fa fa-download"> Download </i></a>
+                                            @endif
+                                        <div style="margin:20px;"></div>
                                     @endif
-                                {{--<p style="color:darkgreen; margin:8px;"><b><i>Es mi Investigación</i></b> </p>--}}                                        
                                     <div style="margin:8px float:right;"></div>
                                     <div class="row" ><br>
                                         <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
