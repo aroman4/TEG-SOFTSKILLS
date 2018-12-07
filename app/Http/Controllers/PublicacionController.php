@@ -40,6 +40,7 @@ class PublicacionController extends Controller
     public function create()
     {
         //
+    
     }
     //Aceptar las solocitud de postulacion al investigador lo acepta el "lider"
    /* public function AceptarPostulacion($id){

@@ -37,9 +37,11 @@
                 <p><b>Investigaciones Activas:</b></p>
                     @if(count(\App\Investigacion::all())>0)
                         @foreach(\App\Investigacion::all() as $inv)
+                            @if($inv->estado=="activa")
                                 <div class="investigaciones">
                                     <h3><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}">{{$inv->titulo}}</a></h3>
                                 </div>
+                            @endif
                         @endforeach
                     @else
                         <p><b>No hay investigaciones activas</b></p>
@@ -47,24 +49,25 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-md-8">
+    <div class="col-md-8">
         <div class="card">
             <div class="card-body">
                 <p><b>Solicitudes (Pendientes por aprobación de Finalización de la Investigación):</b></p>
-                    @if(count(\App\Postulacion::all())>0)
-                        @foreach(\App\Postulacion::all() as $Postulacion)
-                            @if(\App\User::find($Postulacion->estado_c=="pendiente"))
+                    @if(count(\App\Investigacion::all())>0)
+                        @foreach(\App\Investigacion::all() as $inv)
+                            @if($inv->estado_com=="enviado")
                                 <div>
-                                    <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
+                                    <p>{{$inv->titulo}}</p>
+                                    <a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a>                                           
                                 </div>
                             @endif
                         @endforeach
                     @else
-                        <p><b>No hay solicitudes pendientes</b></p>
+                        <p><b>No hay Investigación pendientes por aprobación de Finalización</b></p>
                     @endif       
             </div>
         </div>
-    </div> --}}
+    </div> 
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
