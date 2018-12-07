@@ -27,7 +27,7 @@
             </thead>
             <tbody>
               <tr >
-                <th scope="row">{!! Form::label ('pregunta1','Para ti cuales fueron sus capacidades o cualidades para la ejecucion de un proyecto d einvestigación')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta1','Para ti, cuales fueron sus capacidades o cualidades en la ejecución de su actividad en la investigación')!!}</th>
                 <td><input type="radio" name="respuesta1" value="1"></td>
                 <td><input type="radio" name="respuesta1" value="2"></td>
                 <td><input type="radio" name="respuesta1" value="3"></td>
@@ -35,7 +35,7 @@
                 <td><input type="radio" name="respuesta1" value="5"></td>
               </tr>
               <tr>
-                <th scope="row">{!! Form::label ('pregunta2','Considera que el Investigador supo tener una buena comunicacion')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta2','Considera que el investigador supo organizar su tiempo')!!}</th>
                 <td><input type="radio" name="respuesta2" value="1"></td>
                 <td><input type="radio" name="respuesta2" value="2"></td>
                 <td><input type="radio" name="respuesta2" value="3"></td>
@@ -43,7 +43,7 @@
                 <td><input type="radio" name="respuesta2" value="5"></td>
               </tr>
               <tr>
-                <th scope="row">{!! Form::label ('pregunta3','Realizo un buen trabajo de Investigación')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta3','Usted considera que el investigador realizo un buen trabajo de Investigación')!!}</th>
                 <td><input type="radio" name="respuesta3" value="1"></td>
                 <td><input type="radio" name="respuesta3" value="2"></td>
                 <td><input type="radio" name="respuesta3" value="3"></td>
@@ -51,7 +51,7 @@
                 <td><input type="radio" name="respuesta3" value="5"></td>
               </tr>
               <tr>
-                <th scope="row">{!! Form::label ('pregunta4','Cumplio con la fecha de entrega')!!}</th>
+                <th scope="row">{!! Form::label ('pregunta4','El Investigador cumplió con la fecha de entrega de la actividad')!!}</th>
                 <td><input type="radio" name="respuesta4" value="1"></td>
                 <td><input type="radio" name="respuesta4" value="2"></td>
                 <td><input type="radio" name="respuesta4" value="3"></td>

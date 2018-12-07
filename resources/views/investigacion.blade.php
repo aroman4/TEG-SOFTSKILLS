@@ -26,7 +26,7 @@
 								<div class="card-body ">
 									<div class="form-group row" style="float:right;"><br>
 										<p style="margin:10px"><b>Fecha:</b> {{$inv->created_at}} </p>
-										<p style="margin:10px"><b>Estátus:</b> {{$inv->estado}} </p>
+										<p style="margin:10px"><b>Estatus:</b> {{$inv->estado}} </p>
 									</div>
 									<div class="form-group row">
 										<p><b>Título:</b>  {{($inv->titulo)}}</p>
@@ -52,8 +52,11 @@
 								</div>
 							</div>
 						</div>
-					@endforeach 
-					{!! $pub->render()!!}   
+					@endforeach  
+				</div>
+				<br><br>
+				<div class="row justify-content-center">
+					{!! $pub->render()!!} 
 				</div>
 		</div>
    

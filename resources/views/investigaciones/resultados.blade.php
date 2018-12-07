@@ -24,8 +24,8 @@
                                     <li class="list-group-item ">
                                         <table class="row solii">
                                             <p><strong>Título:</strong>  {{$inv->titulo}} <br></p>
-                                            <p>Calificación: {{\App\Encuesta::find($inv->id)->calificacion}}</p>
-                                        </table>
+{{--                                              <p>Calificación: {{\App\Encuesta::find($encuesta->id)->calificacion}}</p>
+ --}}                                        </table>
                                     </li>
                                     @endif
                                 @endforeach
