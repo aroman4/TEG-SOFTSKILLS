@@ -1,8 +1,9 @@
-@extends('layouts.plantilla')
+@extends('layouts.menucomite')
 @section('content')
+<div class="col-md-9 investigaciones">
 
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header">
                 @if(Auth::user()->sexo == "Femenino")
@@ -13,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-body">
                 <p><b>Solicitudes (pendientes por aprobación):</b></p>
@@ -31,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-body">
                 <p><b>Investigaciones Activas:</b></p>
@@ -49,7 +50,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-13">
         <div class="card">
             <div class="card-body">
                 <p><b>Solicitudes (Pendientes por aprobación de Finalización de la Investigación):</b></p>
@@ -68,7 +69,7 @@
             </div>
         </div>
     </div> 
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-body">
                 <p><b>Solicitudes de Asesor</b></p>
@@ -85,4 +86,6 @@
         </div>
     </div>
 </div>
+</div>
+
 @endsection
