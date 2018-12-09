@@ -71,7 +71,7 @@ class EncuestaController extends Controller
         
         $promedio = 0;
         for($i=0;$i < 6; $i++){
-            $promedio = $promedio + ($encuesta->{'respuesta'.$i}) * (20/6)/5;
+            $promedio = $promedio + ($encuesta->{'respuesta'.$i}+1) * (5/6)/5; //le añadí +1 y cambié el 20 por un 5 para que sea sobre 5
         }
         $encuesta->calificacion = $promedio; 
         $encuesta->save();
