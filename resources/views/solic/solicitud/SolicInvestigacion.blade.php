@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="form-group row">
                                         {!! Form::label ('descripcion','Resumen:*')!!}
-                                        {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Resumen de la investigación','required'])!!}
+                                        {!! Form::textarea ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Resumen de la investigación','required'])!!}
                                         @if ($errors->has('descripcion'))
                                         <span class="text-danger" role="alert">
                                                 <strong>{{ $errors->first('descripcion') }}</strong>
