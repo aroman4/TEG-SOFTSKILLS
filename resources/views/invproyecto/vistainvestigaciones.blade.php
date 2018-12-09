@@ -48,7 +48,7 @@
                       @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada')
                         <li class="list-group-item listaAsesSolic">
                             <div class="row">                                
-                                <p><b>Título: </b>{{\App\Investigacion::find($postulacion->id_post)->titulo}}
+                                <p><b>Título: </b>{{\App\Investigacion::find($postulacion->id_post)->titulo}}<br>
                                 <b>Investigador postulado a mi Investigación:  </b>{{\App\User::find($postulacion->id_invest)->nombre ." ". \App\User::find($postulacion->id_invest)->apellido}}<br>
                             </div>
                             <div class="row">
