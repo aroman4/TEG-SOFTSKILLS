@@ -18,11 +18,11 @@ class CreateSolicitud extends Migration
             $table->string('nombre_solicitud')->nullable();
             $table->string('actividades')->nullable();
             $table->string('objetivos')->nullable();
-            $table->string('descripcion',600)->nullable();
+            $table->string('descripcion',1000)->nullable();
             $table->string('titulo')->nullable();
             $table->string('caracteristica')->nullable();
             $table->string('asunto')->nullable();
-            $table->string('mensaje',500)->nullable();
+            $table->string('mensaje',1000)->nullable();
             $table->string('actividad')->nullable();
             $table->string('otros_proyectos')->nullable();
             $table->string('aporte')->nullable();

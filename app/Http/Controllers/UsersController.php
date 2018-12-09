@@ -111,6 +111,8 @@ class UsersController extends Controller
 
         if(auth()->user()->tipo_usu == "investigador"){
             return redirect('/escritorioinv')->with('success','Modificado');
+        }else if(auth()->user()->tipo_usu == "admin"){
+            return redirect('/administracion')->with('success','Modificado');
         }else{
             return redirect('/perfilusu')->with('success','Modificado');
         }
