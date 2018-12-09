@@ -23,7 +23,7 @@
                 @else
                     <p style="color: #CC9900;"><b>Estátus: Investigación {{$postulacion->estado}}</b> </p>
                 @endif            
-                <small>Creada el {{$postulacion->created_at}}</small>
+                <p>Creada el {{$postulacion->created_at}}</p>
             <br><br>
         </div>
     </div>

@@ -38,6 +38,9 @@
                                 @endif
                             </div>
                             <div class=" row">
+                                <p><b>Objetivo General:</b> {{$inv->objetivos}}</p>
+                            </div>
+                            <div class=" row">
                                 <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
                             </div>
                             <div class=" row">

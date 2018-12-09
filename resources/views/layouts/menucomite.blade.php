@@ -13,9 +13,10 @@
                     @endif
                     <br>{{Auth::user()->nombre ." ". Auth::user()->apellido}}<br><br>
                 </li>
-                <li {{ request()->is('') ? 'active' : '' }}><a href="#"><i class="fas fa-home"></i>   Escritorio</a></li>
-                <li {{ request()->is('') ? 'active' : '' }}><a href="#"><i class="far fa-bell"></i>   Investigaciones</a></li>
-                <li {{ request()->is('') ? 'active' : '' }}><a href="#"><i class="fa fa-address-card"></i>   Asesorias</a></li>
+                <li {{ request()->is('') ? 'active' : '' }}><a href="{{route('escritoriocomite')}}"><i class="fas fa-home"></i>   Escritorio</a></li>
+                <li {{ request()->is('') ? 'active' : '' }}><a title="solicitud de Investiagciones por iniciar" href="{{route('comiteinvestigaciones')}}"><i class="far fa-bell"></i>  Solicitud de Investigaciones</a></li>
+                <li {{ request()->is('') ? 'active' : '' }}><a title="solicitud de Investiagciones Finalizadas" href="{{route('investigacionesfinalc')}}"><i class="fa fa-folder"></i> Investigaciones</a></li>
+                <li {{ request()->is('') ? 'active' : '' }}><a title="asesorias" href="{{route('asesoriacomite')}}"><i class="fas fa-handshake"></i>   Asesorias</a></li>
                 </ul>
         </div>
     </div>

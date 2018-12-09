@@ -15,7 +15,7 @@
                 <p><b>Que Otros Proyectos has Pertenedico: </b>{{$postulacion->otros_proyectos}}</p>
                 <p><b>Aporte a la Investigación: </b>{{$postulacion->aporte}}</p>
                 <p><b>Actividad en la que se quiere Postular: </b>{{$postulacion->actividad}}</p>
-                <small>Creada el {{$postulacion->created_at}}</small>
+                <p>Creada el {{$postulacion->created_at}}</p>
 
                 <br><br>
     </div>

@@ -26,9 +26,18 @@
                                             </span>
                                     @endif
                                  </div>
+                                 <div class="form-group row">
+                                    {!! Form::label ('objetivos','Objetivo General:*')!!}
+                                    {!! Form::text ('objetivos',$solicitud->o,['class'=>"form-control {{ $errors->has('objetivos') ? ' is-invalid'}}",'placeholder'=>'Objetivo General de la Investigación'])!!}
+                                    @if ($errors->has('objetivos'))
+                                            <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('objetivos') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
                                 <div class="form-group row">
-                                    {!! Form::label ('caracteristica','Caracteristica:*')!!}
-                                    {!! Form::text ('caracteristica', $solicitud->caracteristica, ['class'=>"form-control {{ $errors->has('caracteristica') ? ' is-invalid'}}",'placeholder'=>'Caracteristica'])!!}
+                                    {!! Form::label ('caracteristica','Palabras Claves:*')!!}
+                                    {!! Form::text ('caracteristica', $solicitud->caracteristica, ['class'=>"form-control {{ $errors->has('caracteristica') ? ' is-invalid'}}",'placeholder'=>'Palabras Claves'])!!}
                                     @if ($errors->has('caracteristica'))
                                             <span class="text-danger" role="alert">
                                             <strong>{{ $errors->first('caracteristica') }}</strong>
@@ -43,7 +52,16 @@
                                                 <strong>{{ $errors->first('actividades') }}</strong>
                                         </span>
                                         @endif
-                                    </div>                                        
+                                    </div>  
+                                    <div class="form-group row">
+                                        {!! Form::label ('descripcion','Resumen:*')!!}
+                                        {!! Form::text ('descripcion', $solicitud->descripcion,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Resumen de la investigación','required'])!!}
+                                        @if ($errors->has('descripcion'))
+                                        <span class="text-danger" role="alert">
+                                                <strong>{{ $errors->first('descripcion') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>                                      
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Subir Archivo</label>
                                         <div class="col-md-6">

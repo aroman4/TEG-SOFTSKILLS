@@ -83,6 +83,15 @@ Route::get('/escritorioinvestigador', function () {
 Route::get('/escritoriocomite', function () {
     return view('investigaciones.escritoriocomite');
 })->name('escritoriocomite');
+Route::get('/comiteinvestigaciones', function () {
+    return view('investigaciones.comiteInvestigaciones');
+})->name('comiteinvestigaciones');
+Route::get('/investigacionesfinalc', function () {
+    return view('investigaciones.investigacionesfinalcomite');
+})->name('investigacionesfinalc');
+Route::get('/asesoriacomite', function () {
+    return view('investigaciones.asesoriacomite');
+})->name('asesoriacomite');
 Route::get('/administracion', function () {
     if(auth()->user()->tipo_usu == "admin"){
         return view('admin.administracion');

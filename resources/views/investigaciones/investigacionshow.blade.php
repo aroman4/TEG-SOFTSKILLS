@@ -18,7 +18,8 @@
         <div class="col-md-12 list-group-item ">
             @if(Auth::user()->tipo_inv == "normal")
                 <p><b>Título:  <u>{{$investigaciones->titulo}}</u></b></p>
-                <p><b>Palabras Claves:</b>{{$investigaciones->caracteristica}}</p>
+                <p><b>Objetivos General:</b> {{$investigaciones->objetivos}}</p>
+                <p><b>Palabras Claves:</b> {{$investigaciones->caracteristica}}</p>
                 <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
                     {{-- Listar los objetivos especificos --}}
                     <ol>
@@ -26,13 +27,13 @@
                             <li>{{$value}}</li>
                         @endforeach
                     </ol></p>
-                <p><b>Descripción:</b>{{$investigaciones->descipcion}}</p>
+                <p><b>Resumen:</b>{{$investigaciones->descipcion}}</p>
                 @if($investigaciones->estado == 'activa')
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>
                 @else
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>
                 @endif
-                <small>Creada el {{$investigaciones->created_at}}</small>
+                <p>Creada el {{$investigaciones->created_at}}</p>
                 <br><br>
                 <div class="datos-inve">
                         @if(Auth::user()->id == $investigaciones->user_id)
@@ -42,6 +43,7 @@
                 </div>
             @elseif(Auth::user()->tipo_inv == "comite")
                 <p><b>Título:  <u>{{$investigaciones->titulo}}</u></b></p>
+                <p><b>Objetivos General:</b> {{$investigaciones->objetivos}}</p>
                 <p><b>Palabras Claves:</b>{{$investigaciones->caracteristica}}</p>
                 <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
                     {{-- Listar los objetivos especificos --}}
@@ -50,7 +52,7 @@
                             <li>{{$value}}</li>
                         @endforeach
                     </ol></p>
-                <p><b>Descripción:</b>{{$investigaciones->descipcion}}</p>
+                <p><b>Resumen:</b>{{$investigaciones->descipcion}}</p>
                 @if($investigaciones->estado == 'activa')
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>
                 @else

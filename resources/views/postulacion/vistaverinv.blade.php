@@ -16,7 +16,7 @@
         <div class="col-md-12 list-group-item ">
             <p><b>Título:  </b>{{$investigaciones->titulo}}</p>
             <p><b>Palabras Claves:  </b>{{$investigaciones->caracteristica}}</p>
-            <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
+            <p><b>Actividades: </b> {{-- {{$solicitud->actividades}} --}}
                 {{-- Listar los objetivos especificos --}}
                 <ol>
                     @foreach(json_decode($investigaciones->actividades) as $key=>$value)
@@ -29,7 +29,7 @@
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>
                 @endif 
                 <p><b>Descripción:  </b>{{$investigaciones->descripcion}}</p>         
-                <small>Creada el {{$investigaciones->created_at}}</small>
+                <p>Creada el {{$investigaciones->created_at}}</p>
             <br><br>
         </div>
     </div>
