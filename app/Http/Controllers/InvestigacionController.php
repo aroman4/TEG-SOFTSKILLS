@@ -60,6 +60,7 @@ public function descargafuc(){
                 $Investigacion = new Investigacion();
                 $Investigacion->id_solic = $solicitud->id;
                 $Investigacion->titulo = $solicitud->titulo;
+                $Investigacion->objetivos = $solicitud->objetivos;
                 $Investigacion->caracteristica = $solicitud->caracteristica;
                 $Investigacion->actividades = $solicitud->actividades;
                 $Investigacion->descripcion = $solicitud->descripcion;
@@ -103,6 +104,7 @@ public function descargafuc(){
                 $Investigacion = new Investigacion();
                 $Investigacion->id_solic = $solicitud->id;
                 $Investigacion->titulo = $solicitud->titulo;
+                $Investigacion->objetivos = $solicitud->objetivos;
                 $Investigacion->caracteristica = $solicitud->caracteristica;
                 $Investigacion->actividades = $solicitud->actividades;
                 $Investigacion->user_id = $solicitud->user_id; //guardando id de usuario activo

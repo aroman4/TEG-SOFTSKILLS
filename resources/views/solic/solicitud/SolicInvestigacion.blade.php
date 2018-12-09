@@ -27,6 +27,15 @@
                                             </span>
                                     @endif
                                  </div>
+                                 <div class="form-group row">
+                                    {!! Form::label ('objetivos','Objetivo General:*')!!}
+                                    {!! Form::text ('objetivos',null,['class'=>"form-control {{ $errors->has('objetivos') ? ' is-invalid'}}",'placeholder'=>'Objetivo General de la Investigación'])!!}
+                                    @if ($errors->has('objetivos'))
+                                            <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('objetivos') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
                                 <div class="form-group row">
                                     {!! Form::label ('caracteristica','Palabras Claves:*')!!}
                                     {!! Form::text ('caracteristica',null,['class'=>"form-control {{ $errors->has('caracteristica') ? ' is-invalid'}}",'placeholder'=>'Palabras Claves'])!!}
@@ -52,8 +61,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group row">
-                                        {!! Form::label ('descripcion','Descripción:*')!!}
-                                        {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca una pequeña descripción de la investigación','required'])!!}
+                                        {!! Form::label ('descripcion','Resumen:*')!!}
+                                        {!! Form::text ('descripcion',null,['class'=>"form-control {{ $errors->has('descripcion') ? ' is-invalid' : '' }}",'placeholder'=>'Resumen de la investigación','required'])!!}
                                         @if ($errors->has('descripcion'))
                                         <span class="text-danger" role="alert">
                                                 <strong>{{ $errors->first('descripcion') }}</strong>
