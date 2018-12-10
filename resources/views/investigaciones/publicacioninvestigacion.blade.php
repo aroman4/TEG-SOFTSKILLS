@@ -23,7 +23,7 @@
                                 @if(auth()->user()->id == $inv->user_id)
                                         <p style="color:darkgreen; margin:8px;"><b><i>  </i></b> </p><br>
                                     @if($inv->estado == 'activa')
-                                        <a href="{{route('subirarchivofinal',$inv->id)}}" class="btn btn-success boton1">Subir Archivo</a>  
+                                        <a href="{{route('subirarchivofinal',$inv->id)}}" class="btn btn-success boton1"><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivo</a>  
                                     @endif
                                 @endif
                             </div>

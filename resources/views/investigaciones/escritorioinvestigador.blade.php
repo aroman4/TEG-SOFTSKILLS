@@ -31,7 +31,7 @@
                                                 </tr>
                                                 <tr >
                                                     <td><p>{{$sol->titulo}}</p></td>
-                                                    <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" title="Ver Solicitud" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a></td>
+                                                    <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" title="Ver Solicitud" class="btn btn-primary boton" style="border-radius: 5px;"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a></td>
                                                 </tr>
                                         </table>
                                     </li>
@@ -64,7 +64,7 @@
                                         </tr>
                                         <tr >
                                             <td><p>{{$sol->titulo}}</p></td>
-                                            <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" title="Ver Solicitud" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a></td>
+                                            <td><a href="{{route('solicitud.show',['id'=> $sol->id])}}" title="Ver Solicitud" class="btn btn-primary boton" style="border-radius: 5px;"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a></td>
                                         </tr>
                                 </table>
                                 </li>
@@ -97,7 +97,7 @@
                                         </tr>
                                         <tr >
                                             <td><p>{{$inv->titulo}}</p></td>
-                                            <td><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}" class="btn btn-primary boton" style="border-radius: 5px;">Ver</a></td>
+                                            <td><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}" class="btn btn-primary boton" style="border-radius: 5px;"> <i class="fa fa-eye" aria-hidden="true"></i> Ver</a></td>
                                         </tr>
                                 </table>
                                 </li>
