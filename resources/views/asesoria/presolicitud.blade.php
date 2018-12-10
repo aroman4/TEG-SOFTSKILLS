@@ -21,7 +21,7 @@
 
                              @csrf
                                 <div class="form-group row">
-                                {!! Form::label ('Asunto','Titulo de la asesesoría que deseas recibir:*')!!}
+                                {!! Form::label ('Asunto','Titulo de la asesoría que deseas recibir:*')!!}
                                 {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' }}",'placeholder'=>'Titulo','required'])!!}
                                 @if ($errors->has('titulo'))
                                         <span class="text-danger" role="alert">
