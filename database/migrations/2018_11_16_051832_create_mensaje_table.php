@@ -18,7 +18,7 @@ class CreateMensajeTable extends Migration
             $table->integer('id_remitente');
             $table->integer('id_destinatario');
             $table->string('asunto');
-            $table->string('mensaje',500);
+            $table->string('mensaje',1000);
             $table->string('archivo')->nullable();
             $table->enum('estado', ['recibido', 'leido'])->default('recibido');
             $table->timestamps();

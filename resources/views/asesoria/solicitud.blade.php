@@ -24,7 +24,7 @@
                     <br><br>
                                       
                     <h3><b>Descripción:</b></h3>
-                    <h4>{{$solicitud->mensaje}}</h4>
+                    <h4 style="border: 1px solid black;">{!! nl2br($solicitud->mensaje) !!}</h4>
                     @if($solicitud->archivo != null)
                         <a class="btn btn-secondary" href="{{asset('archivoproyecto/'.$solicitud->archivo)}}">Descargar archivo adjunto</a>
                     @endif

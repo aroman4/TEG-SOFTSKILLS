@@ -19,7 +19,7 @@ class CreateActividadTable extends Migration
                 $table->integer('id_postulacion')->nullable();
                 $table->integer('id_investigacion')->nullable();
                 $table->string('archivo_actividad')->nullable();
-                $table->string('observacion',500)->nullable();
+                $table->string('observacion',1000)->nullable();
                 $table->date('fecha_entrega')->nullable();
                 $table->boolean('asignado')->default(false);
                 $table->enum('estado_actividad', ['aceptado','rechazar'])->default('aceptado');

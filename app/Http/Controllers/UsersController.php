@@ -73,7 +73,11 @@ class UsersController extends Controller
     {
         $usu = User::find($id);
         //dd($usu);
-        return view('admin.usuarios.editardatosperfil')->with('usuario',$usu);
+        if(auth()->user()->tipo_usu == "admin"){
+            return view('admin.usuarios.editardatosperfiladmin')->with('usuario',$usu);
+        }else{
+            return view('admin.usuarios.editardatosperfil')->with('usuario',$usu);
+        }
         
         
     }
@@ -89,7 +93,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $pass = $user->password;
         $user->fill($request->all());
-
+        $user->tipo_inv = $request->tipo_inv;
         if($request->password == null){
             $user->password = $pass;
         }
@@ -111,6 +115,8 @@ class UsersController extends Controller
 
         if(auth()->user()->tipo_usu == "investigador"){
             return redirect('/escritorioinv')->with('success','Modificado');
+        }else if(auth()->user()->tipo_usu == "admin"){
+            return redirect('/administracion')->with('success','Modificado');
         }else{
             return redirect('/perfilusu')->with('success','Modificado');
         }
