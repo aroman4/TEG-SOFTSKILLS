@@ -35,6 +35,11 @@ class PostulacionController extends Controller
     public function create()
     {
         //
+
+    }
+    public function  detalle($id){
+        $inv = Investigacion::find($id);
+        return view('invproyecto.investigaciondetalle')->with('inv',$inv);
     }
     public function SolicPostulacion($idinv)
     {
@@ -77,7 +82,7 @@ class PostulacionController extends Controller
         $postulacion->estado_inv = "finalizado";  
         $postulacion->save();
         
-        return redirect('/proyectogrupalpost')->with('success','investigacion finalizada');
+        return redirect('/vistainvestigaciones')->with('success','investigacion finalizada');
 
     }
 

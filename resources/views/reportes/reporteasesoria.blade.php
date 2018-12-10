@@ -6,6 +6,9 @@
             <div class="row">
                 <div class="col-md-12 list-group-item top-bar">
                     <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
+                    @if($asesoria->estado == "finalizada")
+                        <a href="{{route('reportefinalasesoria',$asesoria->id)}}" class="btn btn-primary">Ver reporte final</a>
+                    @endif
                     <h2 style="float:right"><span style="color:darkgray">Reportes de:</span> {{$asesoria->titulo}}</h2>
                 </div>
             </div>

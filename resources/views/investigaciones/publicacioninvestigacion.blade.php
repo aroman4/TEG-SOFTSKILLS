@@ -1,60 +1,79 @@
-@extends('layouts.plantilla')
-
+@extends('layouts.menuinv')
+{{-- <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
+ --}}
 @section('content')
-<div class="container">
-    @if(count($errors)>0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li class="alert alert-danger">{{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
-
-    <div class="col-sm-12">
-            <br>
-            <h2 class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
-            <br>
-            <p>Hay {{ $pub->lastPage()}} Pagina</p>
-        <div class="row justify-content-center">  
+<div class="col-md-9 investigaciones">
+    <div class="row text-center separador">
+        <div class="col-md-12 list-group-item text-center top-bar">
+                <h1 style="float:left">Publicaciones de Investigaciones </h1>
+                <div class="boton">
+                {!! $pub->render()!!}</div>
+                <em>Total de {{ $pub->lastPage()}} Página </em>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-12 list-group-item ">            
+          <div class="row justify-content-center">  
             @foreach ($pub as $inv)
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="form-group row">
-                                <p><b>Titulo:</b>  {{($inv->titulo)}}</p>
+                            <div class="form-group row" style="float:right;"><br>
+                                <p ><b>Fecha:</b> {{$inv->created_at}} </p>
+                                @if(auth()->user()->id == $inv->user_id)
+                                        <p style="color:darkgreen; margin:8px;"><b><i>  </i></b> </p><br>
+                                        <a href="{{route('subirarchivofinal',$inv->id)}}" class="btn btn-success boton1">Subir Archivo</a>  
+                                    @endif
                             </div>
-                            <div class="form-group row">
-                                <p><b>Creado por el Investigador</b> 
-                                    {{\App\User::find($inv->user_id)->nombre}}
-                                </p>
+                            <div class=" row">
+                                <h4><b>Título:</b>  {{($inv->titulo)}}</h4>
                             </div>
-                            <div class="form-group row">
-                                <p><b>Fecha:</b> {{$inv->created_at}} </p>
+                            <div class=" row">
+                                @if(\App\User::find($inv->user_id)->sexo == "Femenino")
+                                    <p><b>Creado por la Investigadora: </b>{{\App\User::find($inv->user_id)->nombre}}</h1>
+                                @else
+                                    <p><b> Creado por la Investigador: </b>{{\App\User::find($inv->user_id)->nombre}}</h1>
+                                @endif
+                               
                             </div>
-                            <div class="form-group row">
+                            <div class=" row">
                                 <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
                             </div>
+                            <div class=" row">
+                                <p><b>Descripción:</b> {{$inv->descripcion}}</p>
+                            </div>
                             <div class="col-12">
-                                <hr style="color: #0056b2;" />
-                                <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary">Postulación</a>
-                                <button type="button" class="btn btn-outline-info">
-                                    <a href="#" class="far fa-thumbs-up">Like</a>
-                               </button>
-                                <div class="ec-stars-wrapper">   
-                                    <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
-                                    <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
-                                    <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
-                                    <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
-                                    <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
-                                </div>       
+                                <div class="row">
+
+                                    @if($inv->estado == 'activa')
+                                        <p style="color: #CC9900; margin:8px; float:right;"><b>Investigación Activa</b> </p>
+                                        <hr style="color: #0056b2; margin:8px;" />
+                                        <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postulación</a>
+                                        <div style="margin:8px;"></div>
+                                    @else
+                                        <p style="color: #990000; margin:8px; float:right;"><b>Investigación Finalizada</b> </p>
+                                        <button type="button" class="btn btn-primary boton1" >
+                                                @if($inv->archivofinal != NULL) 
+                                                     <a class="btn btn-primary boton1" href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"><i title="Descargar Archivo Final"class="fa fa-download"> Download </i></a>
+                                                @endif
+                                          
+                                         </button>
+                                    @endif
+                                {{--<p style="color:darkgreen; margin:8px;"><b><i>Es mi Investigación</i></b> </p>--}}                                        
+                                    <div style="margin:8px;"></div>
+                                        <button type="button" class="btn btn-outline-info boton1">
+                                            <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
+                                        </button>
+                                    
+                                </div>
                             </div> 
                         </div>
                     </div>
                 </div>
             @endforeach    
         </div>
-    </div>   
-    {!! $pub->render()!!}
+    </div> 
+</div>   
 </div>
 @endsection
 

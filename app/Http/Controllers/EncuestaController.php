@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Encuesta;
+use Illuminate\Support\Facades\DB;
 
 class EncuestaController extends Controller
 {
@@ -60,14 +61,22 @@ class EncuestaController extends Controller
         return redirect('/escritorioinvestigador');
     }
 
-    public function storerespuestauno($id)
+    public function storerespuestauno(Request $request)
     {  
         //dd($request);
-        //falta el id del lider
-        auth()->user()->id;
-        //falta el id de la id a que le estoy realizando la encuesta
-        $encuesta = Encuesta::find($request->all());
+        $encuesta = new Encuesta($request->all());
+        //el usuario es el que se esta evaluando
+        //$encuesta->id_usuario = DB::table('postulacion')->where('id_post',$encuesta->id_investg)->first();
+        $encuesta->id_creador = auth()->user()->id;
+        
+        $promedio = 0;
+        for($i=0;$i < 6; $i++){
+            $promedio = $promedio + ($encuesta->{'respuesta'.$i}) * (20/6)/5;
+        }
+        $encuesta->calificacion = $promedio; 
         $encuesta->save();
+        $encuestastodas = DB::table('encuesta')->where('id_investg',1)->get(); //esto esta mal pero solo es para probar algo
+        return redirect()->route('detallesinv',$encuesta->id_investg)->with('success','Evaluación Realizada');
     }
 
     /**

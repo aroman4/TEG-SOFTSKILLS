@@ -1,11 +1,14 @@
-@extends('layouts.plantilla')
+@extends('layouts.menuinv')
 
 @section('content')
-<div class="container">
-    <br>
-    <h1 class="text-center">Lista de Postulado </h1>
-
-    <br><br>
+<div class="col-md-9 investigaciones">
+    <div class="row text-center separador">
+        <div class="col-md-12 list-group-item text-center top-bar">
+                <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>
+                <h1 style="float:left">Lista de Postulado </h1>
+        </div>
+    </div>
+        <br><br>
         <div class="row">   
             <div class="col-md-3">
                 <h3>Nombre del Investigador</h3>
@@ -23,7 +26,7 @@
     <hr>
     @forelse(\App\Investigacion::all() as $inv)
         @if($inv->user_id == Auth::user()->id)
-        <span>{{$inv->titulo}}</span>
+        <h5><b>{{$inv->titulo}}</b></h5><hr>
             @forelse(\App\Postulacion::all() as $postulacion)
                 @if($postulacion->id_post == $inv->id)
                     <div class="row">            
@@ -33,25 +36,29 @@
                             <br>
                             <span>{{\App\User::find($postulacion->id_invest)->email}}</span>
                         </div>
-                        <div class="col-md-3">                
-                            <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">
-                                <button type="button" class="btn btn-primary">
-                                    <i class="fa fa-upload">  Download </i>
-                                </button>
-                            </a>
+                        <div class="col-md-3"> 
+                            <button type="button" class="btn btn-primary boton1">
+                                    <i class="fa fa-download">  Download </i>
+                                 @if($postulacion->archivo != null)                                         
+                                    <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}"></a>
+                                 @endif
+                            </button>
+                             
                         </div>
                         <div class="col-md-3">
-                            <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary">Revisar Postulación</a></h3>
+                            <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary boton1">Revisar Postulación</a></h3>
                         </div>
                         <div class="col-md-3">
-                            <a href="{{action('PostulacionController@AceptarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-success"><i class="fa fa-check"></i>Aceptar</a>
-                            <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
-                            <br>
-                            <span>El estado es: </span>
+                            <a  href="{{route('crearactividad',['id'=> $postulacion->id])}}" class="btn btn-success boton1"><i class="fa fa-check"></i>Aceptar</a></h3>
+
+                            <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
+                          
+                            <br> <span>El estado es: </span>
                             <span>{{$postulacion->estado}}</span>
                         </div>
                     </div>
                     <hr>
+            
                 @endif
             @endforeach 
         @endif

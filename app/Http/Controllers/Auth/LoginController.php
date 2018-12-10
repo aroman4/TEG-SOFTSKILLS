@@ -37,7 +37,7 @@ class LoginController extends Controller
                 if(Auth::user()->tipo_inv == "comite"){
                     return '/escritoriocomite';
                 }else{
-                    return '/escritorioinvestigador';
+                    return '/publicacioninve';
                 }
             break;
             case 'asesor':
@@ -50,7 +50,11 @@ class LoginController extends Controller
                 return '/administracion';
             break;
             case 'comite':
-            return '/escritoriocomite';
+                return '/escritoriocomite';
+            break;
+            case 'usuario':
+                return route('postulacionasesor');
+            break;
         break;
         }
     }

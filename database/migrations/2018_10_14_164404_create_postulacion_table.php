@@ -19,6 +19,7 @@ class CreatePostulacionTable extends Migration
                 $table->string('otros_proyectos')->nullable();
                 $table->string('aporte')->nullable();
                 $table->string('archivo')->nullable();
+                $table->string('tituloinv')->nullable();
                 $table->string('nombre_inv')->nullable();
                 $table->enum('estado', ['pendiente', 'aceptada','rechazada'])->default('pendiente');
                 $table->integer('id_post')->nullable();

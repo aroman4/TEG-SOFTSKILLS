@@ -56,7 +56,13 @@
                             <br>
                         </div>
                         <div class="col-md-2">
+                            @if($postulacion->estado_inv == 'inicio')
+                                <a title="realizar encuesta inicial" href="./encuestaunopreg/{{$postulacion->id}}" class="btn btn-primary"><i class="#" style="color:#FFFFFF; width:6; height:6"></i>Encuesta Inicial</a>
                                 <p>{{$postulacion->estado_inv}}</p>
+                            @else
+                                <a title="realizar encuesta final" href="./encuestados/{{$postulacion->id}}" class="btn btn-primary"><i class="#" style="color:#FFFFFF; width:6; height:6"></i>Encuesta Final</a>
+                                <p>{{$postulacion->estado_inv}}</p>
+                            @endif
                         </div>
                     </div>
                 <hr>

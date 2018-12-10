@@ -41,13 +41,13 @@
                 </div>
                 <div class="col-md-3">
                     <a href="{{route('moduloasesoria.show',['id'=> $ase->id])}}" class="btn btn-success"><i class="fas fa-handshake"></i> Ver Asesoría</a>
-                    {{-- <a href="#" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a> --}}
+                    <a href="{{route('crearmensaje',$ase->id_cliente)}}" class="btn btn-primary" ><i class="fas fa-envelope"></i> Enviar Mensaje</a>
                 </div>
             </div>
         @endif
         <hr>
     @empty
-        <p>No hay usuarios registrados</p>
+        <p>No hay clientes al no haber asesorías</p>
     @endforelse
 </div>
 @endsection

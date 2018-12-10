@@ -8,33 +8,32 @@
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-  
-        function drawChart() {
-  
-          var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            @foreach(\App\Pregunta::all() as $preg)
-              ['{{$preg->titulo}}',5],
-                /* @foreach($preg->respuesta() as $resp)
-                  ['{{$preg->titulo}}',{{$resp->respuesta}}],
-                @endforeach */
-            @endforeach
-          ]);
-  
-          var options = {
-            title: 'Prueba'
-          };
-  
-          var chart_area = document.getElementById('piechart');
-          var chart = new google.visualization.PieChart(chart_area);
-  
-          google.visualization.events.addListener(chart,'ready',function(){
-              chart_area.innerHTML = '<img src="'+ chart.getImageURI() +'" class="img-responsive">';
-          });
-  
-          chart.draw(data, options);
-        }
+        
+        @foreach ($cuestionario->pregunta as $key=>$item)
+        google.charts.setOnLoadCallback({{ 'drawChart'.$key }});
+            function {!! 'drawChart'.$key !!}() {
+                var data = google.visualization.arrayToDataTable([
+                ['Respuesta', 'Cantidad de respuestas'],
+                @foreach(DB::table('respuesta')->where('pregunta_id',$item->id)->select('respuesta')->groupBy('respuesta')->get() as $resp)
+                    ['{!! $resp->respuesta !!}',{!! DB::table('respuesta')->where('respuesta',$resp->respuesta)->count(); !!}],   
+                @endforeach
+            ]);
+
+            var options = {
+            title: '{{$item->titulo .' - '.$item->respuesta->count().' Respuestas'}}',
+            pieHole: 0.4,
+            };
+    
+            var chart_area = document.getElementById('piechart'+{{$key}});
+            var chart = new google.visualization.PieChart(chart_area);
+    
+            google.visualization.events.addListener(chart,'ready',function(){
+                chart_area.innerHTML = '<img src="'+ chart.getImageURI() +'" class="img-responsive">';
+            });
+    
+            chart.draw(data, options);
+            }
+        @endforeach
       </script>
     </head>
 @section('content')
@@ -63,18 +62,24 @@
             </div>
             <div class="row">
                 <div class="col-md-12 list-group-item">
-                    @forelse ($cuestionario->pregunta as $item)
-                        <h3>Pregunta:</h3>
-                        <p>{{ $item->titulo }}</p>
-                        <h4>Respuesta:</h4>
-                        @foreach ($item->respuesta as $respuesta)
-                            <p>{{ $respuesta->respuesta }}</p>
-                            {{-- <small>{{ $respuesta->created_at }}</small> --}}
+                    @forelse ($cuestionario->pregunta as $key=>$item)
+                        {{-- <h3>Pregunta:</h3> --}}
+                        <h3>Pregunta: {{ $item->titulo }}</h3>
+                        <h4>Respuestas: {{'('.$item->respuesta->count().')'}}</h4>
+                        <table class="table table-striped">
+                                <tbody>
+                        @foreach ($item->respuesta as $respuesta)                            
+                                <tr>
+                                    <td>{{ $respuesta->respuesta }}</td>
+                                </tr>                                   
                         @endforeach
+                            </tbody>
+                        </table>
+                        <div id="{{'piechart'.$key}}" style="width: 900px; height: 500px;"></div>
                     @empty
                         No hay respuestas para esta pregunta
                     @endforelse
-                    <div id="piechart" style="width: 900px; height: 500px;"></div>                
+                               
                 </div>            
             </div>
         </div>
@@ -89,40 +94,3 @@
         });
     });    
 </script>
-{{-- @extends('layouts.plantillaQ')
-
-@section('content')
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          @foreach(\App\Pregunta::all() as $preg)
-            ['{{$preg->titulo}}',5],
-              /* @foreach($preg->respuesta() as $resp)
-                ['{{$preg->titulo}}',{{$resp->respuesta}}],
-              @endforeach */
-          @endforeach
-        ]);
-
-        var options = {
-          title: 'Prueba'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
-  </body>
-</html>
-@endsection --}}

@@ -42,8 +42,24 @@
                                 </div>
                         @endforeach
                     @else
-                        <p><b>No hay asesorías activas</b></p>
+                        <p><b>No hay investigaciones activas</b></p>
                     @endif
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <p><b>Solicitudes de Asesor</b></p>
+                @forelse(DB::table('solicitud')->where('tipo','asesor')->get(); as $sol)
+                    @if($sol->estado == "pendiente")
+                        <div class="investigaciones">
+                            <h3><a href="{{route('solasedetalle',['id'=> $sol->id])}}">{{\App\User::find($sol->user_id)->nombre.' '.\App\User::find($sol->user_id)->apellido}}</a></h3>
+                        </div>
+                    @endif
+                @empty
+                    <p><b>No hay solicitudes</b></p>        
+                @endforelse                    
             </div>
         </div>
     </div>

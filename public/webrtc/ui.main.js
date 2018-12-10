@@ -23,7 +23,7 @@ function addNewMessage(args) {
 
     var userinfoDIV = document.createElement('div');
     userinfoDIV.className = 'user-info';
-    userinfoDIV.innerHTML = args.userinfo || '<img src="/images/user.png">';
+    userinfoDIV.innerHTML = args.userinfo || '<img class="userImg" style="height:80px;width:80px;box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.329);" src="http://cdn.onlinewebfonts.com/svg/img_410956.png">';
 
     //userinfoDIV.style.background = args.color || rtcMultiConnection.extra.color || getRandomColor();
 
@@ -78,13 +78,15 @@ main.querySelector('#room-name').onkeyup = function(e) {
 /* if(localStorage.getItem('user-name')) {
     main.querySelector('#your-name').value = localStorage.getItem('user-name');
 } */
-
+var img;
 topbar.querySelector('#continue').onclick = function() {
 //main.addEventListener("load", function(event) {
 //main.onload = function(){
     var yourName = main.querySelector('#your-name');
     var roomName = main.querySelector('#room-name');
-    
+    var userImage = main.querySelector('#user-image');
+    var imgTag = '<img class="userImg" style="height:80px;width:80px;box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.329);" src="'+userImage.value+'">';
+    img = userImage.value;
     if(!roomName.value || !roomName.value.length) {
         roomName.focus();
         return alert('Your MUST Enter Room Name!');
@@ -92,6 +94,7 @@ topbar.querySelector('#continue').onclick = function() {
     
     localStorage.setItem('room-name', roomName.value);
     localStorage.setItem('user-name', yourName.value);
+    localStorage.setItem('user-image', userImage.value);
     
     yourName.disabled = roomName.disabled = this.disabled = true;
 
@@ -99,13 +102,14 @@ topbar.querySelector('#continue').onclick = function() {
 
     rtcMultiConnection.extra = {
         username: username,
+        imagen: userImage.value,
         color: getRandomColor()
     };
 
     addNewMessage({
         header: username,
         message: 'Iniciando sesión...',
-        userinfo: '<img src="/images/action-needed.png">',
+        userinfo: imgTag,
         tipo: 'propio'
     });
     
@@ -122,7 +126,7 @@ topbar.querySelector('#continue').onclick = function() {
 			addNewMessage({
                 header: username,
                 message: 'Sesión iniciada.',
-                userinfo: '<img src="/images/action-needed.png">',
+                userinfo:  imgTag,
                 tipo: 'propio'
             });
 
@@ -140,7 +144,7 @@ topbar.querySelector('#continue').onclick = function() {
 			addNewMessage({
                 header: username,
                 message: 'Sesión iniciada.',
-                userinfo: '<img src="/images/action-needed.png">',
+                userinfo:  imgTag,
                 tipo: 'propio'
             });
             rtcMultiConnection.join(sessionDescription);
@@ -151,7 +155,7 @@ topbar.querySelector('#continue').onclick = function() {
 };
 
 function getUserinfo(blobURL, imageURL) {
-    return blobURL ? '<video src="' + blobURL + '" autoplay controls></video>' : '<img src="' + imageURL + '">';
+    return blobURL ? '<video src="' + blobURL + '" autoplay controls></video>' : '<img class="userImg" style="height:80px;width:80px;box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.329);" src="'+imageURL+'">';
 }
 
 var isShiftKeyPressed = false;
@@ -192,7 +196,7 @@ getElement('.main-input-box textarea').onkeyup = function(e) {
     addNewMessage({
         header: rtcMultiConnection.extra.username,
         message: linkify(this.value),
-        userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], 'images/chat-message.png'),
+        userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], rtcMultiConnection.extra.imagen),
         color: rtcMultiConnection.extra.color,
         tipo: 'propio'
     });

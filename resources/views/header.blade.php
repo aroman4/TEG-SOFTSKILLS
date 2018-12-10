@@ -50,11 +50,16 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">                                
                                 @if(Auth::user()->tipo_usu == "asesor")
                                     <a class="dropdown-item" href="{{ route('escritorioasesor') }}">Ir al escritorio</a>
+                                @elseif(Auth::user()->tipo_inv == "comite")
+                                    <a class="dropdown-item" href="{{ route('escritoriocomite') }}">Ir al escritorio</a>
                                 @elseif(Auth::user()->tipo_usu == "investigador")
-                                    <a class="dropdown-item" href="{{ route('escritorioinvestigador') }}">Ir al escritorio</a>
+                                    <a class="dropdown-item" href="{{ route('publicacioninve') }}">Ir al escritorio</a>
                                 @elseif(Auth::user()->tipo_usu == "cliente")
                                     <a class="dropdown-item" href="{{ route('escritoriocliente') }}">Ir al escritorio</a>
+                                @elseif(Auth::user()->tipo_usu == "admin")
+                                    <a class="dropdown-item" href="{{ route('administracion') }}">Ir a administración</a>
                                 @endif
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

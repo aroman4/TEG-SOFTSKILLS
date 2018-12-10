@@ -17,8 +17,17 @@
                         {!!Form::open(['action' => 'PostulacionController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                             <input type="hidden" name="id_post" value="{{ $inv }}"> 
                             @csrf
+                            <div class="form-group row">
+                                {!! Form::label ('tituloinv','Titulo de la Postulación:')!!}
+                                {!! Form::text ('tituloinv',null,['class'=>"form-control {{ $errors->has('tituloinv') ? ' is-invalid'}}",'placeholder'=>'Ingrese el Titulo de su postulación','required'])!!}
+                                @if ($errors->has('tituloinv'))
+                                        <span class="text-danger" role="alert">
+                                        <strong>{{ $errors->first('tituloinv') }}</strong>
+                                        </span>
+                                @endif
+                            </div>
                              <div class="form-group row">
-                                    {!! Form::label ('otros_proyectos','Cuales proyectos has creado:*')!!}
+                                    {!! Form::label ('otros_proyectos','Cuales proyectos has creado:')!!}
                                     {!! Form::text ('otros_proyectos',null,['class'=>"form-control {{ $errors->has('otros_proyectos') ? ' is-invalid'}}",'placeholder'=>'Escribe que otros proyectos has participado y creado','required'])!!}
                                     @if ($errors->has('otros_proyectos'))
                                             <span class="text-danger" role="alert">
@@ -27,7 +36,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group row">
-                                    {!! Form::label ('actividad','Actividad:*')!!}
+                                    {!! Form::label ('actividad','Actividad de la Investigación:  ')!!}
+                                    <p>{{\App\Investigacion::find($inv)->actividades}}</p>
                                     {!! Form::textarea ('actividad',null,['class'=>"form-control {{ $errors->has('actividad') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe la actividad a desarrollar','required'])!!}
                                     @if ($errors->has('actividad'))
                                             <span class="text-danger" role="alert">
@@ -36,7 +46,7 @@
                                     @endif
                                  </div>
                                 <div class="form-group row">
-                                        {!! Form::label ('aporte','Apostes:*')!!}
+                                        {!! Form::label ('aporte','Aportes:')!!}
                                         {!! Form::text ('aporte',null,['class'=>"form-control {{ $errors->has('aporte') ? ' is-invalid' : '' }}",'placeholder'=>'Cual seria tu aporte','required'])!!}
                                         @if ($errors->has('aporte'))
                                         <span class="text-danger" role="alert">

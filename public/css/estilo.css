@@ -9,6 +9,9 @@ body{
     background-color: #000000
 
 }
+.alert{
+	/* z-index:1; */
+}
 
 .menu-estilo-principal {/*ul*/
     margin: 0;
@@ -133,7 +136,7 @@ header{
 
 .banner h1{
 	position: relative;
-	z-index: 1;
+	/* z-index: 1; */
 	padding: 50px
 }
 
@@ -304,7 +307,7 @@ textarea{
 	min-height: 100vh;
 	right:0;
 	margin: 0;
-	background-image: linear-gradient(rgb(0, 0, 0), rgb(49, 55, 85));
+	background-image: linear-gradient(rgb(189, 189, 189), rgb(255, 255, 255));
 }
 .barraLateralEscritorio{
 	background-color:  #2B3033;
@@ -341,12 +344,12 @@ textarea{
 	color: white;
 }
 .contentAlv{
-	background: rgba(20, 74, 105, 0.418);
-	color: white;
+	background: rgb(255, 255, 255);
+	color: black;
 }
 .contentAlv1{
-	background: rgba(20, 74, 105, 0.856);
-	color: white;
+	background: rgb(255, 255, 255);
+	color: black;
 }
 .escritorioElem{
 	/* background: #4477ab; */
@@ -364,11 +367,13 @@ textarea{
 	background-position: center;	
 }
 .elemEsc:hover :not(.texElem){
-	filter: blur(1px) brightness(60%);
+	filter: brightness(80%);
 	transition: .3s;
+	box-shadow: 0px 30px 20px -20px rgba(0, 0, 0, 0.589);
 }
 .elemEsc:hover :not(a){
 	opacity: 1;
+	
 }
 #imgAse{
 	background-image: url(../img/asesoriaescritorio.jpg);
@@ -408,8 +413,9 @@ textarea{
 	font-size: 20pt;
 	font-weight: bolder;
 	text-shadow: 2px 2px black;
-	opacity: 0;
+	opacity: 0; 
 }
+
 .texDet{
 	text-align: right;
 	width: 100%;
@@ -442,9 +448,14 @@ textarea{
 	background: black;
 }
 
+.aseElem:hover{
+	text-decoration: none;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.589);
+}
+
 .aseElemMsj{
 	margin-top: 50px;
-	background-image: url(../img/mensajes.jpg);
+	background-image: url(../img/chat.jpg);
 }
 .aseElemAg{
 	background-image: url(../img/agenda.jpg);
@@ -465,6 +476,23 @@ textarea{
 
 .alert{
 	margin: 0;
+}
+
+/* mensajes */
+.mensajeList{
+	color: black;
+}
+.mensajeList:hover{
+	text-decoration: none;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.329);
+}
+
+/*img usuario*/
+.userImg{
+	border-radius:50%;
+	width:80px;
+	height:80px;
+	margin: 6px 0;
 }
 
 /*footer*/
@@ -556,9 +584,10 @@ body{
 }
 
 .menu-inv{
-	position: absolute;
-	width: 220px;
-	height: 45%;
+	/* position: absolute;
+	width: 220px; */
+	/* height: 45%; */
+	min-height: 100vh;
 	background: #000000;
 	color: #FFFFFF;
 	outline: 1px solid #2a2a2a;
@@ -601,4 +630,37 @@ body{
 	color: #000fff;
 }
 /*----------------------------------------------*/
+
 /*----------proyectosinv-------------*/
+.solicitudInv{
+	color:#000;
+	margin: 0px auto;
+	padding: 0px;
+}
+.solii{
+	overflow: auto;
+	height: 100%;
+}
+.investigaciones{
+	margin: 0px auto;
+}
+
+.separador{
+	margin-top:20px; 
+	color:#FFF;
+}
+.boton{
+	float:right;
+	margin-top:5px; 
+	border-radius: 5px;
+}
+.boton1{
+	border-radius: 5px;
+}
+.datos-inve{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+/*----------------------------------------------*/
+

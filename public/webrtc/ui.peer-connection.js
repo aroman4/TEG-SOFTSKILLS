@@ -59,17 +59,19 @@ rtcMultiConnection.session.data = true;
 */
 
 rtcMultiConnection.autoTranslateText = false;
-
+var imgTag;
+var img;
 rtcMultiConnection.onopen = function(e) {
     getElement('#allow-webcam').disabled = false;
     getElement('#allow-mic').disabled = false;
     getElement('#share-files').disabled = false;
     //getElement('#allow-screen').disabled = false;
-
+    imgTag = '<img class="userImg" style="height:80px;width:80px;box-shadow:0px 0px 4px 2px rgba(0, 0, 0, 0.329);" src="'+e.extra.imagen+'">';
+    img = e.extra.imagen;
     addNewMessage({
         header: e.extra.username,
         message: 'Conexión creada entre ' + e.extra.username + ' y tu.',
-        userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], 'images/info.png'),
+        userinfo: getUserinfo(rtcMultiConnection.blobURLs[rtcMultiConnection.userid], img),
         color: e.extra.color,
         tipo: 'peer'
         
@@ -95,7 +97,7 @@ rtcMultiConnection.onmessage = function(e) {
     addNewMessage({
         header: e.extra.username,
         message: (rtcMultiConnection.autoTranslateText ? linkify(e.data) + ' ( ' + linkify(e.original) + ' )' : linkify(e.data)),
-        userinfo: getUserinfo(rtcMultiConnection.blobURLs[e.userid], 'images/chat-message.png'),
+        userinfo: getUserinfo(rtcMultiConnection.blobURLs[e.userid], img),
         color: e.extra.color,
         tipo: 'peer'
     });
@@ -112,7 +114,7 @@ rtcMultiConnection.onNewSession = function(session) {
     addNewMessage({
         header: session.extra.username,
         message: 'Conectando....',
-        userinfo: '<img src="images/action-needed.png">',
+        userinfo: imgTag,
         color: session.extra.color,
         tipo: 'peer'
     });
@@ -123,7 +125,7 @@ rtcMultiConnection.onRequest = function(request) {
     addNewMessage({
         header: 'Se han unido al chat',
         message: 'Aceptando petición de: ' + request.extra.username + ' ( ' + request.userid + ' )...',
-        userinfo: '<img src="images/action-needed.png">',
+        userinfo: imgTag,
         color: request.extra.color,
         tipo: 'peer'
     });
@@ -140,7 +142,7 @@ rtcMultiConnection.onCustomMessage = function(message) {
         addNewMessage({
             header: message.extra.username,
             message: msg,
-            userinfo: '<img src="images/action-needed.png">',
+            userinfo: imgTag,
             tipo: 'peer',
             color: message.extra.color,
             callback: function(div) {
@@ -194,7 +196,7 @@ rtcMultiConnection.onCustomMessage = function(message) {
         addNewMessage({
             header: message.extra.username,
             message: message.extra.username + ' activó el micrófono. <button id="listen">Listen</button> ---- <button id="share-your-mic">Compartir micrófono</button>',
-            userinfo: '<img src="images/action-needed.png">',
+            userinfo: imgTag,
             tipo: 'peer',
             color: message.extra.color,
             callback: function(div) {
@@ -275,7 +277,7 @@ rtcMultiConnection.onclose = rtcMultiConnection.onleave = function(event) {
     addNewMessage({
         header: event.extra.username,
         message: event.extra.username + ' se ha desconectado.',
-        userinfo: getUserinfo(rtcMultiConnection.blobURLs[event.userid], 'images/info.png'),
+        userinfo: getUserinfo(rtcMultiConnection.blobURLs[event.userid], img),
         color: event.extra.color,
         tipo: 'peer'
     });
