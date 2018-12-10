@@ -1,4 +1,8 @@
-@extends('layouts.menuinv')
+@if(Auth::user()->tipo_inv == "normal")
+    @extends('layouts.menuinv')
+@elseif(Auth::user()->tipo_inv == "comite")
+    @extends('layouts.menucomite')
+@endif
 
 @section('content')
 <div class="col-md-9 investigaciones">
@@ -8,7 +12,8 @@
                 <a href="{{route('escritorioinvestigador')}}" class="btn btn-primary boton">Regresar</a>
                 <h1 style="float:left">Investigación </h1>
             @elseif(Auth::user()->tipo_inv == "comite")
-                <a href="{{route('escritoriocomite')}}" class="btn btn-primary boton">Regresar</a>
+                <h1 style="float:left">Investigación</h1>
+                <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>
             @endif
         </div>
     </div>
@@ -38,13 +43,13 @@
                     <a href="{{route('editarinves', $solicitud->id)}}" class="btn btn-success boton1"><i class="fa fa-paperclip" aria-hidden="true"></i> Editar Solicitud</a>
                     <a href="{{route('nombreinvpostulacion', $solicitud->id)}}" class="btn btn-secondary boton1">Revisar Postulaciones</a>
                     @elseif(Auth::user()->tipo_inv == "comite")
-                        <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
-                @else
+{{--                         <button style="float:left" onclick="goBack()" class="btn btn-secondary">Regresar</button>
+ --}}                @else
                     <a href="{{route('solicitud.destroy', $solicitud->id)}}" class="btn btn-danger boton1"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar Solicitud</a>
                 @endif
-                @if(Auth::user()->tipo_inv == "comite"  && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_sol',$solicitud->id)->count() == 0)))
-                    <a href="{{action('InvestigacionController@AceptarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-success boton1">Aceptar Solicitud</a>
-                    <a href="{{action('InvestigacionController@RechazarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-danger boton1">Rechazar Solicitud</a>
+                @if(Auth::user()->tipo_inv == "comite" && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_sol',$solicitud->id)->count() == 0)))
+                    <a href="{{action('InvestigacionController@AceptarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-success boton1"><i class="fa fa-check" aria-hidden="true"></i> Aceptar Solicitud</a>
+                    <a href="{{action('InvestigacionController@RechazarInvestigacion',['id'=> $solicitud->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" aria-hidden="true"></i> Rechazar Solicitud</a>
                     
                 @endif
             </div>

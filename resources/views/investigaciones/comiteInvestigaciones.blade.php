@@ -22,7 +22,7 @@
                         @foreach(\App\Solicitud::all() as $sol)
                             @if(\App\User::find($sol->user_id)->tipo_usu == "investigador"  && ($sol->estado=="pendiente"))
                                 <div>
-                                    <h3><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></h3>
+                                    <p><a href="{{route('solicitud.show',['id'=> $sol->id])}}">{{$sol->titulo}}</a></p>
                                 </div>
                             @endif
                         @endforeach
@@ -40,7 +40,7 @@
                         @foreach(\App\Investigacion::all() as $inv)
                             @if($inv->estado=="activa")
                                 <div class="investigaciones">
-                                    <h3><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}">{{$inv->titulo}}</a></h3>
+                                    <p><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}">{{$inv->titulo}}</a></p>
                                 </div>
                             @endif
                         @endforeach
@@ -50,6 +50,24 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Investigaciones Rechazadas:</h3>
+                        @if(count(\App\Investigacion::all())>0)
+                            @foreach(\App\Investigacion::all() as $inv)
+                                @if($inv->estado=="rechazada")
+                                    <div class="investigaciones">
+                                        <p><a href="{{route('moduloinvestigacion.show',['id'=> $inv->id])}}">{{$inv->titulo}}</a></p>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @else
+                            <p><b>No hay investigaciones activas</b></p>
+                        @endif
+                </div>
+            </div>
+        </div>
     
 </div>
 </div>
