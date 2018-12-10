@@ -40,20 +40,20 @@
                                 <span>{{\App\User::find($postulacion->id_invest)->apellido}}</span>
                             </div>
                             <div class="col-md-2">
-                                <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary boton1">Ver Más</a>
+                                <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary boton1"><i class="fa fa-eye" aria-hidden="true"></i> Ver Más</a>
                             </div>
                             <div class="col-md-3">
-                                <a href="{{route('crearmensaje',$postulacion->id_invest)}}" class="btn btn-warning boton1">Enviar Mensaje</a>
+                                <a href="{{route('crearmensaje',$postulacion->id_invest)}}" class="btn btn-warning boton1"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar Mensaje</a>
                             </div>
                             <div class="col-md-2">
-                                <a href="{{route('encuestauno',$postulacion->id_invest)}}" class="btn btn-danger boton1">Realizar Evaluación</a>
+                                <a href="{{route('encuestauno',$postulacion->id_invest)}}" class="btn btn-danger boton1"><i class="fa fa-print" aria-hidden="true"></i> Realizar Evaluación</a>
                             </div> 
                         </div>
                         <br>
                     @endif
                 @endforeach
                 <div class="row">
-                    <a href="{{route('vistaencuesta', $inv->id)}}" class="btn btn-success boton">Ver Resultados</a>
+                    <a href="{{route('vistaencuesta', $inv->id)}}" class="btn btn-success boton"><i class="fa fa-eye" aria-hidden="true"></i> Ver Resultados</a>
                 </div>
             </div>
         </div>

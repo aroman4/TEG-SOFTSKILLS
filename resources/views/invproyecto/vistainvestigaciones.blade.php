@@ -45,7 +45,7 @@
                 @forelse(\App\Investigacion::all() as $inv)
                     @forelse(\App\Postulacion::all() as $postulacion) 
                         {{--Postulados a mi investigaciones pendientes--}}
-                      @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada')
+                      @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada'&& $postulacion->estado_inv == 'inicio')
                         <li class="list-group-item listaAsesSolic">
                             <div class="row">                                
                                 <p><b>Título: </b>{{\App\Investigacion::find($postulacion->id_post)->titulo}}<br>
@@ -82,21 +82,18 @@
 
                     {{--Mis Postulaciones--}}
                     @forelse(\App\Postulacion::all() as $postulacion) 
-                        @if($postulacion->id_invest == Auth::user()->id && $postulacion->estado == 'aceptada')
+                        @if($postulacion->id_invest == Auth::user()->id && $postulacion->estado == 'aceptada'&& $postulacion->estado_inv == 'inicio')
                         <li class="list-group-item listaAsesSolic">
                                 <p><b>Mis Postulación:</b></p>
                                 <div class="row">
                                     <br><b>Título:</b> {{\App\Investigacion::find($postulacion->id_post)->titulo}}</p>
                                     <br>   <br>    
-                                    {{--<b>Investigador:</b> {{\App\User::find($postulacion->id_invest)->nombre ." ". \App\User::find($postulacion->id_invest)->apellido}}</p> --}}                           
                                 </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="row">
                                         <a title="Ver postulación" href="{{route('proyectoverpost.showproyectoverpost',['id'=> $postulacion->id])}}" class="btn btn-primary boton1"><i class="fa fa-eye" style="color:#FFFFFF; width:6; height:6"></i></a>
-                                        {{-- @if(Auth::user()->id == $postulacion->id_invest)--}} 
                                         <a title="Subir Archivo" href="./proyectovista/{{$postulacion->id}}" class="btn btn-success boton1"><i class="fa fa-upload" style="color:#FFFFFF; width:6; height:6"></i></a>
-                                        {{-- @endif--}}                                       
                                         <a title="Descargar archivo" href="proyecto/{{$postulacion->archivo_inv}}" class="btn btn-warning boton1" download="{{$postulacion->archivo_inv}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i></a>
                                     </div>     
                                 </div>
