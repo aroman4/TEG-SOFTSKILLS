@@ -1,8 +1,4 @@
-@if(Auth::user()->tipo_inv == "normal")
-    @extends('layouts.menuinv')
-@elseif(Auth::user()->tipo_inv == "comite")
-    @extends('layouts.menucomite')
-@endif
+@extends((( auth()->user()->tipo_inv == "normal") ? 'layouts.menuinv' : 'layouts.menucomite' ))
 
 @section('content')
 <div class="col-md-9 investigaciones">
@@ -12,7 +8,7 @@
                 <a href="{{route('escritorioinvestigador')}}" class="btn btn-primary boton">Regresar</a>
                 <h1 style="float:left">Investigación </h1>
             @elseif(Auth::user()->tipo_inv == "comite")
-                <h1 style="float:left">Investigación</h1>
+                <h1 style="float:left">Investigación de {{\App\User::find($investigaciones->user_id)->nombre ." ". \App\User::find($investigaciones->user_id)->apellido }}</h1>
                 <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>
             @endif
         </div>

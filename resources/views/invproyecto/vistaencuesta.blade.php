@@ -16,9 +16,40 @@
             {{-- <h1 style="float:left">Calificación: {{$encuestastodas->calificacion}} </h1> --}}
         </div>
     </div>
- 
+    <div class="row text-center">
+            <div class="col-md-12 list-group-item ">
+                <div class="row ">
+{{--                     <h1>Investigadores:</span> </h1>
+ --}}                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <b>Nombre y Apellido</b>
+                    </div> 
+                    <div class="col-md-4">
+                        <b>Actividad</b>
+                    </div> 
+                    <div class="col-md-4">
+                        <b>Calificación</b>
+                    </div>  
+                </div>
+                <hr>
+            @foreach($encuestastodas as $value)
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            {!! App\User::find($value->id_usuario)->nombre .' '. App\User::find($value->id_usuario)->apellido !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! DB::table('actividad')->where('id_investigador',$value->id_usuario)->where('id_investigacion',$value->id_investg)->first()->titulo !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! $value->calificacion !!}
+                        </div>
+                    </div>
+                    <br>
+            @endforeach
     <div id="reporte">
-        <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+        <br><br>
+        <div id="columnchart_material" style="width: 930px; height: 500px;"></div>
     </div>
 @endsection
 
