@@ -34,10 +34,8 @@
                     <span>{{\App\User::find($postulacion->id_invest)->email}}</span>
                 </div>
                 <div class="col-md-3">                
-                    <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}">
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-upload">  Download </i>
-                        </button>
+                    <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}"
+                        class="btn btn-primary"><i class="fa fa-upload">  Download </i>  
                     </a>
                 </div>
                 <div class="col-md-3">

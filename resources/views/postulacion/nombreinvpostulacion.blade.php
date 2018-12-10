@@ -46,20 +46,17 @@
                                 @endif
                             </div>
                             <div class="col-md-2"> 
-                                <button type="button" class="btn btn-primary boton1">
-                                        <i class="fa fa-download">  Download </i>
-{{--                                     @if($postulacion->archivo != null)                                         
- --}}                                        <a href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}"></a>
-{{--                                     @endif
- --}}                                </button> 
+                                @if($postulacion->archivo != NULL) 
+                                    <a class="btn btn-primary boton1" href="archivoproyecto/{{$postulacion->archivo}}" download="{{$postulacion->archivo}}"><i title="Descargar Archivo"class="fa fa-download"> Download </i></a>
+                                @endif   
                             </div>
                             <div class="col-md-3">
                                 <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-secondary boton1">Revisar Postulación</a></h3>
                             </div>
                             <div class="col-md-4">
-                                <a  href="{{route('crearactividad',['id'=> $postulacion->id])}}" class="btn btn-success boton1"><i class="fa fa-check"></i>Aceptar</a></h3>
+                                <a  href="{{route('crearactividad',['id'=> $postulacion->id])}}" class="btn btn-success boton1"><i class="fa fa-check"></i> Aceptar</a></h3>
 
-                                <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i>Rechazar</a>
+                                <a href="{{action('PostulacionController@RechazarPostulacion',['id'=> $postulacion->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" style="color:#FFFFFF; width:6; height:6"></i> Rechazar</a>
                             
                                 <br> <span style="color:black;">El estado es: </span>
                                 <span style="color:black;">{{$postulacion->estado}}</span>
