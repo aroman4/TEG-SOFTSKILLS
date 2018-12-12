@@ -73,11 +73,11 @@ class AsesoriaController extends Controller
 
         
         //enviar email al cliente
-        Mail::send('email.asesoriaaceptada'.$tipo,$asesoria->toArray(),function($mensaje) use ($asesoria){
+        /* Mail::send('email.asesoriaaceptada'.$tipo,$asesoria->toArray(),function($mensaje) use ($asesoria){
             $mensaje->to(User::find($asesoria->id_cliente)->email,User::find($asesoria->id_cliente)->nombre)
             ->subject('Solicitud de asesoría Aceptada - SoftSkills');
             $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-        });
+        }); */
 
         
         return redirect('/escritorioasesor')->with('success','Asesoría aceptada');
@@ -110,11 +110,11 @@ class AsesoriaController extends Controller
                     $solicitud->user_id = $asesor->id;
                 }
                 //enviar email al asesor
-                Mail::send('email.asesorsolicitud',$solicitud->toArray(),function($mensaje) use ($solicitud){
+                /* Mail::send('email.asesorsolicitud',$solicitud->toArray(),function($mensaje) use ($solicitud){
                     $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
                     ->subject('Solicitud de asesor aceptada - SoftSkills');
                     $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-                });
+                }); */
             }else if($solicitud->votoscontra >= 2){ //si hay dos o más votos en contra
                 $mensaje = " Postulación de Asesor rechazada";
             }
@@ -158,11 +158,11 @@ class AsesoriaController extends Controller
                     $solicitud->user_id = $asesor->id;
                 }
                 //enviar email al asesor
-                Mail::send('email.asesorsolicitud',$solicitud->toArray(),function($mensaje) use ($solicitud){
+                /* Mail::send('email.asesorsolicitud',$solicitud->toArray(),function($mensaje) use ($solicitud){
                     $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
                     ->subject('Solicitud de asesor aceptada - SoftSkills');
                     $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-                });
+                }); */
             }else if($solicitud->votoscontra >= 2){ //si hay dos o más votos en contra
                 $mensaje = " Postulación de Asesor rechazada";
             }
@@ -186,11 +186,11 @@ class AsesoriaController extends Controller
         if($solicitud->tipo == "presolicitud"){
 
         }else{
-            Mail::send('email.presolicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
+           /*  Mail::send('email.presolicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
                 $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
                 ->subject('Solicitud de asesoría Rechazada - SoftSkills');
                 $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-            });
+            }); */
         }
         
         

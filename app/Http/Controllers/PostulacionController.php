@@ -134,11 +134,11 @@ class PostulacionController extends Controller
             $investigador->save();
 
             $postulacion->user_id = $investigador->id;
-            Mail::send('email.asesorsolicitud',$postulacion->toArray(),function($mensaje) use ($postulacion){
+            /* Mail::send('email.asesorsolicitud',$postulacion->toArray(),function($mensaje) use ($postulacion){
                 $mensaje->to($postulacion->email,$postulacion->nombre)
                 ->subject('Postulación a investigación aceptada - SoftSkills');
                 $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');
-            });
+            }); */
         }
         $postulacion->save();
         return redirect('/nombreinvpostulacion')->with('success','Postulación Aceptada');
