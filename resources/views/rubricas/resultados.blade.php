@@ -118,6 +118,11 @@
                 <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
             </div>{{-- col con list item --}}
         </div>
+        <style>
+                table, th, td {
+                    border: 1px solid black;
+                }
+            </style>
         </div>{{-- reporte --}}
     </div>{{-- listgroup --}}
 </div>

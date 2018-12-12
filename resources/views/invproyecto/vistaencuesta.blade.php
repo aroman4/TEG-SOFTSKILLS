@@ -8,11 +8,11 @@
             <button  onclick="goBack()" class="btn btn-primary boton">Regresar</button>
                   <h1 class="boton1">Resultados </h1>
             @endif
-            {{-- <form method="post" id="make_pdf" action="{{action('CuestionarioController@reportePdf')}}">
+            <form method="post" id="make_pdf" action="{{action('CuestionarioController@reportePdf')}}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="hidden_html" id="hidden_html" />
                 <button type="button" name="create_pdf" id="create_pdf" class="btn btn-danger btn-xs">Generar PDF</button>
-            </form> --}}
+            </form>
             {{-- <h1 style="float:left">Calificación: {{$encuestastodas->calificacion}} </h1> --}}
         </div>
     </div>
@@ -21,36 +21,49 @@
                 <div class="row ">
 {{--                     <h1>Investigadores:</span> </h1>
  --}}                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <b>Nombre y Apellido</b>
-                    </div> 
-                    <div class="col-md-4">
-                        <b>Actividad</b>
-                    </div> 
-                    <div class="col-md-4">
-                        <b>Calificación</b>
-                    </div>  
-                </div>
-                <hr>
-            @foreach($encuestastodas as $value)
-                    <div class="row text-center">
-                        <div class="col-md-4">
-                            {!! App\User::find($value->id_usuario)->nombre .' '. App\User::find($value->id_usuario)->apellido !!}
-                        </div>
-                        <div class="col-md-4">
-                            {!! DB::table('actividad')->where('id_investigador',$value->id_usuario)->where('id_investigacion',$value->id_investg)->first()->titulo !!}
-                        </div>
-                        <div class="col-md-4">
-                            {!! $value->calificacion !!}
-                        </div>
-                    </div>
-                    <br>
-            @endforeach
-    <div id="reporte">
-        <br><br>
-        <div id="columnchart_material" style="width: 930px; height: 500px;"></div>
+            <div id="reporte">
+                <h1>{{DB::table('investigacion')->where('id',$encuestastodas->first()->id_investg)->first()->titulo}}</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            <th scope="col">
+                                <b>Nombre y Apellido</b>
+                            </th>
+                            <th scope="col">
+                                <b>Actividad</b>
+                            </th>
+                            <th scope="col">
+                                <b>Calificación</b>
+                            </th>
+                            </tr>
+                        </thead>
+                @foreach($encuestastodas as $value)
+                        <tr>
+                            <td>
+                                {!! App\User::find($value->id_usuario)->nombre .' '. App\User::find($value->id_usuario)->apellido !!}
+                            </td>
+                            <td>
+                                {!! DB::table('actividad')->where('id_investigador',$value->id_usuario)->where('id_investigacion',$value->id_investg)->first()->titulo !!}
+                            </td>
+                            <td>
+                                {!! $value->calificacion !!}
+                            </td>
+                        </tr>
+                        <br>
+                @endforeach
+            </table>
+            <style>
+                table, th, td {
+                    border: 1px solid black;
+                }
+            </style>
+            </div>
+        <div>
+            <br><br>
+            <div id="columnchart_material" style="width: 930px; height: 500px;"></div>
+        </div>
     </div>
+</div>
 @endsection
 
 
