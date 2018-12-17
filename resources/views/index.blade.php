@@ -2,7 +2,7 @@
 @section('content')
     <div class="fondo imagen-fija5">
 	</div>
-	<div class="banner">
+	<div class="banner" >
 		<h1 class="animated fadeInDownBig" style="margin-top:30%">Los estudios demuestran que el éxito está garantizado si tus Soft Skills son excelentes</h1>
 		<img style="position:relative; z-index:1;" width="150" height="120" src="{{asset('img/statsup.jpg')}}">
 	</div>
@@ -13,8 +13,8 @@ a lo técnico, nosotros te ofrecemos Asesorías y desarrollo Investigativo en ta
 las habilidades blandas</h2>
     </div>
 	
-	<div class="noesperes">
-		<div class="row" style="">
+	<div class="noesperes"style="height: 552px;">
+		<div class="row" style="height: 600px; margin-right:0px;">
 			<div class="col-md-6" style="padding:0;">
 				<div class="text-center imagen-fija imagen-fija6" >
 					<h1 class="texth1Index">Investigación</h1>

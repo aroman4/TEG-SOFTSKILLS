@@ -18,8 +18,8 @@
 	
 	</div>
 	<div class="noesperes" style="height: 600px;">
-		<h2 class="text-center">Investigaciones Realizadas por Todos Nuestros Investigadores</h2>    
-				<div class="row justify-content-center">  
+		<h2 class="text-center">Investigaciones Realizadas por Nuestros Investigadores</h2>    
+				<div class="row justify-content-center" style="margin-right:15px;">  
 					@foreach ($pub as $inv)
 						<div class="col-md-8">
 							<div class="card ">

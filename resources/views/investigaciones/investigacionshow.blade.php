@@ -62,7 +62,8 @@
                     @if($investigaciones->estado_com=="enviado")
                         <a title="Descargar archivo" href="proyecto/{{$investigaciones->archivofinal}}" class="btn btn-warning boton1" download="{{$investigaciones->archivofinal}}"><i class="fa fa-download" style="color:#000; width:6; height:6"></i> Descargar Investigación Final</a>
                     @endif
-                    @if(Auth::user()->tipo_inv == "comite" && $investigaciones->estado_com=="enviado" && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_inv',$investigaciones->id)->count() == 0)))
+{{--                     <a title="Descargar archivo" href="archivoproyecto/{{$postulacion->archivo}}" class="btn btn-warning boton1" download="{{$investigaciones->archivo}}"><i class="fa fa-download" style="color:#000; width:6; height:6"></i> Descargar Investigación</a>
+ --}}                    @if(Auth::user()->tipo_inv == "comite" && $investigaciones->estado_com=="enviado" && ((DB::table('voto')->where('user_id',auth()->user()->id)->where('id_inv',$investigaciones->id)->count() == 0)))
                         <a href="{{action('InvestigacionController@AceptarInvest',['id'=> $investigaciones->id])}}" class="btn btn-success boton1"><i class="fa fa-check" aria-hidden="true"></i> Aceptar Solicitud</a>
                         <a href="{{action('InvestigacionController@RechazarInvest',['id'=> $investigaciones->id])}}" class="btn btn-danger boton1"><i class="fa fa-times" aria-hidden="true"></i> Rechazar Solicitud</a> 
                     @endif
