@@ -93,7 +93,9 @@ class UsersController extends Controller
         $user = User::find($id);
         $pass = $user->password;
         $user->fill($request->all());
-        $user->tipo_inv = $request->tipo_inv;
+        if($request->tipo_inv != null){
+            $user->tipo_inv = $request->tipo_inv;
+        }
         if($request->password == null){
             $user->password = $pass;
         }

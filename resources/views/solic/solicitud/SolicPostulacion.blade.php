@@ -38,11 +38,21 @@
                                 <div class="form-group row">
                                     {!! Form::label ('actividad','Actividad que deseas participar de la Investigación:  ')!!}
                                     {{-- <p>{{\App\Investigacion::find($inv)->actividades}}</p> --}}
-                                    <ul class="form-control">
+                                    {{-- <ul class="form-control">
                                         @foreach(json_decode(\App\Investigacion::find($inv)->actividades) as $key=>$value)
                                             <li > <input type="radio" value="{{$value}}" name="actividad" id="actividad"> {{$value}}</li>
                                         @endforeach
-                                    </ul>
+                                    </ul> --}}
+                                    <ol class="form-control">
+                                        @foreach(DB::table('objespecifico')->where('id_investigacion',$inv)->get() as $obj)
+                                            <li>{{$obj->titulo}}</li>
+                                            <ul>
+                                                @foreach(json_decode($obj->actividades) as $key=>$value)
+                                                    <li > <input type="radio" value="{{$value}}" name="actividad" id="actividad"> {{$value}}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endforeach
+                                    </ol>
                                     {{-- {!! Form::textarea ('actividad',null,['class'=>"form-control {{ $errors->has('actividad') ? ' is-invalid' : '' }}",'placeholder'=>'Escribe la actividad a desarrollar','required'])!!}
                                     @if ($errors->has('actividad'))
                                             <span class="text-danger" role="alert">

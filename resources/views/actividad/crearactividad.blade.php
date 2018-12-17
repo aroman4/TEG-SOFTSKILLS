@@ -27,11 +27,21 @@
                                 </div>
                                 <div class="form-group row">
                                     {!! Form::label ('titulo','Selecciona la actividad a asignar:')!!}
-                                    <ul class="form-control">
+                                    {{-- <ul class="form-control">
                                         @foreach(json_decode(\App\Investigacion::find($inv->id_post)->actividades) as $key=>$value)
                                             <li><input type="radio" value="{{$value}}" name="titulo" id="titulo"> {{$value}}</li>
                                         @endforeach
-                                    </ul>
+                                    </ul> --}}
+                                    <ol class="form-control">
+                                        @foreach(DB::table('objespecifico')->where('id_investigacion',$inv->id_post)->get() as $obj)
+                                            <li>{{$obj->titulo}}</li>
+                                            <ul>
+                                                @foreach(json_decode($obj->actividades) as $key=>$value)
+                                                    <li><input type="radio" value="{{$value}}" name="titulo" id="titulo"> {{$value}}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endforeach
+                                    </ol>
                                     {{-- {!! Form::text ('titulo',null,['class'=>"form-control {{ $errors->has('titulo') ? ' is-invalid' : '' }}",'placeholder'=>'Titulo de la Actividad','required'])!!}
                                     @if ($errors->has('titulo'))
                                             <span class="text-danger" role="alert">

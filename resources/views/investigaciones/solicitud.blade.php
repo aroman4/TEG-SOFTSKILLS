@@ -8,7 +8,7 @@
                 <a href="{{route('escritorioinvestigador')}}" class="btn btn-primary boton">Regresar</a>
                 <h1 style="float:left">Investigación </h1>
             @elseif(Auth::user()->tipo_inv == "comite")
-                <h1 style="float:left">Investigación de {{\App\User::find($investigaciones->user_id)->nombre ." ". \App\User::find($investigaciones->user_id)->apellido }}</h1>
+                <h1 style="float:left">Investigación de {{\App\User::find($solicitud->user_id)->nombre ." ". \App\User::find($solicitud->user_id)->apellido }}</h1>
                 <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>
             @endif
         </div>
@@ -21,8 +21,13 @@
             <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
             {{-- Listar los objetivos especificos --}}
             <ol>
-                @foreach(json_decode($solicitud->actividades) as $key=>$value)
-                    <li>{{$value}}</li>
+                @foreach(DB::table('objespecifico')->where('id_solicitud',$solicitud->id)->get() as $obj)
+                    <li>{{$obj->titulo}}</li>
+                    <ul>
+                        @foreach(json_decode($obj->actividades) as $key=>$value)
+                            <li>{{$value}}</li>
+                        @endforeach
+                    </ul>
                 @endforeach
             </ol></p>
             <p><b>Resumen:</b> {{$solicitud->descripcion}}</p>

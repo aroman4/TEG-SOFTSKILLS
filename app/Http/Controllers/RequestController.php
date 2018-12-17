@@ -115,12 +115,19 @@ public function publicacioninvestigacion()
         /* $this->validate($request,[
 
         ]); */
+        //dd($request->all());
         $arr = $request->all();
         //dd($arr);
-        //$arr['actividades'] =  implode(",", $request->actividades);
-        $arr['actividades'] =  json_encode($request->actividades);
-        //dd($arr['actividades']);
-        $solicitud = new Solicitud($arr);
+        
+        //creo la solicitud
+        $solicitud = new Solicitud();
+
+        //tomo los objetivos especificos
+        $arr['objetivosespecificos'] =  json_encode($request->objetivosespecificos);
+        
+        $solicitud->fill($arr);
+        //archivo
+        
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $nombreArch = time().$archivo->getClientOriginalName();
@@ -129,6 +136,16 @@ public function publicacioninvestigacion()
         }
         $solicitud->user_id = auth()->user()->id;
         $solicitud->save();
+
+        $cantObj = count($request->objetivosespecificos);
+        //ahora despues de conseguir la cantidad de objetivos especificos, voy a crear cada objetivo con sus actividades
+        for($i=0; $i<$cantObj; $i++){
+            $objetivo = new \App\Objespecifico();
+            $objetivo->titulo = $request->objetivosespecificos[$i];
+            $objetivo->id_solicitud = $solicitud->id;
+            $objetivo->actividades = json_encode($request->{'actividades'.$i});
+            $objetivo->save();
+        }
 
         $tipoUser = Auth::user()->tipo_usu;
         switch($tipoUser){
