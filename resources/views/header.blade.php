@@ -13,10 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css"  />
     <link rel="stylesheet" href="{{asset('css/estilo.css')}}"  />
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    {{-- <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
         CKEDITOR.replace( 'article-ckeditor' );
-    </script>
+    </script> --}}
 </head>
 <body>
     <script>

@@ -186,7 +186,7 @@ class AsesoriaController extends Controller
         if($solicitud->tipo == "presolicitud"){
 
         }else{
-           /*  Mail::send('email.presolicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
+            /* Mail::send('email.presolicitudrechazada',$solicitud->toArray(),function($mensaje) use ($solicitud){
                 $mensaje->to(User::find($solicitud->user_id)->email,User::find($solicitud->user_id)->nombre)
                 ->subject('Solicitud de asesoría Rechazada - SoftSkills');
                 $mensaje->from('desarrollohabilidadesblandas@gmail.com','SoftSkills');

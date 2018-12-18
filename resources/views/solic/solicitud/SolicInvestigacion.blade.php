@@ -45,15 +45,29 @@
                                             </span>
                                     @endif
                                 </div>
-                                <div class="form-group row agg-actividad">
+                                    {{-- <div class="form-group row agg-actividad">
                                         {!! Form::label ('actividades','Actividades:*')!!}
-                                        <span class="add-option btn btn-success boton1" style="cursor:pointer;">Añadir objetivo</span>
-                                        {{-- {!! Form::text ('actividades',null,['class'=>"form-control {{ $errors->has('actividades') ? ' is-invalid' : '' }}",'placeholder'=>'Coloca las Actividades necesaria para desarrollar la investigación','required'])!!} --}}
+                                        <span class="add-option btn btn-success boton1" style="cursor:pointer;">Añadir objetivo</span>                                        
                                         <div class="input-field form-control" style="border:none;">
                                             <input type="text" name="actividades[]" id="actividades[]" class="form-control">
                                             <span style="float:right; cursor:pointer;"class="delete-option btn btn-danger boton1">Borrar objetivo</span>                                            
                                         </div>
-                                        {{-- <span class="agg-actividad"></span> --}}
+                                        @if ($errors->has('actividades'))
+                                        <span class="text-danger" role="alert">
+                                                <strong>{{ $errors->first('actividades') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div> --}}
+                                    <div class="form-group row agg-actividad">
+                                        {!! Form::label ('objetivos','Objetivos:*')!!}
+                                        <span class="add-option btn btn-success boton1" style="cursor:pointer;">Añadir objetivo</span>                                        
+                                        <div class="input-field form-control" style="border:none;">
+                                            Objetivo: 
+                                            <input type="text" name="objetivosespecificos[]" id="objetivosespecificos[]" class="form-control">
+                                            Actividades del objetivo: 
+                                            <span class="add-actividad btn btn-success boton1" style="cursor:pointer;">Añadir actividad</span> 
+                                            <div class="actividadesObj"></div>
+                                        </div>
                                         @if ($errors->has('actividades'))
                                         <span class="text-danger" role="alert">
                                                 <strong>{{ $errors->first('actividades') }}</strong>
@@ -89,10 +103,11 @@
 </div>
 @endsection
 
-<script
+{{-- <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> --}}
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('js/actividad.js')}}"></script>
 
 

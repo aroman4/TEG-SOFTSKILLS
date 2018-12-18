@@ -69,7 +69,22 @@ public function descargafuc(){
                 $solicitud->estado = "aceptada";
 
                 //luego de guardar la investigacion, creo las actividades
-                $array = json_decode($Investigacion->actividades);
+                foreach(DB::table('objespecifico')->where('id_solicitud',$solicitud->id)->get() as $obj){
+                    foreach(json_decode($obj->actividades) as $key=>$value){
+                        $act = new \App\Actividad();
+                        $act->titulo = $value;
+                        $act->id_objetivo = $obj->id;
+                        $act->asignado = false;
+                        $act->id_investigacion = $Investigacion->id;
+                        $act->id_investigador = $Investigacion->user_id; //le asigno el id del lider mientras no ha sido asignado
+                        $act->save();
+                    }
+                    //guardar el id de la investigacion en el objetivo
+                    $objetivo = \App\Objespecifico::find($obj->id);
+                    $objetivo->id_investigacion = $Investigacion->id;
+                    $objetivo->save();
+                }
+                /* $array = json_decode($Investigacion->actividades);
                 foreach($array as $key=>$value){
                     $act = new \App\Actividad();
                     $act->titulo = $value;
@@ -77,7 +92,7 @@ public function descargafuc(){
                     $act->id_investigacion = $Investigacion->id;
                     $act->id_investigador = $Investigacion->user_id; //le asigno el id del lider mientras no ha sido asignado
                     $act->save();
-                }
+                } */
                 $mensaje = " Investigación aceptada";
             }else if($solicitud->votoscontra >= 2){ //si hay dos o más votos en contra
                 //avisar que la solicitud fue rechazada

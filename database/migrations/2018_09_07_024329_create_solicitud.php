@@ -16,6 +16,8 @@ class CreateSolicitud extends Migration
         Schema::create('solicitud', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_solicitud')->nullable();
+            $table->string('objetivogeneral')->nullable();
+            $table->string('objetivosespecificos')->nullable();
             $table->string('actividades')->nullable();
             $table->string('objetivos')->nullable();
             $table->string('descripcion',1000)->nullable();
