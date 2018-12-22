@@ -49,12 +49,12 @@
                             <div class="col-12">
                                 <div class="row">
                                     @if($inv->estado == 'activa')
-                                        <p><b>Estatus:</b>  Investigación Activa</p>
+                                        <p><b>Estátus:</b>  Investigación Activa</p>
                                         <hr style="color: #0056b2; margin:8px;" />
                                         <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
                                         <div style="margin:20px;"></div>
                                     @else
-                                        <p><b>Estatus:</b> Investigación Finalizada </p>
+                                        <p><b>Estátus:</b> Investigación Finalizada </p>
                                         <div style="margin:8px;"></div>
                                             @if($inv->archivofinal != NULL) 
                                                 <a class="btn btn-primary boton1" href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"><i title="Descargar Archivo Final"class="fa fa-download"> Download </i></a>

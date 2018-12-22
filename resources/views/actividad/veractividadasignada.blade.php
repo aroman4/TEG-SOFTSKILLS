@@ -15,7 +15,8 @@
     <div class="row">
         <div class="col-md-12 list-group-item ">
             <p><b>Fecha de Entrega:  </b>{{$actividad->fecha_entrega}}</p>
-            <p><b>Título:  </b>{{$actividad->titulo}}</p>
+            <p><b>Objetivo Especifico de la Actividad Asignada:  </b>{{\App\Objespecifico::find($actividad->id_objetivo)->titulo}}</p>
+            <p><b>Actividad Asignada:  </b>{{$actividad->titulo}}</p>
             <p><b>Detalle:  </b>{{$actividad->observacion}}</p>
             <p>Asignada el {{$actividad->created_at}}</p>
             <a title="Descargar archivo" href="proyecto/{{$actividad->archivo_actividad}}" class="btn btn-success boton1" download="{{$actividad->archivo_actividad}}"><i class="fa fa-download" style="color:#FFFFFF; width:6; height:6"></i> Descargar Documento</a>                           

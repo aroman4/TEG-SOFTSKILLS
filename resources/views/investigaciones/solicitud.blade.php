@@ -18,7 +18,7 @@
             <p><b>Título:  <u>{{$solicitud->titulo}}</u></b></p>
             <p><b>Objetivo General:</b> {{$solicitud->objetivos}}</p>
             <p><b>Palabras Claves:</b> {{$solicitud->caracteristica}}</p>
-            <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
+            <p><b>Objetivos Específicos:</b> {{-- {{$solicitud->actividades}} --}}
             {{-- Listar los objetivos especificos --}}
             <ol>
                 @foreach(DB::table('objespecifico')->where('id_solicitud',$solicitud->id)->get() as $obj)
