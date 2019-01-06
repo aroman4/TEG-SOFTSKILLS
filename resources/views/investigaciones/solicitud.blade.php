@@ -5,8 +5,10 @@
     <div class="row text-center separador">
         <div class="col-md-12 list-group-item text-center top-bar">
             @if(Auth::user()->tipo_inv == "normal")
-                <a href="{{route('escritorioinvestigador')}}" class="btn btn-primary boton">Regresar</a>
-                <h1 style="float:left">Investigación </h1>
+{{--                 <a href="{{route('escritorioinvestigador')}}" class="btn btn-primary boton">Regresar</a>
+ --}}       <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>
+
+            <h1 style="float:left">Investigación </h1>
             @elseif(Auth::user()->tipo_inv == "comite")
                 <h1 style="float:left">Investigación de {{\App\User::find($solicitud->user_id)->nombre ." ". \App\User::find($solicitud->user_id)->apellido }}</h1>
                 <a onclick="goBack()" class="btn btn-primary boton">Regresar</a>

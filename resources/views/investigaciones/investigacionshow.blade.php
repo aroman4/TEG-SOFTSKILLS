@@ -18,13 +18,13 @@
                 <p><b>Título:  <u>{{$investigaciones->titulo}}</u></b></p>
                 <p><b>Objetivos General:</b> {{$investigaciones->objetivos}}</p>
                 <p><b>Palabras Claves:</b> {{$investigaciones->caracteristica}}</p>
-                <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
-                    {{-- Listar los objetivos especificos --}}
+                {{-- <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
+                    {{-- Listar los objetivos especificos 
                     <ol>
                         @foreach(json_decode($investigaciones->actividades) as $key=>$value)
                             <li>{{$value}}</li>
                         @endforeach
-                    </ol></p>
+                    </ol></p> --}}
                 <p><b>Resumen:</b>{{$investigaciones->descipcion}}</p>
                 @if($investigaciones->estado == 'activa')
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>
