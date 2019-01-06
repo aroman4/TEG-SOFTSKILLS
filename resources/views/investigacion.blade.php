@@ -45,9 +45,9 @@
 										@else
 											<a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
 										@endguest
-										<div class="row" style="float:right;"><br>
+										{{-- <div class="row" style="float:right;"><br>
                                             <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
-										</div>
+										</div> --}}
 									</div> 
 								</div>
 							</div>
