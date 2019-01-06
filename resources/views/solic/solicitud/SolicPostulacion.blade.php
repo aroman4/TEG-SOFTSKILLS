@@ -12,8 +12,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Solicitud de Postulación') }}</div>
-                    <div class="card-body">
+                <div class="card-header">{{ __('Solicitud de Postulación') }}</div>  
+
+                    <div class="card-body">     
                         {!!Form::open(['action' => 'PostulacionController@store', 'method' => 'POST', 'files'=> true, 'enctype' => 'multipart/form-data'])!!}
                             <input type="hidden" name="id_post" value="{{ $inv }}"> 
                             @csrf
