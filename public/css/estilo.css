@@ -601,6 +601,7 @@ body{
 	background: #000000;
 	color: #FFFFFF;
 	outline: 1px solid #2a2a2a;
+	
 }
 .menu-inv ul {
 	list-style: none;
@@ -629,12 +630,7 @@ body{
 	background: #eee;
 	padding: 30px;
 }
-.menu-bar{
-	cursor: pointer;
-}
-.abrir{
-	transform: translatex(250px);
-}
+
 
 .logo-icono{
 	color: #000fff;

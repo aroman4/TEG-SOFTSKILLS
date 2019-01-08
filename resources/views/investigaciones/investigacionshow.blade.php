@@ -25,7 +25,7 @@
                             <li>{{$value}}</li>
                         @endforeach
                     </ol></p> --}}
-                <p><b>Resumen:</b>{{$investigaciones->descipcion}}</p>
+                <p><b>Resumen:</b>{{$investigaciones->descripcion}}</p>
                 @if($investigaciones->estado == 'activa')
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>
                 @else

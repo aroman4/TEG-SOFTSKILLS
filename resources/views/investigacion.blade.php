@@ -17,8 +17,10 @@
 		</div>
 	
 	</div>
-	<div class="noesperes" style="height: 600px;">
-		<h2 class="text-center">Investigaciones Realizadas por Nuestros Investigadores</h2>    
+	<div class="noesperes" style="height: 800px;"><br>
+		<h2 class="text-center">Investigaciones Realizadas por Nuestros Investigadores</h2><br> 
+{{-- 		<div class="row justify-content-center" style="margin-right:15px;">  
+				{!! $pub->render()!!} <br><br></div> --}}
 				<div class="row justify-content-center" style="margin-right:15px;">  
 					@foreach ($pub as $inv)
 						<div class="col-md-8">
@@ -32,7 +34,7 @@
 										<p><b>Título:</b>  {{($inv->titulo)}}</p>
 									</div>
 									<div class="row">
-										<p><b>Actividad:</b> {{$inv->caracteristica}}</p>
+										<p><b>Palabras Claves:</b> {{$inv->caracteristica}}</p>
 									</div>
 									<div class="row">
 										<p><b>Descripción:</b> {{$inv->descripcion}}</p>
@@ -40,8 +42,9 @@
 									<div class="col-12">
 										<a class="btn btn-success boton1"href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
 										<a class="btn btn-secondary boton1"href="{{ route('register') }}">{{ __('Registro') }}</a>	
+
 										@guest										
-											<a href="{{route('solicpostulacionfuera',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
+											<a href="{{route('solicpostulacionfuera',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>											
 										@else
 											<a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
 										@endguest
@@ -54,12 +57,10 @@
 						</div>
 					@endforeach  
 				</div>
-				<br><br>
-				<div class="row justify-content-center">
-					{!! $pub->render()!!} 
-				</div>
-		</div>
-   
+				<br>
+		<div class="row justify-content-center" style="margin-right:15px;">  
+				{!! $pub->render()!!} <br><br></div>
+   </div>
 	<div class="imagen-fija imagen-fija4">
 		<div class="texto-divImagen">
 				<h1 class="texth1Index">¡No esperes más!</h1>
