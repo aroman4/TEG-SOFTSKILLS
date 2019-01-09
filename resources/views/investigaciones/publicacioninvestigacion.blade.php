@@ -41,7 +41,7 @@
                                 <p><b>Objetivo General:</b> {{$inv->objetivos}}</p>
                             </div>
                             <div class=" row">
-                                <p><b>Actividad:</b> {{$inv->caracteristica}}</p>
+                                <p><b>Palabras Claves:</b> {{$inv->caracteristica}}</p>
                             </div>
                             <div class=" row">
                                 <p><b>Resumen:</b> {{$inv->descripcion}}</p>
@@ -49,19 +49,25 @@
                             <div class="col-12">
                                 <div class="row">
                                     @if($inv->estado == 'activa')
-                                        <p><b>Estatus:</b>  Investigación Activa</p>
+                                        <p><b>Estátus:</b>  Investigación Activa</p>
                                         <hr style="color: #0056b2; margin:8px;" />
                                         <a href="{{route('solicpostulacion',$inv->id)}}" class="btn btn-primary boton1">Postúlate</a>
                                         <div style="margin:20px;"></div>
                                     @else
-                                        <p><b>Estatus:</b> Investigación Finalizada </p>
+                                        <p><b>Estátus:</b> Investigación Finalizada </p>
                                         <div style="margin:8px;"></div>
                                             @if($inv->archivofinal != NULL) 
                                                 <a class="btn btn-primary boton1" href="proyecto/{{$inv->archivofinal}}" download="{{$inv->archivofinal}}"><i title="Descargar Archivo Final"class="fa fa-download"> Download </i></a>
                                             @endif
                                         <div style="margin:20px;"></div>
                                     @endif
-                                    <div style="margin:8px float:right;"></div>
+                                    <div style="margin:6px;"></div>
+                                    <div class="row" ><br>
+                                            <a href="{{route('solicitud.show',['id'=> $inv->id])}}" title="Ver Solicitud" class="btn btn-primary boton" style="border-radius: 5px;"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a></td>
+                                    </div>
+                                    <div style="margin:20px;"></div>
+                                    <div style="margin:20px;"></div>
+
                                     <div class="row" ><br>
                                         <a href="{{route('like',$inv->id)}}" class="far fa-thumbs-up">Like +{{$inv->cantidad}}</a>
                                     </div>

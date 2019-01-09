@@ -1,8 +1,8 @@
 @include('header')
 @include('inc.mensajes')
 
-<div style="margin-right:0px;background-image: linear-gradient(rgb(189, 189, 189), rgb(255, 255, 255));"class="row">
-    <div style="margin-right:0px; padding-right:0px;"class="col-md-2">
+<div style="margin-right:0px; background-image: linear-gradient(rgb(189, 189, 189), rgb(255, 255, 255));"class="row">
+    <div style="padding-right:0px; "class="col-md-2">
         <div  class="menu-inv">
             <ul>
                 <li class="text-center">

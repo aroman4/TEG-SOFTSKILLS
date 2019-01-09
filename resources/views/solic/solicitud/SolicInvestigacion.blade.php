@@ -62,8 +62,11 @@
                                         {!! Form::label ('objetivos','Objetivos:*')!!}
                                         <span class="add-option btn btn-success boton1" style="cursor:pointer;">Añadir objetivo</span>                                        
                                         <div class="input-field form-control" style="border:none;">
-                                            Objetivo: 
-                                            <input type="text" name="objetivosespecificos[]" id="objetivosespecificos[]" class="form-control">
+                                            Objetivo Específico: 
+                                            <div class="input-field form-control" style="border:none;">
+                                                <input type="text" name="objetivosespecificos[]" id="objetivosespecificos[]" class="form-control">
+                                                <span style="float:right; cursor:pointer;"class="delete-option btn btn-danger boton1"><i title="Borrar" class="fa fa-trash" aria-hidden="true"></i> Borrar</span>                                            
+                                            </div>
                                             Actividades del objetivo: 
                                             <span class="add-actividad btn btn-success boton1" style="cursor:pointer;">Añadir actividad</span> 
                                             <div class="actividadesObj"></div>

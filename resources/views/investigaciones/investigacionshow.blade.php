@@ -8,7 +8,7 @@
                 <h1 style="float:left">Investigación </h1>
             @elseif(Auth::user()->tipo_inv == "comite")
                 <h1 style="float:left">Investigación de {{\App\User::find($investigaciones->user_id)->nombre ." ". \App\User::find($investigaciones->user_id)->apellido }}</h1>
-                <a href="{{route('escritoriocomite')}}" class="btn btn-primary boton">Regresar</a>
+                <a href="{{route('comiteinvestigaciones')}}" class="btn btn-primary boton">Regresar</a>
             @endif
         </div>
     </div>
@@ -18,14 +18,14 @@
                 <p><b>Título:  <u>{{$investigaciones->titulo}}</u></b></p>
                 <p><b>Objetivos General:</b> {{$investigaciones->objetivos}}</p>
                 <p><b>Palabras Claves:</b> {{$investigaciones->caracteristica}}</p>
-                <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
-                    {{-- Listar los objetivos especificos --}}
+                {{-- <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
+                    {{-- Listar los objetivos especificos 
                     <ol>
                         @foreach(json_decode($investigaciones->actividades) as $key=>$value)
                             <li>{{$value}}</li>
                         @endforeach
-                    </ol></p>
-                <p><b>Resumen:</b>{{$investigaciones->descipcion}}</p>
+                    </ol></p> --}}
+                <p><b>Resumen:</b>{{$investigaciones->descripcion}}</p>
                 @if($investigaciones->estado == 'activa')
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>
                 @else
@@ -43,13 +43,16 @@
                 <p><b>Título:  <u>{{$investigaciones->titulo}}</u></b></p>
                 <p><b>Objetivos General:</b> {{$investigaciones->objetivos}}</p>
                 <p><b>Palabras Claves:</b> {{$investigaciones->caracteristica}}</p>
-                <p><b>Actividades:</b> {{-- {{$solicitud->actividades}} --}}
-                    {{-- Listar los objetivos especificos --}}
-                    <ol>
-                        @foreach(json_decode($investigaciones->actividades) as $key=>$value)
-                            <li>{{$value}}</li>
-                        @endforeach
-                    </ol></p>
+                <p><b>Actividades:</b> <ol>
+                    @foreach(DB::table('objespecifico')->where('id_solicitud',$investigaciones->id)->get() as $obj)
+                        <li>{{$obj->titulo}}</li>
+                        <ul>
+                            @foreach(json_decode($obj->actividades) as $key=>$value)
+                                <li>{{$value}}</li>
+                            @endforeach
+                        </ul>
+                    @endforeach
+                </ol></p>
                 <p><b>Resumen:</b>{{$investigaciones->descipcion}}</p>
                 @if($investigaciones->estado == 'activa')
                     <p style="color: #CC9900; margin:8px;"><b>Estátus: Investigación {{$investigaciones->estado}}</b> </p>

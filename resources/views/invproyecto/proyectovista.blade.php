@@ -23,7 +23,7 @@
                         </div>  
                         <div class="form-group row">
                                 {!! Form::label ('resumen1','Resumen:')!!}
-                                {!! Form::text ('resumen1',null,['class'=>"form-control {{ $errors->has('resumen1') ? ' is-invalid' : '' }}",'placeholder'=>'Resumen del Archivo a Enviar','required'])!!}
+                                {!! Form::textarea ('resumen1',null,['class'=>"form-control {{ $errors->has('resumen1') ? ' is-invalid' : '' }}",'placeholder'=>'Resumen del Archivo a Enviar','required'])!!}
                                 @if ($errors->has('resumen1'))
                                 <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('rresumen1') }}</strong>
