@@ -597,8 +597,10 @@ body{
 	/* position: absolute;
 	width: 220px; */
 	/* height: 45%; */
-	min-height: 150vh;
-	background: #000000;
+	min-height: 140vh;
+
+/* 	min-height: 100vh;
+ */	background: #000000;
 	color: #FFFFFF;
 	outline: 1px solid #2a2a2a;
 	

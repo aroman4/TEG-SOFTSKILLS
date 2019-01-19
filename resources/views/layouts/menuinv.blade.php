@@ -3,7 +3,7 @@
 
 <div style="margin-right:0px; background-image: linear-gradient(rgb(189, 189, 189), rgb(255, 255, 255));"class="row">
     <div style="padding-right:0px; "class="col-md-2">
-        <div  class="menu-inv">
+        <div  class="menu-inv ">
             <ul>
                 <li class="text-center">
                     @if(auth()->user()->imagen != null)
