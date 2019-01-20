@@ -14,16 +14,15 @@
             <div class="row">
                 <div class="col-md-12 list-group-item">
                     <p>Creada el {{$solicitud->created_at}}</p>
-                    <h3><b>Por:</b> {{$solicitud->nombre}} {{$solicitud->apellido}}</h3>
-                    <br><br>
+                    <p><b>Por:</b> {{$solicitud->nombre}} {{$solicitud->apellido}}</p>
                                       
-                    <h3>Descripción:</h3>
-                    <h4 style="border: 1px solid black;">{!! nl2br($solicitud->mensaje) !!}</h4>
+                    <p><b>Descripción:</b></p>
+                    <p style="border: 1px solid black;">{!! nl2br($solicitud->mensaje) !!}</p>
                     @if($solicitud->archivo != null)
                         <a class="btn btn-secondary" href="{{asset('archivoproyecto/'.$solicitud->archivo)}}">Descargar archivo adjunto</a>
                     @endif
                     <br><br>
-                    <h3>Contacto:</h3>
+                    <p><b>Contacto:</b></p>
                     
                     <p><b>Email:</b> {{$solicitud->email}}</p>
                     <p><b>Otros:</b> {{$solicitud->otros}}</p>
