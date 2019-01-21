@@ -32,24 +32,26 @@
                     <hr>
                 @forelse(\App\Postulacion::all() as $postulacion)
                     @if($postulacion->id_post == $inv->id)
-                        <div class="row text-center">
-                            <div class="col-md-2">
-                                <span>{{\App\User::find($postulacion->id_invest)->nombre}}</span>
+                        @if($postulacion->estado == 'aceptada')
+                            <div class="row text-center">
+                                <div class="col-md-2">
+                                    <span>{{\App\User::find($postulacion->id_invest)->nombre}}</span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>{{\App\User::find($postulacion->id_invest)->apellido}}</span>
+                                </div>
+                                <div class="col-md-2">
+                                    <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary boton1"><i class="fa fa-eye" aria-hidden="true"></i> Ver Más</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="{{route('crearmensaje',$postulacion->id_invest)}}" class="btn btn-warning boton1"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar Mensaje</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <a href="{{route('encuestauno',$postulacion->id_invest)}}" class="btn btn-danger boton1"><i class="fa fa-print" aria-hidden="true"></i> Realizar Evaluación</a>
+                                </div> 
                             </div>
-                            <div class="col-md-2">
-                                <span>{{\App\User::find($postulacion->id_invest)->apellido}}</span>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="{{route('verPostulacion.show',['id'=> $postulacion->id])}}" class="btn btn-primary boton1"><i class="fa fa-eye" aria-hidden="true"></i> Ver Más</a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="{{route('crearmensaje',$postulacion->id_invest)}}" class="btn btn-warning boton1"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar Mensaje</a>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="{{route('encuestauno',$postulacion->id_invest)}}" class="btn btn-danger boton1"><i class="fa fa-print" aria-hidden="true"></i> Realizar Evaluación</a>
-                            </div> 
-                        </div>
                         <br>
+                         @endif
                     @endif
                 @endforeach
                 <div class="row">
