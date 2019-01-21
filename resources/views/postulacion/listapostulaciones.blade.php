@@ -59,7 +59,7 @@
                                         <a href="{{route('verSolPostulaciones',['id'=> $post->id])}}" title="Revisar Postulación" class="btn btn-secondary boton1">Revisar </a></h3>
                                         
 {{--                                         <a href="{{route('modpost',['id'=> $post->id_post])}}" title="Ver Investigación" class="btn btn-primary boton1">Ver</a></h3>
- --}}                                   <a href="{{route('solicitud.show',['id'=> $post->id])}}" title="Ver Investigación" class="btn btn-primary boton1" style="border-radius: 5px;">Ver</a></td>
+ --}}                                   <a href="{{route('solicitud.show',['id'=> $post->id_post])}}" title="Ver Investigación" class="btn btn-primary boton1" style="border-radius: 5px;">Ver</a></td>
 
                                         <a href="{{route('veractividadasignada',['id'=> $post->id])}}" title="Revisar Actividad Asignada" class="btn btn-success boton1">Actividad</a></h3>
 

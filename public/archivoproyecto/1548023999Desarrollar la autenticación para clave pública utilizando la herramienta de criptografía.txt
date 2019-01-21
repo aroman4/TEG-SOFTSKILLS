@@ -1,0 +1,2 @@
+La criptografía es una herramienta que puede utilizarse para mantener confidencial la información y para asegurar su integridad y autenticidad. 
+El algoritmo criptográfico puede dividirse en algoritmo de clave simétrica y algoritmos de clave públicas. Los algoritmo de clave pública tienen la propiedad de que se utilizan diferentes claves para la encriptación y desencriptación y que la clave de desencriptación y de que la clave de desencriptación no puede dividirse de la clave de encriptacción.

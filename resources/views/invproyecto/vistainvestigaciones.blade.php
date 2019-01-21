@@ -45,7 +45,7 @@
                 @forelse(\App\Investigacion::all() as $inv)
                     @forelse(\App\Postulacion::all() as $postulacion) 
                         {{--Postulados a mi investigaciones pendientes--}}
-                      @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada'&& $postulacion->estado_inv == 'inicio')
+                      @if($inv->user_id == Auth::user()->id && $postulacion->id_post == $inv->id && $postulacion->estado == 'aceptada'/* && $postulacion->estado_inv == 'inicio' */)
                         <li class="list-group-item listaAsesSolic">
                             <div class="row">                                
                                 <p><b>Título: </b>{{\App\Investigacion::find($postulacion->id_post)->titulo}}<br>
@@ -83,7 +83,7 @@
 
                     {{--Mis Postulaciones--}}
                     @forelse(\App\Postulacion::all() as $postulacion) 
-                        @if($postulacion->id_invest == Auth::user()->id && $postulacion->estado == 'aceptada'&& $postulacion->estado_inv == 'inicio')
+                        @if($postulacion->id_invest == Auth::user()->id && $postulacion->estado == 'aceptada'/* && $postulacion->estado_inv == 'inicio' */)
                         <li class="list-group-item listaAsesSolic">
                                 <p><b>Mis Postulación:</b></p>
                                 <div class="row">
