@@ -103,14 +103,25 @@ header{
 .banner{
 	position: absolute;
 	background:#FFFFFF;
-	top: 30px;
+	right: 0;
+	padding-right: 25%;
+	top: 20px;
 	text-align: center;
-	height: 520px;
-	width: 50%;
-	margin-left: 25%;
+	height: 50%;
+	width: 70%;
+	margin-left: 20%;
 }
 
-.banner:before {
+.imgBanner{
+	position: absolute;
+	top: 250px;
+	right: 0;
+	background-image: url(../img/empresaria.png);
+	width: 267px;;
+	height: 481px;
+}
+
+/* .banner:before {
 	position: absolute;
 	content: '';
 	width: 160%;
@@ -119,14 +130,14 @@ header{
 	left: 100px;
 	background: #FFFFFF;
 	transform: skewY(-57deg);
-}
+} */
 .banner:after {
 	position: absolute;
 	content: '';
 	width: 160%;
-	height: 540px;
+	height: 650px;
 	top: -120px;
-	right: 100px;
+	right: 270px;
 	background: #FFFFFF;
 	transform: skewY(57deg);
 }
@@ -134,7 +145,8 @@ header{
 .banner h1{
 	position: relative;
 	z-index: 1;
-	padding: 20px
+	padding: 20px;
+	margin-top: 20%;
 }
 
 .texth1Index{

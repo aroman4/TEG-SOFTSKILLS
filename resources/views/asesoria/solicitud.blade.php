@@ -15,21 +15,21 @@
                 <div class="col-md-12 list-group-item">
                     <p><b>Creada el</b> {{$solicitud->created_at}}</p>
                     <p><b>Estatus: </b>{{$solicitud->estado}}</p>
-                    <h3><b>Asunto:</b> <span>{{$solicitud->titulo}}</span></h3>
+                    <p><b>Asunto:</b> <span>{{$solicitud->titulo}}</span></p>
                     @if($solicitud->tipo == "normal")
-                        <h3><b>Cliente:</b> <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></h3>
+                        <p><b>Cliente:</b> <span>{{\App\User::find($solicitud->user_id)->nombre}} {{\App\User::find($solicitud->user_id)->apellido}}</span></p>
                     @elseif($solicitud->tipo == "presolicitud")
-                        <h3><b>Cliente:</b> {{$solicitud->nombre}} {{$solicitud->apellido}}</h3>
+                        <p><b>Cliente:</b> {{$solicitud->nombre}} {{$solicitud->apellido}}</p>
                     @endif
-                    <br><br>
+                    <br>
                                       
-                    <h3><b>Descripción:</b></h3>
-                    <h4 style="border: 1px solid black;">{!! nl2br($solicitud->mensaje) !!}</h4>
+                    <p><b>Descripción:</b></p>
+                    <p style="border: 1px solid black;">{!! nl2br($solicitud->mensaje) !!}</p>
                     @if($solicitud->archivo != null)
                         <a class="btn btn-secondary" href="{{asset('archivoproyecto/'.$solicitud->archivo)}}">Descargar archivo adjunto</a>
                     @endif
-                    <br><br>
-                    <h3><b>Contacto:</b></h3>
+                    <br>
+                    <p><b>Contacto:</b></p>
                     @if($solicitud->tipo == "normal")
                         <p><b>Email:</b> {{\App\User::find($solicitud->user_id)->email}}</p>
                     @elseif($solicitud->tipo == "presolicitud")

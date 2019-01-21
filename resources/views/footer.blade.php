@@ -1,6 +1,6 @@
 <footer>
 		<div class="inside-footer">
-		<p>2018 SoftSkills</p>
+		<p>{{date('Y')}} SoftSkills</p>
 		</div>
     </footer>
 	
